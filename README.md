@@ -5,4 +5,4 @@
 ```
    no such file or directory
 ```
-, để fix lỗi thì sửa lại đường dẫn tới file đó là được.
+để fix lỗi thì sửa lại đường dẫn tới file đó là được.
