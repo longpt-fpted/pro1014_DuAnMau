@@ -5,25 +5,26 @@ include '../User.php';
 class UserDAO {
     private $database;
     public function __construct() {
+        $this->database = new Database();
+        $this->database = $this->database->getDatabase();
     }
 
     public function getUserByID($id) {
-        $database = new Database();
-        $database = $database->getDatabase();
-        if($database->connect_error) {
+        if($this->database->connect_error) {
             return false;
         } else {
-            $query = $database->prepare("SELECT * FROM `User` WHERE `User`.`id` = ?");
+            $query = $this->database->prepare("SELECT * FROM `User` WHERE `User`.`id` = ?");
             $query->bind_param('s', $id);
 
             if($query->execute()) {
-                
-                // return true;
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $user = $result->fetch_assoc();
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                } else return false;
             } else return false;
         }
     }
 }
 
-$dao = new UserDAO();
-var_dump($dao->getUserByID(1));
 ?>
