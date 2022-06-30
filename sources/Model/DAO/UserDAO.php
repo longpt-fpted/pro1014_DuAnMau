@@ -25,6 +25,21 @@ class UserDAO {
             } else return false;
         }
     }
+    public function getUserByEmail($email) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `User` WHERE `User`.`email` = ?');
+            $query->bind_param('s', $email);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $user = $result->fetch_assoc();
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                } else return false;
+            } else return false;
+        }
+    }
 }
 
 ?>
