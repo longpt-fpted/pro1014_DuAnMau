@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.3.0-dev+20220629.14f90d77f8
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 30, 2022 at 12:16 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.29
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th7 01, 2022 lúc 10:54 AM
+-- Phiên bản máy phục vụ: 10.4.24-MariaDB
+-- Phiên bản PHP: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,27 +18,38 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pro1014_duan`
+-- Cơ sở dữ liệu: `pro1014_duan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Category`
+-- Cấu trúc bảng cho bảng `category`
 --
 
-CREATE TABLE `Category` (
+CREATE TABLE `category` (
   `id` smallint(6) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Action'),
+(2, 'FPS'),
+(3, 'Video Production'),
+(4, 'Simulation'),
+(5, 'Sport');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Comment`
+-- Cấu trúc bảng cho bảng `comment`
 --
 
-CREATE TABLE `Comment` (
+CREATE TABLE `comment` (
   `user_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `text` text NOT NULL,
@@ -48,10 +59,10 @@ CREATE TABLE `Comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Feedback`
+-- Cấu trúc bảng cho bảng `feedback`
 --
 
-CREATE TABLE `Feedback` (
+CREATE TABLE `feedback` (
   `user_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `text` text NOT NULL,
@@ -61,10 +72,10 @@ CREATE TABLE `Feedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Order`
+-- Cấu trúc bảng cho bảng `order`
 --
 
-CREATE TABLE `Order` (
+CREATE TABLE `order` (
   `id` int(6) NOT NULL,
   `user_id` int(6) NOT NULL,
   `price` double NOT NULL DEFAULT 0,
@@ -75,10 +86,10 @@ CREATE TABLE `Order` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OrderDetail`
+-- Cấu trúc bảng cho bảng `orderdetail`
 --
 
-CREATE TABLE `OrderDetail` (
+CREATE TABLE `orderdetail` (
   `order_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `quantity` int(4) NOT NULL DEFAULT 1,
@@ -88,10 +99,10 @@ CREATE TABLE `OrderDetail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
-CREATE TABLE `Product` (
+CREATE TABLE `product` (
   `id` int(6) NOT NULL,
   `cate_id` smallint(6) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -102,32 +113,48 @@ CREATE TABLE `Product` (
   `is_available` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0 false / 1 true'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `is_available`) VALUES
+(21, 2, 'Battlefield 4 - Origin', 500000, 5, 5, 'bf4.png', 99),
+(22, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 5, 'mhr.jpg', 99),
+(23, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 5, 'vp17.jpg', 99),
+(24, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 5, 'vp16.jpg', 99),
+(25, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 5, 'vp14.jpg', 99),
+(26, 4, 'Microsoft Flight Simulator Premium Deluxe Bundle', 2536000, 10, 5, 'mfs.jpg', 99),
+(27, 5, 'EA SPORTS™ FIFA 21 Ultimate Edition', 2224000, 10, 5, 'ff21.jpg', 99),
+(28, 4, 'Fire Safety VR Training', 2175000, 10, 5, 'fsvr.jpg', 99),
+(29, 1, 'Call of Duty®: Black Ops III - Zombies Deluxe', 2150000, 10, 5, 'cod.png', 99),
+(30, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 5, 'cod_zetsubou.jpg', 99);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Role`
+-- Cấu trúc bảng cho bảng `role`
 --
 
-CREATE TABLE `Role` (
+CREATE TABLE `role` (
   `id` tinyint(1) NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `Role`
+-- Đang đổ dữ liệu cho bảng `role`
 --
 
-INSERT INTO `Role` (`id`, `name`) VALUES
+INSERT INTO `role` (`id`, `name`) VALUES
 (0, 'user'),
 (1, 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `User`
+-- Cấu trúc bảng cho bảng `user`
 --
 
-CREATE TABLE `User` (
+CREATE TABLE `user` (
   `id` int(6) NOT NULL,
   `role_id` tinyint(1) NOT NULL DEFAULT 0,
   `username` varchar(255) NOT NULL,
@@ -139,142 +166,145 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `User`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `User` (`id`, `role_id`, `username`, `password`, `email`, `fullname`, `phone_number`, `currency`) VALUES
+INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `email`, `fullname`, `phone_number`, `currency`) VALUES
 (1, 1, 'pthieenlong', 'pthieenlong', 'longptps19740@fpt.edu.vn', 'Pham Thien Long', '0373118242', 0);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `Category`
+-- Chỉ mục cho bảng `category`
 --
-ALTER TABLE `Category`
+ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Comment`
+-- Chỉ mục cho bảng `comment`
 --
-ALTER TABLE `Comment`
+ALTER TABLE `comment`
   ADD KEY `fk_user_cmt` (`user_id`),
   ADD KEY `fk_prd_cmt` (`product_id`);
 
 --
--- Indexes for table `Feedback`
+-- Chỉ mục cho bảng `feedback`
 --
-ALTER TABLE `Feedback`
+ALTER TABLE `feedback`
   ADD KEY `fk_user_feedback` (`user_id`),
   ADD KEY `fk_product_feedback` (`product_id`);
 
 --
--- Indexes for table `Order`
+-- Chỉ mục cho bảng `order`
 --
-ALTER TABLE `Order`
+ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user` (`user_id`);
 
 --
--- Indexes for table `OrderDetail`
+-- Chỉ mục cho bảng `orderdetail`
 --
-ALTER TABLE `OrderDetail`
+ALTER TABLE `orderdetail`
   ADD KEY `order` (`order_id`),
   ADD KEY `product` (`product_id`);
 
 --
--- Indexes for table `Product`
+-- Chỉ mục cho bảng `product`
 --
-ALTER TABLE `Product`
+ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cate` (`cate_id`);
 
 --
--- Indexes for table `Role`
+-- Chỉ mục cho bảng `role`
 --
-ALTER TABLE `Role`
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `User`
+-- Chỉ mục cho bảng `user`
 --
-ALTER TABLE `User`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role` (`role_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `Category`
+-- AUTO_INCREMENT cho bảng `category`
 --
-ALTER TABLE `Category`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `category`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `Order`
+-- AUTO_INCREMENT cho bảng `order`
 --
-ALTER TABLE `Order`
+ALTER TABLE `order`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Product`
+-- AUTO_INCREMENT cho bảng `product`
 --
-ALTER TABLE `Product`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `product`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `User`
+-- AUTO_INCREMENT cho bảng `user`
 --
-ALTER TABLE `User`
+ALTER TABLE `user`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `Comment`
+-- Các ràng buộc cho bảng `comment`
 --
-ALTER TABLE `Comment`
-  ADD CONSTRAINT `fk_prd_cmt` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
-  ADD CONSTRAINT `fk_user_cmt` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+ALTER TABLE `comment`
+  ADD CONSTRAINT `fk_prd_cmt` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `fk_user_cmt` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `Feedback`
+-- Các ràng buộc cho bảng `feedback`
 --
-ALTER TABLE `Feedback`
-  ADD CONSTRAINT `fk_product_feedback` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
-  ADD CONSTRAINT `fk_user_feedback` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `fk_product_feedback` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `fk_user_feedback` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `Order`
+-- Các ràng buộc cho bảng `order`
 --
-ALTER TABLE `Order`
-  ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+ALTER TABLE `order`
+  ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `OrderDetail`
+-- Các ràng buộc cho bảng `orderdetail`
 --
-ALTER TABLE `OrderDetail`
-  ADD CONSTRAINT `order` FOREIGN KEY (`order_id`) REFERENCES `Order` (`id`),
-  ADD CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`);
+ALTER TABLE `orderdetail`
+  ADD CONSTRAINT `order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
+  ADD CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
--- Constraints for table `Product`
+-- Các ràng buộc cho bảng `product`
 --
-ALTER TABLE `Product`
-  ADD CONSTRAINT `cate` FOREIGN KEY (`cate_id`) REFERENCES `Category` (`id`);
+ALTER TABLE `product`
+  ADD CONSTRAINT `cate` FOREIGN KEY (`cate_id`) REFERENCES `category` (`id`);
 
 --
--- Constraints for table `User`
+-- Các ràng buộc cho bảng `user`
 --
-ALTER TABLE `User`
-  ADD CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`);
+ALTER TABLE `user`
+  ADD CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+

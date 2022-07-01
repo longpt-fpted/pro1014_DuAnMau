@@ -5,7 +5,7 @@
                     đăng nhập
                 </h2>
                 <section class="content-box">
-                    <form action="" method="post" class="account-box">
+                    <form action="" id="login" method="post" class="account-box">
                         <div class="input-box">
                             <label for="username">Tên tài khoản:</label>
                             <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>

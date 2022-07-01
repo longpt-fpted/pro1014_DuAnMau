@@ -124,7 +124,7 @@
                             </p>
                         </li>
                     </ul>
-                    <a href="#" class="cart-modal-checkout">
+                    <a href="./cart.php" class="cart-modal-checkout">
                         Check out
                     </a>
                 </div>
@@ -133,7 +133,8 @@
         <header class="main-header">
             <section class="main-navbar">
                 <a href="./index.php" class="logo">
-                    <img src="./assets/images/logo.png" alt="logo">
+                    <!-- <img src="./assets/images/logo.png" alt="logo"> -->
+                    <img src="./assets/images/logo1.png" alt="logo">
                     <div class="logo--txt">
                         <p>Demon</p>
                         <p>Stone</p>
@@ -341,12 +342,12 @@
                         Helps <i class="fal fa-angle-down"></i>
                         <ul class="main-navbar__submenu">
                             <li class="category--item">
-                                <a href="#" class="category--title">
+                                <a href="https://www.facebook.com/p.thieenlong" class="category--title">
                                     FAQs
                                 </a>
                             </li>
                             <li class="category--item">
-                                <a href="#" class="category--title">
+                                <a href="https://www.facebook.com/p.thieenlong" class="category--title">
                                     Liên lạc trực tuyến
                                 </a>
                             </li>

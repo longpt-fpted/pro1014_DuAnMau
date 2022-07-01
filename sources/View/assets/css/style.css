@@ -1974,3 +1974,9 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     margin: 0 0.5em !important;
   }
 }/*# sourceMappingURL=style.css.map */
+.content-box #login{
+  height: 47vh;
+}
+.content-box #register{
+  height: 47vh;
+}
