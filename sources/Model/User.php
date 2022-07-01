@@ -19,7 +19,6 @@ class User {
         $this->currency = $currency;
         $this->role_id = $role_id; 
     }
-
     public function getID() {
         return $this->id;
     }

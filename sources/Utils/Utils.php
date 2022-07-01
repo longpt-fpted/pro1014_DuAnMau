@@ -1,5 +1,5 @@
 <?php
-class Utils {
+class Utils { 
     public function __construct() {
         
     }

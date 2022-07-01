@@ -1,7 +1,6 @@
 <?php
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include '../Category.php';
-
 class CategoryDAO {
     private $database;
     public function __construct() {
@@ -22,6 +21,9 @@ class CategoryDAO {
                 } else return false;
             } else return false;
         }
+    }
+    public function getAllCategories() {
+        
     }
 }
 ?>
