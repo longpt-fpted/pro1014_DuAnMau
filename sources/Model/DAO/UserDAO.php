@@ -1,9 +1,9 @@
 <?php
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include '../User.php';
+// include '../User.php';
 
 class UserDAO {
-    private $database;
+    private $database; 
     public function __construct() {
         $this->database = new Database();
         $this->database = $this->database->getDatabase();
@@ -25,6 +25,35 @@ class UserDAO {
             } else return false;
         }
     }
+    public function getUserByEmail($email) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `User` WHERE `User`.`email` = ?');
+            $query->bind_param('s', $email);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $user = $result->fetch_assoc();
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getUserByUsername($username) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `User` WHERE `User`.`username` = ?');
+            $query->bind_param('s', $username);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $user = $result->fetch_assoc();
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                } else return false;
+            } else return false;
+        }
+    }
 }
-
 ?>

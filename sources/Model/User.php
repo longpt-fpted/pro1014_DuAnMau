@@ -19,7 +19,6 @@ class User {
         $this->currency = $currency;
         $this->role_id = $role_id; 
     }
-
     public function getID() {
         return $this->id;
     }
@@ -31,7 +30,7 @@ class User {
     }
     public function setPassword($oldPassword, $newPassword) {
         if($this->password === $oldPassword) {
-            $this->passthru = $newPassword;
+            $this->password = $newPassword;
         }
     }
     public function getEmail() {
@@ -62,7 +61,6 @@ class User {
     public function getRoleID() {
         return $this->role_id;
     }
-
     public function __toString()
     {
         return $this->id." - ".$this->role_id." - ".$this->username." - ".$this->password." - ".$this->email." - ".$this->fullname." - ".$this->phone." - ".$this->currency;
