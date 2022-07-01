@@ -20,7 +20,7 @@
         <footer class="main-footer">
             <article class="follow-section">
                 <p>Theo dõi chúng tôi tại: </p>
-                <a href="#">
+                <a href="https://www.facebook.com/Pakage-Store-100342635784351/" target="_blank">
                     <i class="fab fa-facebook"></i>
                 </a>
                 <a href="#">
@@ -76,16 +76,16 @@
                         Tài khoản
                     </h2>
                     <div class="footer-desc">
-                        <a href="#" class="footer-detail">
+                        <a href="./register.php" class="footer-detail">
                             Đăng ký
                         </a>
-                        <a href="#" class="footer-detail">
+                        <a href="./login.php" class="footer-detail">
                             Đăng nhập
                         </a>
-                        <a href="#" class="footer-detail">
+                        <a href="./cart.php" class="footer-detail">
                             Giỏ hàng
                         </a>
-                        <a href="#" class="footer-detail">
+                        <a href="./user.php" class="footer-detail">
                             Thông tin tài khoản
                         </a>
                     </div>
