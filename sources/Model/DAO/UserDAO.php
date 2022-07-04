@@ -2,6 +2,7 @@
 
 //include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
+include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php";
 //include '../User.php';
 
 class UserDAO {
@@ -79,7 +80,7 @@ class UserDAO {
         if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare("INSERT into `User` VALUES 'null','null','$user->getUsername()','$password','$email','$fullname','null'");
+            $query = $this->database->prepare("INSERT into `User` VALUES 'null','null','$user->getUsername()','$user->getPassword()','$user->getEmail()','$user->getFullname()','null'");
             if($query->execute()){
                 return true;
             }
