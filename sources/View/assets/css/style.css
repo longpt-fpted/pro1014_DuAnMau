@@ -1883,6 +1883,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 
 .main-footer {
   background-color: rgba(136, 96, 208, 0.2);
+  margin-bottom: 0px;
 }
 .main-footer .follow-section {
   display: flex;
@@ -1974,9 +1975,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     margin: 0 0.5em !important;
   }
 }/*# sourceMappingURL=style.css.map */
-.content-box #login{
-  height: 47vh;
-}
-.content-box #register{
-  height: 47vh;
+.action{
+  display: flex;
+  flex-direction: column;
 }

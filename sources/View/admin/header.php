@@ -124,7 +124,7 @@
 
             <!-- Main Page  -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="http://localhost/pro1014_duan/sources/View/index.php">
                 <i class="fas fa-laptop-house"></i>
                     <span>Home Page</span></a>
             </li>

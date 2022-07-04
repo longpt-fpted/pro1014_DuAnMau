@@ -34,10 +34,10 @@
             <section class="footer-container">
                 <article class="footer-box">
                     <article class="logo">
-                        <img src="./assets/images/logo.png" alt="logo">
+                        <img src="./assets/images/logo1.png" alt="logo">
                         <div class="logo--txt">
-                            <p>Pakage</p>
-                            <p>Store</p>
+                            <p>Demon</p>
+                            <p>Stone</p>
                         </div>
                     </article>
                     <div class="footer-desc">

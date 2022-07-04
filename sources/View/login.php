@@ -1,27 +1,29 @@
         <?php include('./header.php') ?>
-        <section class="main-content">
-            <article class="content-container">
-                <h2 class="content-title">
-                    đăng nhập
-                </h2>
-                <section class="content-box">
-                    <form action="" id="login" method="post" class="account-box">
-                        <div class="input-box">
-                            <label for="username">Tên tài khoản:</label>
-                            <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="password">Mật khẩu:</label>
-                            <input type="text" name="password" id="password" placeholder="Mật khẩu" required>
-                        </div>
-                        <div class="input-box">
-                            <input type="submit" name="submit" id="submit" value="Đăng nhập">
-                        </div>
-                    </form>
-                </section>
-            </article>
-        </section>            
-        <?php include('./footer.php') ?>
+        <div class="action">
+            <section class="main-content">
+                <article class="content-container">
+                    <h2 class="content-title">
+                        đăng nhập
+                    </h2>
+                    <section class="content-box">
+                        <form action="" id="login" method="post" class="account-box">
+                            <div class="input-box">
+                                <label for="username">Tên tài khoản:</label>
+                                <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
+                            </div>
+                            <div class="input-box">
+                                <label for="password">Mật khẩu:</label>
+                                <input type="text" name="password" id="password" placeholder="Mật khẩu" required>
+                            </div>
+                            <div class="input-box">
+                                <input type="submit" name="submit" id="submit" value="Đăng nhập">
+                            </div>
+                        </form>
+                    </section>
+                </article>
+            </section>            
+            <?php include('./footer.php') ?>
+        </div>
     </main>
     <!-- Slick JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
