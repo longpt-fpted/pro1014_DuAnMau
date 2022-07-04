@@ -1,6 +1,7 @@
-        <?php include('header.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Utils\Database.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Model\User.php') ?>
+        <?php include('header.php');
+            include ('/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php');
+
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -14,7 +15,21 @@
                     <h1 class="h3 mb-4 text-gray-800">Users</h1>
 
                     <?php
+                        $userDAO = new UserDAO();
+                        $username = 'pthieenlong';
+                        $password = 'pthieenlong';
+                        $user = $userDAO->getUserByUsername($username);
                         
+                        $checkPassword = $user->checkPassword($user->getPassword(), $password);
+                        if($checkPassword) {
+                            echo 'dang nhap thanh cong';
+                        } else echo 'dang nhap that bai';
+
+                        // làm hàm connect database
+                        // thông qua database => mảng ['id'], ['username'] 
+                        // mảng.['id']
+                        // thay vì lấy mảng => đối tượng.
+                        // $user->getID(); == mảng.['id']
                     ?>
 
                 </div>
