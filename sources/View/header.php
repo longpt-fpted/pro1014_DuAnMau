@@ -5,6 +5,9 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Pr
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 
+
+
+
 ?>
 
 <!DOCTYPE html>

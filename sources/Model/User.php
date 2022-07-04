@@ -44,6 +44,12 @@ class User {
     public function setEmail($newEmail) {
         $this->email = $newEmail;
     }
+    public function getFullname() {
+        return $this->fullname;
+    }
+    public function setFullname($newFullname) {
+        $this->fullname = $newFullname;
+    }
     public function getPhone() {
         return $this->phone;
     }

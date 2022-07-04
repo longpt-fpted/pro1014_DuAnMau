@@ -1,4 +1,12 @@
-        <?php include('./header.php') ?>
+<?php
+    include('./header.php');
+
+    $id = 1;
+
+    $product = $productDAO->getProductByID($id);
+    
+    var_dump($product);
+?>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
