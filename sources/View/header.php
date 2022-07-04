@@ -1,10 +1,11 @@
 <?php 
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
 
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
-
+$cateDAO = new CategoryDAO();
 
 
 
@@ -160,193 +161,60 @@ $productDAO = new ProductDAO();
                                 <h4 class="category--title">
                                     Thể loại
                                 </h4>
+                                <?php
+                                    $cates = $cateDAO->getAllCategories();
+                                    foreach ($cates as $cate) {
+
+                                ?>
                                 <p class="category--desc">
-                                    FPS
+                                    <? echo $cate->getName(); ?>
                                 </p>
-                                <p class="category--desc">
-                                    FPS
-                                </p>
-                                <p class="category--desc">
-                                    FPS
-                                </p>
-                                <p class="category--desc">
-                                    FPS
-                                </p>
-                                <p class="category--desc">
-                                    FPS
-                                </p>
+                                <?php } ?>
                             </li>
                             <li class="category--item">
                                 <h4 class="category--title">
                                     Đặc sắc
                                 </h4>
-                                <p class="category--desc">
+                                <a class="category--desc" href="#">
                                     Sale
-                                </p>
-                                <p class="category--desc">
+                                </a>
+                                <a class="category--desc" href="#">
                                     Mới ra mắt
-                                </p>
-                                <p class="category--desc">
+                                </a>
+                                <a class="category--desc" href="#">
                                     Hot
-                                </p>
+                                </a>
                             </li>
                             <li class="category--item" id="hot-items">
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
+                                <?php 
+                                    $saleProducts = $productDAO->getSaleProductsWithLimit(5);
+                                    foreach ($saleProducts as $product) {
+                                ?>
+                                    <article class="product-box">
+                                        <a class="product-box__thumbnail" href="#">
+                                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+                                        </a>
+                                        <div class="product-box__detail">
+                                            <div class="product-box__desc">
+                                                <div class="product-box__title" href="#">
+                                                    <a href="#"><? echo $product->getName(); ?></a>
+                                                    <div class="tag sale-tag">
+                                                        -<? echo $product->getSale(); ?>%
+                                                    </div>
+                                                </div>
+                                                <div class="product-box__price">
+                                                    <p class="product-box__totalprice">
+                                                    <? echo $product->getTotalPrice(); ?></p>
+                                                    <p class="product-box__fullprice">
+                                                    <? echo $product->getPrice(); ?></p>
                                                 </div>
                                             </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
+                                            <a class="product-box__add" href="#">
+                                                Add to cart
+                                            </a>
                                         </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
-                                                </div>
-                                            </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
-                                                </div>
-                                            </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
-                                                </div>
-                                            </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
-                                                </div>
-                                            </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
-                                <article class="product-box">
-                                    <a class="product-box__thumbnail" href="#">
-                                        <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                                    </a>
-                                    <div class="product-box__detail">
-                                        <div class="product-box__desc">
-                                            <div class="product-box__title" href="#">
-                                                <a href="#">Elden Ring</a>
-                                                <div class="tag sale-tag">
-                                                    -10%
-                                                </div>
-                                            </div>
-                                            <div class="product-box__price">
-                                                <p class="product-box__totalprice">
-                                                    790000
-                                                </p>
-                                                <p class="product-box__fullprice">
-                                                    800000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <a class="product-box__add" href="#">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </article>
+                                    </article>
+                                <?php } ?>
                             </li>
                         </ul>
                     </li>

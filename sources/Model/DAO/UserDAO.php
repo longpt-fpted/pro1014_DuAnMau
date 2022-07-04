@@ -1,7 +1,7 @@
 <?php
-
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+// include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
 //include '../User.php';
 
 class UserDAO {
@@ -22,7 +22,7 @@ class UserDAO {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $user = $result->fetch_assoc();
-                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id'], $user['avatar']);
                 } else return false;
             } else return false;
         }
@@ -37,7 +37,7 @@ class UserDAO {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $user = $result->fetch_assoc();
-                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id'], $user['avatar']);
                 } else return false;
             } else return false;
         }
@@ -52,7 +52,7 @@ class UserDAO {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $user = $result->fetch_assoc();
-                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id']);
+                    return new User($user['id'], $user['username'], $user['password'], $user['email'], $user['fullname'], $user['phone_number'], $user['currency'], $user['role_id'], $user['avatar']);
                 } else return false;
             } else return false;
         }
@@ -67,7 +67,7 @@ class UserDAO {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        $user = new User($row['id'], $row['username'], $row['password'], $row['email'], $row['fullname'], $row['phone_number'], $row['currency'], $row['role_id']);
+                        $user = new User($row['id'], $row['username'], $row['password'], $row['email'], $row['fullname'], $row['phone_number'], $row['currency'], $row['role_id'], $row['avatar']);
                         $users[] = $user;
                     }
                     return $users;
@@ -79,11 +79,11 @@ class UserDAO {
         if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare("INSERT into `User` VALUES 'null','null','$user->getUsername()','$password','$email','$fullname','null'");
-            if($query->execute()){
-                return true;
-            }
-            else return false;
+            // $query = $this->database->prepare("INSERT into `User` VALUES 'null','null',?,?,?,?,'null'");
+            // if($query->execute()){
+                // return true;
+            // }
+            // else return false;
         }
     }
 }

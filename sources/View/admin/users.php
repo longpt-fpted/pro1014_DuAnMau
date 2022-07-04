@@ -2,9 +2,6 @@
             // include ('/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php');
 
         ?>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <?php include('./topbar.php') ?>
                 <!-- End of Topbar -->
 
@@ -37,7 +34,12 @@
                             <input type="submit" id="submit" value="Cập Nhật">
                         </form>
                     </div>  -->
+                    
                     <div class="show-information">
+                    <?php
+                        $users = $userDAO->getAllUsers();
+                        foreach ($users as $user) {
+                    ?>
                         <div class="information">
                             <div class="image">
                                 <img src="./images/avatar.png" alt="">
@@ -45,185 +47,25 @@
                             <div class="detail">
                                 <form action="" id="user-infor">
                                     <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
+                                    <input type="text" id="fullname" name="fullname" value="<?
+                                    echo $user->getFullname(); ?>"><br>                               
                                     <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
+                                    <input type="text" id="email" name="email" value="<?
+                                    echo $user->getEmail(); ?>"><br>
                                     <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
+                                    <input type="text" id="phone-number" name="phone-number" value="<?
+                                    echo $user->getPhone(); ?>"><br>
                                     <h>Vai trò:</h><br>
                                     <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
+                                        <option value="Quản trị viên" <? echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
+                                        <option value="Khách hàng" <? echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
                                     </select><br>
                                     <input type="submit" id="submit" value="Cập Nhật">
                                 </form>
                             </div>
                         </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
+                    <?php } ?>
                         </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <?php
-                        $userDAO = new UserDAO();
-                        $username = 'pthieenlong';
-                        $password = 'pthieenlong';
-                        $user = $userDAO->getUserByUsername($username);
-                        
-                        $checkPassword = $user->checkPassword($user->getPassword(), $password);
-                        if($checkPassword) {
-                            echo 'dang nhap thanh cong';
-                        } else echo 'dang nhap that bai';
-
-                        // làm hàm connect database
-                        // thông qua database => mảng ['id'], ['username'] 
-                        // mảng.['id']
-                        // thay vì lấy mảng => đối tượng.
-                        // $user->getID(); == mảng.['id']
-                    ?> -->
 
                 </div>
                 <!-- /.container-fluid -->

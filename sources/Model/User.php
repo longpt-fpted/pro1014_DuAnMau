@@ -8,8 +8,8 @@ class User {
     private $phone;
     private $currency;
     private $role_id;
-
-    public function __construct($id, $username, $password, $email, $fullname, $phone, $currency, $role_id) {
+    private $avatar;
+    public function __construct($id, $username, $password, $email, $fullname, $phone, $currency, $role_id, $avatar) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
@@ -18,6 +18,7 @@ class User {
         $this->phone = $phone;
         $this->currency = $currency;
         $this->role_id = $role_id; 
+        $this->avatar = $avatar;
     }
     public function getID() {
         return $this->id;
