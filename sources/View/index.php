@@ -25,110 +25,38 @@
                     giảm giá
                 </h2>
                 <section class="content-box">
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
+                    <? 
+                        $productsOnSales = $productDAO->getSaleProductsWithLimit(4);
+                        foreach ($productsOnSales as $productOnSales) {
+                    ?>
+                        <article class="product-box">
+                            <a class="product-box__thumbnail" href="#">
+                                <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+                            </a>
+                            <div class="product-box__detail">
+                                <div class="product-box__desc">
+                                    <div class="product-box__title" href="#">
+                                        <a href="#"><? echo $productOnSales->getName();?></a>
+                                        <div class="tag sale-tag">
+                                            -<? echo $productOnSales->getSale(); ?>%
+                                        </div>
+                                    </div>
+                                    <div class="product-box__price">
+                                        <p class="product-box__totalprice">
+                                            <? echo $productOnSales->getTotalPrice(); ?>
+                                        </p>
+                                        <p class="product-box__fullprice">
+                                        <? echo $productOnSales->getPrice(); ?></p>
                                     </div>
                                 </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
+                                <a class="product-box__add" href="#">
+                                    <i class="fal fa-cart-arrow-down"></i>
+                                </a>
                             </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
+                        </article>
+                    <?
+                        }
+                    ?>
                 </section>
                 <a class="content-detail" href="#">
                     Xem thêm
@@ -136,9 +64,13 @@
             </article>
             <article class="content-container">
                 <h2 class="content-title">
-                    giảm giá
+                    Mới ra mắt
                 </h2>
                 <section class="content-box">
+                <? 
+                        $newProducts = $productDAO->getNewProducts(4);
+                        foreach ($newProducts as $newProduct) {
+                ?>
                     <article class="product-box">
                         <a class="product-box__thumbnail" href="#">
                             <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
@@ -146,18 +78,17 @@
                         <div class="product-box__detail">
                             <div class="product-box__desc">
                                 <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
+                                    <a href="#"><? echo $newProduct->getName();?></a>
                                     <div class="tag sale-tag">
-                                        -10%
+                                        -<? echo $newProduct->getSale(); ?>%
                                     </div>
                                 </div>
                                 <div class="product-box__price">
                                     <p class="product-box__totalprice">
-                                        790000
+                                        <? echo $newProduct->getTotalPrice(); ?>
                                     </p>
                                     <p class="product-box__fullprice">
-                                        800000
-                                    </p>
+                                    <? echo $newProduct->getPrice(); ?></p>
                                 </div>
                             </div>
                             <a class="product-box__add" href="#">
@@ -165,84 +96,9 @@
                             </a>
                         </div>
                     </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
-                        </a>
-                        <div class="product-box__detail">
-                            <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#">Elden ten nay dai vai ca chuong luon Ring</a>
-                                    <div class="tag sale-tag">
-                                        -10%
-                                    </div>
-                                </div>
-                                <div class="product-box__price">
-                                    <p class="product-box__totalprice">
-                                        790000
-                                    </p>
-                                    <p class="product-box__fullprice">
-                                        800000
-                                    </p>
-                                </div>
-                            </div>
-                            <a class="product-box__add" href="#">
-                                <i class="fal fa-cart-arrow-down"></i>
-                            </a>
-                        </div>
-                    </article>
+                <?
+                    }
+                ?>
                 </section>
                 <a class="content-detail" href="#">
                     Xem thêm

@@ -7,9 +7,10 @@ class Product {
     private $sale_percent;
     private $rating;
     private $img_url;
+    private $view;
+    private $sell_count;
     private $isAvailable;
-
-    public function __construct($id, $cate_id, $name, $price, $sale_percent, $rating, $img_url, $isAvailable) {
+    public function __construct($id, $cate_id, $name, $price, $sale_percent, $rating, $img_url, $view, $sell_count, $isAvailable) {
         $this->id = $id;
         $this->cate_id = $cate_id;
         $this->name = $name;
@@ -17,6 +18,8 @@ class Product {
         $this->sale_percent = $sale_percent;
         $this->rating = $rating;
         $this->img_url = $img_url;
+        $this->view = $view;
+        $this->sell_count = $sell_count;
         $this->isAvailable = $isAvailable;
     }
     public function getID() {
@@ -47,7 +50,7 @@ class Product {
         return $this->sale_percent;
     }
     public function getTotalPrice() {
-        return $this->price - ($this->price * $this->sale_percent);
+        return $this->price - ($this->price * $this->sale_percent)/100;
     }
     public function getRating() {
         return $this->rating;
@@ -60,6 +63,21 @@ class Product {
     }
     public function setImg($newImg) {
         $this->img_url = $newImg;
+    }
+    public function getView() {
+        return $this->view;
+    }
+    public function setView($newView) {
+        $this->view = $newView;
+    }
+    public function addOneView() {
+        $this->view++;
+    }
+    public function getSellCount() {
+        return $this->sell_count;
+    }
+    public function setSellCount($newSellCount) {
+        $this->sell_count = $newSellCount;
     }
     public function getAvailable() {
         return $this->isAvailable;

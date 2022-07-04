@@ -1,6 +1,7 @@
 <?php
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php';
+
 class UserDAO {
     private $database; 
     public function __construct() {
@@ -71,9 +72,6 @@ class UserDAO {
                 } else return false;
             } else return false;
         }
-    }
-    public function addUser($user) {
-        
     }
 }
 ?>

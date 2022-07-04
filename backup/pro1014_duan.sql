@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.3.0-dev+20220629.14f90d77f8
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 01, 2022 lúc 10:54 AM
--- Phiên bản máy phục vụ: 10.4.24-MariaDB
--- Phiên bản PHP: 8.1.4
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th7 04, 2022 lúc 11:36 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -110,6 +110,8 @@ CREATE TABLE `product` (
   `sale_percent` float NOT NULL DEFAULT 0,
   `rating` float NOT NULL DEFAULT 0,
   `img_url` varchar(255) NOT NULL,
+  `view` int(11) NOT NULL DEFAULT 0,
+  `sell_count` int(11) NOT NULL DEFAULT 0,
   `is_available` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0 false / 1 true'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -117,17 +119,17 @@ CREATE TABLE `product` (
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `is_available`) VALUES
-(21, 2, 'Battlefield 4 - Origin', 500000, 5, 5, 'bf4.png', 99),
-(22, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 5, 'mhr.jpg', 99),
-(23, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 5, 'vp17.jpg', 99),
-(24, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 5, 'vp16.jpg', 99),
-(25, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 5, 'vp14.jpg', 99),
-(26, 4, 'Microsoft Flight Simulator Premium Deluxe Bundle', 2536000, 10, 5, 'mfs.jpg', 99),
-(27, 5, 'EA SPORTS™ FIFA 21 Ultimate Edition', 2224000, 10, 5, 'ff21.jpg', 99),
-(28, 4, 'Fire Safety VR Training', 2175000, 10, 5, 'fsvr.jpg', 99),
-(29, 1, 'Call of Duty®: Black Ops III - Zombies Deluxe', 2150000, 10, 5, 'cod.png', 99),
-(30, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 5, 'cod_zetsubou.jpg', 99);
+INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `view`, `sell_count`, `is_available`) VALUES
+(1, 2, 'Battlefield 4 - Origin', 500000, 5, 5, 'bf4.png', 2, 0, 1),
+(2, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 5, 'mhr.jpg', 0, 0, 1),
+(3, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 5, 'vp17.jpg', 0, 0, 1),
+(4, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 5, 'vp16.jpg', 0, 0, 1),
+(5, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 5, 'vp14.jpg', 0, 0, 1),
+(6, 4, 'Microsoft Flight Simulator Premium Deluxe Bundle', 2536000, 10, 5, 'mfs.jpg', 0, 0, 1),
+(7, 5, 'EA SPORTS™ FIFA 21 Ultimate Edition', 2224000, 10, 5, 'ff21.jpg', 0, 0, 1),
+(8, 4, 'Fire Safety VR Training', 2175000, 10, 5, 'fsvr.jpg', 0, 0, 1),
+(9, 1, 'Call of Duty®: Black Ops III - Zombies Deluxe', 2150000, 10, 5, 'cod.png', 0, 0, 1),
+(10, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 5, 'cod_zetsubou.jpg', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -250,7 +252,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
@@ -305,6 +307,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
