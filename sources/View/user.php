@@ -45,7 +45,10 @@
                 </div>
             </div>
         </article>
-        <?php include('./header.php') ?>
+        <?php
+            include('./header.php');
+            $user = $userDAO->getUserByID(1);
+        ?>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
@@ -105,11 +108,15 @@
                                         <div class="form-name">
                                             <div class="input-box">
                                                 <label for="username">Họ & Tên</label>
-                                                <input type="text" name="username" id="username">
+                                                <input type="text" name="username" id="username" value="<?
+                                                    echo $user->getFullname();
+                                                ?>">
                                             </div>
                                             <div class="input-box">
                                                 <label for="phone">Số điện thoại</label>
-                                                <input type="text" name="phone" id="phone">
+                                                <input type="text" name="phone" id="phone" value="<?
+                                                    echo $user->getPhone();
+                                                ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +129,7 @@
                                         <i class="fal fa-phone"></i>
                                         <p>
                                             Số điện thoại<br>
-                                            +84 000 000 000
+                                            +84 <?echo $user->getPhone();?>
                                         </p>
                                         <button class="form-edit-btn">Cập nhật</button>
                                     </div>
@@ -130,7 +137,7 @@
                                         <i class="fal fa-envelope"></i>
                                         <p>
                                             Địa chỉ email<br>
-                                            longptps19740@fpt.edu.vn
+                                            <?echo $user->getEmail();?>
                                         </p>
                                         <button class="form-edit-btn">Cập nhật</button>
                                     </div>
@@ -318,7 +325,7 @@
                         </article>
                         <article class="user-box">
                             <div class="user-box__title">
-                                Quản lí bài viết
+                                Thông báo của tôi
                             </div>
                             <article class="user-box__dashboard">
                                 <article class="news-box">
@@ -343,8 +350,6 @@
                                     </div>
                                     <div class="news-box__foot">
                                         <a href="#" class="method">Xem chi tiết</a>
-                                        <button class="method">Chỉnh sửa</button>
-                                        <a href="#" class="method">Xoá</a>
                                     </div>
                                 </article>
                             </article>
