@@ -1,6 +1,7 @@
-        <?php include('header.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Utils\Database.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Model\User.php') ?>
+        <?php include('header.php');
+            include ('/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php');
+
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -14,7 +15,6 @@
                     <h1 class="h3 mb-4 text-gray-800">Users</h1>
 
                     <?php
-                        
                     ?>
 
                 </div>

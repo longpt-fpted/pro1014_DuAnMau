@@ -1,8 +1,8 @@
 <?php
-define("HOST_NAME", "localhost:3306");
-define("USER_NAME", "root");
-define("PASSWORD", "");
-define("DATABASE", "pro1014_duan");
+// define("HOST_NAME", "localhost:3306");
+// define("USER_NAME", "root");
+// define("PASSWORD", "");
+// define("DATABASE", "pro1014_duan");
 
 class Database {
     public function __construct() {
@@ -10,7 +10,7 @@ class Database {
     }
     public function getDatabase($database = null) {
         if($database == null) {
-            return new mysqli(HOST_NAME, USER_NAME, PASSWORD, DATABASE);
+            return new mysqli("localhost:3306", "root", "", "pro1014_duan");
         } else return $database;
     }
 }

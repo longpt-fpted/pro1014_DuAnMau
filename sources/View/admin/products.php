@@ -1,6 +1,4 @@
         <?php include('header.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Utils\Database.php') ?>
-        <?php include('C:\xampp\htdocs\pro1014_DuAn\sources\Model\User.php') ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

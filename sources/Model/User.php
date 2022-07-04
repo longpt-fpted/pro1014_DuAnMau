@@ -33,6 +33,11 @@ class User {
             $this->password = $newPassword;
         }
     }
+    public function checkPassword($password, $input) {
+        if($input === $password) {
+            return true;
+        } else return false;
+    }
     public function getEmail() {
         return $this->email;
     }

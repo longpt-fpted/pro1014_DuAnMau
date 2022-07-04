@@ -1,3 +1,11 @@
+<?php 
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+
+$userDAO = new UserDAO();
+$productDAO = new ProductDAO();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,7 +132,7 @@
 
             <!-- Main Page  -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="http://localhost/pro1014_duan/sources/View/index.php">
                 <i class="fas fa-laptop-house"></i>
                     <span>Home Page</span></a>
             </li>
