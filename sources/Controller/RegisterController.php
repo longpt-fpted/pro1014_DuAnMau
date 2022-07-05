@@ -3,8 +3,7 @@
     // include "/wamp64/www/hihihaha/pro1014_duan/sources/Model/User.php";
 
     include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\DAO\UserDAO.php');
-    //include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php');
-
+    include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php');
     $fullname=$_POST['fullname'];
     $username=$_POST['username'];
     $password=$_POST['password'];

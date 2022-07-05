@@ -2,10 +2,6 @@
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
 // include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
-
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
-include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php";
 //include '../User.php';
 
 class UserDAO {

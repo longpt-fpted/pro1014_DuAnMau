@@ -1,8 +1,9 @@
 <?php 
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+session_start();
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 
@@ -269,5 +270,4 @@ session_start();
                 </article>
             </section>
         </header>
-</body>
-</html>
+        
