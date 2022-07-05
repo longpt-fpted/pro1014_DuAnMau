@@ -160,6 +160,9 @@
                             <input type="checkbox" name="confirm" id="confirm" style="width: 1em;" required>
                             <label for="confirm" style="width: fit-content; font-size: .75em;">Bằng việc click vào đây là bạn đã đồng ý với các điều khoản của chúng tôi</label>
                         </div>
+                        <div class="validate">
+                            <h4 id="baoloi" style="color:red;"></h4>
+                        </div>
                         <div class="input-box">
                             <input type="submit" name="submit" id="submit" value="Đăng kí">
                         </div>

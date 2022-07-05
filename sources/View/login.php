@@ -5,7 +5,7 @@
                     đăng nhập
                 </h2>
                 <section class="content-box">
-                    <form action="" method="post" enctype="multipart/form-data" class="account-box" id="login-form">
+                    <form action="../sources/Controller/LoginController.php" method="post" enctype="multipart/form-data" class="account-box" id="login-form">
                         <div class="input-box">
                             <label for="username">Tên tài khoản:</label>
                             <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
@@ -28,7 +28,7 @@
                 let data = $('#login-form').serialize()+"&method=login";
                 console.log(data);
                 $.ajax({
-                    url: 'http://localhost/pro1014_duan/sources/Controller/LoginController.php',
+                    url: 'http://localhost/hihihaha/pro1014_duan/sources/Controller/LoginController.php',
                     type: 'POST',
                     data: data,
                 }).done(res => {

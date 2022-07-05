@@ -25,7 +25,7 @@
                     giảm giá
                 </h2>
                 <section class="content-box">
-                    <? 
+                    <?
                         $productsOnSales = $productDAO->getSaleProductsWithLimit(4);
                         foreach ($productsOnSales as $productOnSales) {
                     ?>

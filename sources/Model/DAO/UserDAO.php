@@ -1,7 +1,8 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
-// include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\User.php";
 //include '../User.php';
 
 class UserDAO {
@@ -92,6 +93,19 @@ class UserDAO {
             return false;
         } else {
             $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`username` = ?');
+            $query->bind_param("s", $username);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function isEmailExist($username) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`email` = ?');
             $query->bind_param("s", $username);
 
             if($query->execute()) {
