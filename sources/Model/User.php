@@ -34,8 +34,8 @@ class User {
             $this->password = $newPassword;
         }
     }
-    public function checkPassword($password, $input) {
-        if($input === $password) {
+    public function checkPassword($input) {
+        if($input === $this->password) {
             return true;
         } else return false;
     }
@@ -73,9 +73,9 @@ class User {
     public function getRoleID() {
         return $this->role_id;
     }
-    public function __toString()
-    {
-        return $this->id." - ".$this->role_id." - ".$this->username." - ".$this->password." - ".$this->email." - ".$this->fullname." - ".$this->phone." - ".$this->currency;
-    }
+    // public function __toString()
+    // {
+    //     return $this->id." - ".$this->role_id." - ".$this->username." - ".$this->password." - ".$this->email." - ".$this->fullname." - ".$this->phone." - ".$this->currency;
+    // }
 }
 ?>

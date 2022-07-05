@@ -1,18 +1,12 @@
 <?php 
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+session_start();
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
-
-session_start();
-    if($_SESSION['user']){
-        echo 'Welcome <b>'.$_SESSION['success'].'</b>';
-        echo 'Welcome <b>'.$_SESSION['user'].'</b>';
-        echo 'Welcome <b>'.$_SESSION['cash'].'</b>';
-    }
-
+$cateDao = new CategoryDAO();
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +22,7 @@ session_start();
     <!-- Jquery -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="./assets/js/main.js"></script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS -->
@@ -166,7 +161,8 @@ session_start();
                                     Thể loại
                                 </h4>
                                 <?php
-                                    $cates = $cateDAO->getAllCategories();
+                                
+                                    $cates = $cateDao->getAllCategories();
                                     foreach ($cates as $cate) {
 
                                 ?>
@@ -245,16 +241,29 @@ session_start();
                     <li class="main-navbar--item">
                         <i class="fal fa-user-circle"></i>
                         <ul class="main-navbar__submenu">
-                            <li class="category--item">
-                                <a href="./register.php" class="category--title">
-                                    Đăng ký
-                                </a>
-                            </li>
-                            <li class="category--item">
-                                <a href="./login.php" class="category--title">
-                                    Đăng nhập
-                                </a>
-                            </li>
+                            <?php if(isset($_SESSION['user'])): ?>
+                                <li class="category--item">
+                                    <a href="./register.php" class="category--title">
+                                        Thông tin
+                                    </a>
+                                </li>
+                                <li class="category--item">
+                                    <a href="./login.php" class="category--title">
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            <?php else :?>
+                                <li class="category--item">
+                                    <a href="./register.php" class="category--title">
+                                        Đăng ký
+                                    </a>
+                                </li>
+                                <li class="category--item">
+                                    <a href="./login.php" class="category--title">
+                                        Đăng nhập
+                                    </a>
+                                </li>
+                            <?php endif;?>
                         </ul>
                     </li>
                     <li class="main-navbar--item">
@@ -269,5 +278,4 @@ session_start();
                 </article>
             </section>
         </header>
-</body>
-</html>
+        
