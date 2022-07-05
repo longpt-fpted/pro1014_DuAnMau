@@ -6,13 +6,12 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Ca
 
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
-
-session_start();
-    if($_SESSION['user']){
-        echo 'Welcome <b>'.$_SESSION['success'].'</b>';
-        echo 'Welcome <b>'.$_SESSION['user'].'</b>';
-        echo 'Welcome <b>'.$_SESSION['cash'].'</b>';
-    }
+$cateDao = new CategoryDAO();
+// if(isset($_SESSION['user'])){
+//     echo 'Welcome <b>'.$_SESSION['success'].'</b>';
+//     echo 'Welcome <b>'.$_SESSION['user'].'</b>';
+//     echo 'Welcome <b>'.$_SESSION['cash'].'</b>';
+// }
 
 ?>
 
@@ -167,7 +166,8 @@ session_start();
                                     Thể loại
                                 </h4>
                                 <?php
-                                    $cates = $cateDAO->getAllCategories();
+                                
+                                    $cates = $cateDao->getAllCategories();
                                     foreach ($cates as $cate) {
 
                                 ?>

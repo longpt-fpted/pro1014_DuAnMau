@@ -34,8 +34,8 @@ class User {
             $this->password = $newPassword;
         }
     }
-    public function checkPassword($password, $input) {
-        if($input === $password) {
+    public function checkPassword($input) {
+        if($input === $this->password) {
             return true;
         } else return false;
     }

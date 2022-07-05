@@ -9,7 +9,7 @@
     $password=$_POST['password'];
     $email=$_POST['email'];
 
-    $user = new User(null,null,$username,$password,$email,$fullname,null,0);
+    // $user = new User(null,null,$username,$password,$email,$fullname,null,0);
     
     $userDAO = new UserDAO();
     //$userDAO->addUser($user->getUsername(),$user->getPassword(),$user->getEmail(),$user->getFullname());

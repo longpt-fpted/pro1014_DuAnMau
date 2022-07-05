@@ -87,5 +87,19 @@ class UserDAO {
             else return false;
         }
     }
+    public function isUsernameExist($username) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`username` = ?');
+            $query->bind_param("s", $username);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
 }
+
 ?>

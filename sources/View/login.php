@@ -1,57 +1,3 @@
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="modal-footer">
-                    <ul class="cart-modal-price-list">
-                        <!-- 9.000.000.000đ -->
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Tổng giá:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Giảm giá:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Số tiền trong tài khoản:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Còn thiếu:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Tổng thanh toán:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                    </ul>
-                    <a href="#" class="cart-modal-checkout">
-                        Check out
-                    </a>
-                </div>
-            </div>
-        </article>
         <?php include('./header.php') ?>
         <section class="main-content">
             <article class="content-container">
@@ -59,7 +5,7 @@
                     đăng nhập
                 </h2>
                 <section class="content-box">
-                    <form action="../Controller/LoginController.php" method="post" enctype="multipart/form-data" class="account-box">
+                    <form action="" method="post" enctype="multipart/form-data" class="account-box" id="login-form">
                         <div class="input-box">
                             <label for="username">Tên tài khoản:</label>
                             <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
@@ -69,10 +15,40 @@
                             <input type="text" name="password" id="password" placeholder="Mật khẩu" required>
                         </div>
                         <div class="input-box">
-                            <input type="submit" name="submit" id="submit" value="Đăng nhập">
+                            <input type="submit" name="login" id="submit" value="Đăng nhập">
                         </div>
                     </form>
                 </section>
             </article>
         </section>            
+        <script>
+            document.querySelector('#submit').addEventListener('click', (e) => {
+                e.preventDefault();
+                let data = $('#login-form').serialize()+"&method=login";
+                console.log(data);
+                $.ajax({
+                    url: 'http://localhost/pro1014_duan/sources/Controller/LoginController.php',
+                    type: 'POST',
+                    data: data,
+                }).done(res => {
+                    res = JSON.parse(res);
+                    switch (res['status']) {
+                        case 'success':
+                            location.href = 'index.php';
+                            // console.log('login success');
+                            break;
+                        case 'wrong-password':
+                            console.log('wrong password');
+                            break;
+                    }
+                })
+                // const xhttp = new XMLHttpRequest();
+                // xhttp.onload = () => {
+                //     console.log('gửi giỏ hàng lên server');
+                //     console.log("response text", xhttp.responseText);
+                // }
+                // xhttp.open("POST", 'http://localhost/pro1014_duan/sources/Controller/CartController.php?pid=2&method=add');
+                // xhttp.send();
+            })
+        </script>
         <?php include('./footer.php') ?>

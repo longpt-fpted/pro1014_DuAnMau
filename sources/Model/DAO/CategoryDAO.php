@@ -1,6 +1,5 @@
 <?php
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include '../Category.php';
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Category.php";
 
 class CategoryDAO {
