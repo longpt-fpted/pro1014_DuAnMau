@@ -40,33 +40,172 @@
         <div class="show-information">
             <div class="product-information">
                 <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
+                    <img src="../admin/images/elden-ring.jpg" alt="">
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/elden-ring.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/elden-ring.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/elden-ring.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
@@ -77,29 +216,39 @@
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
@@ -110,29 +259,39 @@
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
@@ -143,29 +302,39 @@
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
@@ -176,128 +345,39 @@
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <h>Tên sản phẩm</h><br>
-                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
-                        <h>Hình ảnh:</h>
-                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
-                        <h>Danh mục</h><br>
-                        <select name="cate_name" id="cate_name">
-                            <option value="Action">Action</option>
-                            <option value="FPS">FPS</option>
-                            <option value="Video Production">Video Production</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Battle Field">Battle Field</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="RPG">RPG</option>
-                        </select>
-                        <h>Giá niêm yết:</h>
-                        <input type="text" id="price" name="price" value="699.000đ"><br>
-                        <h>Sale:</h>
-                        <input type="text" id="sale" name="sale" value="20%">
-                        <h>Lượt xem: </h><b>1.000.000</b><br>
-                        <h>Đánh giá: </h><b>5 sao</b><br>
-                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <table>
+                            <tr>
+                                <td><h>Tên sản phẩm:</h></td>
+                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
+                            </tr>
+                            <tr>
+                                <td><h>Hình ảnh:</h></td>
+                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
+                            </tr>
+                            <tr>
+                                <td><h>Danh mục:</h></td>
+                                <td><select name="cate_name" id="cate_name">
+                                        <option value="Action">Action</option>
+                                        <option value="FPS">FPS</option>
+                                        <option value="Video Production">Video Production</option>
+                                        <option value="Simulation">Simulation</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Battle Field">Battle Field</option>
+                                        <option value="Animation">Animation</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="RPG">RPG</option>
+                                    </select><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h>Giá niêm yết:</h></td>
+                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Sale:</h></td>
+                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                            </tr>
+                        </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
