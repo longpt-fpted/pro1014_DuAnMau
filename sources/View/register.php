@@ -137,7 +137,7 @@
                     đăng kí
                 </h2>
                 <section class="content-box">
-                    <form action="" method="post" class="account-box">
+                    <form action="../Controller/RegisterController.php" method="post" enctype="multipart/form-data" class="account-box">
                         <div class="input-box">
                             <label for="fullname">Họ và tên:</label>
                             <input type="text" name="fullname" id="fullname" placeholder="Họ và tên" required>

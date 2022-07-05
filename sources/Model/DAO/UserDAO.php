@@ -76,11 +76,12 @@ class UserDAO {
             } else return false;
         }
     }
-    public function addUser() {
+    public function addUser($username,$password,$email,$fullname) {//var_dump("$username,$password,$email,$fullname");
         if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare("INSERT into `User` VALUES 'null','null','$user->getUsername()','$user->getPassword()','$user->getEmail()','$user->getFullname()','null'");
+            $query = $this->database->prepare('INSERT INTO `user`(`username`, `password`, `email`, `fullname`,`phone_number`) VALUES (?,?,?,?,0)');
+            $query->bind_param("ssss",$username,$password,$email,$fullname);
             if($query->execute()){
                 return true;
             }

@@ -3,7 +3,7 @@
     // include "/wamp64/www/hihihaha/pro1014_duan/sources/Model/User.php";
 
     include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\DAO\UserDAO.php');
-    include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php');
+    //include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php');
     $username=$_POST['username'];
     $password=$_POST['password'];
 
@@ -25,10 +25,10 @@
     } else {
         if($user->getPassword() === $password and $id->getRoleID()===0)
         {
-            /*session_start();
+            session_start();
             $_SESSION['user'] = $username;
             $_SESSION['cash'] = $cash->getCurrency();
-            $_SESSION['success'] = "Login Success!!";*/
+            $_SESSION['success'] = "Login Success!!";
             echo ('<script>
                     var result = confirm("Login Success!!");
                     if (result == true){

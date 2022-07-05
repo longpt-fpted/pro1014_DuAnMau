@@ -1,12 +1,17 @@
 <?php 
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "C:/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 
-
-
+session_start();
+    if($_SESSION['user']){
+        echo 'Welcome <b>'.$_SESSION['success'].'</b>';
+        echo 'Welcome <b>'.$_SESSION['user'].'</b>';
+        echo 'Welcome <b>'.$_SESSION['cash'].'</b>';
+    }
 
 ?>
 
