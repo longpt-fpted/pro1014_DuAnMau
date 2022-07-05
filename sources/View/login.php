@@ -21,6 +21,7 @@
                 </section>
             </article>
         </section>            
+        <?php include('./footer.php') ?>
         <script>
             document.querySelector('#submit').addEventListener('click', (e) => {
                 e.preventDefault();
@@ -34,21 +35,15 @@
                     res = JSON.parse(res);
                     switch (res['status']) {
                         case 'success':
-                            location.href = 'index.php';
-                            // console.log('login success');
+                            displayNotify('success', 'Đăng nhập thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                            setTimeout(function() {
+                                window.location = 'index.php';
+                            }, 2500)
                             break;
                         case 'wrong-password':
                             console.log('wrong password');
                             break;
                     }
                 })
-                // const xhttp = new XMLHttpRequest();
-                // xhttp.onload = () => {
-                //     console.log('gửi giỏ hàng lên server');
-                //     console.log("response text", xhttp.responseText);
-                // }
-                // xhttp.open("POST", 'http://localhost/pro1014_duan/sources/Controller/CartController.php?pid=2&method=add');
-                // xhttp.send();
             })
         </script>
-        <?php include('./footer.php') ?>

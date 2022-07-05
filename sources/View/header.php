@@ -7,12 +7,6 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Ca
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 $cateDao = new CategoryDAO();
-// if(isset($_SESSION['user'])){
-//     echo 'Welcome <b>'.$_SESSION['success'].'</b>';
-//     echo 'Welcome <b>'.$_SESSION['user'].'</b>';
-//     echo 'Welcome <b>'.$_SESSION['cash'].'</b>';
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +22,7 @@ $cateDao = new CategoryDAO();
     <!-- Jquery -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="./assets/js/main.js"></script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS -->
@@ -246,16 +241,29 @@ $cateDao = new CategoryDAO();
                     <li class="main-navbar--item">
                         <i class="fal fa-user-circle"></i>
                         <ul class="main-navbar__submenu">
-                            <li class="category--item">
-                                <a href="./register.php" class="category--title">
-                                    Đăng ký
-                                </a>
-                            </li>
-                            <li class="category--item">
-                                <a href="./login.php" class="category--title">
-                                    Đăng nhập
-                                </a>
-                            </li>
+                            <?php if(isset($_SESSION['user'])): ?>
+                                <li class="category--item">
+                                    <a href="./register.php" class="category--title">
+                                        Thông tin
+                                    </a>
+                                </li>
+                                <li class="category--item">
+                                    <a href="./login.php" class="category--title">
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            <?php else :?>
+                                <li class="category--item">
+                                    <a href="./register.php" class="category--title">
+                                        Đăng ký
+                                    </a>
+                                </li>
+                                <li class="category--item">
+                                    <a href="./login.php" class="category--title">
+                                        Đăng nhập
+                                    </a>
+                                </li>
+                            <?php endif;?>
                         </ul>
                     </li>
                     <li class="main-navbar--item">
