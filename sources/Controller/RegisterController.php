@@ -11,19 +11,26 @@
     $email=$_POST['email'];
 
     $user = new User(null,null,$username,$password,$email,$fullname,null,0);
-    
     $userDAO = new UserDAO();
+    $userDAO2 = new UserDAO();
+    $validate = $userDAO2->getAllUsers();
     //$userDAO->addUser($user->getUsername(),$user->getPassword(),$user->getEmail(),$user->getFullname());
     $check = $userDAO->addUser($username,$password,$email,$fullname);
     echo ("$username,$password,$email,$fullname");
     //var_dump($userDAO -> addUser($user));
-    if ( $check == true){
-        echo ("Success");
+    if($username == $validate->getUsername()){
         echo ('<script>
-                    var result = confirm("Register Success!!");
-                    if (result == true){
-                        window.location= "../View/login.php";}
-                    else window.location= "../View/index.php";
-                </script>');
-    } else return false;
+            document.getElementById("baoloi").innerHTML="Tên đăng nhập đã tồn tại";
+            </script>')
+    } else {
+        if ( $check == true){
+            echo ("Success");
+            echo ('<script>
+                        var result = confirm("Register Success!!");
+                        if (result == true){
+                            window.location= "../View/login.php";}
+                        else window.location= "../View/index.php";
+                    </script>');
+        } else return false;
+    }
 ?>
