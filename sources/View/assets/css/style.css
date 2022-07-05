@@ -718,10 +718,6 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .
   display: flex;
   padding: 0.25em 1.75em;
 }
-header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item button {
-  border: none;
-  background: transparent;
-}
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item .category--title {
   display: block;
   height: 2.5em;

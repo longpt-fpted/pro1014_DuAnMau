@@ -8,7 +8,9 @@
         $product = $productDAO->getProductByID($id);
         $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
     } else {
-
+        $id = 1;
+        $product = $productDAO->getProductByID($id);
+        $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
     }
 
 ?>
@@ -60,7 +62,7 @@
                                 <button class="btn buy">
                                     <i class="fal fa-credit-card-front"></i> Mua ngay
                                 </button>
-                                <button class="btn add" onclick="addProductToCart()">
+                                <button class="btn add" onclick="addProductToCart(<? echo $product->getID(); ?>)">
                                     <i class="fal fa-cart-arrow-down"></i> Thêm vào giỏ hàng
                                 </button>
                             </article>

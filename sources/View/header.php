@@ -1,14 +1,28 @@
 <?php 
 session_start();
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
-$cateDao = new CategoryDAO();
+$cateDAO = new CategoryDAO();
+$orderDAO = new OrderDAO();
+$orderDetailDAO = new OrderDetailDAO();
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
+
+if(isset($_SESSION['user'])) {
+    $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+    $_SESSION['cart'] = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+} else {
+    $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+}
+$userCart = json_encode($_SESSION['cart']);
+
 ?>
 
 <!DOCTYPE html>
@@ -164,7 +178,7 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                                 </h4>
                                 <?php
                                 
-                                    $cates = $cateDao->getAllCategories();
+                                    $cates = $cateDAO->getAllCategories();
                                     foreach ($cates as $cate) {
 
                                 ?>
@@ -250,9 +264,9 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                                     </a>
                                 </li>
                                 <li class="category--item">
-                                    <button class="category--title">
+                                    <a class="category--title" id="logout">
                                         Đăng xuất
-                                    </butt>
+                                    </a>
                                 </li>
                             <?php else :?>
                                 <li class="category--item">
@@ -280,4 +294,28 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                 </article>
             </section>
         </header>
+        <script>
+            $('#logout').click((e) => {
+                $.ajax({
+                    url: '../Controller/LoginController.php',
+                    type: 'POST',
+                    data: "method=logout",
+                }).done(res => {
+                    res = JSON.parse(res);
+                    switch (res['status']) {
+                        case 'success':
+                            displayNotify('success', 'Đăng xuất thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                            setTimeout(function() {
+                                window.location = 'index.php';
+                            }, 2500)
+                            break;
+                        case 'success':
+                            displayNotify('fail', 'Đăng xuất thất bại!');
+                            break;
+                        
+                    }
+                })
+            })
+            
+        </script>
         

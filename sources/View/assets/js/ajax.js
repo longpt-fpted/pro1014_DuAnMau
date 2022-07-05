@@ -1,13 +1,11 @@
-
-function addProductToCart() {
-    const xhttp = new XMLHttpRequest();
-
-
-
-    xhttp.onload = () => {
-        console.log('gửi giỏ hàng lên server');
-        console.log("response text", xhttp.responseText);
-    }
-    xhttp.open("GET", 'http://localhost/pro1014_duan/sources/Controller/CartController.php?pid=2&method=add');
-    xhttp.send();
+function addProductToCart(id) {
+    let data = `pid=${id}&method=add`;
+    $.ajax({
+        url: `../Controller/CartController.php`,
+        method: "GET",
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        console.log(res);
+    })
 }
