@@ -30,21 +30,20 @@
                         foreach ($productsOnSales as $productOnSales) {
                     ?>
                         <article class="product-box">
-                            <a class="product-box__thumbnail" href="#">
+                            <a class="product-box__thumbnail" href="./product.php?id=<?echo $productOnSales->getID(); ?>">
                                 <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
                             </a>
                             <div class="product-box__detail">
                                 <div class="product-box__desc">
-                                    <div class="product-box__title" href="#">
-                                        <a href="#"><? echo $productOnSales->getName();?></a>
+                                    <div class="product-box__title">
+                                        <a href="./product.php?id=<?echo $productOnSales->getID(); ?>"><? echo $productOnSales->getName();?></a>
                                         <div class="tag sale-tag">
                                             -<? echo $productOnSales->getSale(); ?>%
                                         </div>
                                     </div>
                                     <div class="product-box__price">
                                         <p class="product-box__totalprice">
-                                            <? echo $productOnSales->getTotalPrice(); ?>
-                                        </p>
+                                            <? echo $productOnSales->getTotalPrice(); ?></p>
                                         <p class="product-box__fullprice">
                                         <? echo $productOnSales->getPrice(); ?></p>
                                     </div>
@@ -72,21 +71,20 @@
                         foreach ($newProducts as $newProduct) {
                 ?>
                     <article class="product-box">
-                        <a class="product-box__thumbnail" href="#">
+                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $newProduct->getID(); ?>">
                             <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
                         </a>
                         <div class="product-box__detail">
                             <div class="product-box__desc">
-                                <div class="product-box__title" href="#">
-                                    <a href="#"><? echo $newProduct->getName();?></a>
+                                <div class="product-box__title">
+                                    <a href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
                                     <div class="tag sale-tag">
                                         -<? echo $newProduct->getSale(); ?>%
                                     </div>
                                 </div>
                                 <div class="product-box__price">
                                     <p class="product-box__totalprice">
-                                        <? echo $newProduct->getTotalPrice(); ?>
-                                    </p>
+                                        <? echo $newProduct->getTotalPrice(); ?></p>
                                     <p class="product-box__fullprice">
                                     <? echo $newProduct->getPrice(); ?></p>
                                 </div>

@@ -1,6 +1,8 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include '../Category.php';
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include '../Category.php';
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Category.php";
+
 class CategoryDAO {
     private $database;
     public function __construct() {
@@ -23,7 +25,23 @@ class CategoryDAO {
         }
     }
     public function getAllCategories() {
-        
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `Category`");
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $cates = [];
+                    while($row = $result->fetch_assoc()) {
+                        $cate = new Category($row['id'], $row['name']);
+
+                        $cates[] = $cate;
+                    }
+                    return $cates;
+                }
+            }
+        }
     }
 }
 ?>

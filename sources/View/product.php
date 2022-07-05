@@ -1,11 +1,16 @@
 <?php
     include('./header.php');
 
-    $id = 1;
+    $id = isset($_GET['id']) ? $_GET['id'] : 'error';
 
-    $product = $productDAO->getProductByID($id);
     
-    var_dump($product);
+    if($id !== 'error') {
+        $product = $productDAO->getProductByID($id);
+        $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
+    } else {
+
+    }
+
 ?>
         <section class="main-content">
             <section class="content-container">
@@ -16,7 +21,7 @@
                         </article>
                         <article class="main-product__detail">
                             <h2 class="main-product__detail-title">
-                                Elden Ring
+                                <?php echo $product->getName(); ?>
                             </h2>
                             <div class="main-product__detail-rating">
                                 <div class="back-stars">
@@ -25,7 +30,7 @@
                                     <i class="fal fa-star" aria-hidden="true"></i>
                                     <i class="fal fa-star" aria-hidden="true"></i>
                                     <i class="fal fa-star" aria-hidden="true"></i>
-                                    <div class="front-stars" id="rating">
+                                    <div class="front-stars" id="rating" style="width: <?php echo $product->getRating(); ?>%;">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -35,10 +40,10 @@
                                 </div>
                             </div>
                             <p class="main-product__detail-cate">
-                                <i class="fal fa-tag"></i> Thể loại: Hành động, Hành xác
+                                <i class="fal fa-tag"></i> Thể loại: <?php echo $productCate; ?>
                             </p>
                             <p class="main-product__detail-price">
-                                <span class="price">790000</span>
+                                <span class="price"><?php echo $product->getTotalPrice(); ?></span>
                                 <span class="addons">
                                     <a href="#">
                                         <i class="fal fa-heart"></i>
@@ -46,10 +51,9 @@
                                 </span>
                             </p>
                             <p class="main-product__detail-price">
-                                <span class="sale">
-                                    800000</span>
+                                <span class="sale"><?php echo $product->getPrice(); ?></span>
                                 <span class="addons sale-tag">
-                                    -10%
+                                    -<?php echo $product->getSale(); ?>%
                                 </span>
                             </p>
                             <article class="main-product__detail-footer">

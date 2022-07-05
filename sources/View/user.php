@@ -47,7 +47,8 @@
         </article>
         <?php
             include('./header.php');
-            $user = $userDAO->getUserByID(1);
+            $userID = isset($_GET['id']) ? $_GET['id'] : 1;
+            $user = $userDAO->getUserByID($userID);
         ?>
         <section class="main-content">
             <section class="content-container">
@@ -74,7 +75,7 @@
                         <article class="user-method">
                             <i class="fal fa-newspaper"></i>
                             <p class="user-method--title">
-                                Bài viết của tôi
+                                Thông báo của tôi
                             </p>
                         </article>
                         <article class="user-method">
