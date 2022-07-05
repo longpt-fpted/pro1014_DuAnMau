@@ -597,7 +597,7 @@ input[type=number] {
   border-radius: 0.5em;
   overflow: hidden;
   position: absolute;
-  bottom: 2em;
+  top: 2em;
   right: 2em;
 }
 .notify-box.notify-success {
@@ -717,6 +717,10 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu a
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item {
   display: flex;
   padding: 0.25em 1.75em;
+}
+header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item button {
+  border: none;
+  background: transparent;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item .category--title {
   display: block;
@@ -1883,7 +1887,6 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 
 .main-footer {
   background-color: rgba(136, 96, 208, 0.2);
-  margin-bottom: 0px;
 }
 .main-footer .follow-section {
   display: flex;
@@ -1975,7 +1978,3 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     margin: 0 0.5em !important;
   }
 }/*# sourceMappingURL=style.css.map */
-.action{
-  display: flex;
-  flex-direction: column;
-}

@@ -3,8 +3,8 @@
 
     session_start();
 
-    $username= isset($_POST['username']) ? $_POST['username'] : 'error';
-    $password= isset($_POST['password']) ? $_POST['password'] : 'error';
+    $username = isset($_POST['username']) ? $_POST['username'] : 'error';
+    $password = isset($_POST['password']) ? $_POST['password'] : 'error';
     $method = isset($_POST['method']) ? $_POST['method'] : 'error';
     
     function login($username, $password) {
@@ -15,14 +15,11 @@
             if($user->checkPassword($password)) {
                 $_SESSION['user'] = $user->getID();
                 $resp['status'] = 'success';
-                $resp['redirect'] = 'index.php';
             } else {
                 $resp['status'] = 'wrong-password';
-                $resp['redirect'] = 'index.php';
             }
         } else {
             $resp['status'] = 'user-not-exist';
-            $resp['redirect'] = 'index.php';
         }
 
         return $resp;

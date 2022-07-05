@@ -28,7 +28,7 @@
                 let data = $('#login-form').serialize()+"&method=login";
                 console.log(data);
                 $.ajax({
-                    url: 'http://localhost/pro1014_duan/sources/Controller/LoginController.php',
+                    url: '../Controller/LoginController.php',
                     type: 'POST',
                     data: data,
                 }).done(res => {
@@ -41,7 +41,10 @@
                             }, 2500)
                             break;
                         case 'wrong-password':
-                            console.log('wrong password');
+                            displayNotify('warning', 'Đăng nhập thất bại! Sai tên tài khoản hoặc mật khẩu!');
+                            break;
+                        case 'user-not-exist':
+                            displayNotify('warning', 'Không tồn tại tên tài khoản! Bạn có muốn đăng kí không ?');
                             break;
                     }
                 })

@@ -661,6 +661,10 @@ header {
                     .category--item {
                         display: flex;
                         padding: .25em 1.75em;
+                        button {
+                            border: none;
+                            background: transparent;
+                        }
                         .category--title {
                             display: block;
                             height: 2.5em;
