@@ -1,228 +1,327 @@
-        <?php include('header.php') ?>
-        <!-- End of Sidebar -->
+<?php 
+    include('header.php');
+    include('./topbar.php')
+?>
 
-        <!-- Content Wrapper -->
-        <?php include('./topbar.php') ?>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-0 text-gray-800">Products</h1>  <br>  
-                    <button id="btn-add" onclick="add()">Thêm sản phẩm</button>
-                    <!-- <div class="modal-add">
-                        <form action="" id="modal-add-infor">
-                            <p>Thêm thành viên</p>
-                            <h>Họ và tên:</h><br>
-                            <input type="text" id="fullname" name="fullname" placeholder="Họ và tên"><br>  
-                            <h>Tên Đăng nhập:</h><br>
-                            <input type="text" id="username" name="username" placeholder="Tên đăng nhập"><br>              
-                            <h>Mật khẩu:</h><br>
-                            <input type="text" id="password" name="password" placeholder="Mật khẩu"><br>                   
-                            <h>Email:</h><br>
-                            <input type="text" id="email" name="email" placeholder="Địa chỉ email"><br>
-                            <h>Số điện thoại:</h><br>
-                            <input type="text" id="phone-number" name="phone-number" placeholder="Số điện thoại"><br>
-                            <h>Vai trò:</h><br>
-                            <select name="role" id="role">
-                                <option value=""></option>
-                                <option value="Quản trị viên">Quản trị viên</option>
-                                <option value="Khách hàng">Khách hàng</option>
-                            </select><br>
-                            <input type="submit" id="submit" value="Cập Nhật">
-                        </form>
-                    </div> -->                   
-                    <div class="show-information">
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="information">
-                            <div class="image">
-                                <img src="./images/avatar.png" alt="">
-                            </div>
-                            <div class="detail">
-                                <form action="" id="user-infor">
-                                    <h>Họ và tên:</h><br>
-                                    <input type="text" id="fullname" name="fullname" value="Trần Văn A"><br>                               
-                                    <h>Email:</h><br>
-                                    <input type="text" id="email" name="email" value="vanadeptrai@gmail.com"><br>
-                                    <h>Số điện thoại:</h><br>
-                                    <input type="text" id="phone-number" name="phone-number" value="0919919991"><br>
-                                    <h>Vai trò:</h><br>
-                                    <select name="role" id="role">
-                                        <option value="Quản trị viên">Quản trị viên</option>
-                                        <option value="Khách hàng">Khách hàng</option>
-                                    </select><br>
-                                    <input type="submit" id="submit" value="Cập Nhật">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-0 text-gray-800">Products</h1>  <br>  
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <button id="btn-add" onclick="modal_add()">Thêm sản phẩm</button>
+        <div class="modal-add" id="modal-add-form">
+            <button id="btn-hidden" onclick="modal_hidden()">x</button>
+            <form action="" id="modal-add-product" method="post">
+                <p id="modal-add-title">Thêm sản phẩm</p>
+                <h>Tên sản phẩm</h><br>
+                <input type="text" id="productname" name="productname" placeholder="Tên sản phẩm"><br>   
+                <h>Hình ảnh:</h>
+                <input type="text" id="image" name="image" placeholder="Url hình ảnh">                            
+                <h>Danh mục</h><br>
+                <select name="cate_name" id="cate_name">
+                    <option value=""></option>
+                    <option value="Action">Action</option>
+                    <option value="FPS">FPS</option>
+                    <option value="Video Production">Video Production</option>
+                    <option value="Simulation">Simulation</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Battle Field">Battle Field</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="RPG">RPG</option>
+                </select>
+                <h>Giá niêm yết:</h><br>
+                <input type="text" id="price" name="price" placeholder="Giá niêm yết"><br>
+                <h>Sale:</h><br>
+                <input type="text" id="sale" name="sale" placeholder="Giảm giá">
+                <input type="submit" id="submit" value="Cập Nhật">
+            </form>
+        </div>                   
+        <div class="show-information">
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
                 </div>
-                <!-- /.container-fluid -->
-
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2022</span>
-                    </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
+            <div class="product-information">
+                <div class="image">
+                    <img src="../admin/images/pubg.jpg" alt="">
+                </div>
+                <div class="detail">
+                    <form action="" id="user-infor">
+                        <h>Tên sản phẩm</h><br>
+                        <input type="text" id="productname" name="productname" value="PlayerUnknow's Battlegrounds"><br>   
+                        <h>Hình ảnh:</h>
+                        <input type="text" id="image" name="image" value="../admin/images/pubg.jpg">                            
+                        <h>Danh mục</h><br>
+                        <select name="cate_name" id="cate_name">
+                            <option value="Action">Action</option>
+                            <option value="FPS">FPS</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Battle Field">Battle Field</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                        <h>Giá niêm yết:</h>
+                        <input type="text" id="price" name="price" value="699.000đ"><br>
+                        <h>Sale:</h>
+                        <input type="text" id="sale" name="sale" value="20%">
+                        <h>Lượt xem: </h><b>1.000.000</b><br>
+                        <h>Đánh giá: </h><b>5 sao</b><br>
+                        <a href="#"><button id="btn-feedback">Xem feedback</button></a>
+                        <input type="submit" id="submit" value="Cập Nhật">
+                    </form>
+                </div>
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+        
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2022</span>
+            </div>
+        </div>
+    </footer>
 
     </div>
-    <!-- End of Page Wrapper -->
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -249,16 +348,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
+<?php 
+    include('C:\xampp\htdocs\pro1014_DuAn\sources\View\admin\footer.php') 
+?>

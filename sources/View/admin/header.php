@@ -1,9 +1,9 @@
 <?php 
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 
-$userDAO = new UserDAO();
-$productDAO = new ProductDAO();
+// $userDAO = new UserDAO();
+// $productDAO = new ProductDAO();
 
 
 ?>
@@ -50,11 +50,12 @@ $productDAO = new ProductDAO();
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -77,6 +78,7 @@ $productDAO = new ProductDAO();
                         <h6 class="collapse-header">Custom Managements:</h6>
                         <a class="collapse-item" href="users.php">Users</a>
                         <a class="collapse-item" href="products.php">Products</a>
+                        <a class="collapse-item" href="contacts.php">Contacts</a>
                     </div>
                 </div>
             </li>
@@ -104,32 +106,6 @@ $productDAO = new ProductDAO();
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">   
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Minecraft:</h6>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">League Of Legends:</h6>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
 
             <!-- Main Page  -->
             <li class="nav-item">
