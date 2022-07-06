@@ -10,6 +10,8 @@ include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\ProductDAO.php";
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 $cateDao = new CategoryDAO();
+
+$user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
 ?>
 
 <!DOCTYPE html>
@@ -246,14 +248,14 @@ $cateDao = new CategoryDAO();
                         <ul class="main-navbar__submenu">
                             <?php if(isset($_SESSION['user'])): ?>
                                 <li class="category--item">
-                                    <a href="./register.php" class="category--title">
+                                    <a href="./user.php?id=<? echo $user->getID(); ?>" class="category--title">
                                         Thông tin
                                     </a>
                                 </li>
                                 <li class="category--item">
-                                    <a href="./login.php" class="category--title">
+                                    <button class="category--title">
                                         Đăng xuất
-                                    </a>
+                                    </butt>
                                 </li>
                             <?php else :?>
                                 <li class="category--item">

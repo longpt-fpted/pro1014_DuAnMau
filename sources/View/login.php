@@ -41,7 +41,10 @@
                             }, 2500)
                             break;
                         case 'wrong-password':
-                            console.log('wrong password');
+                            displayNotify('warning', 'Đăng nhập thất bại! Sai tên tài khoản hoặc mật khẩu!');
+                            break;
+                        case 'user-not-exist':
+                            displayNotify('warning', 'Không tồn tại tên tài khoản! Bạn có muốn đăng kí không ?');
                             break;
                     }
                 })
