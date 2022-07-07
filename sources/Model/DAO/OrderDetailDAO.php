@@ -9,17 +9,25 @@ class OrderDetailDAO {
         $this->database = $this->database->getDatabase();
     }
 
-    public function addOrderDetailToOrder($orderID, $productID, $quantity) {
+    public function addOrderDetailToOrder($orderID, $productID, $quantity, $isContain) {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('INSERT INTO `orderdetail`(`order_id`, `product_id`, `quantity`, `price`) 
-            SELECT ?, ?, ?, (`product`.`price` - (`product`.`price` * `product`.`sale_percent`)/100) * ?
-            FROM `product` WHERE `product`.`id` = ?');
+            if($isContain == false) {
+                $query = $this->database->prepare('INSERT INTO `orderdetail`(`order_id`, `product_id`, `quantity`, `price`) 
+                SELECT ?, ?, ?, (`product`.`price` - (`product`.`price` * `product`.`sale_percent`)/100) * ?
+                FROM `product` WHERE `product`.`id` = ?');
+    
+                $query->bind_param("sssss", $orderID, $productID, $quantity, $quantity, $productID);
+    
+                return $query->execute();
+            } else {
+                $query = $this->database->prepare('UPDATE `orderdetail` JOIN `product` on `product`.`id` = `orderdetail`.`product_id` SET `quantity`= ?, `orderdetail`.`price` = (`product`.`price` - (`product`.`price` * `product`.`sale_percent`)/ 100) * (?) WHERE `orderdetail`.`order_id` = ? AND `product`.`id` = ?');
 
-            $query->bind_param("sssss", $orderID, $productID, $quantity, $quantity, $productID);
+                $query->bind_param("ssss", $quantity, $quantity, $orderID, $productID);
 
-            return $query->execute();
+                return $query->execute();
+            }
         }
     }
     public function getAllOrderDetailByUserIdAndOrderID($userID, $orderID) {
@@ -35,7 +43,7 @@ class OrderDetailDAO {
                 if($result->num_rows > 0) {
                     $orderdetails = [];
                     while($row = $result->fetch_assoc()) {
-                        $orderdetail = new OrderDetail($row['order_id'], $row['product_id'], $row['quantity'], $row['price']);
+                        $orderdetail = new OrderDetail($row['order_id'], $row['product_id'], $row['price'], $row['quantity']);
 
                         $orderdetails[] = $orderdetail;
                     }

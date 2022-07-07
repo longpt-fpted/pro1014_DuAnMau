@@ -1,12 +1,15 @@
 <?php 
 session_start();
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
+
+$utils = new Utils();
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
 $cateDAO = new CategoryDAO();
@@ -21,7 +24,13 @@ if(isset($_SESSION['user'])) {
 } else {
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
-$userCart = json_encode($_SESSION['cart']);
+
+
+$_SESSION['cart'] = array_map(function($od) {
+    global $productDAO;
+    $p = $productDAO->getProductByID($od->getProductID());
+    return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
+}, $_SESSION['cart']);
 
 ?>
 
@@ -38,7 +47,24 @@ $userCart = json_encode($_SESSION['cart']);
     <!-- Jquery -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script>
+        function Product(id, name, img, quantity, price, fullPrice) {
+            this.id = id;
+            this.name = name;
+            this.img = img;
+            this.quantity = quantity;
+            this.price = price;
+            this.fullPrice = fullPrice;
+        }
+        const carts = <? echo (json_encode($_SESSION['cart'])) ?>;
+        let cartQuantity = 0;
+        carts.forEach((element) => {
+            cartQuantity += (element.quantity);
+        })
+    </script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/ajax.js"></script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS -->
@@ -65,7 +91,7 @@ $userCart = json_encode($_SESSION['cart']);
                     <div class="modal--title">
                         <i class="fal fa-shopping-bag"></i>
                         <p>Your cart</p>
-                        <p class="cart-modal--total-quantity">
+                        <p class="cart-modal--total-quantity" id="cart-modal--total-quantity">
                             (0)
                         </p>
                     </div>
@@ -74,8 +100,8 @@ $userCart = json_encode($_SESSION['cart']);
                     </button>
                     
                 </div>
-                <div class="modal-body">
-                    <article class="product-box">
+                <div class="modal-body" id="cart-modal__body">
+                    <!-- <article class="product-box">
                         <a class="product-box__thumbnail" href="#">
                             <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
                         </a>
@@ -106,7 +132,7 @@ $userCart = json_encode($_SESSION['cart']);
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
                 <div class="modal-footer">
                     <ul class="cart-modal-price-list">

@@ -17,16 +17,39 @@ $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
 
 
 function addProductToCart($productID) {
-    global $productDAO;
+    global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
     $resp = [];
     $product = $productDAO->getProductByID($productID);
-    if($product != false) {
-        // $_SESSION['cart'][] = json_encode($product);
+    
+    
+    if(isset($_SESSION['user'])) {
+        $isContain = false;
+        $user = $userDAO->getUserByID($_SESSION['user']);
+        $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+        $orderdetails = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+        
+        foreach($orderdetails as $orderdetail) {
+            if($productID == $orderdetail->getProductID()) {
+                $orderdetail->addProduct();
+                $isContain = true;
+                $orderDetailDAO->addOrderDetailToOrder($order->getID(), $productID, $orderdetail->getQuantity(), true);
+                break;
+            }
+        }
+        
+        if($isContain === false) {
+            $orderdetails[] = new OrderDetail($order->getID(), $product->getID(), $product->getTotalPrice());
+            $orderDetailDAO->addOrderDetailToOrder($order->getID(), $productID, 1, false);
+        }
+        
         $resp['status'] = 'success';
-        $resp['cart'] = $product;//$_SESSION['cart'];
-    }  else $resp['status'] = 'fail';
+        $resp['product'] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
 
-    return $resp['cart'];
+        $_SESSION['cart'][] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
+    }
+
+
+    return $resp;
 }
 
 

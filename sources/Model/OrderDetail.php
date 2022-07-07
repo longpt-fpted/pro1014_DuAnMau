@@ -5,7 +5,7 @@ class OrderDetail {
     private $quantity;
     private $price;
 
-    public function __construct($orderID, $productID, $quantity, $price)
+    public function __construct($orderID, $productID, $price, $quantity = 1)
     {
         $this->orderID = $orderID;
         $this->productID = $productID;
@@ -23,6 +23,9 @@ class OrderDetail {
     }
     public function setQuantity($newQuantity) {
         $this->quantity = $newQuantity;
+    }
+    public function addProduct() {
+        $this->quantity+=1;
     }
     public function getPrice() {
         return $this->price;

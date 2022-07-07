@@ -83,7 +83,6 @@
     <!-- Slick JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="./assets/js/slick.js"></script>
-    <script src="./assets/js/ajax.js"></script>
     <script>
         // $('.main-navbar') 
         jQuery(window).on('scroll', () => {
@@ -165,6 +164,10 @@
                 borderColor: 'transparent',
             })
         })
+        document.querySelector('#plus').addEventListener((e) => {
+            
+        })
+        displayCart();
     </script>
 </body>
 </html>

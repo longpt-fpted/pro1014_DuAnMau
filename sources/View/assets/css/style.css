@@ -597,7 +597,7 @@ input[type=number] {
   border-radius: 0.5em;
   overflow: hidden;
   position: absolute;
-  top: 2em;
+  bottom: 2em;
   right: 2em;
 }
 .notify-box.notify-success {
