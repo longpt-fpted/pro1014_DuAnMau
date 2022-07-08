@@ -1,6 +1,10 @@
 <?php
     //include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
     include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+    
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+
     session_start();
 
     $username = isset($_POST['username']) ? $_POST['username'] : 'error';
@@ -25,9 +29,24 @@
         return $resp;
     }
 
+    function logout() {
+        $resp = [];
+        if(isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+
+            $resp['status'] = 'success';
+        } else {
+            $resp['status'] = 'failed';
+        }
+
+        return $resp;
+    }
     switch ($method) {
         case 'login':
             echo json_encode(login($username, $password));
+            break;
+        case 'logout':
+            echo json_encode(logout());
             break;
     }
 

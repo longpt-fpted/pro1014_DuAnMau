@@ -1,17 +1,37 @@
 <?php 
-//session_start();
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\CategoryDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\ProductDAO.php";
+session_start();
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
+
+$utils = new Utils();
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();
-$cateDao = new CategoryDAO();
+$cateDAO = new CategoryDAO();
+$orderDAO = new OrderDAO();
+$orderDetailDAO = new OrderDetailDAO();
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
+
+if(isset($_SESSION['user'])) {
+    $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+    $_SESSION['cart'] = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+} else {
+    $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+}
+
+
+$_SESSION['cart'] = array_map(function($od) {
+    global $productDAO;
+    $p = $productDAO->getProductByID($od->getProductID());
+    return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
+}, $_SESSION['cart']);
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +47,24 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
     <!-- Jquery -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script>
+        function Product(id, name, img, quantity, price, fullPrice) {
+            this.id = id;
+            this.name = name;
+            this.img = img;
+            this.quantity = quantity;
+            this.price = price;
+            this.fullPrice = fullPrice;
+        }
+        const carts = <? echo (json_encode($_SESSION['cart'])) ?>;
+        let cartQuantity = 0;
+        carts.forEach((element) => {
+            cartQuantity += (element.quantity);
+        })
+    </script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/ajax.js"></script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS -->
@@ -54,7 +91,7 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                     <div class="modal--title">
                         <i class="fal fa-shopping-bag"></i>
                         <p>Your cart</p>
-                        <p class="cart-modal--total-quantity">
+                        <p class="cart-modal--total-quantity" id="cart-modal--total-quantity">
                             (0)
                         </p>
                     </div>
@@ -63,8 +100,8 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                     </button>
                     
                 </div>
-                <div class="modal-body">
-                    <article class="product-box">
+                <div class="modal-body" id="cart-modal__body">
+                    <!-- <article class="product-box">
                         <a class="product-box__thumbnail" href="#">
                             <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
                         </a>
@@ -95,7 +132,7 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
                 <div class="modal-footer">
                     <ul class="cart-modal-price-list">
@@ -167,7 +204,7 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                                 </h4>
                                 <?php
                                 
-                                    $cates = $cateDao->getAllCategories();
+                                    $cates = $cateDAO->getAllCategories();
                                     foreach ($cates as $cate) {
 
                                 ?>
@@ -253,9 +290,9 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                                     </a>
                                 </li>
                                 <li class="category--item">
-                                    <button class="category--title">
+                                    <a class="category--title" id="logout">
                                         Đăng xuất
-                                    </butt>
+                                    </a>
                                 </li>
                             <?php else :?>
                                 <li class="category--item">
@@ -283,4 +320,28 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
                 </article>
             </section>
         </header>
+        <script>
+            $('#logout').click((e) => {
+                $.ajax({
+                    url: '../Controller/LoginController.php',
+                    type: 'POST',
+                    data: "method=logout",
+                }).done(res => {
+                    res = JSON.parse(res);
+                    switch (res['status']) {
+                        case 'success':
+                            displayNotify('success', 'Đăng xuất thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                            setTimeout(function() {
+                                window.location = 'index.php';
+                            }, 2500)
+                            break;
+                        case 'success':
+                            displayNotify('fail', 'Đăng xuất thất bại!');
+                            break;
+                        
+                    }
+                })
+            })
+            
+        </script>
         

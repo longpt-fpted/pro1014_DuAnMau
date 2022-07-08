@@ -6,5 +6,8 @@ class Utils {
     public function formatMoney($money) {
         return $money;
     }
+    public function objectToArrayConvert($object) {
+        return (array) $object;
+    }
 }
 ?>

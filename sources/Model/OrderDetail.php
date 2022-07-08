@@ -1,19 +1,19 @@
 <?php
 class OrderDetail {
-    private $userID;
+    private $orderID;
     private $productID;
     private $quantity;
     private $price;
 
-    public function __construct($userID, $productID, $quantity, $price)
+    public function __construct($orderID, $productID, $price, $quantity = 1)
     {
-        $this->userID = $userID;
+        $this->orderID = $orderID;
         $this->productID = $productID;
         $this->quantity = $quantity;
         $this->price = $price;
     }
-    public function getUserID() {
-        return $this->userID;
+    public function getOrderID() {
+        return $this->orderID;
     }
     public function getProductID() {
         return $this->productID;
@@ -23,6 +23,9 @@ class OrderDetail {
     }
     public function setQuantity($newQuantity) {
         $this->quantity = $newQuantity;
+    }
+    public function addProduct() {
+        $this->quantity+=1;
     }
     public function getPrice() {
         return $this->price;

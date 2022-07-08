@@ -559,7 +559,7 @@ input[type=number] {
     overflow: hidden;
     
     position: absolute;
-    top: 2em;
+    bottom: 2em;
     right: 2em;
 
     &.notify-success {
@@ -661,10 +661,6 @@ header {
                     .category--item {
                         display: flex;
                         padding: .25em 1.75em;
-                        button {
-                            border: none;
-                            background: transparent;
-                        }
                         .category--title {
                             display: block;
                             height: 2.5em;

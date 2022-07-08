@@ -597,7 +597,7 @@ input[type=number] {
   border-radius: 0.5em;
   overflow: hidden;
   position: absolute;
-  top: 2em;
+  bottom: 2em;
   right: 2em;
 }
 .notify-box.notify-success {
@@ -717,10 +717,6 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu a
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item {
   display: flex;
   padding: 0.25em 1.75em;
-}
-header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item button {
-  border: none;
-  background: transparent;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu .category--item .category--title {
   display: block;

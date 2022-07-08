@@ -33,6 +33,7 @@
                     data: data,
                 }).done(res => {
                     res = JSON.parse(res);
+                    console.log(res);
                     switch (res['status']) {
                         case 'success':
                             displayNotify('success', 'Đăng nhập thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');

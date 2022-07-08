@@ -1,13 +1,19 @@
 
-function addProductToCart() {
-    const xhttp = new XMLHttpRequest();
-
-
-
-    xhttp.onload = () => {
-        console.log('gửi giỏ hàng lên server');
-        console.log("response text", xhttp.responseText);
-    }
-    xhttp.open("GET", 'http://localhost/pro1014_duan/sources/Controller/CartController.php?pid=2&method=add');
-    xhttp.send();
+function addProductToCart(id) {
+    console.log('send request');
+    let data = `pid=${id}&method=add`;
+    $.ajax({
+        url: `../Controller/CartController.php`,
+        method: "GET",
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        displayNotify('success', `Thêm sản phẩm thành công`);
+        carts.push(res.product);
+        cartQuantity++;
+        displayCart();
+        // carts.forEach((element) => {
+        //     cartQuantity += (element.quantity);
+        // });
+    })
 }
