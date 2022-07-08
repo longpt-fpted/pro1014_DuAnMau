@@ -1943,7 +1943,56 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-footer .footer-container .fb-page {
   align-self: center;
 }
-
+.main-search{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.main-search h1{
+  font-size: 2em;
+  text-transform: uppercase;
+}
+.main-search .product-filter{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.main-search .product-filter .information-filter{
+  margin: 0 3em 1em 0;
+}
+.main-search .product-filter .information-filter select, .main-search .product-filter .information-filter input{
+  width: 14em;
+  height: 3em;
+  border-radius: 5px;
+  border: 1px solid #ebebeb;
+  padding-left: 0.5em;
+}
+.main-search .product-filter #btn-filter{
+  width: 5em;
+  height: 3em;
+  border: 0;
+  background-color: #4373df;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 1.2em 0 1em 0;
+  border-radius: 5px;
+}
+.main-search .product-filter #btn-filter:hover{
+  background-color: #C1C8E4;
+}
+.main-search #btn-restore{
+  width: auto;
+  border: 0;
+  color: red;
+  text-decoration: underline;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .main-content .content-box {
     flex-wrap: wrap !important;
