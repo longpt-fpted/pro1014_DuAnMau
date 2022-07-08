@@ -49,7 +49,7 @@ function displayNotify(type, msg) {
 }
 function displayCart() {
     document.querySelector('#cart-modal--total-quantity').innerText = `(${cartQuantity})`;
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < carts.length; i++) {
         let element = carts[i];
         document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
         <a class="product-box__thumbnail" href="#">

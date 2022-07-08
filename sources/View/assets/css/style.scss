@@ -399,11 +399,14 @@ input[type=number] {
         }
         .modal-body {
             padding: .75em 1.75em;
+            max-height: 60%;
+            overflow-y: auto;
             .product-box {
                 display: flex;
                 align-items: center;
                 // justify-content: space-between;
                 gap: .75em;
+                margin: .75em 0;
                 .product-box__thumbnail {
                     width: 50%;
                     img {

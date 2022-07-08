@@ -420,11 +420,14 @@ input[type=number] {
 }
 .modal .modal-container .modal-body {
   padding: 0.75em 1.75em;
+  max-height: 60%;
+  overflow-y: auto;
 }
 .modal .modal-container .modal-body .product-box {
   display: flex;
   align-items: center;
   gap: 0.75em;
+  margin: 0.75em 0;
 }
 .modal .modal-container .modal-body .product-box .product-box__thumbnail {
   width: 50%;
