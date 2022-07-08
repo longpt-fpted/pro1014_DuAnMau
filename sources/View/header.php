@@ -65,13 +65,26 @@ $_SESSION['cart'] = array_map(function($od) {
         }
         const carts = <? echo (json_encode($_SESSION['cart'])) ?>;
         let cartQuantity = 0;
-        carts.forEach((element) => {
-            cartQuantity += (element.quantity);
-        })
+        let currency = {
+            fullPrice: 0,
+            discount: 0,
+            userMoney: 0,
+            left: 0,
+            total: 0,
+        }
+        
 
     </script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax.js"></script>
+    <script>
+        carts.forEach((element) => {
+            cartQuantity += (element.quantity);
+            currency.fullPrice += element.price;
+            currency.left = currency.fullPrice - currency.userMoney > 0 ? currency.fullPrice - currency.userMoney : 0;
+            currency.total = currency.fullPrice - currency.discount;
+        })
+    </script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS -->
@@ -109,49 +122,9 @@ $_SESSION['cart'] = array_map(function($od) {
                 </div>
                 <div class="modal-body" id="cart-modal__body">
                 </div>
-                <div class="modal-footer">
-                    <ul class="cart-modal-price-list">
-                        <!-- 9.000.000.000đ -->
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Tổng giá:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Giảm giá:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Số tiền trong tài khoản:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Còn thiếu:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
-                        <li class="cart-modal-price-item">
-                            <p>
-                                Tổng thanh toán:
-                            </p>
-                            <p>
-                                9.000.000.000đ
-                            </p>
-                        </li>
+                <div class="modal-footer" >
+                    <ul class="cart-modal-price-list" id="cart-modal__footer">
+                        
                     </ul>
                     <a href="./cart.php" class="cart-modal-checkout">
                         Check out
@@ -209,7 +182,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                 ?>
                                     <article class="product-box">
                                         <a class="product-box__thumbnail" href="#">
-                                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+                                            <img src="<? echo $product->getImg(); ?>" alt="product thumbnail">
                                         </a>
                                         <div class="product-box__detail">
                                             <div class="product-box__desc">
@@ -262,6 +235,12 @@ $_SESSION['cart'] = array_map(function($od) {
                                 <li class="category--item">
                                     <a href="./user.php?id=<? echo $user->getID(); ?>" class="category--title">
                                         Thông tin
+                                    </a>
+                                </li>
+
+                                <li class="category--item">
+                                    <a href="./cart.php?id=<? echo $user->getID(); ?>" class="category--title">
+                                        Giỏ hàng
                                     </a>
                                 </li>
                                 <li class="category--item">

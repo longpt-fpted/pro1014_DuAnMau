@@ -1,21 +1,37 @@
 <?php
     include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-    
     include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
     session_start();
 
-    $username = isset($_POST['username']) ? $_POST['username'] : 'error';
-    $password = isset($_POST['password']) ? $_POST['password'] : 'error';
-    $method = isset($_POST['method']) ? $_POST['method'] : 'error';
+    $username = isset($_REQUEST['username']) ? $_REQUEST['username'] : 'error';
+    $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : 'error';
+    $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
     
     function login($username, $password) {
         $userDAO = new UserDAO();
+        $orderdetailDAO = new OrderDetailDAO();
+        $orderDAO = new OrderDAO();
         $resp = [];
         $user = $userDAO->isUsernameExist($username) ? $userDAO->getUserByUsername($username) : 'error';
         if($user !== 'error') {
             if($user->checkPassword($password)) {
                 $_SESSION['user'] = $user->getID();
+                $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+                if(isset($_SESSION['cart'])) {
+                    
+                    foreach ($_SESSION['cart'] as $orderdetail) {
+                        $isContain = $orderdetailDAO->isOrderdetailContained($user->getID(), $order->getID(), $orderdetail['id']);
+                        if($isContain) {
+                            $od = $orderdetailDAO->getOrderDetailByUserIDAndOrderID($user->getID(), $order->getID());
+                            $orderdetailDAO->addOrderDetailToOrder($order->getID(), $orderdetail['id'], $od->getQuantity() + $orderdetail['quantity'], $isContain);
+                        } else {
+                            $orderdetailDAO->addOrderDetailToOrder($order->getID(), $orderdetail['id'], $orderdetail['quantity'], $isContain);
+                        }
+                    }
+                }
                 $resp['status'] = 'success';
             } else {
                 $resp['status'] = 'wrong-password';
@@ -31,6 +47,7 @@
         $resp = [];
         if(isset($_SESSION['user'])) {
             unset($_SESSION['user']);
+            unset($_SESSION['cart']);
 
             $resp['status'] = 'success';
         } else {

@@ -52,6 +52,36 @@ class OrderDetailDAO {
             } else return false;
         }
     }
+    public function getOrderDetailByUserIDAndOrderID($userID, $orderID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT `orderdetail`.`order_id`, `orderdetail`.`product_id`, `orderdetail`.`quantity`, `orderdetail`.`price`
+            FROM `orderdetail` JOIN `order` ON `order`.`id` = `orderdetail`.`order_id` WHERE `orderdetail`.`order_id` = ? AND `order`.`user_id` = ?");
+            $query->bind_param('ss', $orderID, $userID);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                        $orderdetail = $result->fetch_assoc();
+                        return new OrderDetail($orderdetail['order_id'], $orderdetail['product_id'], $orderdetail['price'], $orderdetail['quantity']);
+                } else return false;
+            } else return false;
+        }
+    }
+    public function isOrderdetailContained($userID, $orderID, $productID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT `orderdetail`.`order_id`, `orderdetail`.`product_id`, `orderdetail`.`quantity`, `orderdetail`.`price` FROM `orderdetail` JOIN `order` ON `order`.`id` = `orderdetail`.`order_id` WHERE `orderdetail`.`order_id` = ? AND `order`.`user_id` = ? AND `orderdetail`.`product_id` = ?; ");
+            $query->bind_param("sss", $orderID, $userID, $productID);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
 }
 
 

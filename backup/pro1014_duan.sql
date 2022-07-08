@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th7 05, 2022 lúc 07:37 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 7.4.29
+-- Host: localhost
+-- Generation Time: Jul 08, 2022 at 03:38 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `pro1014_duan`
+-- Database: `pro1014_duan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -33,7 +33,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -41,38 +41,48 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (2, 'FPS'),
 (3, 'Video Production'),
 (4, 'Simulation'),
-(5, 'Sport');
+(5, 'Sport'),
+(6, 'Anthem'),
+(7, 'Origin'),
+(8, 'Acc Game'),
+(9, '3D'),
+(10, 'Ubisoft'),
+(11, 'RPG'),
+(12, 'Adventure'),
+(13, 'Battle Field'),
+(14, 'Racing');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
   `user_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `text` text NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `feedback`
+-- Table structure for table `feedback`
 --
 
 CREATE TABLE `feedback` (
   `user_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `text` text NOT NULL,
-  `rating` float(3,0) NOT NULL DEFAULT 0
+  `rating` float(3,0) NOT NULL DEFAULT 0,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `Notify`
+-- Table structure for table `Notify`
 --
 
 CREATE TABLE `Notify` (
@@ -85,7 +95,7 @@ CREATE TABLE `Notify` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -96,10 +106,17 @@ CREATE TABLE `order` (
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `user_id`, `price`, `is_pay`, `date`) VALUES
+(1, 1, 0, 0, '2022-07-05');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderdetail`
+-- Table structure for table `orderdetail`
 --
 
 CREATE TABLE `orderdetail` (
@@ -109,10 +126,25 @@ CREATE TABLE `orderdetail` (
   `price` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `orderdetail`
+--
+
+INSERT INTO `orderdetail` (`order_id`, `product_id`, `quantity`, `price`) VALUES
+(1, 4, 14, 56586600),
+(1, 5, 2, 6984000),
+(1, 3, 5, 20440000),
+(1, 2, 3, 1945800),
+(1, 10, 6, 1068000),
+(1, 7, 10, 20016000),
+(1, 8, 4, 7830000),
+(1, 9, 13, 25155000),
+(1, 39, 1, 95000);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -129,25 +161,55 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `view`, `sell_count`, `is_available`) VALUES
-(1, 2, 'Battlefield 4 - Origin', 500000, 5, 70, 'bf4.png', 2, 0, 1),
-(2, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 50, 'mhr.jpg', 0, 0, 1),
-(3, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 45, 'vp17.jpg', 0, 0, 1),
-(4, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 90, 'vp16.jpg', 0, 0, 1),
-(5, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 100, 'vp14.jpg', 0, 0, 1),
-(6, 4, 'Microsoft Flight Simulator Premium Deluxe Bundle', 2536000, 10, 80, 'mfs.jpg', 0, 0, 1),
-(7, 5, 'EA SPORTS™ FIFA 21 Ultimate Edition', 2224000, 10, 25, 'ff21.jpg', 0, 0, 1),
-(8, 4, 'Fire Safety VR Training', 2175000, 10, 0, 'fsvr.jpg', 0, 0, 1),
-(9, 1, 'Call of Duty®: Black Ops III - Zombies Deluxe', 2150000, 10, 100, 'cod.png', 0, 0, 1),
-(10, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 90, 'cod_zetsubou.jpg', 0, 0, 1);
+(1, 2, 'Battlefield 4 - Origin', 500000, 5, 70, './assets/game/bf4.png', 2, 0, 1),
+(2, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 50, './assets/game/mhr.jpg', 0, 0, 1),
+(3, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 45, './assets/game/vp17.jpg', 0, 0, 1),
+(4, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 90, './assets/game/vp16.jpg', 0, 0, 1),
+(5, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 100, './assets/game/vp14.jpg', 0, 0, 1),
+(6, 4, 'Microsoft Flight Simulator Premium Deluxe Bundle', 2536000, 10, 80, './assets/game/mfs.jpg', 0, 0, 1),
+(7, 5, 'EA SPORTS™ FIFA 21 Ultimate Edition', 2224000, 10, 25, './assets/game/ff21.jpg', 0, 0, 1),
+(8, 4, 'Fire Safety VR Training', 2175000, 10, 0, './assets/game/fsvr.jpg', 0, 0, 1),
+(9, 1, 'Call of Duty®: Black Ops III - Zombies Deluxe', 2150000, 10, 100, './assets/game/cod.png', 0, 0, 1),
+(10, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 90, './assets/game/cod_zetsubou.jpg', 0, 0, 1),
+(11, 4, 'War Thunder - Black Friday 2021 Pack\r\n', 1978000, 10, 3, './assets/game/War Thunder - Black Friday 2021 Pack.jpg\n', 0, 0, 1),
+(12, 12, 'FINAL FANTASY VII REMAKE INTERGRADE', 1702000, 0, 0, './assets/game/FINAL FANTASY VII REMAKE INTERGRADE.jpg', 0, 0, 1),
+(13, 12, 'The Sims™ 4', 980000, 74, 0, './assets/game/The Sims™ 4.png', 0, 0, 1),
+(14, 12, 'Red Dead Redemption 2: Ultimate Edition', 1561000, 0, 0, './assets/game/Red Dead Redemption 2 Ultimate Edition.jpg', 0, 0, 1),
+(15, 12, 'Watch_Dogs2 Gold Edition', 1561000, 0, 0, './assets/game/Watch_Dogs2 Gold Edition.jpg', 0, 0, 1),
+(16, 14, 'The Crew 2 - Gold Edition', 1485000, 0, 0, './assets/game/The Crew 2 - Gold Edition.jpg', 0, 0, 1),
+(17, 13, 'Battlefield 3 Premium Edition', 1050000, 25, 0, './assets/game/Battlefield 3 Premium Edition.jpg', 0, 0, 1),
+(18, 13, 'Battlefield 4 Premium Edition', 1000000, 11, 0, './assets/game/Battlefield 4 Premium Edition.jpg', 0, 0, 1),
+(19, 13, 'Battlefield 1 Revolution', 1000000, 35, 0, './assets/game/Battlefield 1 Revolution.png', 0, 0, 1),
+(20, 5, 'Madden NFL 22 (Origin)', 1080000, 0, 0, './assets/game/Madden NFL 22 (Origin).jpg', 0, 0, 1),
+(21, 2, 'Titanfall™ 2', 1250000, 0, 0, './assets/game/Titanfall™ 2.jpg', 0, 0, 1),
+(22, 6, 'Anthem Legion of Dawn Edition', 1750000, 10, 0, './assets/game/Anthem Legion of Dawn Edition.png', 0, 0, 1),
+(23, 10, 'Assassin\'s Creed® Odyssey - Ultimate Edition', 1797000, 15, 0, './assets/game/Assassin\'s Creed® Odyssey - Ultimate Edition.jpg', 0, 0, 1),
+(24, 13, 'Battlefield™ 1 Shortcut Kit: Ultimate Bundle - Origin', 990000, 0, 0, './assets/game/Battlefield™ 1 Shortcut Kit Ultimate Bundle - Origin.png', 0, 0, 1),
+(25, 1, 'DRAGON BALL FighterZ - Ultimate Edition', 1940000, 20, 0, './assets/game/DRAGON BALL FighterZ - Ultimate Edition.jpg', 0, 0, 1),
+(26, 1, 'SCP: Derelict - SciFi First Person Shooter', 1514000, 0, 0, './assets/game/SCP Derelict - SciFi First Person Shooter.jpg', 0, 0, 1),
+(27, 1, 'SOULCALIBUR VI Deluxe Edition', 1514000, 0, 0, './assets/game/SOULCALIBUR VI Deluxe Edition.jpg', 0, 0, 1),
+(28, 1, 'FOR HONOR™ - COMPLETE EDITION', 1561000, 0, 0, './assets/game/FOR HONOR™ - COMPLETE EDITION.jpg', 0, 0, 1),
+(29, 12, 'Tom Clancy\'s Ghost Recon Wildlands - Ultimate Year 2', 1561000, 0, 0, './assets/game/Tom Clancy\'s Ghost Recon Wildlands - Ultimate Year 2.jpg', 0, 0, 1),
+(30, 5, 'NBA 2K21 Mamba Forever', 1608000, 0, 0, './assets/game/NBA 2K21 Mamba Forever.jpg', 0, 0, 1),
+(31, 4, 'Jurassic World Evolution: Premium Edition', 1600000, 0, 0, './assets/game/Jurassic World Evolution Premium Edition.png', 0, 0, 1),
+(32, 11, 'Ni no Kuni II: Revenant Kingdom - The Prince\'s Edition', 1637000, 0, 0, './assets/game/Ni no Kuni II Revenant Kingdom - The Prince\'s Edition.jpg', 0, 0, 1),
+(33, 1, 'DRAGON BALL FighterZ - FighterZ Edition', 1637000, 0, 0, './assets/game/DRAGON BALL FighterZ - FighterZ Edition.jpg', 0, 0, 1),
+(34, 1, 'Back 4 Blood Ultimate', 1700000, 10, 0, './assets/game/Back 4 Blood Ultimate.jpg', 0, 0, 1),
+(35, 1, 'Resident Evil Village Deluxe Edition', 1716000, 0, 0, './assets/game/Resident Evil Village Deluxe Edition.jpg', 0, 0, 1),
+(36, 2, 'Titanfall™ 2 Ultimate Edition', 700000, 0, 0, './assets/game/Titanfall™ 2 Ultimate Edition.jpg', 0, 0, 1),
+(37, 2, 'Titanfall™ 2', 1250000, 0, 0, './assets/game/Titanfall™ 2.jpg', 0, 0, 1),
+(38, 8, 'Tài Khoản PUBG Cực Vip', 1000000, 0, 0, './assets/game/pubg.jpg', 0, 0, 1),
+(39, 8, 'Tài Khoản Battlefield 5 (Origin)', 950000, 90, 0, './assets/game/Tài Khoản Battlefield 5 (Origin).jpg', 0, 0, 1),
+(40, 7, 'It Takes Two (Origin)', 750000, 0, 0, './assets/game/It Takes Two (Origin).jpeg', 0, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -156,7 +218,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -166,7 +228,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -182,7 +244,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `email`, `fullname`, `phone_number`, `currency`, `avatar`) VALUES
@@ -190,149 +252,149 @@ INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `email`, `fullname`
 (2, 0, 'tester', 'tester', 'tester@gmail.com', 'Day la tai khoan Tester', '0999999999', 0, './assets/images/man.png');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD KEY `fk_user_cmt` (`user_id`),
   ADD KEY `fk_prd_cmt` (`product_id`);
 
 --
--- Chỉ mục cho bảng `feedback`
+-- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD KEY `fk_user_feedback` (`user_id`),
   ADD KEY `fk_product_feedback` (`product_id`);
 
 --
--- Chỉ mục cho bảng `Notify`
+-- Indexes for table `Notify`
 --
 ALTER TABLE `Notify`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_notify` (`user_id`);
 
 --
--- Chỉ mục cho bảng `order`
+-- Indexes for table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user` (`user_id`);
 
 --
--- Chỉ mục cho bảng `orderdetail`
+-- Indexes for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD KEY `order` (`order_id`),
   ADD KEY `product` (`product_id`);
 
 --
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cate` (`cate_id`);
 
 --
--- Chỉ mục cho bảng `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role` (`role_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `Notify`
+-- AUTO_INCREMENT for table `Notify`
 --
 ALTER TABLE `Notify`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `order`
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `fk_prd_cmt` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `fk_user_cmt` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Các ràng buộc cho bảng `feedback`
+-- Constraints for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `fk_product_feedback` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `fk_user_feedback` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Các ràng buộc cho bảng `Notify`
+-- Constraints for table `Notify`
 --
 ALTER TABLE `Notify`
   ADD CONSTRAINT `user_notify` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Các ràng buộc cho bảng `order`
+-- Constraints for table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Các ràng buộc cho bảng `orderdetail`
+-- Constraints for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD CONSTRAINT `order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
   ADD CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
--- Các ràng buộc cho bảng `product`
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `cate` FOREIGN KEY (`cate_id`) REFERENCES `category` (`id`);
 
 --
--- Các ràng buộc cho bảng `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);

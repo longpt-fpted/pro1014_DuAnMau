@@ -43,9 +43,29 @@ function addProductToCart($productID) {
         }
         
         $resp['status'] = 'success';
-        $resp['product'] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
+        $resp['product'] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice() * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
 
-        $_SESSION['cart'][] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
+        $_SESSION['cart'][] = ["id" => $orderdetail->getProductID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice()  * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
+    } else {
+        $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+        $isContain = false;
+        $quantity = 1;
+        foreach ($_SESSION['cart'] as $orderdetail) {
+            if($orderdetail['id'] == $product->getID()) {
+                $orderdetail['quantity'] += 1;
+                $quantity = $orderdetail['quantity'];
+                $isContain = true;
+                break;
+            }
+        }
+
+        if($isContain == false) {
+            $_SESSION['cart'][] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => 1, "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
+        }
+
+        $resp['status'] = 'success';
+        $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice() * $quantity, "fullprice" => $product->getPrice() * $quantity];
+
     }
 
 

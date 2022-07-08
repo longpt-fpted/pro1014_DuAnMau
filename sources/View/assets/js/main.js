@@ -50,15 +50,17 @@ function displayNotify(type, msg) {
         article.style.animation = "blur 0.25s forwards";
     }, 2500)
 }
+function moneyFormat(price) {
+    return price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+} 
 function displayCart() {
     document.querySelector('#cart-modal--total-quantity').innerText = `(${cartQuantity})`;
     document.querySelector('#cart-modal__body').innerHTML = '';
-    console.log(document.querySelector('#cart-modal__body').innerHTML);
     for(let i = 0; i < carts.length; i++) {
         let element = carts[i];
         document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
         <a class="product-box__thumbnail" href="#">
-            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+            <img src="${element.img}" alt="product thumbnail">
         </a>
         <div class="product-box__detail">
             <div class="product-box__desc">
@@ -89,4 +91,45 @@ function displayCart() {
         </div>
     </article>`;
     }
+    document.querySelector('#cart-modal__footer').innerHTML = `
+        <li class="cart-modal-price-item">
+            <p>
+                Tổng giá:
+            </p>
+            <p>
+                ${moneyFormat(currency.fullPrice)}
+            </p>
+        </li>
+        <li class="cart-modal-price-item">
+            <p>
+                Giảm giá:
+            </p>
+            <p>
+                ${moneyFormat(currency.discount)}
+            </p>
+        </li>
+        <li class="cart-modal-price-item">
+            <p>
+                Số tiền trong tài khoản:
+            </p>
+            <p>
+                ${moneyFormat(currency.userMoney)}
+            </p>
+        </li>
+        <li class="cart-modal-price-item">
+            <p>
+                Còn thiếu:
+            </p>
+            <p>
+                ${moneyFormat(currency.left)}
+            </p>
+        </li>
+        <li class="cart-modal-price-item">
+            <p>
+                Tổng thanh toán:
+            </p>
+            <p>
+                ${moneyFormat(currency.total)}
+            </p>
+        </li>`
 }

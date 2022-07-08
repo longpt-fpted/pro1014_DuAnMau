@@ -14,12 +14,17 @@ function addProductToCart(id) {
             const element = carts[index];
             if(element.id == res.product.id) {
                 element.quantity++;
+                element.price = res.product.price;
+                element.fullprice = res.product.fullprice;
                 isContain = true;
                 break;
             }
         }
-        isContain ? '' : carts.push(res.product);
         cartQuantity++;
+        isContain ? '' : carts.push(res.product);
+        
         displayCart();
+
+        console.log(res);
     })
 }

@@ -19,7 +19,7 @@
                 <section class="content-box">
                     <section class="main-product-box">
                         <article class="main-product__thumbnail">
-                            <img src="./assets/images/elden-ring.jpg" alt="Thumbnail">
+                            <img src="<?php echo $product->getImg(); ?>" alt="Thumbnail">
                         </article>
                         <article class="main-product__detail">
                             <h2 class="main-product__detail-title">
