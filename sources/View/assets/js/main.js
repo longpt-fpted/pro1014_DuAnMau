@@ -46,9 +46,14 @@ function displayNotify(type, msg) {
     article.append(state, title, close);
     document.querySelector('body').appendChild(article);
     // console.log(article);    
+    setTimeout(function() {
+        article.style.animation = "blur 0.25s forwards";
+    }, 2500)
 }
 function displayCart() {
     document.querySelector('#cart-modal--total-quantity').innerText = `(${cartQuantity})`;
+    document.querySelector('#cart-modal__body').innerHTML = '';
+    console.log(document.querySelector('#cart-modal__body').innerHTML);
     for(let i = 0; i < carts.length; i++) {
         let element = carts[i];
         document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">

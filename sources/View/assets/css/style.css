@@ -252,11 +252,14 @@ input[type=number] {
 }
 .cart-modal .modal-container .modal-body {
   padding: 0.75em 1.75em;
+  max-height: 55%;
+  overflow-y: auto;
 }
 .cart-modal .modal-container .modal-body .product-box {
   display: flex;
   align-items: center;
   gap: 0.75em;
+  margin: .75em 0;
 }
 .cart-modal .modal-container .modal-body .product-box .product-box__thumbnail {
   width: 50%;

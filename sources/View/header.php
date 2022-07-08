@@ -21,7 +21,7 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
 
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
-    $_SESSION['cart'] = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+    $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
 } else {
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
@@ -29,8 +29,13 @@ if(isset($_SESSION['user'])) {
 
 $_SESSION['cart'] = array_map(function($od) {
     global $productDAO;
-    $p = $productDAO->getProductByID($od->getProductID());
-    return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
+    $p = '';
+    if(isset($_SESSION['user'])) {
+        $p = $productDAO->getProductByID($od->getProductID());
+        return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
+    } else{
+        return $od;  
+    } 
 }, $_SESSION['cart']);
 
 ?>
@@ -63,6 +68,7 @@ $_SESSION['cart'] = array_map(function($od) {
         carts.forEach((element) => {
             cartQuantity += (element.quantity);
         })
+
     </script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax.js"></script>
