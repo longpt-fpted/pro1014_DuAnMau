@@ -6,17 +6,6 @@
         <h1>Tìm kiếm sản phẩm</h1><br>
         <div class="product-filter">
             <div class="information-filter">
-                <h>Danh mục</h><br>
-                <select name="list" id="list">
-                    <option value="Tất cả">Tất cả</option>
-                    <option value="Steam">Steam</option>
-                    <option value="Tiện ích">Tiện ích</option>
-                    <option value="Adobe">Adobe</option>
-                    <option value="Account Steam">Account Steam</option>
-                    <option value="Origins">Origins</option>
-                </select>
-            </div>
-            <div class="information-filter">
                 <h>Thể loại</h><br>
                 <select name="category" id="category">
                     <option value="Tất cả">Tất cả</option>
@@ -25,8 +14,12 @@
                     <option value="Video Production">Video Production</option>
                     <option value="Simulation">Simulation</option>
                     <option value="Sport">Sport</option>
-                    <option value="3D">3D</option>
+                    <option value="Anthem">Anthem</option>
+                    <option value="Origin">Origin</option>
                     <option value="Acc Game">Acc Game</option>
+                    <option value="3D">3D</option>
+                    <option value="Ubisoft">Ubisoft</option>
+                    <option value="RPG">RPG</option>
                 </select>
             </div>
             <div class="information-filter">
