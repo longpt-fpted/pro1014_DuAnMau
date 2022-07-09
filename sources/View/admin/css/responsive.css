@@ -1,0 +1,39 @@
+@media only screen and (min-width: 390px) and (max-width: 844px) {
+    .show-information{width: 100%;display: flex;flex-direction: row;flex-wrap: wrap; justify-content: center; margin-left: 0; font-size: 9px;}
+    .show-information .information{width: 600px;height: auto; margin: 0vh 3.4vh 3.4vh 0vh; border: 1px solid black; display: flex; flex-direction: row;border-radius: 15px;}
+    .show-information .information img{width: 15em; height: 100%; border-radius: 100px;}
+    .show-information .information form{padding: 1em 0 1em 0;}
+    .show-information .information input, .show-information .information select{width: 90%; border:0px;background: transparent; margin-left: 1em;}
+    .show-information .information h{margin-left: 1em;} 
+    .show-information .information #submit{width: 15em;height: 2em;border-radius: 6px; background: #4e73df; color: white; margin: 1em 0 0 2em; transition: 0.3s;}
+    #btn-feedback{width: 15em;height: 2em;border: 0;border-radius: 6px; background: #4e73df; color: white; margin: 1em 0 0 2em; transition: 0.3s;}
+    .show-information .information #submit:hover,#btn-feedback:hover{background: #c1c8e4; color: #000;}
+    .modal-overlay{position: absolute;top: 0;left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); z-index: 0;display: none;}
+    #modal-add-form{position: fixed; width: 22em;left: 8%; background: #4e73df; color: white; padding: 1em 0 1em 1em;z-index: 1; display: none;border-radius: 15px;}
+    .modal-add input, .modal-add select{width: 85%;height: 2.5em;border:0;border-radius: 10px; color:var(--gray); margin-left: 1em;}
+    .modal-add h{margin: 0 0 0 1em; }
+    .modal-add #submit{margin-top: 1em;height: 3em;; color: white; background: #8860d0; border: 0;border-radius: 15px; transition: 0.3s;}
+    .modal-add #submit:hover{background: #c1c8e4; color: black;}
+    .modal-add select{color: black;}
+    #modal-add-title{text-align: center; font-size: 2em;}
+    #btn-hidden{position: absolute;height: 1px;;top: -0.1em;left: 0;;font-size: 2em;border: 0px; background: transparent; color: white;}
+    #th-ct-stt{width: 5%;}#th-ct-name{width: 12%;}
+    #th-ct-email{width: 18%;}
+    #th-ct-qt{width: 43%;}
+    #th-ct-time{width: 10%;}
+    #th-ct-opt{width: 12%;}
+    #btn-contact-reply{border:0; width: 5em;background: #4e73df;color: white; border-radius: 10px; transition: 0.3s;}
+    #btn-contact-delete{border:0; width: 3.5em;margin-left: 0.5em; background: red;color: white;border-radius: 10px;transition: 0.3s;}
+    .show-information .product-information{width: 600px;height: auto; margin: 0vh 3.4vh 3.4vh 0vh; border: 1px solid var(--gray); display: flex; flex-direction: column;border-radius: 15px;}
+    .show-information .product-information table{width: 100%;}
+    .show-information .product-information img{width: 100%; height: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;}
+    .show-information .product-information form{padding: 1em 0 1em 0;}
+    .show-information .product-information input{width: 100%; border:0px;background: transparent; margin-left: 1em;}
+    .show-information .product-information select{width: 50%; border:0px;background: transparent; margin-left: 1em;}
+    .show-information .product-information h{margin-left: 1em;} 
+    .show-information .product-information #submit{width: 15em;height: 2em;border-radius: 6px; background: #4e73df; color: white; margin: 1em 0 0 30%; transition: 0.3s;}
+    #btn-feedback{width: 15em;height: 2em;border: 0;border-radius: 6px; background: #4e73df; color: white; margin: 1em 0 0 2em; transition: 0.3s;}
+    .show-information .product-information #submit:hover,#btn-feedback:hover{background: #c1c8e4; color: #000;}
+    #btn-contact-reply:hover{background-color: #c1c8e4;}
+    #btn-contact-delete:hover{background-color: orange;}
+}
