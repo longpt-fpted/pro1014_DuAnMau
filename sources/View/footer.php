@@ -164,9 +164,7 @@
                 borderColor: 'transparent',
             })
         })
-        document.querySelector('#plus').addEventListener((e) => {
-            
-        })
+        
         displayCart();
     </script>
 </body>

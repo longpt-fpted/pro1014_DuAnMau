@@ -12,7 +12,7 @@
                         </div>
                         <div class="input-box">
                             <label for="password">Mật khẩu:</label>
-                            <input type="text" name="password" id="password" placeholder="Mật khẩu" required>
+                            <input type="password" name="password" id="password" placeholder="Mật khẩu" required>
                         </div>
                         <div class="input-box">
                             <input type="submit" name="login" id="submit" value="Đăng nhập">

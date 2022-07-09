@@ -25,8 +25,8 @@
                     giảm giá
                 </h2>
                 <section class="content-box">
-                    <?
-                        $productsOnSales = $productDAO->getSaleProductsWithLimit(4);
+                    <? 
+                        $productsOnSales = $productDAO->getSaleProductsWithLimit(12);
                         foreach ($productsOnSales as $productOnSales) {
                     ?>
                         <article class="product-box">
@@ -67,12 +67,12 @@
                 </h2>
                 <section class="content-box">
                 <? 
-                        $newProducts = $productDAO->getNewProducts(4);
+                        $newProducts = $productDAO->getNewProducts(16);
                         foreach ($newProducts as $newProduct) {
                 ?>
                     <article class="product-box">
                         <a class="product-box__thumbnail" href="./product.php?id=<?echo $newProduct->getID(); ?>">
-                            <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+                            <img src="<? echo $newProduct->getImg() ?>" alt="product thumbnail">
                         </a>
                         <div class="product-box__detail">
                             <div class="product-box__desc">
@@ -89,7 +89,7 @@
                                     <? echo $newProduct->getPrice(); ?></p>
                                 </div>
                             </div>
-                            <a class="product-box__add" href="#">
+                            <a class="product-box__add" onclick="addProductToCart(<? echo $newProduct->getID(); ?>)">
                                 <i class="fal fa-cart-arrow-down"></i>
                             </a>
                         </div>
@@ -224,7 +224,7 @@
                 <h2 class="content-title">
                     Feedback
                 </h2>
-                <section class="content-box">
+                <section class="content-box" style="flex-wrap: nowrap;">
                     <article class="feedback-box">
                         <div class="feedback-box__thumbnail">
                             <p>’’</p>
