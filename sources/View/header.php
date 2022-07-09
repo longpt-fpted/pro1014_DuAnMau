@@ -1,13 +1,20 @@
 <?php 
 session_start();
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
+//include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Utils\Database.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Utils\Utils.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\ProductDAO.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\CategoryDAO.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\OrderDAO.php";
+include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\OrderDetailDAO.php";
 
 $utils = new Utils();
 $userDAO = new UserDAO();
@@ -95,9 +102,9 @@ $_SESSION['cart'] = array_map(function($od) {
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1303126910149001&autoLogAppEvents=1" nonce="geF2GnV4"></script>
     <main>
         <article class="search-modal" id="search-box">
-                <form action="" method="post" class="modal-container">
+                <form action="search.php" method="post" class="modal-container">
                     <input type="text" name="search-input" id="search-input">
-                    <button type="button" name="search-submit" id="search-submit">
+                    <button type="submit" name="search-submit" id="search-submit">
                         <i class="fal fa-search"></i>
                     </button>
                 </form>

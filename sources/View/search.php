@@ -1,5 +1,12 @@
 <?php 
-    include('./header.php') 
+    include('./header.php');
+            $keyword = $_POST['search-input'];
+            $productDAO = new ProductDAO();
+
+           // var_dump($keyword);
+            //$product = $productDAO->getAllProducts();
+            $product = $productDAO->getProductsBySearch($keyword);
+            //var_dump($product);
 ?>
 <section class="main-content">
     <div class="main-search">
@@ -78,9 +85,9 @@
                 }
             ?>
         </section>
-        <a class="content-detail" href="#">
+        <?php /*<a class="content-detail" href="#">
             Xem thêm
-        </a>
+        </a> */?>
     </article>
 </section>
 <?php 
