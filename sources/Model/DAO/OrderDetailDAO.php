@@ -49,7 +49,7 @@ class OrderDetailDAO {
 
             if($query->execute()) {
                 $result = $query->get_result();
-                if($result->num_rows > 0) {
+                if($result->num_rows >= 0) {
                     $orderdetails = [];
                     while($row = $result->fetch_assoc()) {
                         $orderdetail = new OrderDetail($row['order_id'], $row['product_id'], $row['price'], $row['quantity']);

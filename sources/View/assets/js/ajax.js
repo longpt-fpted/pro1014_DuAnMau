@@ -1,5 +1,6 @@
 function addProductToCart(id) {
     let data = `pid=${id}&method=add`;
+    console.log(data);
     $.ajax({
         url: `../Controller/CartController.php`,
         method: "GET",
@@ -7,6 +8,7 @@ function addProductToCart(id) {
     }).done(res => {
         let isContain = false;
         res = JSON.parse(res);
+        console.log(res);
         displayNotify('success', `Thêm sản phẩm ${res.product.name} thành công`);
         if(carts.find(element => element.id == res.product.id)) {
             let index = carts.findIndex(element => element.id == res.product.id);    
@@ -18,7 +20,6 @@ function addProductToCart(id) {
         }
         cartQuantity++;
         isContain ? '' : carts.push(res.product);
-        console.log(res);
         displayCart();
 
     })
