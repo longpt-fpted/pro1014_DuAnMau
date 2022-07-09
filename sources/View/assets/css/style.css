@@ -914,6 +914,9 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-content .content-container {
   margin: 50px;
 }
+.main-content .content-container #news-box {
+  flex-wrap: nowrap;
+}
 .main-content .content-container .content-title {
   text-align: center;
   text-transform: uppercase;

@@ -79,7 +79,9 @@ $_SESSION['cart'] = array_map(function($od) {
             left: 0,
             total: 0,
         }
-        
+        function showCart() {
+            console.log(<? echo (json_encode($_SESSION['cart'])) ?>);
+        }
 
     </script>
     <script src="./assets/js/main.js"></script>

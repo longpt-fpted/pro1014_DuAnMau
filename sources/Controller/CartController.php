@@ -50,6 +50,8 @@ function addProductToCart($productID) {
         $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
         $isContain = false;
         $quantity = 1;
+
+        $index = 0;
         foreach ($_SESSION['cart'] as $orderdetail) {
             if($orderdetail['id'] == $product->getID()) {
                 $orderdetail['quantity'] += 1;
@@ -57,10 +59,13 @@ function addProductToCart($productID) {
                 $isContain = true;
                 break;
             }
+            $index++;
         }
 
         if($isContain == false) {
             $_SESSION['cart'][] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => 1, "price" => $product->getTotalPrice(), "fullprice" => $product->getPrice()];
+        } else {
+            $_SESSION['cart'][$index] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice() * $quantity, "fullprice" => $product->getPrice() * $quantity];
         }
 
         $resp['status'] = 'success';
@@ -71,14 +76,99 @@ function addProductToCart($productID) {
 
     return $resp;
 }
+function removeProductFromCart($productID) {
+    global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
+    $resp = [];
+    $product = $productDAO->getProductByID($productID);
+    $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : '';
+    
+    if(isset($_SESSION['cart'])) {
+        $index = 0;
+        foreach($_SESSION['cart'] as $orderdetail) {
+            // var_dump($orderdetail);
 
+            if($orderdetail['id'] == $product->getID()) {
+                $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail['quantity'], "price" => $product->getTotalPrice() * $orderdetail['quantity'], "fullprice" => $product->getPrice() * $orderdetail['quantity']];
+
+                array_splice($_SESSION['cart'], $index, 1);
+            
+                $resp['id'] = $orderdetail['id'];
+                $resp['index'] = $index;
+                if(isset($_SESSION['user'])) {
+                    $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+
+                    $_SESSION['cart'] = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+                    $_SESSION['cart'] = array_map(function($od) {
+                        global $productDAO;
+                        $p = '';
+                        $p = $productDAO->getProductByID($od->getProductID());
+                        return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
+                    }, $_SESSION['cart']);
+
+                    $resp['status'] = $orderDetailDAO->removerOrderDetailByProductIDAndOrderID($product->getID(), $order->getID()) ? "success" : 'fail';
+                } else {
+                    $resp['status'] = 'success';
+                }
+                break;
+            }
+            $index++;
+        }
+    }
+    // $resp['status'] = 'success';
+    return $resp;
+}
+function minusProductFromCart($productID) {
+    global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
+    $resp = [];
+    $product = $productDAO->getProductByID($productID);
+    $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : '';
+
+    if(isset($_SESSION['cart'])) {
+        $index = 0;
+        foreach($_SESSION['cart'] as $od) {
+            if($od['id'] == $product->getID()) {
+                if($od['quantity'] >= 2) {
+                    $od['quantity']--;
+                    $quantity = $od['quantity'];
+                    
+                    $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice() * $quantity, "fullprice" => $product->getPrice() * $quantity];
+
+                    $_SESSION['cart'][$index] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice() * $quantity, "fullprice" => $product->getPrice() * $quantity];
+
+                    if(isset($_SESSION['user'])) {
+                        $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+                        $resp['status'] = $orderDetailDAO->minusOrderDetailFromOrder($order->getID(), $productID, $quantity) ? "success" : 'fail';
+                    } else {
+                        $resp['status'] = 'success';
+                    }
+                    break;
+                } else {
+                    $resp = removeProductFromCart($productID);
+                    // $resp['remove'] = 'true';
+                    $resp['status'] = 'remove';
+                    break;
+                }
+            }
+            $index++;
+        } 
+    } else {
+        $resp['status'] = 'fail';
+    }
+
+    return $resp;
+}
 
 switch ($method) {
     case 'add':
         echo json_encode(addProductToCart($productID));
 
         break;
-    
+    case 'remove':
+        echo json_encode(removeProductFromCart($productID));
+        break;
+    case 'minus':
+        echo json_encode(minusProductFromCart($productID));
+        break;
     default:
         # code...
         break;

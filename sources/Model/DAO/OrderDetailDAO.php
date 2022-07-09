@@ -32,6 +32,17 @@ class OrderDetailDAO {
             }
         }
     }
+    public function minusOrderDetailFromOrder($orderID, $productID, $quantity) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("UPDATE `orderdetail` JOIN `product` on `product`.`id` = `orderdetail`.`product_id` SET `quantity`= ?, `orderdetail`.`price` = (`product`.`price` - (`product`.`price` * `product`.`sale_percent`)/ 100) * (?) WHERE `orderdetail`.`order_id` = ? AND `product`.`id` = ?");
+
+            $query->bind_param("ssss", $quantity, $quantity, $orderID, $productID);
+
+            return $query->execute();
+        }
+    }
     public function getAllOrderDetailByUserIdAndOrderID($userID, $orderID) {
         if($this->database->connect_error) {
             return false;
@@ -82,6 +93,16 @@ class OrderDetailDAO {
                 $result = $query->get_result();
                 return $result->num_rows > 0;
             } else return false;
+        }
+    }
+    public function removerOrderDetailByProductIDAndOrderID($productID, $orderID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("DELETE FROM `orderdetail` WHERE `orderdetail`.`product_id` = ? and `orderdetail`.`order_id` = ?");
+            $query->bind_param('ss', $productID, $orderID);
+
+            return $query->execute();
         }
     }
 }

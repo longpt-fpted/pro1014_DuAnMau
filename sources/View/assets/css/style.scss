@@ -832,6 +832,9 @@ header {
     margin-top: 125px;
     .content-container {
         margin: 50px;
+        #news-box {
+            flex-wrap: nowrap;
+        }
         // height: 52vh;
         .content-title {
             text-align: center;
@@ -843,6 +846,7 @@ header {
             color: $_blue;
         }
         .content-box {
+            
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;

@@ -56,41 +56,6 @@ function moneyFormat(price) {
 function displayCart() {
     document.querySelector('#cart-modal--total-quantity').innerText = `(${cartQuantity})`;
     document.querySelector('#cart-modal__body').innerHTML = '';
-    for(let i = 0; i < carts.length; i++) {
-        let element = carts[i];
-        document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
-        <a class="product-box__thumbnail" href="#">
-            <img src="${element.img}" alt="product thumbnail">
-        </a>
-        <div class="product-box__detail">
-            <div class="product-box__desc">
-                <div class="product-box__title" href="#">
-                    <a href="./product.php?id=${element.id}">${element.name}</a>
-                    <a href="./product.php?id=${element.id}"><i class="fal fa-trash"></i></a>
-                </div>
-                <div class="product-box__quantity">
-                    <form>
-                        <button type="button" name="minus" id="minus">
-                            <i class="far fa-minus"></i>
-                        </button>
-                        <input type="number" name="product-quantity" value="${element.quantity}">
-                        <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id})">
-                            <i class="far fa-plus"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="product-box__price">
-                    <p class="product-box__totalprice">
-                        ${element.price}
-                    </p>
-                    <p class="product-box__fullprice">
-                        ${element.fullprice}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </article>`;
-    }
     document.querySelector('#cart-modal__footer').innerHTML = `
         <li class="cart-modal-price-item">
             <p>
@@ -132,4 +97,40 @@ function displayCart() {
                 ${moneyFormat(currency.total)}
             </p>
         </li>`
+    for(let i = 0; i < carts.length; i++) {
+        let element = carts[i];
+        document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
+        <a class="product-box__thumbnail" href="#">
+            <img src="${element.img}" alt="product thumbnail">
+        </a>
+        <div class="product-box__detail">
+            <div class="product-box__desc">
+                <div class="product-box__title" href="#">
+                    <a href="./product.php?id=${element.id}">${element.name}</a>
+                    <a onclick="removeProductFromCart(${element.id})"><i class="fal fa-trash"></i></a>
+                </div>
+                <div class="product-box__quantity">
+                    <form>
+                        <button type="button" name="minus" id="minus" onclick="minusProductFromCart(${element.id})">
+                            <i class="far fa-minus"></i>
+                        </button>
+                        <input type="number" name="product-quantity" value="${element.quantity}">
+                        <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id})">
+                            <i class="far fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="product-box__price">
+                    <p class="product-box__totalprice">
+                        ${element.price}
+                    </p>
+                    <p class="product-box__fullprice">
+                        ${element.fullprice}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>`;
+    }
+    
 }
