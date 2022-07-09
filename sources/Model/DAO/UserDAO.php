@@ -117,6 +117,54 @@ class UserDAO {
             } else return false;
         }
     }
+    public function isPhonenumberExist($phonenumber) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`phone_number` = ?');
+            $query->bind_param("s", $phonenumber);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function UpdateUser($fullname,$email,$phonenumber,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `fullname`=?,`email`=?,`phone_number`=? WHERE `id`=?");
+            $query->bind_param("ssss",$fullname,$email,$phonenumber,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function DeleteUser(){
+        if($this->database->connect_error){
+            return false;
+        } else {
+            $query = $this->database->prepare("DELETE FROM `user` WHERE `id`='$id'");
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function addUserAdmin($role,$username,$password,$email,$fullname,$phonenumber) {//var_dump("$username,$password,$email,$fullname");
+        if($this->database->connect_error){
+            return false;
+        } else {
+            $query = $this->database->prepare('INSERT INTO `user`(`role_id`,`username`, `password`, `email`, `fullname`,`phone_number`) VALUES (?,?,?,?,?,?)');
+            $query->bind_param("ssssss",$role,$username,$password,$email,$fullname,$phonenumber);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
 }
 
 ?>
