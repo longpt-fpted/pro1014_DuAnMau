@@ -1,13 +1,5 @@
 <?php
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
-include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\User.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
-// include "C:\wamp64\www\hihihaha\pro1014_duan\sources\Utils\Database.php";
-//include '../User.php';
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
 class UserDAO {
     private $database; 
     public function __construct() {
@@ -142,7 +134,7 @@ class UserDAO {
             else return false;
         }
     }
-    public function DeleteUser(){
+    public function DeleteUser($id){
         if($this->database->connect_error){
             return false;
         } else {

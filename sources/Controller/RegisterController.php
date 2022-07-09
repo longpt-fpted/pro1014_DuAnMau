@@ -2,7 +2,9 @@
     // include "/wamp64/www/hihihaha/pro1014_duan/sources/Model/DAO/UserDAO.php";
     // include "/wamp64/www/hihihaha/pro1014_duan/sources/Model/User.php";
 
-    include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\DAO\UserDAO.php');
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+    // include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\DAO\UserDAO.php');
     //include ('C:\wamp64\www\hihihaha\pro1014_duan\sources\Model\User.php');
 
     $fullname=$_POST['fullname'];
@@ -13,9 +15,9 @@
     $user = new User(null,null,$username,$password,$email,$fullname,null,0,null);
     $userDAO = new UserDAO();
 
-    $userDAO2 = new UserDAO();
-    $checkuser = $userDAO2->isUsernameExist($username);
-    $checkemail = $userDAO2->isEmailExist($email);
+    // $userDAO2 = new UserDAO();
+    $checkuser = $userDAO->isUsernameExist($username);
+    $checkemail = $userDAO->isEmailExist($email);
     
     echo($checkuser);
     if ($checkuser == 1) {

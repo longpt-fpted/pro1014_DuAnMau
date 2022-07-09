@@ -1,20 +1,12 @@
 <?php 
 session_start();
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-
-//include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Utils\Database.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Utils\Utils.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\ProductDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\CategoryDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\OrderDAO.php";
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\OrderDetailDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
 $utils = new Utils();
 $userDAO = new UserDAO();
@@ -25,14 +17,12 @@ $orderDetailDAO = new OrderDetailDAO();
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
 
-
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
 } else {
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
-
 
 $_SESSION['cart'] = array_map(function($od) {
     global $productDAO;

@@ -1,4 +1,3 @@
-
 function addProductToCart(id) {
     let data = `pid=${id}&method=add`;
     $.ajax({
@@ -19,7 +18,7 @@ function addProductToCart(id) {
         }
         cartQuantity++;
         isContain ? '' : carts.push(res.product);
-        
+        console.log(res);
         displayCart();
 
     })

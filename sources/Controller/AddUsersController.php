@@ -1,6 +1,6 @@
 <?php
 
-include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
+// include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
 
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];

@@ -31,7 +31,7 @@
                     ?>
                         <article class="product-box">
                             <a class="product-box__thumbnail" href="./product.php?id=<?echo $productOnSales->getID(); ?>">
-                                <img src="./assets/images/elden-ring.jpg" alt="product thumbnail">
+                                <img src="<?echo $productOnSales->getImg() ?>" alt="product thumbnail">
                             </a>
                             <div class="product-box__detail">
                                 <div class="product-box__desc">
@@ -48,7 +48,7 @@
                                         <? echo $productOnSales->getPrice(); ?></p>
                                     </div>
                                 </div>
-                                <a class="product-box__add" href="#">
+                                <a class="product-box__add" onclick="addProductToCart(<?echo $productOnSales->getID()?>)">
                                     <i class="fal fa-cart-arrow-down"></i>
                                 </a>
                             </div>
