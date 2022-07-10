@@ -7,10 +7,11 @@ require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PH
 require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/PHPMailer.php';
 require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
 
+
 $mail = new PHPMailer(true);
-// $address = $_REQUEST[''];
 function sendMail($usermail, $title, $message) {
     global $mail;
+    $resp = [];
     try {
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
@@ -27,11 +28,13 @@ function sendMail($usermail, $title, $message) {
         $mail->Subject = $title;
         $mail->Body = $message;
         $mail->send();
-        echo 'success';
+        $resp['status'] = 'success';
     } catch(Exception $e) {
-        echo 'fail';
-        // header("location: http://localhost/pakage-store/sources/View/404.php");
+        $resp['statuss'] = 'failed';
+        $resp['error'] = $e;
     }
+
+    return $resp;
 }
 
 ?>

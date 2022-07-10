@@ -30,7 +30,7 @@
                                     <i class="fal fa-trash"></i>
                                 </div>
                             </div>
-                            <div class="cart-detail" id="cart-detail">
+                            <div class="cart-detail" id="cart-detail"> 
                             <div class="cart-desc__head">
                                 Thông tin thanh toán
                             </div>

@@ -1,15 +1,15 @@
 <?php
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-
 $productDAO = new ProductDAO();
 $userDAO = new UserDAO();
 $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
-
+$mail = new Mail();
 session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
@@ -155,8 +155,20 @@ function minusProductFromCart($productID) {
     return $resp;
 }
 function checkout($userID) {
-    $resp = [];
+    global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
 
+    $resp = [];
+    $user = null;
+    if($userID != 'error') {
+        $user = $userDAO->getUserByID($userID);
+        $order = $orderDAO->getUnpayOrderByUserID($user->getID());
+        $orderdetails = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+
+        
+
+    } else {
+        $resp['status'] = 'fail';
+    }
     return $resp;
 }
 switch ($method) {
