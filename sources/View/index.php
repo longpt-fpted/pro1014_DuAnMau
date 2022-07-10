@@ -24,7 +24,7 @@
                 <h2 class="content-title">
                     giảm giá
                 </h2>
-                <section class="content-box">
+                <section class="content-box" style="flex-wrap: wrap;">
                     <? 
                         $productsOnSales = $productDAO->getSaleProductsWithLimit(12);
                         foreach ($productsOnSales as $productOnSales) {
@@ -65,7 +65,7 @@
                 <h2 class="content-title">
                     Mới ra mắt
                 </h2>
-                <section class="content-box">
+                <section class="content-box" style="flex-wrap: wrap;">
                 <? 
                         $newProducts = $productDAO->getNewProducts(16);
                         foreach ($newProducts as $newProduct) {

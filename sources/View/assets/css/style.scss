@@ -214,7 +214,7 @@ input[type=number] {
         background-color: $_blue;
         height: 100vh;
         color: white;
-        max-width: 480px;
+        width: 480px;
         flex-direction: column;
         .modal-head {
             display: flex;
@@ -565,7 +565,7 @@ input[type=number] {
     border-radius: .5em;
     overflow: hidden;
     
-    position: absolute;
+    position: fixed;
     bottom: 2em;
     right: 2em;
 
@@ -849,7 +849,7 @@ header {
             
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
+            // flex-wrap: wrap;
             align-items: center;
             gap: 1em;
             .product-box {
@@ -1566,7 +1566,7 @@ header {
                 position: relative;
                 gap: 1.5em;
                 .cart-wrapper {
-                    max-width: 75%;
+                    min-width: 70%;
                     padding: .25em .75em;
                     border: 1px solid $_blue;
                     border-radius: .5em;
@@ -1581,7 +1581,7 @@ header {
                     .cart-wrapper__body {
                         .row {
                             display: grid;
-                            grid-template-columns: 50% 15% 15% 15% 2.5%;
+                            grid-template-columns: 45% 20% 15% 15% 2.5%;
                             align-items: center;
                             gap: .5%;
                             .col {
@@ -1640,11 +1640,6 @@ header {
                                         }
                                     }
                                 }
-                                .price, .product-totalprice {
-                                    &:after {
-                                        content: 'đ';
-                                    }
-                                }
                                 .product-remove {
                                     a i {
                                         color: black;
@@ -1655,8 +1650,12 @@ header {
                         }
                         .cart-detail {
                             margin-top: .75em;
-                            border-bottom: 1px solid $_lightBlue;
-                            padding-bottom: .25em;
+                            .row {
+                                padding-bottom: .75em;
+                                border-bottom: 1px solid $_lightBlue;
+                                margin: 0.5em 0;
+                                margin-top: .75em;
+                            }
                         }
                     }  
                 }

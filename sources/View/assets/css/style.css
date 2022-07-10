@@ -215,7 +215,7 @@ input[type=number] {
   background-color: #5680e9;
   height: 100vh;
   color: white;
-  max-width: 480px;
+  width: 480px;
   flex-direction: column;
 }
 .cart-modal .modal-container .modal-head {
@@ -604,7 +604,7 @@ input[type=number] {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0.5em;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   bottom: 2em;
   right: 2em;
 }
@@ -929,7 +929,6 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-content .content-container .content-box {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1em;
 }
@@ -1664,7 +1663,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   gap: 1.5em;
 }
 .main-content .content-container .content-box .cart-container .cart-wrapper {
-  max-width: 75%;
+  min-width: 70%;
   padding: 0.25em 0.75em;
   border: 1px solid #5680e9;
   border-radius: 0.5em;
@@ -1679,7 +1678,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 }
 .main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .row {
   display: grid;
-  grid-template-columns: 50% 15% 15% 15% 2.5%;
+  grid-template-columns: 45% 20% 15% 15% 2.5%;
   align-items: center;
   gap: 0.5%;
 }
@@ -1750,16 +1749,17 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .row .col .product-quantity button:hover {
   border-color: blue !important;
 }
-.main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .row .col .price:after, .main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .row .col .product-totalprice:after {
-  content: "đ";
-}
 .main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .row .col .product-remove a i {
   color: black;
 }
 .main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .cart-detail {
   margin-top: 0.75em;
+}
+.main-content .content-container .content-box .cart-container .cart-wrapper .cart-wrapper__body .cart-detail .row {
+  padding-bottom: 0.75em;
   border-bottom: 1px solid #5AB9EA;
-  padding-bottom: 0.25em;
+  margin: 0.5em 0;
+  margin-top: 0.75em;
 }
 .main-content .content-container .content-box .cart-container .cart-desc {
   max-width: 30%;

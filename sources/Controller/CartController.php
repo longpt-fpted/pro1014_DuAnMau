@@ -14,7 +14,7 @@ session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
-
+$userID = isset($_POST['userID']) ? $_POST['userID'] : 'error';
 
 function addProductToCart($productID) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
@@ -113,7 +113,6 @@ function removeProductFromCart($productID) {
             $index++;
         }
     }
-    // $resp['status'] = 'success';
     return $resp;
 }
 function minusProductFromCart($productID) {
@@ -143,7 +142,6 @@ function minusProductFromCart($productID) {
                     break;
                 } else {
                     $resp = removeProductFromCart($productID);
-                    // $resp['remove'] = 'true';
                     $resp['status'] = 'remove';
                     break;
                 }
@@ -156,7 +154,11 @@ function minusProductFromCart($productID) {
 
     return $resp;
 }
+function checkout($userID) {
+    $resp = [];
 
+    return $resp;
+}
 switch ($method) {
     case 'add':
         echo json_encode(addProductToCart($productID));
@@ -167,6 +169,9 @@ switch ($method) {
         break;
     case 'minus':
         echo json_encode(minusProductFromCart($productID));
+        break;
+    case 'checkout':
+        echo json_encode(checkout($userID));
         break;
     default:
         # code...
