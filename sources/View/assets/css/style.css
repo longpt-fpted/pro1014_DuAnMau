@@ -1913,7 +1913,6 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   justify-content: center;
   gap: 1em;
-  padding: 0.75em 0;
 }
 .main-footer .follow-section p, .main-footer .follow-section a, .main-footer .follow-section i {
   font-size: 1.2em;
