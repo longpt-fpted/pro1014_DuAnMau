@@ -1,5 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/User.php";
 class UserDAO {
     private $database; 
     public function __construct() {
@@ -151,6 +152,54 @@ class UserDAO {
         } else {
             $query = $this->database->prepare('INSERT INTO `user`(`role_id`,`username`, `password`, `email`, `fullname`,`phone_number`) VALUES (?,?,?,?,?,?)');
             $query->bind_param("ssssss",$role,$username,$password,$email,$fullname,$phonenumber);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function UserChangePhone($phonenumber,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `phone_number`=? WHERE `id`=?");
+            $query->bind_param("ss",$phonenumber,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function UserChangeEmail($email,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `email`=? WHERE `id`=?");
+            $query->bind_param("ss",$email,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function UserChangePassword($password,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `password`=? WHERE `id`=?");
+            $query->bind_param("ss",$password,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function UserChangeFullname($fullname,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `fullname`=? WHERE `id`=?");
+            $query->bind_param("ss",$fullname,$id);
             if($query->execute()){
                 return true;
             }

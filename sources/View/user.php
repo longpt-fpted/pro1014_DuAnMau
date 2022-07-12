@@ -6,27 +6,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" class="form-edit">
+                    <form action="../Controller/UserChangePhoneController.php" method="post" class="form-edit">
                         <label for="phone">Nhập số điện thoại mới:</label>
                         <div class="input-box">
                             <i class="fal fa-phone"></i>
                             <input type="text" id="phone" name="phone" placeholder="Số điện thoại...">
                         </div>
-                        <button class="submit">
+                        <button type="submit" class="submit">
                             Thay đổi
                         </button>
                     </form>
-                    <form action="" method="post" class="form-edit">
+                    <form action="../Controller/UserChangeEmailController.php" method="post" class="form-edit">
                         <label for="mail">Nhập địa chỉ mail mới:</label>
                         <div class="input-box">
                             <i class="fal fa-envelope"></i>
                             <input type="text" id="mail" name="mail" placeholder="Email...">
                         </div>
-                        <button class="submit">
+                        <button type="submit" class="submit">
                             Thay đổi
                         </button>
                     </form>
-                    <form action="" method="post" class="form-edit">
+                    <form action="../Controller/UserChangePasswordController.php" method="post" class="form-edit">
                         <label for="phone">Nhập mật khẩu cũ:</label>
                         <div class="input-box">
                             <i class="fal fa-key"></i>
@@ -36,9 +36,9 @@
                         <div class="input-box">
                             <i class="fal fa-key"></i>
 
-                            <input type="text" id="new-passs" placeholder="Mật khẩu mới">
+                            <input type="text" id="new-pass" name="new-pass" placeholder="Mật khẩu mới">
                         </div>
-                        <button class="submit">
+                        <button type="submit" class="submit">
                             Xác nhận
                         </button>
                     </form>
@@ -97,7 +97,7 @@
                                 Thông tin cá nhân
                             </div>
                             <div class="user-box__dashboard">
-                                <form action="" method="post" class="main-info">
+                                <form action="../Controller/UserChangeNameController.php" method="post" class="main-info">
                                     <div class="form-info">
                                         <div class="form-avatar">
                                             <img src="./assets/images/man.png" alt="user avatar">
@@ -109,7 +109,7 @@
                                         <div class="form-name">
                                             <div class="input-box">
                                                 <label for="username">Họ & Tên</label>
-                                                <input type="text" name="username" id="username" value="<?
+                                                <input type="text" name="fullname" id="fullname" value="<?
                                                     echo $user->getFullname();
                                                 ?>">
                                             </div>
@@ -121,7 +121,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="submit-form">
+                                    <button type="submit" class="submit-form">
                                         Lưu thay đổi
                                     </button>
                                 </form>

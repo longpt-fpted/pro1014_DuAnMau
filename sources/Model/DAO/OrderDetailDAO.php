@@ -1,5 +1,6 @@
 <?php 
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/OrderDetail.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/OrderDetail.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/OrderDetail.php";
 class OrderDetailDAO {
     private $database;
     public function __construct() {
