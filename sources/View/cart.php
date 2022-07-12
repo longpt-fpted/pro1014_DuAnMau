@@ -108,6 +108,9 @@
     loadCart();
     const checkoutBtn = document.querySelector('#checkout');
     checkoutBtn.addEventListener('click', function() {
-        checkout(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);
+        if(carts.length == 0) 
+            displayNotify("warning", "Giỏ hàng trống, xin vui lòng mua hàng");
+        else 
+            checkout(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);
     })
 </script>

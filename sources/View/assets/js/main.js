@@ -1,4 +1,17 @@
 
+function updateCurrency() {
+    cartQuantity = 0;
+    currency.fullPrice = 0;
+    currency.left = 0;
+    currency.total = 0;
+    currency.discount = 0;
+    carts.forEach((element) => {
+        cartQuantity += (element.quantity);
+        currency.fullPrice += element.price;
+        currency.left = currency.fullPrice - currency.userMoney > 0 ? currency.fullPrice - currency.userMoney : 0;
+        currency.total = currency.fullPrice - currency.discount;
+    })
+}
 const quantity = document.querySelector('#cart-modal--total-quantity');
 
 function displayNotify(type, msg) {
@@ -53,8 +66,45 @@ function moneyFormat(price) {
     return price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
 }
 function displayCart() {
+    updateCurrency();
     document.querySelector('#cart-modal--total-quantity').innerText = `(${cartQuantity})`;
     document.querySelector('#cart-modal__body').innerHTML = '';
+    
+    for(let i = 0; i < carts.length; i++) {
+        let element = carts[i];
+        document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
+        <a class="product-box__thumbnail" href="#">
+            <img src="${element.img}" alt="product thumbnail">
+        </a>
+        <div class="product-box__detail">
+            <div class="product-box__desc">
+                <div class="product-box__title" href="#">
+                    <a href="./product.php?id=${element.id}">${element.name}</a>
+                    <a onclick="removeProductFromCart(${element.id})"><i class="fal fa-trash"></i></a>
+                </div>
+                <div class="product-box__quantity">
+                    <form>
+                        <button type="button" name="minus" id="minus" onclick="minusProductFromCart(${element.id})">
+                            <i class="far fa-minus"></i>
+                        </button>
+                        <input type="number" name="product-quantity" value="${element.quantity}">
+                        <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id})">
+                            <i class="far fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="product-box__price">
+                    <p class="product-box__totalprice">
+                        ${element.price}
+                    </p>
+                    <p class="product-box__fullprice">
+                        ${element.fullprice}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>`;
+    }
     document.querySelector('#cart-modal__footer').innerHTML = `
         <li class="cart-modal-price-item">
             <p>
@@ -96,94 +146,12 @@ function displayCart() {
                 ${moneyFormat(currency.total)}
             </p>
         </li>`
-    for(let i = 0; i < carts.length; i++) {
-        let element = carts[i];
-        document.querySelector('#cart-modal__body').innerHTML += `<article class="product-box">
-        <a class="product-box__thumbnail" href="#">
-            <img src="${element.img}" alt="product thumbnail">
-        </a>
-        <div class="product-box__detail">
-            <div class="product-box__desc">
-                <div class="product-box__title" href="#">
-                    <a href="./product.php?id=${element.id}">${element.name}</a>
-                    <a onclick="removeProductFromCart(${element.id})"><i class="fal fa-trash"></i></a>
-                </div>
-                <div class="product-box__quantity">
-                    <form>
-                        <button type="button" name="minus" id="minus" onclick="minusProductFromCart(${element.id})">
-                            <i class="far fa-minus"></i>
-                        </button>
-                        <input type="number" name="product-quantity" value="${element.quantity}">
-                        <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id})">
-                            <i class="far fa-plus"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="product-box__price">
-                    <p class="product-box__totalprice">
-                        ${element.price}
-                    </p>
-                    <p class="product-box__fullprice">
-                        ${element.fullprice}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </article>`;
-    }
     
 }
 function loadCart() {
+    updateCurrency();
     document.querySelector('#cart-wrapper__quantity').innerText = `(${cartQuantity})`;
     document.querySelector('#cart-detail').innerHTML = '';
-    
-    for(let i = 0; i < carts.length; i++) {
-        let element = carts[i];
-        let sale = 100 * (((element.fullprice / element.quantity) - (element.price / element.quantity)))/element.fullprice * element.quantity;
-        document.querySelector('#cart-detail').innerHTML += `
-        <div class="row">
-            <div class="col">
-                <div class="product-thumbnail">
-                    <img src="${element.img}" alt="Elden-ring">
-                    <a href="./product.php?id=${element.id}" class="product-title">
-                        ${element.name}
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-price">
-                    <div class="price">${moneyFormat(element.price / element.quantity)}</div>
-                    <div class="fullprice">
-                        ${moneyFormat(element.fullprice / element.quantity)}    
-                        <span class="sale-tag">
-                            -${sale}%
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-quantity">
-                    <button type="button" name="minus" id="minus" onclick="minusProductFromCart(${element.id}); loadCart();">
-                        <i class="fal fa-minus"></i>
-                    </button>
-                    <input type="number" name="product-quantity" value="${element.quantity}">
-                    <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id}); loadCart();">
-                        <i class="fal fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-totalprice">${moneyFormat(element.price * element.quantity)}</div>
-            </div>
-            <div class="col">
-                <div class="product-remove">
-                    <a onclick="removeProductFromCart(${element.id}); ">
-                        <i class="fal fa-trash"></i>
-                    </a>
-                </div>
-            </div>
-        </div>`;
-    }
     document.querySelector('#cart-desc').innerHTML = `
     <div class="cart-desc__head">
         Thông tin thanh toán
@@ -246,4 +214,52 @@ function loadCart() {
             Thanh toán
         </button>
     </div>`
+    for(let i = 0; i < carts.length; i++) {
+        let element = carts[i];
+        let sale = 100 * (((element.fullprice / element.quantity) - (element.price / element.quantity)))/element.fullprice * element.quantity;
+        document.querySelector('#cart-detail').innerHTML += `
+        <div class="row">
+            <div class="col">
+                <div class="product-thumbnail">
+                    <img src="${element.img}" alt="Elden-ring">
+                    <a href="./product.php?id=${element.id}" class="product-title">
+                        ${element.name}
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="product-price">
+                    <div class="price">${moneyFormat(element.price / element.quantity)}</div>
+                    <div class="fullprice">
+                        ${moneyFormat(element.fullprice / element.quantity)}    
+                        <span class="sale-tag">
+                            -${sale}%
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="product-quantity">
+                    <button type="button" name="minus" id="minus" onclick="minusProductFromCart(${element.id}); loadCart();">
+                        <i class="fal fa-minus"></i>
+                    </button>
+                    <input type="number" name="product-quantity" value="${element.quantity}">
+                    <button type="button" name="plus" id="plus" onclick="addProductToCart(${element.id}); loadCart();">
+                        <i class="fal fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="product-totalprice">${moneyFormat(element.price)}</div>
+            </div>
+            <div class="col">
+                <div class="product-remove">
+                    <a onclick="removeProductFromCart(${element.id}); ">
+                        <i class="fal fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>`;
+    }
+    
 }

@@ -25,6 +25,17 @@ class OrderDAO {
             } else return false;
         }
     }
+    public function updateOrderToPayByUserID($userID, $price, $date) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("UPDATE `order` SET `price`= ?, `is_pay`= 1, `date`= ? WHERE `order`.`user_id` = ? and `order`.`is_pay` = 0;");
+            $query->bind_param('sss', $price, $date, $userID);
+
+            return $query->execute();
+        }
+    }
+    
     public function isExistUnpayOrder($userID) {
         if($this->database->connect_error) {
             return false;
@@ -38,20 +49,39 @@ class OrderDAO {
             } else return false;
         }
     }
-    public function createOrderByUserID($userID) {
+    public function createOrderForUserID($userID, $date) {
         if($this->database->connect_error) {
             return false;
         } else {
             if($this->isExistUnpayOrder($userID)) {
                 return false;
             } else {
-                $query = $this->database->prepare("INSERT INTO `order`(`user_id`) VALUES ?");
-                $query->bind_param('s', $userID);
-
+                $query = $this->database->prepare("INSERT INTO `order`(`user_id`, `price`, `is_pay`, `date`) VALUES (?, 0, 0, ?)");
+                $query->bind_param("ss", $userID, $date);
+    
                 return $query->execute();
             }
         }
     }
+    public function getAllPayedOrderByUserID($userID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 1");
+            $query->bind_param('s', $userID);
 
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $orders = [];
+                    while($row = $result->fetch_assoc()) {
+                        $order = new Order($row['id'], $row['user_id'], $row['price'], $row['is_pay'], $row['date']);
+                        $orders[] = $order;
+                    }
+                    return $orders;
+                } else return false;
+            } else return false;
+        }
+    }
 }
 ?>

@@ -63,6 +63,7 @@ class User {
     public function withdrawCurrency($amount) {
         if($this->currency > $amount && $amount > 0) {
             $this->currency -= $amount;
+            
         }
     }
     public function depositCurrency($amount) {

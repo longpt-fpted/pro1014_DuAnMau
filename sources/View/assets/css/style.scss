@@ -1882,6 +1882,8 @@ header {
     }
 }
 // Mobile
-@media only screen and (max-width: 46.1875em) {
-
+@media only screen and (min-width: 390px) and (max-width: 844px) {
+    .main-banner{
+        width: 100em;
+    }
 }

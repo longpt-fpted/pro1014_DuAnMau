@@ -662,8 +662,8 @@ header .main-navbar .logo {
   gap: 1em;
 }
 header .main-navbar .logo img {
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 header .main-navbar .logo .logo--txt p {
@@ -1913,7 +1913,6 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   justify-content: center;
   gap: 1em;
-  padding: 0.75em 0;
 }
 .main-footer .follow-section p, .main-footer .follow-section a, .main-footer .follow-section i {
   font-size: 1.2em;
@@ -1930,6 +1929,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   justify-content: flex-end;
   align-items: flex-start;
   gap: 0.75em;
+  padding-bottom: 0.5em;
 }
 .main-footer .footer-container .footer-box .logo {
   display: flex;
@@ -1965,7 +1965,46 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-footer .footer-container .fb-page {
   align-self: center;
 }
-
+.main-search{
+  width: 65%;
+  margin: auto;
+}
+.main-search h1{
+  font-size: 2.5em;
+}
+.product-filter{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.information-filter{
+  padding: 0 1em 1em 0;
+}
+.main-search #btn-restore{
+  border: 0;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.information-filter input, .information-filter select{
+  width: 13em;
+  height: 2em;
+}
+.product-filter #btn-filter{
+  width: 5em;
+  height: 2em;
+  margin: 1.25em 0 0 0;
+  border: 0;
+  background: #5680e9;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.product-filter #btn-filter:hover{
+  background: #C1C8E4;
+}
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .main-content .content-box {
     flex-wrap: wrap !important;
@@ -1998,4 +2037,82 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     width: calc(33.3333333333% - 2.5em) !important;
     margin: 0 0.5em !important;
   }
+  .main-footer .footer-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .main-footer .footer-container .fb-page {
+    margin: 1em 0 0 0;
+  }
 }/*# sourceMappingURL=style.css.map */
+@media only screen and (min-width: 390px) and (max-width: 767px) { 
+  .main-footer .footer-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .main-footer .footer-container .fb-page {
+    padding-top: 0.5em;
+  }
+  .main-banner{
+    height: 70vh;
+  }
+  header .main-navbar .logo{
+    padding-right: 1em;
+  }
+  .main-navbar .logo--txt{
+    font-size: 0.5em !important;
+  }
+  header .main-header{
+    width: 390px !important;
+  }
+  header .main-navbar{
+    width: 390px !important;
+    padding-left: 1em !important;
+  }
+  header .main-navbar .logo img{
+    width: 60% !important;
+    height: 60% !important;
+  }
+  header .main-navbar .main-navbar__nav .main-navbar--item{
+    width: auto !important;
+    font-size: 0.6em !important;
+  }
+  header .main-navbar #user-navbar{
+    width: 70px !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 1.2em !important;
+    word-spacing: 5px;
+    height: 3em !important;
+    gap: 0.1px !important;
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+  }
+  header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu{
+    z-index: 1 !important;
+  }
+  .search-modal form{
+    width: 390px !important;
+  }
+  .cart-modal .modal-container{
+    width: 390px !important;
+    left: 0;
+  }
+  header .main-navbar .main-navbar__nav .main-navbar--item i{
+    padding-left: 0.14em !important;
+  }
+  .main-banner .main-banner__content .main-banner--title{
+    font-size: 3.2em !important;
+  }
+  .main-banner .main-banner__content .main-banner--detail{
+    font-size: 1.4em !important;
+  }
+  .main-banner .main-banner__content .main-banner__btns .main-banner--primary-btn{
+    padding: 1em 1em !important;
+  }
+  .main-banner .main-banner__content .main-banner__btns .main-banner--secondary-btn{
+    padding: 1em 1em !important;
+  }
+}

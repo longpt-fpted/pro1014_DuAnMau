@@ -13,7 +13,7 @@ $mail = new Mail();
 session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
-$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
+$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; //add
 $userID = isset($_POST['userID']) ? $_POST['userID'] : 'error';
 
 function addProductToCart($productID) {
@@ -163,18 +163,34 @@ function checkout($userID) {
         $user = $userDAO->getUserByID($userID);
         $order = $orderDAO->getUnpayOrderByUserID($user->getID());
         $orderdetails = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
+        $totalPrice = 0;
 
-        
+        foreach ($orderdetails as $orderdetail) {
+            $totalPrice += $orderdetail->getPrice();
+        }
 
-    } else {
-        $resp['status'] = 'fail';
+        if($user->getCurrency() < $totalPrice) {
+            $resp['status'] = 'money';
+        } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("Y-m-d"))) {
+                $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
+                $user->withdrawCurrency($totalPrice);
+                $userDAO->widthdraw($totalPrice, $user->getID());
+               
+                // Send mail...
+               
+                $resp['status'] = 'success';
+        } else {
+            $resp['status'] = 'fail';
+        }
+    }
+    else {
+        $resp['status'] = 'login';
     }
     return $resp;
 }
 switch ($method) {
     case 'add':
         echo json_encode(addProductToCart($productID));
-
         break;
     case 'remove':
         echo json_encode(removeProductFromCart($productID));

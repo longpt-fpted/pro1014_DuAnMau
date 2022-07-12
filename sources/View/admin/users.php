@@ -1,7 +1,6 @@
 <?php 
-    include('header.php');
-    include('./topbar.php')
-    // include ('/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php');
+    include('./header.php');
+    include('./topbar.php');
 ?>
             <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -47,18 +46,18 @@
                 <div class="detail">
                     <form action="" id="user-infor">
                         <h>Họ và tên:</h><br>
-                        <input type="text" id="fullname" name="fullname" value="<?
+                        <input type="text" id="fullname" name="fullname" value="<?php 
                         echo $user->getFullname(); ?>"><br>                               
                         <h>Email:</h><br>
-                        <input type="text" id="email" name="email" value="<?
+                        <input type="text" id="email" name="email" value="<?php 
                         echo $user->getEmail(); ?>"><br>
                         <h>Số điện thoại:</h><br>
-                        <input type="text" id="phone-number" name="phone-number" value="<?
+                        <input type="text" id="phone-number" name="phone-number" value="<?php 
                         echo $user->getPhone(); ?>"><br>
                         <h>Vai trò:</h><br>
                         <select name="role" id="role">
-                            <option value="Quản trị viên" <? echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
-                            <option value="Khách hàng" <? echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
+                            <option value="Quản trị viên" <?php  echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
+                            <option value="Khách hàng" <?php  echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
                         </select><br>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
@@ -108,5 +107,5 @@
 </div>
 
 <?php 
-    include('C:\xampp\htdocs\pro1014_DuAn\sources\View\admin\footer.php') 
+    include('/xampp/htdocs/pro1014_DuAn/sources/View/admin/footer.php') 
 ?>
