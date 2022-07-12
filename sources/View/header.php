@@ -77,12 +77,7 @@ $_SESSION['cart'] = array_map(function($od) {
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax.js"></script>
     <script>
-        carts.forEach((element) => {
-            cartQuantity += (element.quantity);
-            currency.fullPrice += element.price;
-            currency.left = currency.fullPrice - currency.userMoney > 0 ? currency.fullPrice - currency.userMoney : 0;
-            currency.total = currency.fullPrice - currency.discount;
-        })
+        
     </script>
     <!-- Slick JS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>

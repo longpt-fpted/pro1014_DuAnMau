@@ -13,7 +13,7 @@ $mail = new Mail();
 session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
-$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
+$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; //add
 $userID = isset($_POST['userID']) ? $_POST['userID'] : 'error';
 
 function addProductToCart($productID) {
@@ -174,7 +174,6 @@ function checkout($userID) {
 switch ($method) {
     case 'add':
         echo json_encode(addProductToCart($productID));
-
         break;
     case 'remove':
         echo json_encode(removeProductFromCart($productID));
