@@ -93,7 +93,6 @@ function removeProductFromCart(id) {
 }
 
 function checkout(userID) {
-    console.log(userID)
     if(userID == false) {
         displayNotify('warning', `Vui lòng đăng nhập để thực hiện giao dịch này!`);
         setTimeout(() => {
@@ -107,7 +106,27 @@ function checkout(userID) {
             method: "POST",
             data: data,
         }).done(res => {
-            console.log(res);
+            res = JSON.parse(res);
+            switch (res) {
+                case 'money':
+                    displayNotify('warning', "Tài khoản không đủ số dư, xin vui lòng nạp thêm!");
+                    break;
+                case 'login':
+                    displayNotify('danger', `Vui lòng đăng nhập để thực hiện giao dịch này!`);
+                    setTimeout(() => {
+                        window.location.href = './login.php';
+                    }, 3000)
+                    break;
+                case 'fail':
+                    displayNotify('danger', "Có lỗi trong quá trình thanh toán, xin vui lòng liên hệ với ban quản trị!");
+                    break;
+                case 'success':
+                    displayNotify('success', "Thanh toán thành công! Bạn sẽ được đưa về trang chủ trong vài giây tới!");
+                    setTimeout(() => {
+                        window.location.href = './index.php';
+                    }, 3000)
+                    break;
+            }
         })
     }
 }

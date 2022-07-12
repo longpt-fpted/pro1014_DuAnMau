@@ -101,6 +101,28 @@ class OrderDetailDAO {
             return $query->execute();
         }
     }
+    public function getAllOrderDetailPayedByUserIdAndOrderID($userID, $orderID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT `orderdetail`.`order_id`, `orderdetail`.`product_id`, `orderdetail`.`quantity`, `orderdetail`.`price`
+            FROM `orderdetail` JOIN `order` ON `order`.`id` = `orderdetail`.`order_id` WHERE `orderdetail`.`order_id` = ? AND `order`.`user_id` = ? AND `order`.`is_pay` = 1");
+            $query->bind_param('ss', $orderID, $userID);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $orderdetails = [];
+                    while($row = $result->fetch_assoc()) {
+                        $orderdetail = new OrderDetail($row['order_id'], $row['product_id'], $row['price'], $row['quantity']);
+
+                        $orderdetails[] = $orderdetail;
+                    }
+                    return $orderdetails;
+                } else return false;
+            } else return false;
+        }
+    }
 }
 
 

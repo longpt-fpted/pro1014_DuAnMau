@@ -65,7 +65,7 @@ $_SESSION['cart'] = array_map(function($od) {
         let currency = {
             fullPrice: 0,
             discount: 0,
-            userMoney: 0,
+            userMoney: <? echo isset($_SESSION['user']) ? $user->getCurrency() : 0 ?>,
             left: 0,
             total: 0,
         }

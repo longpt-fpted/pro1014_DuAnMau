@@ -157,6 +157,16 @@ class UserDAO {
             else return false;
         }
     }
+    public function widthdraw($amount, $userID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('UPDATE `user` SET `user`.`currency` = `user`.`currency` - ? WHERE `user`.`id` = ? AND `user`.`currency` > ?');
+            $query->bind_param('sss', $amount, $userID, $amount);
+
+            return $query->execute();
+        }
+    }
 }
 
 ?>

@@ -78,15 +78,22 @@
                             <div class="product-box__desc">
                                 <div class="product-box__title">
                                     <a href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
+                                    <? if ($newProduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
                                         -<? echo $newProduct->getSale(); ?>%
                                     </div>
+                                    <? endif; ?>
                                 </div>
                                 <div class="product-box__price">
+                                <? if ($newProduct->getSale() > 0) :  ?>
                                     <p class="product-box__totalprice">
                                         <? echo $newProduct->getTotalPrice(); ?></p>
                                     <p class="product-box__fullprice">
                                     <? echo $newProduct->getPrice(); ?></p>
+                                <? else: ?>
+                                    <p class="product-box__totalprice">
+                                        <? echo $newProduct->getTotalPrice(); ?></p>
+                                <? endif; ?>
                                 </div>
                             </div>
                             <a class="product-box__add" onclick="addProductToCart(<? echo $newProduct->getID(); ?>)">
