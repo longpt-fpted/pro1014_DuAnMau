@@ -26,8 +26,7 @@
                 </h2>
                 <section class="content-box" style="flex-wrap: wrap;">
                     <?php
-                    <?  
-                        $productsOnSales = $productDAO->getSaleProductsWithLimit(12);
+                        $productsOnSales = $productDAO->getSaleProductsWithLimit(8);
                         foreach ($productsOnSales as $productOnSales) {
                     ?>
                         <article class="product-box">
@@ -44,9 +43,9 @@
                                     </div>
                                     <div class="product-box__price">
                                         <p class="product-box__totalprice">
-                                            <? echo $productOnSales->getTotalPrice(); ?></p>
+                                            <? echo $utils->formatMoney($productOnSales->getTotalPrice()); ?></p>
                                         <p class="product-box__fullprice">
-                                        <? echo $productOnSales->getPrice(); ?></p>
+                                        <? echo $utils->formatMoney($productOnSales->getPrice()); ?></p>
                                     </div>
                                 </div>
                                 <a class="product-box__add" onclick="addProductToCart(<?echo $productOnSales->getID()?>)">
@@ -64,40 +63,40 @@
             </article>
             <article class="content-container">
                 <h2 class="content-title">
-                    Mới ra mắt
+                    Sản phẩm nổi bật
                 </h2>
                 <section class="content-box" style="flex-wrap: wrap;">
                 <?
-                        $newProducts = $productDAO->getNewProducts(16);
-                        foreach ($newProducts as $newProduct) {
+                        $hotProducts = $productDAO->getHotProducts(8);
+                        foreach ($hotProducts as $hotPRoduct) {
                 ?>
                     <article class="product-box">
-                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $newProduct->getID(); ?>">
-                            <img src="<? echo $newProduct->getImg() ?>" alt="product thumbnail">
+                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $hotPRoduct->getID(); ?>">
+                            <img src="<? echo $hotPRoduct->getImg() ?>" alt="product thumbnail">
                         </a>
                         <div class="product-box__detail">
                             <div class="product-box__desc">
                                 <div class="product-box__title">
-                                    <a href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
-                                    <? if ($newProduct->getSale() > 0) :  ?>
+                                    <a href="./product.php?id=<?echo $hotPRoduct->getID(); ?>"><? echo $hotPRoduct->getName();?></a>
+                                    <? if ($hotPRoduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
-                                        -<? echo $newProduct->getSale(); ?>%
+                                        -<? echo $utils->formatMoney($hotPRoduct->getSale()); ?>%
                                     </div>
                                     <? endif; ?>
                                 </div>
                                 <div class="product-box__price">
-                                <? if ($newProduct->getSale() > 0) :  ?>
+                                <? if ($hotPRoduct->getSale() > 0) :  ?>
                                     <p class="product-box__totalprice">
-                                        <? echo $newProduct->getTotalPrice(); ?></p>
+                                        <? echo $utils->formatMoney($hotPRoduct->getTotalPrice()); ?></p>
                                     <p class="product-box__fullprice">
-                                    <? echo $newProduct->getPrice(); ?></p>
+                                    <? echo $utils->formatMoney($hotPRoduct->getPrice()); ?></p>
                                 <? else: ?>
                                     <p class="product-box__totalprice">
-                                        <? echo $newProduct->getTotalPrice(); ?></p>
+                                        <? echo $utils->formatMoney($hotPRoduct->getTotalPrice()); ?></p>
                                 <? endif; ?>
                                 </div>
                             </div>
-                            <a class="product-box__add" onclick="addProductToCart(<? echo $newProduct->getID(); ?>)">
+                            <a class="product-box__add" onclick="addProductToCart(<? echo $hotPRoduct->getID(); ?>)">
                                 <i class="fal fa-cart-arrow-down"></i>
                             </a>
                         </div>
@@ -133,100 +132,51 @@
             </article>
             <article class="content-container">
                 <h2 class="content-title">
-                    tin tức nổi bật
+                    Mới ra mắt
                 </h2>
-                <section class="content-box" id="news-box">
-                    <article class="news-box">
-                        <a class="news-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="news thumbnail">
+                <section class="content-box" style="flex-wrap: wrap;">
+                <?
+                        $newProducts = $productDAO->getNewProducts(16);
+                        foreach ($newProducts as $newProduct) {
+                ?>
+                    <article class="product-box">
+                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $newProduct->getID(); ?>">
+                            <img src="<? echo $newProduct->getImg() ?>" alt="product thumbnail">
                         </a>
-                        <div class="news-box__detail">
-                            <a class="news-box__title" href="#">
-                                <h4>
-                                    Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                </h4>
+                        <div class="product-box__detail">
+                            <div class="product-box__desc">
+                                <div class="product-box__title">
+                                    <a href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
+                                    <? if ($newProduct->getSale() > 0) :  ?>
+                                    <div class="tag sale-tag">
+                                        -<? echo $utils->formatMoney($newProduct->getSale()); ?>%
+                                    </div>
+                                    <? endif; ?>
+                                </div>
+                                <div class="product-box__price">
+                                <? if ($newProduct->getSale() > 0) :  ?>
+                                    <p class="product-box__totalprice">
+                                        <? echo $utils->formatMoney($newProduct->getTotalPrice()); ?></p>
+                                    <p class="product-box__fullprice">
+                                    <? echo $utils->formatMoney($newProduct->getPrice()); ?></p>
+                                <? else: ?>
+                                    <p class="product-box__totalprice">
+                                        <? echo $utils->formatMoney($newProduct->getTotalPrice()); ?></p>
+                                <? endif; ?>
+                                </div>
+                            </div>
+                            <a class="product-box__add" onclick="addProductToCart(<? echo $newProduct->getID(); ?>)">
+                                <i class="fal fa-cart-arrow-down"></i>
                             </a>
-                            <p class="news-box__date">
-                                21/08/2021
-                            </p>
-                            <p class="news-box__desc">
-                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                            </p>
                         </div>
                     </article>
-                    <article class="news-box">
-                        <a class="news-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="news thumbnail">
-                        </a>
-                        <div class="news-box__detail">
-                            <a class="news-box__title" href="#">
-                                <h4>
-                                    Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                </h4>
-                            </a>
-                            <p class="news-box__date">
-                                21/08/2021
-                            </p>
-                            <p class="news-box__desc">
-                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                            </p>
-                        </div>
-                    </article>
-                    <article class="news-box">
-                        <a class="news-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="news thumbnail">
-                        </a>
-                        <div class="news-box__detail">
-                            <a class="news-box__title" href="#">
-                                <h4>
-                                    Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                </h4>
-                            </a>
-                            <p class="news-box__date">
-                                21/08/2021
-                            </p>
-                            <p class="news-box__desc">
-                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                            </p>
-                        </div>
-                    </article>
-                    <article class="news-box">
-                        <a class="news-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="news thumbnail">
-                        </a>
-                        <div class="news-box__detail">
-                            <a class="news-box__title" href="#">
-                                <h4>
-                                    Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                </h4>
-                            </a>
-                            <p class="news-box__date">
-                                21/08/2021
-                            </p>
-                            <p class="news-box__desc">
-                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                            </p>
-                        </div>
-                    </article>
-                    <article class="news-box">
-                        <a class="news-box__thumbnail" href="#">
-                            <img src="./assets/images/elden-ring.jpg" alt="news thumbnail">
-                        </a>
-                        <div class="news-box__detail">
-                            <a class="news-box__title" href="#">
-                                <h4>
-                                    Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                </h4>
-                            </a>
-                            <p class="news-box__date">
-                                21/08/2021
-                            </p>
-                            <p class="news-box__desc">
-                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                            </p>
-                        </div>
-                    </article>
+                <?
+                    }
+                ?>
                 </section>
+                <a class="content-detail" href="#">
+                    Xem thêm
+                </a>
             </article>
             <article class="content-container">
                 <h2 class="content-title">

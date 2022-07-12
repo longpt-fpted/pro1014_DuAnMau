@@ -78,7 +78,7 @@ input[type=number] {
     font-weight: $txtWeight;
     text-decoration: $txtStyle;
     &:after {
-        content: 'đ';
+        content: 'VND';
     }
 }
 @mixin tag($bgColor, $padSize, $textColor) {
@@ -316,7 +316,7 @@ input[type=number] {
                         }
                         .product-box__price {
                             p:after {
-                                content: 'đ';
+                                content: 'VND';
                                 // text-decoration: none !important;    
                             }
                             .product-box__totalprice {
@@ -469,7 +469,7 @@ input[type=number] {
                         }
                         .product-box__price {
                             p:after {
-                                content: 'đ';
+                                content: 'VND';
                                 // text-decoration: none !important;    
                             }
                             .product-box__totalprice {
@@ -727,6 +727,7 @@ header {
                                         }
                                     }
                                     .product-box__price {
+                                        
                                         display: flex;
                                         align-items: center;
                                         justify-content: space-between;
@@ -896,6 +897,10 @@ header {
                             display: flex;
                             align-items: center;
                             gap: 1.5em;
+                            justify-content: space-between;
+                            p {
+                                font-size: .75em;
+                            }
                             .product-box__totalprice {
                                 @include priceTag(none, 600);
                             }
@@ -1069,7 +1074,7 @@ header {
                         .price {
                             font-weight: 600;
                             &:after {
-                                content: 'đ';
+                                content: 'VND';
                             }
                         }
                         .sale {
@@ -1077,7 +1082,7 @@ header {
                             color: rgba($color: black, $alpha: .5);
                             text-decoration: line-through;
                             &:after {
-                                content: 'đ';
+                                content: 'VND';
                             }
                         }
                         .sale-tag {
@@ -1425,14 +1430,14 @@ header {
                                             color: red;
                                             font-weight: 500;
                                             &:after {
-                                                content: 'đ';
+                                                content: 'VND';
                                             }
                                         }
                                         .sale {
                                             font-weight: 300;
                                             text-decoration: line-through;
                                             &:after {
-                                                content: 'đ';
+                                                content: 'VND';
                                             }
                                         }
                                     }
