@@ -1,5 +1,5 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()
@@ -40,6 +40,18 @@ class ProductDAO {
                     return $products;
                 } else return false;
             } else return false;
+        }
+    }
+    public function UpdateProduct($name,$cate_id,$img_url,$price,$sale_percent,$is_available,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `product` SET `name`=?,`cate_id`=?,`img_url`=?, `price`=?, `sale_percent`=?, `is_available`=? WHERE `product`.`id`=?");
+            $query->bind_param("sssssss",$name,$cate_id,$img_url,$price,$sale_percent,$is_available,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
         }
     }
     public function updateProductView($id) {
@@ -168,6 +180,31 @@ class ProductDAO {
             $query = $this->database->prepare('UPDATE `product` SET `sell_count`=`sell_count` + 1 WHERE `product`.`id` = ? AND `product`.`is_available` = 1');
             $query->bind_param('s', $id);
             return $query->execute();
+        }
+    }
+    public function isGameExist($name) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `product` WHERE `product`.`name` = ?');
+            $query->bind_param("s", $name);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function addProductAdmin($name,$img_url,$cate_id,$price,$sale_percent) {
+        if($this->database->connect_error){
+            return false;
+        } else {
+            $query = $this->database->prepare('INSERT INTO `product`(`name`, `img_url`, `cate_id`, `price`,`sale_percent`) VALUES (?,?,?,?,?)');
+            $query->bind_param("sssss",$name,$img_url,$cate_id,$price,$sale_percent);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
         }
     }
 }

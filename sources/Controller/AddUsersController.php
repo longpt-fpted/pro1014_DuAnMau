@@ -1,6 +1,7 @@
 <?php
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+
+include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
+include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
@@ -40,7 +41,7 @@ include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
                 else window.location= "../View/admin/users.php";
             </script>');
     } else {
-            $user = $userDAO->addUserAdmin($username,$password,$email,$fullname,$phonenumber,$role);
+            $user = $userDAO->addUserAdmin($role,$username,$password,$email,$fullname,$phonenumber);
             if ( $user == true){
                 echo ('<script>
                             var result = confirm("Register Success!!");

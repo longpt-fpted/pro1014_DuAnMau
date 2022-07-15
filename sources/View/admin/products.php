@@ -11,29 +11,23 @@
         <button id="btn-add" onclick="modal_add()">Thêm sản phẩm</button>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="" id="modal-add-product" method="post">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddProductsController.php" enctype="multipart/form-data" id="modal-add-product" method="post">
                 <p id="modal-add-title">Thêm sản phẩm</p>
                 <h>Tên sản phẩm</h><br>
-                <input type="text" id="productname" name="productname" placeholder="Tên sản phẩm"><br>   
+                <input type="text" id="name" name="name" placeholder="Tên sản phẩm"><br>   
                 <h>Hình ảnh:</h>
                 <input type="text" id="image" name="image" placeholder="Url hình ảnh">                            
                 <h>Danh mục</h><br>
-                <select name="cate_name" id="cate_name">
+                <select name="category" id="category">
                     <option value=""></option>
-                    <option value="Action">Action</option>
-                    <option value="FPS">FPS</option>
-                    <option value="Video Production">Video Production</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Battle Field">Battle Field</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="RPG">RPG</option>
+                    <?php foreach($cates as $cate) {?>
+                        <option value="<?php echo $cate->getID(); ?>"><?php echo $cate->getName(); ?></option>
+                    <?php } ?>
                 </select>
                 <h>Giá niêm yết:</h><br>
-                <input type="text" id="price" name="price" placeholder="Giá niêm yết"><br>
+                <input type="number" id="price" name="price" placeholder="Giá niêm yết" min="0" max="999999999"><br>
                 <h>Sale:</h><br>
-                <input type="text" id="sale" name="sale" placeholder="Giảm giá">
+                <input type="number" id="sale_percent" name="sale_percent" placeholder="Giảm giá" max="100">
                 <input type="submit" id="submit" value="Cập Nhật">
             </form>
         </div>                   
@@ -47,11 +41,15 @@
                     <img src=".<?php echo $product->getImg() ?>" alt="">
                 </div>
                 <div class="detail">
-                    <form action="" id="user-infor">
+                    <form action="http://localhost/pro1014_duan/sources/controller/UpdateProductsController.php" method="post" enctype="multipart/form-data" id="user-infor">
                         <table>
                             <tr>
+                                <td><h>ID:</h></td>
+                                <td><input type="text" id="id" name="id" value="<?php echo $product ->getID() ?>"><br>   </td>
+                            </tr>
+                            <tr>
                                 <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="<?php echo $product ->getName() ?>"><br>   </td>
+                                <td><input type="text" id="name" name="name" value="<?php echo $product ->getName() ?>"><br>   </td>
                             </tr>
                             <tr>
                                 <td><h>Hình ảnh:</h></td>
@@ -59,9 +57,9 @@
                             </tr>
                             <tr>
                                 <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">  
+                                <td><select name="category" id="category">  
                                         <?php foreach($cates as $cate) {?>
-                                            <option value="<?php echo $cate->getName(); ?>" <?php echo $cate->getID() == $product->getCateID() ? 'selected' : '' ?>><?php echo $cate->getName(); ?></option>
+                                            <option value="<?php echo $cate->getID(); ?>" <?php echo $cate->getID() == $product->getCateID() ? 'selected' : '' ?>><?php echo $cate->getName(); ?></option>
                                         <?php } ?>
                                     </select><br>
                                 </td>
@@ -72,11 +70,11 @@
                             </tr>
                             <tr>
                                 <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="<?php echo $product -> getSale() ?>%"><br></td>
+                                <td><input type="text" id="sale_percent" name="sale_percent" value="<?php echo $product -> getSale() ?>%"><br></td>
                             </tr>
                             <tr>
                                 <td><h>Tình trạng:</h></td>
-                                <td><select name="is-available" id="is-available">
+                                <td><select name="is_available" id="is_available">
                                         <?php 
                                             if($product->getAvailable() == 1){
                                                 echo "<option value='1'>Còn hàng</option>";
