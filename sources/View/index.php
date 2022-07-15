@@ -36,7 +36,7 @@
                             <div class="product-box__detail">
                                 <div class="product-box__desc">
                                     <div class="product-box__title">
-                                        <a href="./product.php?id=<?echo $productOnSales->getID(); ?>"><? echo $productOnSales->getName();?></a>
+                                        <a title="<?php echo $productOnSales->getName();?>" href="./product.php?id=<?echo $productOnSales->getID(); ?>"><? echo $productOnSales->getName();?></a>
                                         <div class="tag sale-tag">
                                             -<? echo $productOnSales->getSale(); ?>%
                                         </div>
@@ -68,35 +68,35 @@
                 <section class="content-box" style="flex-wrap: wrap;">
                 <?
                         $hotProducts = $productDAO->getHotProducts(8);
-                        foreach ($hotProducts as $hotPRoduct) {
+                        foreach ($hotProducts as $hotProduct) {
                 ?>
                     <article class="product-box">
-                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $hotPRoduct->getID(); ?>">
-                            <img src="<? echo $hotPRoduct->getImg() ?>" alt="product thumbnail">
+                        <a class="product-box__thumbnail" href="./product.php?id=<?echo $hotProduct->getID(); ?>">
+                            <img src="<? echo $hotProduct->getImg() ?>" alt="product thumbnail">
                         </a>
                         <div class="product-box__detail">
                             <div class="product-box__desc">
                                 <div class="product-box__title">
-                                    <a href="./product.php?id=<?echo $hotPRoduct->getID(); ?>"><? echo $hotPRoduct->getName();?></a>
-                                    <? if ($hotPRoduct->getSale() > 0) :  ?>
+                                    <a title="<?php echo $hotProduct->getName();?>" href="./product.php?id=<?echo $hotProduct->getID(); ?>"><? echo $hotProduct->getName();?></a>
+                                    <? if ($hotProduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
-                                        -<? echo $utils->formatMoney($hotPRoduct->getSale()); ?>%
+                                        -<? echo $utils->formatMoney($hotProduct->getSale()); ?>%
                                     </div>
                                     <? endif; ?>
                                 </div>
                                 <div class="product-box__price">
-                                <? if ($hotPRoduct->getSale() > 0) :  ?>
+                                <? if ($hotProduct->getSale() > 0) :  ?>
                                     <p class="product-box__totalprice">
-                                        <? echo $utils->formatMoney($hotPRoduct->getTotalPrice()); ?></p>
+                                        <? echo $utils->formatMoney($hotProduct->getTotalPrice()); ?></p>
                                     <p class="product-box__fullprice">
-                                    <? echo $utils->formatMoney($hotPRoduct->getPrice()); ?></p>
+                                    <? echo $utils->formatMoney($hotProduct->getPrice()); ?></p>
                                 <? else: ?>
                                     <p class="product-box__totalprice">
-                                        <? echo $utils->formatMoney($hotPRoduct->getTotalPrice()); ?></p>
+                                        <? echo $utils->formatMoney($hotProduct->getTotalPrice()); ?></p>
                                 <? endif; ?>
                                 </div>
                             </div>
-                            <a class="product-box__add" onclick="addProductToCart(<? echo $hotPRoduct->getID(); ?>)">
+                            <a class="product-box__add" onclick="addProductToCart(<? echo $hotProduct->getID(); ?>)">
                                 <i class="fal fa-cart-arrow-down"></i>
                             </a>
                         </div>
@@ -146,7 +146,7 @@
                         <div class="product-box__detail">
                             <div class="product-box__desc">
                                 <div class="product-box__title">
-                                    <a href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
+                                    <a title="<? echo $newProduct->getName();?>" href="./product.php?id=<?echo $newProduct->getID(); ?>"><? echo $newProduct->getName();?></a>
                                     <? if ($newProduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
                                         -<? echo $utils->formatMoney($newProduct->getSale()); ?>%

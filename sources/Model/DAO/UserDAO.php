@@ -1,6 +1,6 @@
 <?php
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/User.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/User.php";
 class UserDAO {
     private $database; 
     public function __construct() {
@@ -166,6 +166,8 @@ class UserDAO {
             $query->bind_param('sss', $amount, $userID, $amount);
 
             return $query->execute();
+        }
+    }
     public function UserChangePhone($phonenumber,$id){
         if($this->database->connect_error){
             return false;

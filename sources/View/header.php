@@ -1,20 +1,20 @@
 <?php 
 session_start();
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "../Utils/Utils.php";
-include "../Model/DAO/UserDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/CategoryDAO.php";
-include "../Model/DAO/OrderDAO.php";
-include "../Model/DAO/OrderDetailDAO.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include "../Utils/Utils.php";
+// include "../Model/DAO/UserDAO.php";
+// include "../Model/DAO/ProductDAO.php";
+// include "../Model/DAO/CategoryDAO.php";
+// include "../Model/DAO/OrderDAO.php";
+// include "../Model/DAO/OrderDetailDAO.php";
 
 
 $utils = new Utils();

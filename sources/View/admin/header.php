@@ -1,7 +1,13 @@
 <?php 
-include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+
+
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 
 $userDAO = new UserDAO();
 $productDAO = new ProductDAO();

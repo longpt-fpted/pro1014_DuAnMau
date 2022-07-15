@@ -124,6 +124,7 @@ class ProductDAO {
                 } else return false;
             } else return false;
         }
+    }
     public function getHotProducts($limit) {
         // 
         if($this->database->connect_error) {
@@ -144,6 +145,15 @@ class ProductDAO {
                 } else return false;
             } else return false;
         } 
+    }
+    public function updateProductSell($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('UPDATE `product` SET `sell_count`=`sell_count` + 1 WHERE `product`.`id` = ? AND `product`.`is_available` = 1');
+            $query->bind_param('s', $id);
+            return $query->execute();
+        }
     }
 }
 ?>

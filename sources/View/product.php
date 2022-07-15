@@ -7,6 +7,7 @@
     if($id !== 'error') {
         $product = $productDAO->getProductByID($id);
         $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
+        $productDAO->updateProductView($product->getID());
     } else {
         $id = 1;
         $product = $productDAO->getProductByID($id);
@@ -47,7 +48,7 @@
                             <p class="main-product__detail-price">
                                 <span class="price"><?php echo $product->getTotalPrice(); ?></span>
                                 <span class="addons">
-                                    <a href="#">
+                                    <a id="favorite" onclick="addToFavorite(<? echo $product->getID(); ?>)">
                                         <i class="fal fa-heart"></i>
                                     </a>
                                 </span>

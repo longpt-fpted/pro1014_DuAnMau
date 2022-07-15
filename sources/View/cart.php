@@ -96,7 +96,68 @@
                         </div>
                     </article>
                 </section>
-                <section class="cart-desc" id="cart-desc">        
+                <section class="cart-desc" id="cart-desc">     
+                <div class="cart-desc__head">
+                    Thông tin thanh toán
+                </div>
+                <div class="cart-desc__body">
+                    <div class="cart-desc--money">
+                        <p>Tổng cộng</p>
+                        <p id='cart-desc--fullprice'></p>
+                    </div>
+                    <div class="cart-desc__body__coupons">
+                        <div class="coupon">
+                            <div class="coupon-thumnail">
+                                <img src="./assets/images/logo.png" alt="coupon">
+                            </div>
+                            <div class="coupon-detail">
+                                <p class="coupon-title">
+                                    Giảm {{ 50% }}
+                                </p>
+                            </div>
+                            <button class="coupon-method">
+                                USE
+                            </button>
+                        </div>
+                        <div class="coupon">
+                            <div class="coupon-thumnail">
+                                <img src="./assets/images/logo.png" alt="coupon">
+                            </div>
+                            <div class="coupon-detail">
+                                <p class="coupon-title">
+                                    Giảm {{ 50% }}
+                                </p>
+                            </div>
+                            <button class="coupon-method">
+                                USE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-desc__foot">
+                    <div class="money">
+                        <div class="cart-desc--money">
+                            <p>Số tiền trong tài khoản</p>
+                            <p id="cart-desc--userMoney">${moneyFormat(currency.userMoney)}</p>
+                        </div>
+                        <div class="cart-desc--money">
+                            <p>Số tiền còn thiếu</p>
+                            <p id="cart-desc--left">${moneyFormat(currency.left)}</p>
+                        </div>
+                        <div class="cart-desc--money">
+                            <p>Tổng giảm</p>
+                            <p id="cart-desc--discount">${moneyFormat(currency.discount)}</p>
+                        </div>
+                        </div>
+                        <div class="cart-desc--money">
+                            <p>Tổng cộng</p>
+                            <p id="cart-desc--total">${moneyFormat(currency.total)}</p>
+                        </div>
+                    </div>
+                    <button class="checkout" onclick="checkout(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);">
+                        Thanh toán
+                    </button>
+                </div>   
                 </section>
             </section>
         </section>
@@ -106,11 +167,4 @@
 <script>
     
     loadCart();
-    const checkoutBtn = document.querySelector('#checkout');
-    checkoutBtn.addEventListener('click', function() {
-        if(carts.length == 0) 
-            displayNotify("warning", "Giỏ hàng trống, xin vui lòng mua hàng");
-        else 
-            checkout(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);
-    })
 </script>

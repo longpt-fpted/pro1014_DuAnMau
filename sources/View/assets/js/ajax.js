@@ -31,7 +31,9 @@ function minusProductFromCart(id) {
         method: "GET",
         data: data,
     }).done((res) => {
+        
         res = JSON.parse(res);
+        console.log(res);
         switch (res.status) {
             case 'success': {
                 displayNotify('success', `Giảm số lượng sản phẩm ${res.product.name} đi 1!`);
@@ -100,33 +102,47 @@ function checkout(userID) {
         }, 3000)
     } else {
         let data = `userID=${userID}&method=checkout`;
-
         $.ajax({
-            url: '../Controller/CartController.php',
+            url: `../Controller/CartController.php`,
             method: "POST",
             data: data,
         }).done(res => {
             res = JSON.parse(res);
-            switch (res) {
-                case 'money':
+            switch (res.status) {
+                case 'length': {
+                    displayNotify("warning", "Giỏ hàng trống, xin vui lòng mua hàng");
+                    break;
+                } 
+                case 'money': {
                     displayNotify('warning', "Tài khoản không đủ số dư, xin vui lòng nạp thêm!");
                     break;
-                case 'login':
+                }
+                case 'login': {
                     displayNotify('danger', `Vui lòng đăng nhập để thực hiện giao dịch này!`);
                     setTimeout(() => {
                         window.location.href = './login.php';
                     }, 3000)
                     break;
-                case 'fail':
+                }
+                case 'fail': {
                     displayNotify('danger', "Có lỗi trong quá trình thanh toán, xin vui lòng liên hệ với ban quản trị!");
                     break;
-                case 'success':
+                }
+                case 'success': {
                     displayNotify('success', "Thanh toán thành công! Bạn sẽ được đưa về trang chủ trong vài giây tới!");
                     setTimeout(() => {
                         window.location.href = './index.php';
                     }, 3000)
                     break;
+                }
+                default: 
+                    console.log('nothing');
+                    break;
             }
         })
     }
+}
+
+function addToFavorite(id) {
+    
 }

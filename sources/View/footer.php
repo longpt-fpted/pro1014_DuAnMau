@@ -164,7 +164,6 @@
                 borderColor: 'transparent',
             })
         })
-        
         displayCart();
     </script>
 </body>
