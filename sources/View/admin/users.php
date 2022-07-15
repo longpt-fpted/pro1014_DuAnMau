@@ -12,14 +12,14 @@
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="" method="post">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" enctype="multipart/form-data" method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
                 <h>Họ và tên:</h><br>
                 <input type="text" id="fullname" name="fullname" placeholder="Họ và tên"><br>  
                 <h>Tên Đăng nhập:</h><br>
                 <input type="text" id="username" name="username" placeholder="Tên đăng nhập"><br>              
                 <h>Mật khẩu:</h><br>
-                <input type="text" id="password" name="password" placeholder="Mật khẩu"><br>                   
+                <input type="password" id="password" name="password" placeholder="Mật khẩu"><br>                   
                 <h>Email:</h><br>
                 <input type="text" id="email" name="email" placeholder="Địa chỉ email"><br>
                 <h>Số điện thoại:</h><br>
@@ -44,7 +44,10 @@
                     <img src="./images/avatar.png" alt="">
                 </div>
                 <div class="detail">
-                    <form action="" id="user-infor">
+                    <form action="http://localhost/pro1014_duan/sources/Controller/UpdateUsersController.php" id="user-infor" method="post">
+                        <h>ID:</h>
+                        <input type="text" id="id" name="id" value="<?php
+                        echo $user->getID()?>"><br>
                         <h>Họ và tên:</h><br>
                         <input type="text" id="fullname" name="fullname" value="<?php 
                         echo $user->getFullname(); ?>"><br>                               
@@ -56,8 +59,8 @@
                         echo $user->getPhone(); ?>"><br>
                         <h>Vai trò:</h><br>
                         <select name="role" id="role">
-                            <option value="Quản trị viên" <?php  echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
-                            <option value="Khách hàng" <?php  echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
+                            <option value="1" <?php  echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
+                            <option value="0" <?php  echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
                         </select><br>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
