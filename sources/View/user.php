@@ -49,7 +49,21 @@
             include('./header.php');
             $userID = isset($_GET['id']) ? $_GET['id'] : 1;
             $user = $userDAO->getUserByID($userID);
+
+            $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
+
+            $favorites = array_map(function($fav) {
+                global $productDAO, $user;
+                $pd = $productDAO->getProductByID($fav->getProductID());
+                // id, ten, 2 gia, ngay, hinh
+                return ['uid' => $user->getID(),'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
+            }, $favorites);
         ?>
+
+        <script>
+            let favorites = <? echo json_encode($favorites) ?>;
+
+        </script>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
@@ -328,35 +342,8 @@
                             <div class="user-box__title">
                                 Sản phẩm yêu thích
                             </div>
-                            <article class="user-box__dashboard">
-                                <article class="news-box">
-                                    <div class="news-box__head">
-                                        <i class="fal fa-calendar"></i>
-                                        <div class="date">
-                                            21/08/2021
-                                        </div>
-                                    </div>
-                                    <div class="news-box__body">
-                                        <div class="news-thumbnail">
-                                            <img src="./assets/images/elden-ring.jpg" alt="news">
-                                        </div>
-                                        <div class="news-detail">
-                                            <h4 class="news-title">
-                                                Elden Ring
-                                            </h4>
-                                            <div class="news-desc">
-                                                <p class="price">
-                                                    780.000</p>
-                                                <p class="sale">
-                                                    800.000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="news-box__foot">
-                                        <a href="#" class="method">Xem chi tiết</a>
-                                        <a href="#" class="method">Xoá</a>
-                                    </div>
-                                </article>
+                            <article class="user-box__dashboard" id="favorite">
+                                
                             </article>
                         </article>
                     </article>
@@ -388,6 +375,7 @@
                     }
                 });
             })
+            loadFavorite();
             
         </script>
         <script src="./assets/js/userModal.js"></script>

@@ -7,7 +7,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Pr
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
 // include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 // include "../Utils/Utils.php";
 // include "../Model/DAO/UserDAO.php";
@@ -23,6 +23,8 @@ $productDAO = new ProductDAO();
 $cateDAO = new CategoryDAO();
 $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
+$favoriteDAO = new FavoriteDAO();
+
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
 
@@ -154,7 +156,6 @@ $_SESSION['cart'] = array_map(function($od) {
                                     Thể loại
                                 </h4>
                                 <?php
-                                
                                     $cates = $cateDAO->getAllCategories();
                                     foreach ($cates as $cate) {
 

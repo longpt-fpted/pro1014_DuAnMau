@@ -206,3 +206,38 @@ function loadCart() {
     }
     
 }
+function loadFavorite() {
+    document.querySelector('#favorite').innerHTML = '';
+
+    favorites.forEach(element => {
+        document.querySelector('#favorite').innerHTML += `
+            <article class="news-box">
+                <div class="news-box__head">
+                    <i class="fal fa-calendar"></i>
+                    <div class="date">
+                        ${element.date}
+                    </div>
+                </div>
+                <div class="news-box__body">
+                    <div class="news-thumbnail">
+                        <img src="${element.img}" alt="news">
+                    </div>
+                    <div class="news-detail">
+                        <h4 class="news-title">
+                            ${element.name}
+                        </h4>
+                        <div class="news-desc">
+                            <p class="price">
+                                ${element.totalPrice}</p>
+                            <p class="sale">
+                                ${element.price}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-box__foot">
+                    <a href="./product.php?id=${element.pid}" class="method">Xem chi tiết</a>
+                    <a onclick="removeProductFromFavorite(${element.uid}, ${element.pid})" class="method">Xoá</a>
+                </div>
+            </article>`;
+    });
+}

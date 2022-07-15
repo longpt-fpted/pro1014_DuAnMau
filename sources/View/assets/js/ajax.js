@@ -146,3 +146,26 @@ function checkout(userID) {
 function addToFavorite(id) {
     
 }
+
+function removeProductFromFavorite(userID, productID) {
+    let data = `user=${userID}&product=${productID}&method=remove`;
+    $.ajax({
+        url: '../Controller/FavoriteController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+
+        // switch (res.status) {
+        //     case 'success':
+        //         displayNotify('success', `Xoá thành công sản phẩm khỏi danh sách yêu thích!`);
+        //         loadFavorite();
+
+        //         break;  
+        
+        //     default:
+        //         break;
+        // }
+        // console.log(res);
+    })
+}

@@ -177,8 +177,8 @@ function checkout($userID) {
             $resp['status'] = 'money';
         } else if(count($_SESSION['cart']) <= 0) {
             $resp['status'] = 'length';
-        } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("d/m/Y"))) {
-                $orderDAO->createOrderForUserID($user->getID(), date("d/m/Y"));
+        } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("Y-m-d"))) {
+                $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
                 $user->withdrawCurrency($totalPrice);
                 $userDAO->widthdraw($totalPrice, $user->getID());
                
