@@ -33,7 +33,7 @@
         </div>                   
         <div class="show-information">
             <?php
-                $products = $productDAO->getAllProducts();
+                $products = $productDAO->getAllProducts2();
                 foreach ($products as $product) {
             ?>
             <div class="product-information">

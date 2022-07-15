@@ -102,6 +102,25 @@ class ProductDAO {
             } else return false;
         }
     }
+    public function getAllProducts2() {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product`');
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            } else return false;
+        }
+    }
     public function getProductsBySearch($keyword){
         if($this->database->connect_error){
             return false;
