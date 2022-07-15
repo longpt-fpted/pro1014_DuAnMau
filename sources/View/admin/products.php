@@ -38,351 +38,63 @@
             </form>
         </div>                   
         <div class="show-information">
+            <?php
+                $products = $productDAO->getAllProducts();
+                foreach ($products as $product) {
+            ?>
             <div class="product-information">
                 <div class="image">
-                    <img src="../admin/images/elden-ring.jpg" alt="">
+                    <img src=".<?php echo $product->getImg() ?>" alt="">
                 </div>
                 <div class="detail">
                     <form action="" id="user-infor">
                         <table>
                             <tr>
                                 <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
+                                <td><input type="text" id="productname" name="productname" value="<?php echo $product ->getName() ?>"><br>   </td>
                             </tr>
                             <tr>
                                 <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
+                                <td><input type="text" id="image" name="image" value="<?php echo $product -> getImg() ?>"><br> </td>
                             </tr>
                             <tr>
                                 <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
+                                <td><select name="cate_name" id="cate_name">  
+                                        <?php foreach($cates as $cate) {?>
+                                            <option value="<?php echo $cate->getName(); ?>" <?php echo $cate->getID() == $product->getCateID() ? 'selected' : '' ?>><?php echo $cate->getName(); ?></option>
+                                        <?php } ?>
                                     </select><br>
                                 </td>
                             </tr>
                             <tr>
                                 <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
+                                <td><input type="text" id="price" name="price" value="<?php echo $product -> getPrice() ?>đ"><br></td>
                             </tr>
                             <tr>
                                 <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
+                                <td><input type="text" id="sale" name="sale" value="<?php echo $product -> getSale() ?>%"><br></td>
+                            </tr>
+                            <tr>
+                                <td><h>Tình trạng:</h></td>
+                                <td><select name="is-available" id="is-available">
+                                        <?php 
+                                            if($product->getAvailable() == 1){
+                                                echo "<option value='1'>Còn hàng</option>";
+                                                echo "<option value='0'>Hết hàng</option>";
+                                            }else if($product->getAvailable() == 0){
+                                                echo "<option value='0'>Hết hàng</option>";
+                                                echo "<option value='1'>Còn hàng</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
                             </tr>
                         </table>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
             </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/elden-ring.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/elden-ring.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/elden-ring.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="Elden Ring"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/elden-ring.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-            <div class="product-information">
-                <div class="image">
-                    <img src="../admin/images/pubg.jpg" alt="">
-                </div>
-                <div class="detail">
-                    <form action="" id="user-infor">
-                        <table>
-                            <tr>
-                                <td><h>Tên sản phẩm:</h></td>
-                                <td><input type="text" id="productname" name="productname" value="PlayerUnknow's Battleground"><br>   </td>
-                            </tr>
-                            <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="../admin/images/pubg.jpg"><br> </td>
-                            </tr>
-                            <tr>
-                                <td><h>Danh mục:</h></td>
-                                <td><select name="cate_name" id="cate_name">
-                                        <option value="Action">Action</option>
-                                        <option value="FPS">FPS</option>
-                                        <option value="Video Production">Video Production</option>
-                                        <option value="Simulation">Simulation</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Battle Field">Battle Field</option>
-                                        <option value="Animation">Animation</option>
-                                        <option value="Adventure">Adventure</option>
-                                        <option value="RPG">RPG</option>
-                                    </select><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h>Giá niêm yết:</h></td>
-                                <td><input type="text" id="price" name="price" value="699.000đ"><br></td>
-                            </tr>
-                            <tr>
-                                <td><h>Sale:</h></td>
-                                <td><input type="text" id="sale" name="sale" value="20%"><br></td>
-                            </tr>
-                        </table>
-                        <input type="submit" id="submit" value="Cập Nhật">
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
     </div>
     <!-- /.container-fluid -->
 
