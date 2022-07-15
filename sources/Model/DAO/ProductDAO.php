@@ -126,5 +126,20 @@ class ProductDAO {
             } else return false;
         }
     }
+    /*public function sortProduct($cateid,$min,$max,$sort){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` ASC');
+            $query->bind_param('ssss',$cateid,$min,$max,$sort);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $product = $result->fetch_assoc();
+                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
+                } else return false;
+            }else return false;
+        }
+    }*/
 }
 ?>

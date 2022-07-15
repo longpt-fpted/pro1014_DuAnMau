@@ -25,8 +25,8 @@
                     giảm giá
                 </h2>
                 <section class="content-box" style="flex-wrap: wrap;">
-                    <?php
-                    <?  
+
+                    <?
                         $productsOnSales = $productDAO->getSaleProductsWithLimit(12);
                         foreach ($productsOnSales as $productOnSales) {
                     ?>
@@ -54,7 +54,7 @@
                                 </a>
                             </div>
                         </article>
-                    <?php
+                    <?
                         }
                     ?>
                 </section>

@@ -123,12 +123,12 @@ class UserDAO {
             } else return false;
         }
     }
-    public function UpdateUser($fullname,$email,$phonenumber,$id){
+    public function UpdateUser($fullname,$email,$phonenumber,$role,$id){
         if($this->database->connect_error){
             return false;
         }else {
-            $query = $this->database->prepare("UPDATE `user` SET `fullname`=?,`email`=?,`phone_number`=? WHERE `id`=?");
-            $query->bind_param("ssss",$fullname,$email,$phonenumber,$id);
+            $query = $this->database->prepare("UPDATE `user` SET `fullname`=?,`email`=?,`phone_number`=?,`role_id`=? WHERE `user`.`id`=?");
+            $query->bind_param("sssss",$fullname,$email,$phonenumber,$role,$id);
             if($query->execute()){
                 return true;
             }
@@ -146,12 +146,12 @@ class UserDAO {
             else return false;
         }
     }
-    public function addUserAdmin($role,$username,$password,$email,$fullname,$phonenumber) {//var_dump("$username,$password,$email,$fullname");
+    public function addUserAdmin($username,$password,$email,$fullname,$phonenumber,$role) {//var_dump("$username,$password,$email,$fullname");
         if($this->database->connect_error){
             return false;
         } else {
             $query = $this->database->prepare('INSERT INTO `user`(`role_id`,`username`, `password`, `email`, `fullname`,`phone_number`) VALUES (?,?,?,?,?,?)');
-            $query->bind_param("ssssss",$role,$username,$password,$email,$fullname,$phonenumber);
+            $query->bind_param("ssssss",$username,$password,$email,$fullname,$phonenumber,$role);
             if($query->execute()){
                 return true;
             }
@@ -166,6 +166,8 @@ class UserDAO {
             $query->bind_param('sss', $amount, $userID, $amount);
 
             return $query->execute();
+        }
+    }
     public function UserChangePhone($phonenumber,$id){
         if($this->database->connect_error){
             return false;

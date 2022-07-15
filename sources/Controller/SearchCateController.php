@@ -3,6 +3,8 @@
     include "../Model/DAO/CategoryDAO.php";
     include "../Model/DAO/ProductDAO.php";
 
+    $min = $_POST['min-price'];
+    $max = $_POST['max-price'];
     $cateDAO = new CategoryDAO();
     $category = $_POST['category'];
     $cate = $cateDAO->getCategoryByName($category);

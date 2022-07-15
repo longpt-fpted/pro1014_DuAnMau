@@ -34,9 +34,9 @@
             </div>
             <div class="information-filter">
                 <h>Mức giá</h><br>
-                <input id="" type="number" step="10000" min="0" placeholder="Từ">
+                <input id="min-price" default="0" name="min-price" type="number" step="10000" min="0" placeholder="Từ">
                 <h>-</h>
-                <input id="" type="number" step="10000" min="0" placeholder="Đến">
+                <input id="max-price" default="50000000" name="max-price" type="number" step="10000" min="0" placeholder="Đến">
             </div>
             <div class="information-filter">
                 <h>Sắp xếp</h><br>

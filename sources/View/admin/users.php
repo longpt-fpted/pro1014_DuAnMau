@@ -12,7 +12,7 @@
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="" method="post">
+            <form action="http://localhost/pro1014_DuAn/sources/Controller/AddUsersController.php" enctype="multipart/form-data"  method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
                 <h>Họ và tên:</h><br>
                 <input type="text" id="fullname" name="fullname" placeholder="Họ và tên"><br>  
@@ -44,7 +44,9 @@
                     <img src="./images/avatar.png" alt="">
                 </div>
                 <div class="detail">
-                    <form action="" id="user-infor">
+                    <form action="http://localhost/pro1014_DuAn/sources/Controller/UpdateUsersController.php" id="user-infor" method="post">
+                        <input type="number" id="id" name="id" hidden value="<?php 
+                        echo $user->getID(); ?>"><br>
                         <h>Họ và tên:</h><br>
                         <input type="text" id="fullname" name="fullname" value="<?php 
                         echo $user->getFullname(); ?>"><br>                               
@@ -52,7 +54,7 @@
                         <input type="text" id="email" name="email" value="<?php 
                         echo $user->getEmail(); ?>"><br>
                         <h>Số điện thoại:</h><br>
-                        <input type="text" id="phone-number" name="phone-number" value="<?php 
+                        <input type="number" id="phone-number" name="phone-number" value="<?php 
                         echo $user->getPhone(); ?>"><br>
                         <h>Vai trò:</h><br>
                         <select name="role" id="role">
