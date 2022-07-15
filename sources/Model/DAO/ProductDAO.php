@@ -1,6 +1,5 @@
 <?php
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()
@@ -141,5 +140,35 @@ class ProductDAO {
             }else return false;
         }
     }*/
+    public function getHotProducts($limit) {
+        // 
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `product` WHERE `product`.`is_available` = 1 order by `product`.`view` desc, `product`.`sell_count` desc limit ?;');
+            $query->bind_param('s', $limit);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            } else return false;
+        } 
+    }
+    public function updateProductSell($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('UPDATE `product` SET `sell_count`=`sell_count` + 1 WHERE `product`.`id` = ? AND `product`.`is_available` = 1');
+            $query->bind_param('s', $id);
+            return $query->execute();
+        }
+    }
 }
 ?>

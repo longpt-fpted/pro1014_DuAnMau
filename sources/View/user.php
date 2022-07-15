@@ -49,7 +49,21 @@
             include('./header.php');
             $userID = isset($_GET['id']) ? $_GET['id'] : 1;
             $user = $userDAO->getUserByID($userID);
+
+            $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
+
+            $favorites = array_map(function($fav) {
+                global $productDAO, $user;
+                $pd = $productDAO->getProductByID($fav->getProductID());
+                // id, ten, 2 gia, ngay, hinh
+                return ['uid' => $user->getID(),'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
+            }, $favorites);
         ?>
+
+        <script>
+            let favorites = <? echo json_encode($favorites) ?>;
+
+        </script>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
@@ -158,124 +172,43 @@
                                     Quản lí đơn hàng
                                 </div>
                                 <div class="order-box__dashboard">
-                                    <section class="order-detail-box">
-                                        <article class="order-detail-box__head">
-                                            <i class="fal fa-box-check"></i>
-                                            Giao hàng thành công
-                                        </article>
-                                        <article class="order-detail-box__body">
-                                            <article class="order">
-                                                <div class="order-thumbnail">
-                                                    <img src="./assets/images/elden-ring.jpg" alt="">
-                                                    <p class="quantity">
-                                                        20
-                                                    </p>
-                                                </div>
-                                                <div class="order-title">
-                                                    Elden ring
-                                                </div>
-                                                <div class="order-totalprice">
-                                                    9.000.000đ
+                                    <?
+                                        $orders = $orderDAO->getAllPayedOrderByUserID($user->getID());
+                                        foreach ($orders as $order) {
+                                            $orderdetails = $orderDetailDAO->getAllOrderDetailPayedByUserIdAndOrderID($user->getID(), $order->getID());
+                                    ?>
+                                        <section class="order-detail-box">
+                                            <article class="order-detail-box__head">
+                                                <i class="fal fa-box-check"></i>
+                                                Giao hàng thành công - <? echo $order->getDate(); ?>
+                                            </article>
+                                            <article class="order-detail-box__body">
+                                                <? foreach ($orderdetails as $orderdetail) {
+                                                    $product = $productDAO->getProductByID($orderdetail->getProductID());
+                                                ?>
+                                                <article class="order">
+                                                    <div class="order-thumbnail">
+                                                        <img src="<? echo $product->getImg() ?>" alt="">
+                                                        <p class="quantity">
+                                                            <? echo $orderdetail->getQuantity(); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="order-title">
+                                                        <? echo $product->getName(); ?>
+                                                    </div>
+                                                    <div class="order-totalprice">
+                                                        <? echo $utils->formatMoney($orderdetail->getPrice()); ?>VND
+                                                    </div>
+                                                </article>
+                                                <? } ?> 
+                                            </article>
+                                            <article class="order-detail-box__foot">
+                                                <div class="price">
+                                                    <span>Tổng tiền:</span> <? echo $utils->formatMoney($order->getPrice()); ?>VND
                                                 </div>
                                             </article>
-                                        </article>
-                                        <article class="order-detail-box__foot">
-                                            <div class="price">
-                                                <span>Tổng tiền:</span> 9.000.000đ
-                                            </div>
-                                            <a href="#" class="detail">
-                                                Xem chi tiết
-                                            </a>
-                                        </article>
-                                    </section>
-                                    <section class="order-detail-box">
-                                        <article class="order-detail-box__head">
-                                            <i class="fal fa-box-check"></i>
-                                            Giao hàng thành công
-                                        </article>
-                                        <article class="order-detail-box__body">
-                                            <article class="order">
-                                                <div class="order-thumbnail">
-                                                    <img src="./assets/images/elden-ring.jpg" alt="">
-                                                    <p class="quantity">
-                                                        20
-                                                    </p>
-                                                </div>
-                                                <div class="order-title">
-                                                    Elden ring
-                                                </div>
-                                                <div class="order-totalprice">
-                                                    9.000.000đ
-                                                </div>
-                                            </article>
-                                            <article class="order">
-                                                <div class="order-thumbnail">
-                                                    <img src="./assets/images/elden-ring.jpg" alt="">
-                                                    <p class="quantity">
-                                                        20
-                                                    </p>
-                                                </div>
-                                                <div class="order-title">
-                                                    Elden ring
-                                                </div>
-                                                <div class="order-totalprice">
-                                                    9.000.000đ
-                                                </div>
-                                            </article>
-                                            <article class="order">
-                                                <div class="order-thumbnail">
-                                                    <img src="./assets/images/elden-ring.jpg" alt="">
-                                                    <p class="quantity">
-                                                        20
-                                                    </p>
-                                                </div>
-                                                <div class="order-title">
-                                                    Elden ring
-                                                </div>
-                                                <div class="order-totalprice">
-                                                    9.000.000đ
-                                                </div>
-                                            </article>
-                                        </article>
-                                        <article class="order-detail-box__foot">
-                                            <div class="price">
-                                                <span>Tổng tiền:</span> 9.000.000đ
-                                            </div>
-                                            <a href="#" class="detail">
-                                                Xem chi tiết
-                                            </a>
-                                        </article>
-                                    </section>
-                                    <section class="order-detail-box">
-                                        <article class="order-detail-box__head">
-                                            <i class="fal fa-box-check"></i>
-                                            Giao hàng thành công
-                                        </article>
-                                        <article class="order-detail-box__body">
-                                            <article class="order">
-                                                <div class="order-thumbnail">
-                                                    <img src="./assets/images/elden-ring.jpg" alt="">
-                                                    <p class="quantity">
-                                                        20
-                                                    </p>
-                                                </div>
-                                                <div class="order-title">
-                                                    Elden ring
-                                                </div>
-                                                <div class="order-totalprice">
-                                                    9.000.000đ
-                                                </div>
-                                            </article>
-                                        </article>
-                                        <article class="order-detail-box__foot">
-                                            <div class="price">
-                                                <span>Tổng tiền:</span> 9.000.000đ
-                                            </div>
-                                            <a href="#" class="detail">
-                                                Xem chi tiết
-                                            </a>
-                                        </article>
-                                    </section>
+                                        </section>
+                                    <? } ?>
                                 </div>
                             </article>
                         </article>
@@ -409,35 +342,8 @@
                             <div class="user-box__title">
                                 Sản phẩm yêu thích
                             </div>
-                            <article class="user-box__dashboard">
-                                <article class="news-box">
-                                    <div class="news-box__head">
-                                        <i class="fal fa-calendar"></i>
-                                        <div class="date">
-                                            21/08/2021
-                                        </div>
-                                    </div>
-                                    <div class="news-box__body">
-                                        <div class="news-thumbnail">
-                                            <img src="./assets/images/elden-ring.jpg" alt="news">
-                                        </div>
-                                        <div class="news-detail">
-                                            <h4 class="news-title">
-                                                Elden Ring
-                                            </h4>
-                                            <div class="news-desc">
-                                                <p class="price">
-                                                    780.000</p>
-                                                <p class="sale">
-                                                    800.000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="news-box__foot">
-                                        <a href="#" class="method">Xem chi tiết</a>
-                                        <a href="#" class="method">Xoá</a>
-                                    </div>
-                                </article>
+                            <article class="user-box__dashboard" id="favorite">
+                                
                             </article>
                         </article>
                     </article>
@@ -469,6 +375,7 @@
                     }
                 });
             })
+            loadFavorite();
             
         </script>
         <script src="./assets/js/userModal.js"></script>

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -328,7 +327,7 @@ input[type=number] {
   border-color: blue !important;
 }
 .cart-modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price p:after {
-  content: "đ";
+  content: "VND";
 }
 .cart-modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice {
   color: darkred;
@@ -499,7 +498,7 @@ input[type=number] {
   border-color: blue !important;
 }
 .modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price p:after {
-  content: "đ";
+  content: "VND";
 }
 .modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice {
   color: darkred;
@@ -662,8 +661,8 @@ header .main-navbar .logo {
   gap: 1em;
 }
 header .main-navbar .logo img {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
   display: block;
 }
 header .main-navbar .logo .logo--txt p {
@@ -801,7 +800,7 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #
   text-decoration: none;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice:after {
-  content: "đ";
+  content: "VND";
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice {
   letter-spacing: 0.075em;
@@ -809,7 +808,7 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #
   text-decoration: line-through;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice:after {
-  content: "đ";
+  content: "VND";
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__add {
   align-self: center;
@@ -982,6 +981,10 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   align-items: center;
   gap: 1.5em;
+  justify-content: space-between;
+}
+.main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price p {
+  font-size: 0.75em;
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice {
   letter-spacing: 0.075em;
@@ -989,7 +992,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: none;
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice {
   letter-spacing: 0.075em;
@@ -997,7 +1000,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__add {
   align-self: center;
@@ -1167,7 +1170,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   font-weight: 600;
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .price:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale {
   font-weight: 400;
@@ -1175,7 +1178,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale-tag {
   background-color: red;
@@ -1530,14 +1533,14 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   font-weight: 500;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .price:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .sale {
   font-weight: 300;
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .sale:after {
-  content: "đ";
+  content: "VND";
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__foot {
   display: flex;
@@ -1913,6 +1916,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   justify-content: center;
   gap: 1em;
+  padding: 0.75em 0;
 }
 .main-footer .follow-section p, .main-footer .follow-section a, .main-footer .follow-section i {
   font-size: 1.2em;
@@ -1929,7 +1933,6 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   justify-content: flex-end;
   align-items: flex-start;
   gap: 0.75em;
-  padding-bottom: 0.5em;
 }
 .main-footer .footer-container .footer-box .logo {
   display: flex;
@@ -1965,28 +1968,34 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-footer .footer-container .fb-page {
   align-self: center;
 }
-.main-search{
+
+.main-search {
   width: 65%;
   margin: auto;
 }
-.main-search h1{
+
+.main-search h1 {
   font-size: 2.5em;
 }
-.product-filter{
+
+.product-filter {
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.information-filter{
+
+.information-filter {
   padding: 0 1em 1em 0;
 }
-.main-search #btn-restore{
+
+.main-search #btn-restore {
   border: 0;
   background: transparent;
   color: red;
   cursor: pointer;
   text-decoration: underline;
+  padding-left: 0.5em;
 }
 .information-filter input, .information-filter select{
   width: 13em;
@@ -2002,9 +2011,11 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   transition: 0.3s;
   cursor: pointer;
 }
-.product-filter #btn-filter:hover{
+
+.product-filter #btn-filter:hover {
   background: #C1C8E4;
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .main-content .content-box {
     flex-wrap: wrap !important;
@@ -2037,16 +2048,8 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     width: calc(33.3333333333% - 2.5em) !important;
     margin: 0 0.5em !important;
   }
-  .main-footer .footer-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .main-footer .footer-container .fb-page {
-    margin: 1em 0 0 0;
-  }
-}/*# sourceMappingURL=style.css.map */
-@media only screen and (min-width: 390px) and (max-width: 767px) { 
+}
+@media only screen and (min-width: 375px) and (max-width: 767px) { 
   .main-footer .footer-container{
     display: flex;
     flex-direction: row;
@@ -2065,10 +2068,10 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     font-size: 0.5em !important;
   }
   header .main-header{
-    width: 390px !important;
+    width: 100% !important;
   }
   header .main-navbar{
-    width: 390px !important;
+    width: 100% !important;
     padding-left: 1em !important;
   }
   header .main-navbar .logo img{
@@ -2081,23 +2084,23 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   }
   header .main-navbar #user-navbar{
     width: 70px !important;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     font-size: 1.2em !important;
     word-spacing: 5px;
     height: 3em !important;
     gap: 0.1px !important;
     margin-top: 0.5em;
-    padding-left: 0.5em;
+    padding-left: 2em;
   }
   header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu{
     z-index: 1 !important;
   }
   .search-modal form{
-    width: 390px !important;
+    width: 100% !important;
   }
   .cart-modal .modal-container{
-    width: 390px !important;
+    width: 100% !important;
     left: 0;
   }
   header .main-navbar .main-navbar__nav .main-navbar--item i{
@@ -2107,12 +2110,22 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     font-size: 3.2em !important;
   }
   .main-banner .main-banner__content .main-banner--detail{
-    font-size: 1.4em !important;
+    font-size: 1.3em !important;
   }
   .main-banner .main-banner__content .main-banner__btns .main-banner--primary-btn{
     padding: 1em 1em !important;
   }
   .main-banner .main-banner__content .main-banner__btns .main-banner--secondary-btn{
     padding: 1em 1em !important;
+  }
+  .main-content .content-container .content-box .product-box{
+    width: 100%;
+  }
+  .main-content .content-container .contact-box .contact-thumbnail{
+    display: none;
+  }
+  .main-content .content-container #feedback{
+    display: flex;
+    flex-direction: column;
   }
 }

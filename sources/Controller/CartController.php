@@ -5,6 +5,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+
 $productDAO = new ProductDAO();
 $userDAO = new UserDAO();
 $orderDAO = new OrderDAO();
@@ -13,7 +14,7 @@ $mail = new Mail();
 session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
-$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; //add
+$method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; 
 $userID = isset($_POST['userID']) ? $_POST['userID'] : 'error';
 
 function addProductToCart($productID) {
@@ -44,6 +45,8 @@ function addProductToCart($productID) {
         
         $resp['status'] = 'success';
         $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice() * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
+
+
 
         $_SESSION['cart'][] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice()  * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
     } else {
@@ -125,7 +128,8 @@ function minusProductFromCart($productID) {
         $index = 0;
         foreach($_SESSION['cart'] as $od) {
             if($od['id'] == $product->getID()) {
-                if($od['quantity'] >= 2) {
+                var_dump($od['quantity']);
+                if($od['quantity'] > 1) {
                     $od['quantity']--;
                     $quantity = $od['quantity'];
                     
@@ -171,11 +175,16 @@ function checkout($userID) {
 
         if($user->getCurrency() < $totalPrice) {
             $resp['status'] = 'money';
+        } else if(count($_SESSION['cart']) <= 0) {
+            $resp['status'] = 'length';
         } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("Y-m-d"))) {
                 $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
                 $user->withdrawCurrency($totalPrice);
                 $userDAO->widthdraw($totalPrice, $user->getID());
                
+                foreach ($orderdetails as $orderdetail) {
+                    $productDAO->updateProductSell($orderdetail->getProductID());
+                }
                 // Send mail...
                
                 $resp['status'] = 'success';

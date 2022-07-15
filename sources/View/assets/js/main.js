@@ -152,68 +152,11 @@ function loadCart() {
     updateCurrency();
     document.querySelector('#cart-wrapper__quantity').innerText = `(${cartQuantity})`;
     document.querySelector('#cart-detail').innerHTML = '';
-    document.querySelector('#cart-desc').innerHTML = `
-    <div class="cart-desc__head">
-        Thông tin thanh toán
-    </div>
-    <div class="cart-desc__body">
-        <div class="cart-desc--money">
-            <p>Tổng cộng</p>
-            <p>${moneyFormat(currency.fullPrice)}</p>
-        </div>
-        <div class="cart-desc__body__coupons">
-            <div class="coupon">
-                <div class="coupon-thumnail">
-                    <img src="./assets/images/logo.png" alt="coupon">
-                </div>
-                <div class="coupon-detail">
-                    <p class="coupon-title">
-                        Giảm {{ 50% }}
-                    </p>
-                </div>
-                <button class="coupon-method">
-                    USE
-                </button>
-            </div>
-            <div class="coupon">
-                <div class="coupon-thumnail">
-                    <img src="./assets/images/logo.png" alt="coupon">
-                </div>
-                <div class="coupon-detail">
-                    <p class="coupon-title">
-                        Giảm {{ 50% }}
-                    </p>
-                </div>
-                <button class="coupon-method">
-                    USE
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="cart-desc__foot">
-        <div class="money">
-            <div class="cart-desc--money">
-                <p>Số tiền trong tài khoản</p>
-                <p>${moneyFormat(currency.userMoney)}</p>
-            </div>
-            <div class="cart-desc--money">
-                <p>Số tiền còn thiếu</p>
-                <p>${moneyFormat(currency.left)}</p>
-            </div>
-            <div class="cart-desc--money">
-                <p>Tổng giảm</p>
-                <p>${moneyFormat(currency.discount)}</p>
-            </div>
-            </div>
-            <div class="cart-desc--money">
-                <p>Tổng cộng</p>
-                <p>${moneyFormat(currency.total)}</p>
-            </div>
-        </div>
-        <button class="checkout" id="checkout">
-            Thanh toán
-        </button>
-    </div>`
+    document.querySelector('#cart-desc--fullprice').innerText = moneyFormat(currency.fullPrice);
+    document.querySelector('#cart-desc--userMoney').innerText = moneyFormat(currency.userMoney);
+    document.querySelector('#cart-desc--left').innerText = moneyFormat(currency.left);
+    document.querySelector('#cart-desc--discount').innerText = moneyFormat(currency.discount);
+    document.querySelector('#cart-desc--total').innerText = moneyFormat(currency.total);
     for(let i = 0; i < carts.length; i++) {
         let element = carts[i];
         let sale = 100 * (((element.fullprice / element.quantity) - (element.price / element.quantity)))/element.fullprice * element.quantity;
@@ -262,4 +205,39 @@ function loadCart() {
         </div>`;
     }
     
+}
+function loadFavorite() {
+    document.querySelector('#favorite').innerHTML = '';
+
+    favorites.forEach(element => {
+        document.querySelector('#favorite').innerHTML += `
+            <article class="news-box">
+                <div class="news-box__head">
+                    <i class="fal fa-calendar"></i>
+                    <div class="date">
+                        ${element.date}
+                    </div>
+                </div>
+                <div class="news-box__body">
+                    <div class="news-thumbnail">
+                        <img src="${element.img}" alt="news">
+                    </div>
+                    <div class="news-detail">
+                        <h4 class="news-title">
+                            ${element.name}
+                        </h4>
+                        <div class="news-desc">
+                            <p class="price">
+                                ${element.totalPrice}</p>
+                            <p class="sale">
+                                ${element.price}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-box__foot">
+                    <a href="./product.php?id=${element.pid}" class="method">Xem chi tiết</a>
+                    <a onclick="removeProductFromFavorite(${element.uid}, ${element.pid})" class="method">Xoá</a>
+                </div>
+            </article>`;
+    });
 }

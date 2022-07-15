@@ -19,17 +19,9 @@
                 <h>Thể loại</h><br>
                 <select name="category" id="category">
                     <option value="Tất cả">Tất cả</option>
-                    <option value="Action">Action</option>
-                    <option value="FPS">FPS</option>
-                    <option value="Video Production">Video Production</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Anthem">Anthem</option>
-                    <option value="Origin">Origin</option>
-                    <option value="Acc Game">Acc Game</option>
-                    <option value="3D">3D</option>
-                    <option value="Ubisoft">Ubisoft</option>
-                    <option value="RPG">RPG</option>
+                    <? foreach($cates as $cate) {?>
+                        <option value="<? echo $cate->getName(); ?>"><? echo $cate->getName(); ?></option>
+                    <? } ?>
                 </select>
             </div>
             <div class="information-filter">
@@ -55,7 +47,7 @@
         <button id="btn-restore"><i>Khôi phục bộ lọc</i></button>
     </div>
     <article class="content-container">
-        <section class="content-box">
+        <section class="content-box" style="flex-wrap: wrap;">
             <?php 
                 $productSearch = $product;
                 foreach ($productSearch as $productSearch) {
@@ -67,7 +59,7 @@
                     <div class="product-box__detail">
                         <div class="product-box__desc">
                             <div class="product-box__title">
-                                <a href="./product.php?id=<?php echo $productSearch->getID(); ?>"><?php echo $productSearch->getName();?></a>
+                                <a title="<?php echo $productSearch->getName();?>" href="./product.php?id=<?php echo $productSearch->getID(); ?>"><?php echo $productSearch->getName();?></a>
                                 <div class="tag sale-tag">
                                     -<?php echo $productSearch->getSale(); ?>%
                                 </div>

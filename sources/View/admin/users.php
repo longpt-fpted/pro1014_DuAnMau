@@ -58,8 +58,8 @@
                         echo $user->getPhone(); ?>"><br>
                         <h>Vai trò:</h><br>
                         <select name="role" id="role">
-                            <option value="Quản trị viên" <?php  echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
-                            <option value="Khách hàng" <?php  echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
+                            <option value="1" <?php  echo $user->getRoleID() == 1 ? 'selected' : '';?>>Quản trị viên</option>
+                            <option value="0" <?php  echo $user->getRoleID() == 0 ? 'selected' : '';?>>Khách hàng</option>
                         </select><br>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>

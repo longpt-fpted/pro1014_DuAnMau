@@ -3,8 +3,8 @@ class Utils {
     public function __construct() {
         
     }
-    public function formatMoney($money) {
-        return $money;
+    function formatMoney($price) {
+        return number_format($price, 0, '', '.');
     }
     public function objectToArrayConvert($object) {
         return (array) $object;

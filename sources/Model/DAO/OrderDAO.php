@@ -1,6 +1,6 @@
 <?php
-//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Order.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Order.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Order.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Order.php";
 
 class OrderDAO {
     private $database;
@@ -67,7 +67,7 @@ class OrderDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT * FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 1");
+            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%l/%Y') AS 'date' FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 1 ORDER BY date DESC");
             $query->bind_param('s', $userID);
 
             if($query->execute()) {
