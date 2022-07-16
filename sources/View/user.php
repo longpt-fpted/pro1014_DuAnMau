@@ -49,6 +49,9 @@
             include('./header.php');
             $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
             $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
+            $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
+
+            $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
 
             
         ?>
@@ -56,7 +59,7 @@
             <section class="content-container">
                 <section class="content-box">
                     <article class="user-controller">
-                        <article class="user-method active">
+                        <article class="user-method">
                             <i class="fal fa-user"></i>
                             <p class="user-method--title">
                                 Thông tin cá nhân
@@ -249,33 +252,97 @@
                             <div class="user-box__title">
                                 Thông báo của tôi
                             </div>
-                            <article class="user-box__dashboard">
-                                <article class="news-box">
-                                    <div class="news-box__head">
-                                        <i class="fal fa-calendar"></i>
-                                        <div class="date">
-                                            21/08/2021
+                            <article class="user-box__dashboard" style="flex-wrap: wrap;">
+                                <?php
+                                    foreach ($notifies as $notify) {
+                                ?>
+                                    <? if($notify->getType() == 0) {
+                                        $product = $productDAO->getProductByID($notify->getTypeID());
+                                    ?>
+                                    <article class="news-box">
+                                        <div class="news-box__head">
+                                            <i class="fal fa-calendar"></i>
+                                            <div class="date">
+                                                <? echo $notify->getDate(); ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="news-box__body">
-                                        <div class="news-thumbnail">
-                                            <img src="./assets/images/elden-ring.jpg" alt="news">
+                                        <div class="news-box__body">
+                                            <div class="news-thumbnail">
+                                                <img src="<? echo $product->getImg(); ?>" alt="news">
+                                            </div>
+                                            <div class="news-detail">
+                                                <h4 class="news-title">
+                                                    Sản phẩm <? echo $product->getName(); ?> đang dược giảm giá!
+                                                </h4>
+                                                <p class="news-desc">
+                                                    Sản phẩm <? echo $product->getName(); ?> được bạn yêu thích đang được giảm giá, hãy mua ngay!
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="news-detail">
-                                            <h4 class="news-title">
-                                                Elden Ring chính thức vượt mặt Dying Light 2 và God of War, trở thành tựa game được yêu thích nhiều nhất trên Steam
-                                            </h4>
-                                            <p class="news-desc">
-                                                Elden Ring còn được coi là hậu duệ của dòng game nổi tiếng Dark Souls.
-                                            </p>
+                                        <div class="news-box__foot">
+                                            <a href="./product.php?id=<? echo $product->getID(); ?>" class="method">Xem chi tiết</a>
+                                            <a href="#" class="method">Xoá</a>
                                         </div>
-                                    </div>
-                                    <div class="news-box__foot">
-                                        <a href="#" class="method">Xem chi tiết</a>
-                                    </div>
-                                </article>
+                                    </article>
+                                    <? } else if($notify->getType() == 1) { 
+                                        $product = $productDAO->getProductByID($notify->getTypeID());
+                                    ?>
+                                    <article class="news-box">
+                                        <div class="news-box__head">
+                                            <i class="fal fa-calendar"></i>
+                                            <div class="date">
+                                                <? echo $notify->getDate(); ?>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__body">
+                                            <div class="news-thumbnail">
+                                                <img src="<? echo $product->getImg(); ?>" alt="news">
+                                            </div>
+                                            <div class="news-detail">
+                                                <h4 class="news-title">
+                                                    Sản phẩm <? echo $product->getName(); ?> đang đợi bạn đánh giá
+                                                </h4>
+                                                <p class="news-desc">
+                                                    Xin hãy cho chúng tôi biết trải nghiệm sau khi sử dụng sản phẩm <? echo $product->getName(); ?> của bạn như thế nào nhé :D!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__foot">
+                                            <a href="#" class="method">Xem chi tiết</a>
+                                            <button class="method">Chỉnh sửa</button>
+                                            <a href="#" class="method">Xoá</a>
+                                        </div>
+                                    </article>
+                                    <? } else if($notify->getType() == 2) { 
+                                        $order = $orderDAO->getOrderByID(12);
+                                    ?>
+                                    <article class="news-box">
+                                        <div class="news-box__head">
+                                            <i class="fal fa-calendar"></i>
+                                            <div class="date">
+                                                <? echo $order->getDate(); ?>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__body">
+                                            <div class="news-thumbnail">
+                                                <!-- <img src="./assets/images/elden-ring.jpg" alt="news"> -->
+                                            </div>
+                                            <div class="news-detail">
+                                                <h4 class="news-title">
+                                                    Đơn hàng <? echo $order->getID(); ?> đã được xác nhận!
+                                                </h4>
+                                                <p class="news-desc">
+                                                    Đơn hàng <? echo $order->getID(); ?> đã được xác nhận. Cửa hàng đã gửi thông tin chi tiết vào email của bạn. Vui lòng kiểm tra!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__foot">
+                                            <a href="#" class="method">Xoá</a>
+                                        </div>
+                                    </article>
+                                    <? } ?>
+                                <? } ?>
                             </article>
-                            
                         </article>
                         <article class="user-box">
                             <div class="user-box__title">
@@ -350,7 +417,9 @@
             }
             hideBox();
 
-            userBox[0].style.display = 'block';
+            userBox[<? echo $uMethod; ?>].style.display = 'block';
+            userMethod[<? echo $uMethod; ?>].classList.add('active');
+
             userMethod.forEach((element, index) => {
                 element.addEventListener('click', (event) => {
                     if(userBox[index].style.display == 'none') {
@@ -363,6 +432,8 @@
                     }
                 });
             })
+
+
             loadFavorite();
             
         </script>

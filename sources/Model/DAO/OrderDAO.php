@@ -9,6 +9,21 @@ class OrderDAO {
         $this->database = new Database();
         $this->database = $this->database->getDatabase();
     }
+    public function getOrderByID($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%l/%Y') AS 'date' FROM `order` WHERE `order`.`id` = ?");
+            $query->bind_param('s', $id);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $order = $result->fetch_assoc();
+                    return new Order($order['id'], $order['user_id'], $order['price'], $order['is_pay'], $order['date']);
+                } else return false;
+            } else return false;
+        }
+    }
     public function getUnpayOrderByUserID($userID) {
         if($this->database->connect_error) {
             return false;

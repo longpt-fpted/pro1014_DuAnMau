@@ -682,6 +682,12 @@ header .main-navbar .main-navbar__nav .main-navbar--item {
   font-size: 1.2em;
   transition: all 0.5s;
 }
+header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar--subitem {
+  color: black;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.5s;
+}
 header .main-navbar .main-navbar__nav .main-navbar--item i {
   font-size: 1em;
 }
@@ -2079,6 +2085,10 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
     height: 60% !important;
   }
   header .main-navbar .main-navbar__nav .main-navbar--item{
+    width: auto !important;
+    font-size: 0.6em !important;
+  }
+  header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar--subitem {
     width: auto !important;
     font-size: 0.6em !important;
   }

@@ -8,6 +8,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Ca
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 // include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 // include "../Utils/Utils.php";
 // include "../Model/DAO/UserDAO.php";
@@ -24,6 +25,7 @@ $cateDAO = new CategoryDAO();
 $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
 $favoriteDAO = new FavoriteDAO();
+$notifyDAO = new NotifyDAO();
 
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
@@ -40,10 +42,6 @@ if(isset($_SESSION['user'])) {
         $pd = $productDAO->getProductByID($fav->getProductID());
         return ['uid' => $user->getID(),'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
     }, $favorites);
-    
-
-
-
 } else {
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
@@ -279,7 +277,15 @@ $_SESSION['cart'] = array_map(function($od) {
                         </ul>
                     </li>
                     <li class="main-navbar--item">
-                        <i class="fal fa-heart"></i>
+                        <?php if(isset($_SESSION['user'])): ?>
+                        <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
+                            <i class="fal fa-heart"></i>
+                        </a>
+                        <?php else :?>
+                        <a href="./login.php" class="main-navbar--subitem">
+                            <i class="fal fa-heart"></i>
+                        </a>
+                        <?php endif;?>
                     </li>
                     <li class="main-navbar--item" id="search-modal-open">
                         <i class="fal fa-search"></i>
