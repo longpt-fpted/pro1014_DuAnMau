@@ -31,6 +31,19 @@ $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'e
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
+
+
+    $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
+
+    $favorites = array_map(function($fav) {
+        global $productDAO, $user;
+        $pd = $productDAO->getProductByID($fav->getProductID());
+        return ['uid' => $user->getID(),'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
+    }, $favorites);
+    
+
+
+
 } else {
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 }
@@ -63,6 +76,8 @@ $_SESSION['cart'] = array_map(function($od) {
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
     <script>
+        let favorites = <? echo json_encode($favorites) ?>;
+
         function Product(id, name, img, quantity, price, fullPrice) {
             this.id = id;
             this.name = name;
@@ -79,9 +94,6 @@ $_SESSION['cart'] = array_map(function($od) {
             userMoney: <? echo isset($_SESSION['user']) ? $user->getCurrency() : 0 ?>,
             left: 0,
             total: 0,
-        }
-        function showCart() {
-            console.log(<? echo (json_encode($_SESSION['cart'])) ?>);
         }
 
     </script>

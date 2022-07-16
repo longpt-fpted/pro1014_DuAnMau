@@ -12,10 +12,20 @@ $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; //Chuc nan
 
 function addProductToFavorite($userID, $productID) {
     $favoriteDAO = new FavoriteDAO();
+    $productDAO = new ProductDAO();
     $resp = [];
 
-    $resp['status'] = $favoriteDAO->createNewFavorite($userID, $productID) ? 'success' : 'fail';
+    if(!$favoriteDAO->isExistFavorite($userID, $productID)) {
+        $resp['status'] = $favoriteDAO->createNewFavorite($userID, $productID) ? 'success' : 'fail';
+        $pd = $productDAO->getProductByID($productID);
 
+        $fav = $favoriteDAO->getFavoriteByUserAndProduct($userID, $productID);
+        $resp['product'] = ['uid' => $userID,'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
+    } else {
+        $resp['status'] = 'contained';
+        $resp['pid'] = $productID;
+        $resp['pname'] = $productDAO->getProductByID($productID)->getName();
+    }
     return $resp;
 }
 function removeProductFromFavorite($userID, $productID) {
@@ -23,6 +33,7 @@ function removeProductFromFavorite($userID, $productID) {
     $resp = [];
 
     $resp['status'] = $favoriteDAO->deleteFavoriteByUserIDandProductID($userID, $productID) ? 'success' : 'fail';
+    $resp['pid'] = $productID;
 
     return $resp;
 }

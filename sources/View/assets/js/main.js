@@ -1,4 +1,3 @@
-
 function updateCurrency() {
     cartQuantity = 0;
     currency.fullPrice = 0;
@@ -33,9 +32,23 @@ function displayNotify(type, msg) {
     }
 
     let div = document.createElement('div');
-    
     let check = document.createElement('i');
-    check.classList.add('fal', 'fa-check');
+    let icon = 'fa-check';
+    switch (type) {
+        case 'danger':
+            icon = 'fa-times-circle';
+            break;
+        case 'info':
+            icon = 'fa-exclamation-circle'
+            break;
+        case 'success':
+            icon = 'fa-check';
+            break;
+        case 'warning':
+            icon = 'fa-times-circle';
+            break;
+    }
+    check.classList.add('fal', icon);
     let times = document.createElement('i');
     times.classList.add('fal', 'fa-times');
     let state = document.createElement('div');
@@ -208,7 +221,7 @@ function loadCart() {
 }
 function loadFavorite() {
     document.querySelector('#favorite').innerHTML = '';
-
+    
     favorites.forEach(element => {
         document.querySelector('#favorite').innerHTML += `
             <article class="news-box">

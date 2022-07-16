@@ -47,23 +47,11 @@
         </article>
         <?php
             include('./header.php');
-            $userID = isset($_GET['id']) ? $_GET['id'] : 1;
-            $user = $userDAO->getUserByID($userID);
+            $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
+            $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
 
-            $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
-
-            $favorites = array_map(function($fav) {
-                global $productDAO, $user;
-                $pd = $productDAO->getProductByID($fav->getProductID());
-                // id, ten, 2 gia, ngay, hinh
-                return ['uid' => $user->getID(),'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
-            }, $favorites);
+            
         ?>
-
-        <script>
-            let favorites = <? echo json_encode($favorites) ?>;
-
-        </script>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
@@ -342,7 +330,7 @@
                             <div class="user-box__title">
                                 Sản phẩm yêu thích
                             </div>
-                            <article class="user-box__dashboard" id="favorite">
+                            <article class="user-box__dashboard" id="favorite" style="flex-wrap: wrap;">
                                 
                             </article>
                         </article>

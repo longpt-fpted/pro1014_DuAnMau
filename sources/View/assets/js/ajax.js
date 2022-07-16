@@ -143,8 +143,33 @@ function checkout(userID) {
     }
 }
 
-function addToFavorite(id) {
-    
+function addToFavorite(userID, productID) {
+    if(userID == false) {
+        displayNotify('warning', `Vui lòng đăng nhập để thực hiện chức năng này!`);
+        setTimeout(() => {
+            window.location.href = './login.php';
+        }, 3000)
+    } else {
+        let data = `user=${userID}&product=${productID}&method=add`;
+        $.ajax({
+            url: '../Controller/FavoriteController.php',
+            method: 'POST',
+            data: data,
+        }).done(res => {
+            res = JSON.parse(res);
+            console.log(res);
+            switch (res.status) {
+                case 'success':
+                    displayNotify('success', `Thêm thành công sản phẩm ${res.product.nmame} vào danh sách yêu thích!`);
+                    favorites.push(res.product);
+                    break;
+                case 'contained':
+                    displayNotify('info', `Sản phẩm ${res.pmame} đã tồn tại trong danh sách yêu thích!`);
+                default:
+                    break;
+            }
+        })
+    }
 }
 
 function removeProductFromFavorite(userID, productID) {
@@ -156,16 +181,20 @@ function removeProductFromFavorite(userID, productID) {
     }).done(res => {
         res = JSON.parse(res);
 
-        // switch (res.status) {
-        //     case 'success':
-        //         displayNotify('success', `Xoá thành công sản phẩm khỏi danh sách yêu thích!`);
-        //         loadFavorite();
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Xoá thành công sản phẩm khỏi danh sách yêu thích!`);
 
-        //         break;  
+                if(favorites.find(element => element.pid == res.pid)) {
+                    let index = favorites.findIndex((element) => element.pid == res.pid);
+                    favorites.splice(index, 1);
+                }
+                loadFavorite();
+                break;  
         
-        //     default:
-        //         break;
-        // }
-        // console.log(res);
+            default:
+                break;
+        }
+        console.log(res);
     })
 }

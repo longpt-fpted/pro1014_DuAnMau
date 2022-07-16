@@ -48,7 +48,7 @@
                             <p class="main-product__detail-price">
                                 <span class="price"><?php echo $product->getTotalPrice(); ?></span>
                                 <span class="addons">
-                                    <a id="favorite" onclick="addToFavorite(<? echo $product->getID(); ?>)">
+                                    <a id="favorite" onclick="addToFavorite(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false' ?>, <? echo $product->getID(); ?>)">
                                         <i class="fal fa-heart"></i>
                                     </a>
                                 </span>
@@ -65,6 +65,9 @@
                                 </button>
                                 <button class="btn add" onclick="addProductToCart(<? echo $product->getID(); ?>)">
                                     <i class="fal fa-cart-arrow-down"></i> Thêm vào giỏ hàng
+                                </button>
+                                <button class="btn add" onclick="addToFavorite(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false' ?>, <? echo $product->getID(); ?>)">
+                                    <i class="fal fa-heart"></i> Thêm vào yêu thích
                                 </button>
                             </article>
                         </article>

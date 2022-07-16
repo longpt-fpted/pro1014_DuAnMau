@@ -32,7 +32,8 @@
                 return false;
             } else {
                 $query = $this->database->prepare("INSERT INTO `favorite`(`user_id`, `product_id`, `date`) VALUES (?, ?, ?)");
-                $query->bind_param('sss', $userID, $productID, date("Y-m-d"));
+                $date = date("Y-m-d");
+                $query->bind_param('sss', $userID, $productID, $date);
 
                 return $query->execute();
             }
@@ -45,6 +46,34 @@
                 $query->bind_param('ss', $userID, $productID);
 
                 return $query->execute();
+            }
+        }
+        public function isExistFavorite($userID, $productID) {
+            if($this->database->connect_error) {
+                return false;
+            } else {
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? AND `favorite`.`product_id` = ?");
+                $query->bind_param('ss', $userID, $productID);
+
+                if($query->execute()) {
+                    $result = $query->get_result();
+                    return $result->num_rows > 0;
+                } else return false;
+            }
+        }
+        public function getFavoriteByUserAndProduct($userID, $productID) {
+            if($this->database->connect_error) {
+                return false;
+            } else {
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? and `favorite`.`product_id` = ?");
+                $query->bind_param('ss', $userID, $productID);
+                if($query->execute()) {
+                    $result = $query->get_result();
+                    if($result->num_rows > 0) {
+                        $favorite = $result->fetch_assoc();
+                        return new Favorite($favorite['user_id'], $favorite['product_id'], $favorite['fdate']);
+                    } else return false;
+                } else return false;
             }
         }
     }
