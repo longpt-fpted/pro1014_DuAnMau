@@ -75,15 +75,8 @@
                             <tr>
                                 <td><h>Tình trạng:</h></td>
                                 <td><select name="is_available" id="is_available">
-                                        <?php 
-                                            if($product->getAvailable() == 1){
-                                                echo "<option value='1'>Còn hàng</option>";
-                                                echo "<option value='0'>Hết hàng</option>";
-                                            }else if($product->getAvailable() == 0){
-                                                echo "<option value='0'>Hết hàng</option>";
-                                                echo "<option value='1'>Còn hàng</option>";
-                                            }
-                                        ?>
+                                        <option value='1' <?php echo $product->getID() == 1 ? 'selected' : '' ?>>Còn hàng</option> 
+                                        <option value='0' <?php echo $product->getID() == 0 ? 'selected' : '' ?>>Hết hàng</option> 
                                     </select>
                                 </td>
                             </tr>

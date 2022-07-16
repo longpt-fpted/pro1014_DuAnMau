@@ -59,16 +59,9 @@
                         echo $user->getPhone(); ?>"><br>
                         <h>Vai trò:</h><br>
                         <select name="role" id="role">
-                            <?php 
-                                if($user->getRoleID() == 1){
-                                    echo "<option value='1'>Quản trị viên</option>";
-                                    echo "<option value='0'>Thành viên</option>";
-                                }else if($user->getRoleID() == 0){
-                                    echo "<option value='0'>Thành viên</option>";
-                                    echo "<option value='1'>Quản trị viên</option>";
-                                }
-                            ?>
-                            </select><br>
+                            <option value='0' <?php echo $user->getRoleID() == 0 ? 'selected' : '' ?>>Thành viên</option> 
+                            <option value='1' <?php echo $user->getRoleID() == 1 ? 'selected' : '' ?>>Quản trị viên</option> 
+                        </select><br>
                         <input type="submit" id="submit" value="Cập Nhật">
                     </form>
                 </div>
