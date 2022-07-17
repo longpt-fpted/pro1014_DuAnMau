@@ -1,6 +1,6 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php';
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()
@@ -43,12 +43,24 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function UpdateProduct($name,$cate_id,$img_url,$price,$sale_percent,$is_available,$id){
+    public function UpdateProduct($name,$cate_id,$img_url,$price,$sale_percent,$is_available,$sell_count,$rating,$view,$id){
         if($this->database->connect_error){
             return false;
         }else {
-            $query = $this->database->prepare("UPDATE `product` SET `name`=?,`cate_id`=?,`img_url`=?, `price`=?, `sale_percent`=?, `is_available`=? WHERE `product`.`id`=?");
-            $query->bind_param("sssssss",$name,$cate_id,$img_url,$price,$sale_percent,$is_available,$id);
+            $query = $this->database->prepare("UPDATE `product` SET `name`=?,`cate_id`=?,`img_url`=?, `price`=?, `sale_percent`=?, `is_available`=?, `sell_count`=?, `rating`=?, `view`=? WHERE `product`.`id`=?");
+            $query->bind_param("ssssssssss",$name,$cate_id,$img_url,$price,$sale_percent,$is_available,$sell_count,$rating,$view,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function UpdateProductWithoutImage($name,$cate_id,$price,$sale_percent,$is_available,$sell_count,$rating,$view,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `product` SET `name`=?,`cate_id`=?, `price`=?, `sale_percent`=?, `is_available`=?, `sell_count`=?, `rating`=?, `view`=? WHERE `product`.`id`=?");
+            $query->bind_param("sssssssss",$name,$cate_id,$price,$sale_percent,$is_available,$sell_count,$rating,$view,$id);
             if($query->execute()){
                 return true;
             }
@@ -103,7 +115,7 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function getAllProducts2() {
+    public function getAllProductWithoutAvailable() {
         if($this->database->connect_error) {
             return false;
         } else {
@@ -215,7 +227,7 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function addProductAdmin($name,$img_url,$cate_id,$price,$sale_percent) {
+    public function addProduct($name,$img_url,$cate_id,$price,$sale_percent) {
         if($this->database->connect_error){
             return false;
         } else {

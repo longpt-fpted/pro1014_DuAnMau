@@ -13,27 +13,27 @@
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
             <form action="http://localhost/pro1014_duan/sources/controller/AddProductsController.php" enctype="multipart/form-data" id="modal-add-product" method="post">
                 <p id="modal-add-title">Thêm sản phẩm</p>
-                <h>Tên sản phẩm</h><br>
+                <span>Tên sản phẩm</span><br>
                 <input type="text" id="name" name="name" placeholder="Tên sản phẩm"><br>   
-                <h>Hình ảnh:</h>
-                <input type="text" id="image" name="image" placeholder="Url hình ảnh">                            
-                <h>Danh mục</h><br>
+                <span>Hình ảnh:</span>
+                <input type="file" id="image" name="image">                            
+                <span>Danh mục</span><br>
                 <select name="category" id="category">
                     <option value=""></option>
                     <?php foreach($cates as $cate) {?>
                         <option value="<?php echo $cate->getID(); ?>"><?php echo $cate->getName(); ?></option>
                     <?php } ?>
                 </select>
-                <h>Giá niêm yết:</h><br>
+                <span>Giá niêm yết:</span><br>
                 <input type="number" id="price" name="price" placeholder="Giá niêm yết" min="0" max="999999999"><br>
-                <h>Sale:</h><br>
+                <span>Sale:</span><br>
                 <input type="number" id="sale_percent" name="sale_percent" placeholder="Giảm giá" max="100">
                 <input type="submit" id="submit" value="Cập Nhật">
             </form>
         </div>                   
         <div class="show-information">
             <?php
-                $products = $productDAO->getAllProducts2();
+                $products = $productDAO->getAllProductWithoutAvailable();
                 foreach ($products as $product) {
             ?>
             <div class="product-information">
@@ -44,19 +44,18 @@
                     <form action="http://localhost/pro1014_duan/sources/controller/UpdateProductsController.php" method="post" enctype="multipart/form-data" id="user-infor">
                         <table>
                             <tr>
-                                <td><h>ID:</h></td>
-                                <td><input type="text" id="id" name="id" value="<?php echo $product ->getID() ?>"><br>   </td>
+                                <input type="text" id="id" name="id" value="<?php echo $product ->getID() ?>" hidden><br>
                             </tr>
                             <tr>
-                                <td><h>Tên sản phẩm:</h></td>
+                                <td><span>Tên sản phẩm:</span></td>
                                 <td><input type="text" id="name" name="name" value="<?php echo $product ->getName() ?>"><br>   </td>
                             </tr>
                             <tr>
-                                <td><h>Hình ảnh:</h></td>
-                                <td><input type="text" id="image" name="image" value="<?php echo $product -> getImg() ?>"><br> </td>
+                                <td><span>Hình ảnh:</span></td>
+                                <td><input type="file" id="image" name="image"><br> </td>
                             </tr>
                             <tr>
-                                <td><h>Danh mục:</h></td>
+                                <td><span>Danh mục:</span></td>
                                 <td><select name="category" id="category">  
                                         <?php foreach($cates as $cate) {?>
                                             <option value="<?php echo $cate->getID(); ?>" <?php echo $cate->getID() == $product->getCateID() ? 'selected' : '' ?>><?php echo $cate->getName(); ?></option>
@@ -65,15 +64,27 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><h>Giá niêm yết:</h></td>
+                                <td><span>Giá niêm yết:</span></td>
                                 <td><input type="text" id="price" name="price" value="<?php echo $product -> getPrice() ?>đ"><br></td>
                             </tr>
                             <tr>
-                                <td><h>Sale:</h></td>
+                                <td><span>Sale:</span></td>
                                 <td><input type="text" id="sale_percent" name="sale_percent" value="<?php echo $product -> getSale() ?>%"><br></td>
                             </tr>
                             <tr>
-                                <td><h>Tình trạng:</h></td>
+                                <td><span>Đánh giá:</span></td>
+                                <td><input type="text" id="rating" name="rating" value="<?php echo $product -> getRating() ?>"><br></td>
+                            </tr>
+                            <tr>
+                                <td><span>Lượt mua:</span></td>
+                                <td><input type="text" id="sell_count" name="sell_count" value="<?php echo $product -> getSellCount() ?>"><br></td>
+                            </tr>
+                            <tr>
+                                <td><span>Lượt xem:</span></td>
+                                <td><input type="text" id="view" name="view" value="<?php echo $product -> getView() ?>"><br></td>
+                            </tr>
+                            <tr>
+                                <td><span>Tình trạng:</span></td>
                                 <td><select name="is_available" id="is_available">
                                         <option value='1' <?php echo $product->getID() == 1 ? 'selected' : '' ?>>Còn hàng</option> 
                                         <option value='0' <?php echo $product->getID() == 0 ? 'selected' : '' ?>>Hết hàng</option> 

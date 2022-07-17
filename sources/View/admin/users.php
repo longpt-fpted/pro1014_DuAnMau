@@ -14,17 +14,17 @@
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
             <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" enctype="multipart/form-data" method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
-                <h>Họ và tên:</h><br>
+                <span>Họ và tên:</span><br>
                 <input type="text" id="fullname" name="fullname" placeholder="Họ và tên"><br>  
-                <h>Tên Đăng nhập:</h><br>
+                <span>Tên Đăng nhập:</span><br>
                 <input type="text" id="username" name="username" placeholder="Tên đăng nhập"><br>              
-                <h>Mật khẩu:</h><br>
+                <span>Mật khẩu:</span><br>
                 <input type="password" id="password" name="password" placeholder="Mật khẩu"><br>                   
-                <h>Email:</h><br>
+                <span>Email:</span><br>
                 <input type="text" id="email" name="email" placeholder="Địa chỉ email"><br>
-                <h>Số điện thoại:</h><br>
+                <span>Số điện thoại:</span><br>
                 <input type="text" id="phone-number" name="phone-number" placeholder="Số điện thoại"><br>
-                <h>Vai trò:</h><br>
+                <span>Vai trò:</span><br>
                 <select name="role" id="role">
                     <option value=""></option>
                     <option value="1">Quản trị viên</option>
@@ -45,19 +45,18 @@
                 </div>
                 <div class="detail">
                     <form action="http://localhost/pro1014_duan/sources/Controller/UpdateUsersController.php" id="user-infor" method="post">
-                        <h>ID:</h>
                         <input type="text" id="id" name="id" value="<?php
-                        echo $user->getID()?>" readonly><br>
-                        <h>Họ và tên:</h><br>
+                        echo $user->getID()?>" hidden><br>
+                        <span>Họ và tên:</span><br>
                         <input type="text" id="fullname" name="fullname" value="<?php 
                         echo $user->getFullname(); ?>"><br>                               
-                        <h>Email:</h><br>
+                        <span>Email:</span><br>
                         <input type="text" id="email" name="email" value="<?php 
                         echo $user->getEmail(); ?>"><br>
-                        <h>Số điện thoại:</h><br>
-                        <input type="number" id="phone-number" name="phone-number" value="<?php 
+                        <span>Số điện thoại:</span><br>
+                        <input type="text" id="phone-number" name="phone-number" value="<?php 
                         echo $user->getPhone(); ?>"><br>
-                        <h>Vai trò:</h><br>
+                        <span>Vai trò:</span><br>
                         <select name="role" id="role">
                             <option value='0' <?php echo $user->getRoleID() == 0 ? 'selected' : '' ?>>Thành viên</option> 
                             <option value='1' <?php echo $user->getRoleID() == 1 ? 'selected' : '' ?>>Quản trị viên</option> 
