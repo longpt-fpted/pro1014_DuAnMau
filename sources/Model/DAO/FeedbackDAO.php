@@ -79,6 +79,24 @@ class FeedbackDAO {
             } else return false;
         }
     }
-    
+    public function getAllFeedbacks() {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`feedback`.`date`, '%d/%l/%Y') AS `fdate`  FROM `feedback`");
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $feedbacks = [];
+                    while($row = $result->fetch_assoc()) {
+                        $feedback = new Feedback($row['user_id'], $row['product_id'], $row['text'], $row['rating'], $row['fdate']);
+
+                        $feedbacks[] = $feedback;
+                    }
+                    return $feedbacks;
+                } else return false;
+            } else return false;
+        }
+    }
 }
 ?>
