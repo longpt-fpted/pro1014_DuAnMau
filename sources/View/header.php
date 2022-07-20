@@ -1,21 +1,24 @@
 <?php 
 session_start();
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-// include "../Utils/Utils.php";
-// include "../Model/DAO/UserDAO.php";
-// include "../Model/DAO/ProductDAO.php";
-// include "../Model/DAO/CategoryDAO.php";
-// include "../Model/DAO/OrderDAO.php";
-// include "../Model/DAO/OrderDetailDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+include "../Utils/Utils.php";
+include "../Model/DAO/UserDAO.php";
+include "../Model/DAO/ProductDAO.php";
+include "../Model/DAO/CategoryDAO.php";
+include "../Model/DAO/OrderDAO.php";
+include "../Model/DAO/OrderDetailDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+
 
 
 $utils = new Utils();
@@ -74,7 +77,7 @@ $_SESSION['cart'] = array_map(function($od) {
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
     <script>
-        let favorites = <? echo json_encode($favorites) ?>;
+        let favorites = <?php  echo json_encode($favorites) ?>;
 
         function Product(id, name, img, quantity, price, fullPrice) {
             this.id = id;
@@ -84,12 +87,12 @@ $_SESSION['cart'] = array_map(function($od) {
             this.price = price;
             this.fullPrice = fullPrice;
         }
-        const carts = <? echo (json_encode($_SESSION['cart'])) ?>;
+        const carts = <?php  echo (json_encode($_SESSION['cart'])) ?>;
         let cartQuantity = 0;
         let currency = {
             fullPrice: 0,
             discount: 0,
-            userMoney: <? echo isset($_SESSION['user']) ? $user->getCurrency() : 0 ?>,
+            userMoney: <?php  echo isset($_SESSION['user']) ? $user->getCurrency() : 0 ?>,
             left: 0,
             total: 0,
         }
@@ -171,7 +174,7 @@ $_SESSION['cart'] = array_map(function($od) {
 
                                 ?>
                                 <p class="category--desc">
-                                    <? echo $cate->getName(); ?>
+                                    <?php  echo $cate->getName(); ?>
                                 </p>
                                 <?php } ?>
                             </li>
@@ -196,24 +199,24 @@ $_SESSION['cart'] = array_map(function($od) {
                                 ?>
                                     <article class="product-box">
                                         <a class="product-box__thumbnail" href="#">
-                                            <img src="<? echo $product->getImg(); ?>" alt="product thumbnail">
+                                            <img src="<?php  echo $product->getImg(); ?>" alt="product thumbnail">
                                         </a>
                                         <div class="product-box__detail">
                                             <div class="product-box__desc">
                                                 <div class="product-box__title" href="#">
-                                                    <a href="#"><? echo $product->getName(); ?></a>
+                                                    <a href="#"><?php  echo $product->getName(); ?></a>
                                                     <div class="tag sale-tag">
-                                                        -<? echo $product->getSale(); ?>%
+                                                        -<?php  echo $product->getSale(); ?>%
                                                     </div>
                                                 </div>
                                                 <div class="product-box__price">
                                                     <p class="product-box__totalprice">
-                                                    <? echo $product->getTotalPrice(); ?></p>
+                                                    <?php  echo $product->getTotalPrice(); ?></p>
                                                     <p class="product-box__fullprice">
-                                                    <? echo $product->getPrice(); ?></p>
+                                                    <?php  echo $product->getPrice(); ?></p>
                                                 </div>
                                             </div>
-                                            <a class="product-box__add" onclick="addProductToCart(<? echo $product->getID(); ?>)">
+                                            <a class="product-box__add" onclick="addProductToCart(<?php  echo $product->getID(); ?>)">
                                                 Add to cart
                                             </a>
                                         </div>
@@ -247,7 +250,7 @@ $_SESSION['cart'] = array_map(function($od) {
                         <ul class="main-navbar__submenu">
                             <?php if(isset($_SESSION['user'])): ?>
                                 <li class="category--item">
-                                    <a href="./user.php?id=<? echo $user->getID(); ?>" class="category--title">
+                                    <a href="./user.php?id=<?php  echo $user->getID(); ?>" class="category--title">
                                         Thông tin
                                     </a>
                                 </li>
@@ -257,7 +260,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                     </a>
                                 </li>
                                 <li class="category--item">
-                                    <a href="./cart.php?id=<? echo $user->getID(); ?>" class="category--title">
+                                    <a href="./cart.php?id=<?php  echo $user->getID(); ?>" class="category--title">
                                         Giỏ hàng
                                     </a>
                                 </li>
@@ -282,7 +285,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>

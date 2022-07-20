@@ -16,11 +16,19 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/No
 // include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/CategoryDAO.php";
 
 $userDAO = new UserDAO();
+$users = $userDAO->getAllUsers();
+
 $productDAO = new ProductDAO();
+$products = $productDAO->getAllProductWithoutAvailable();
 
 $categoryDAO = new CategoryDAO();
 $cates = $categoryDAO->getAllCategories();
+
 $utils = new Utils();
+
+$feedbackDAO = new FeedbackDAO();
+$feedbacks = $feedbackDAO->getAllFeedback();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +102,9 @@ $utils = new Utils();
                         <h6 class="collapse-header">Custom Managements:</h6>
                         <a class="collapse-item" href="users.php">Users</a>
                         <a class="collapse-item" href="products.php">Products</a>
+                        <a class="collapse-item" href="feedbacks.php">Feedbacks</a>
                         <a class="collapse-item" href="contacts.php">Contacts</a>
+                        <a class="collapse-item" href="notifications.php">Notifications</a>
                     </div>
                 </div>
             </li>

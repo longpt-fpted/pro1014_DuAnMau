@@ -125,7 +125,7 @@
                                 <form action="../Controller/UserChangeNameController.php" method="post" class="main-info">
                                     <div class="form-info">
                                         <div class="form-avatar">
-                                            <img src="./assets/images/man.png" alt="user avatar">
+                                            <img src="<?php echo $user->getAvatar(); ?>" alt="user avatar">
                                             <input type="file" name="user-avatar" id="user-avatar" hidden>
                                             <label for="user-avatar">
                                                 <i class="fal fa-pencil"></i>
@@ -134,13 +134,13 @@
                                         <div class="form-name">
                                             <div class="input-box">
                                                 <label for="username">Họ & Tên</label>
-                                                <input type="text" name="fullname" id="fullname" value="<?
+                                                <input type="text" name="fullname" id="fullname" value="<?php 
                                                     echo $user->getFullname();
                                                 ?>">
                                             </div>
                                             <div class="input-box">
                                                 <label for="phone">Số điện thoại</label>
-                                                <input type="text" name="phone" id="phone" value="<?
+                                                <input type="text" name="phone" id="phone" value="<?php 
                                                     echo $user->getPhone();
                                                 ?>">
                                             </div>
@@ -155,7 +155,7 @@
                                         <i class="fal fa-phone"></i>
                                         <p>
                                             Số điện thoại<br>
-                                            +84 <?echo $user->getPhone();?>
+                                            +84 <?php echo $user->getPhone();?>
                                         </p>
                                         <button class="form-edit-btn">Cập nhật</button>
                                     </div>
@@ -163,7 +163,7 @@
                                         <i class="fal fa-envelope"></i>
                                         <p>
                                             Địa chỉ email<br>
-                                            <?echo $user->getEmail();?>
+                                            <?php echo $user->getEmail();?>
                                         </p>
                                         <button class="form-edit-btn">Cập nhật</button>
                                     </div>
@@ -183,7 +183,7 @@
                                     Quản lí đơn hàng
                                 </div>
                                 <div class="order-box__dashboard">
-                                    <?
+                                    <?php 
                                         $orders = $orderDAO->getAllPayedOrderByUserID($user->getID());
                                         foreach ($orders as $order) {
                                             $orderdetails = $orderDetailDAO->getAllOrderDetailPayedByUserIdAndOrderID($user->getID(), $order->getID());
@@ -191,35 +191,35 @@
                                         <section class="order-detail-box">
                                             <article class="order-detail-box__head">
                                                 <i class="fal fa-box-check"></i>
-                                                Giao hàng thành công - <? echo $order->getDate(); ?>
+                                                Giao hàng thành công - <?php  echo $order->getDate(); ?>
                                             </article>
                                             <article class="order-detail-box__body">
-                                                <? foreach ($orderdetails as $orderdetail) {
+                                                <?php  foreach ($orderdetails as $orderdetail) {
                                                     $product = $productDAO->getProductByID($orderdetail->getProductID());
                                                 ?>
                                                 <article class="order">
                                                     <div class="order-thumbnail">
-                                                        <img src="<? echo $product->getImg() ?>" alt="">
+                                                        <img src="<?php  echo $product->getImg() ?>" alt="">
                                                         <p class="quantity">
-                                                            <? echo $orderdetail->getQuantity(); ?>
+                                                            <?php  echo $orderdetail->getQuantity(); ?>
                                                         </p>
                                                     </div>
                                                     <div class="order-title">
-                                                        <? echo $product->getName(); ?>
+                                                        <?php  echo $product->getName(); ?>
                                                     </div>
                                                     <div class="order-totalprice">
-                                                        <? echo $utils->formatMoney($orderdetail->getPrice()); ?>VND
+                                                        <?php  echo $utils->formatMoney($orderdetail->getPrice()); ?>VND
                                                     </div>
                                                 </article>
-                                                <? } ?> 
+                                                <?php  } ?> 
                                             </article>
                                             <article class="order-detail-box__foot">
                                                 <div class="price">
-                                                    <span>Tổng tiền:</span> <? echo $utils->formatMoney($order->getPrice()); ?>VND
+                                                    <span>Tổng tiền:</span> <?php  echo $utils->formatMoney($order->getPrice()); ?>VND
                                                 </div>
                                             </article>
                                         </section>
-                                    <? } ?>
+                                    <?php  } ?>
                                 </div>
                             </article>
                         </article>
@@ -276,26 +276,26 @@
                                 <?php
                                     foreach ($notifies as $notify) {
                                 ?>
-                                    <? if($notify->getType() == 0) {
+                                    <?php  if($notify->getType() == 0) {
                                         $product = $productDAO->getProductByID($notify->getTypeID());
                                     ?>
                                     <article class="news-box">
                                         <div class="news-box__head">
                                             <i class="fal fa-calendar"></i>
                                             <div class="date">
-                                                <? echo $notify->getDate(); ?>
+                                                <?php  echo $notify->getDate(); ?>
                                             </div>
                                         </div>
                                         <div class="news-box__body">
                                             <div class="news-thumbnail">
-                                                <img src="<? echo $product->getImg(); ?>" alt="news">
+                                                <img src="<?php  echo $product->getImg(); ?>" alt="news">
                                             </div>
                                             <div class="news-detail">
                                                 <h4 class="news-title">
-                                                    Sản phẩm <? echo $product->getName(); ?> đang dược giảm giá!
+                                                    Sản phẩm <?php  echo $product->getName(); ?> đang dược giảm giá!
                                                 </h4>
                                                 <p class="news-desc">
-                                                    Sản phẩm <? echo $product->getName(); ?> được bạn yêu thích đang được giảm giá, hãy mua ngay!
+                                                    Sản phẩm <?php  echo $product->getName(); ?> được bạn yêu thích đang được giảm giá, hãy mua ngay!
                                                 </p>
                                             </div>
                                         </div>
@@ -304,26 +304,26 @@
                                             <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                    <? } else if($notify->getType() == 1) { 
+                                    <?php  } else if($notify->getType() == 1) { 
                                         $product = $productDAO->getProductByID($notify->getTypeID());
                                     ?>
                                     <article class="news-box">
                                         <div class="news-box__head">
                                             <i class="fal fa-calendar"></i>
                                             <div class="date">
-                                                <? echo $notify->getDate(); ?>
+                                                <?php  echo $notify->getDate(); ?>
                                             </div>
                                         </div>
                                         <div class="news-box__body">
                                             <div class="news-thumbnail">
-                                                <img src="<? echo $product->getImg(); ?>" alt="news">
+                                                <img src="<?php  echo $product->getImg(); ?>" alt="news">
                                             </div>
                                             <div class="news-detail">
                                                 <h4 class="news-title">
-                                                    Sản phẩm <? echo $product->getName(); ?> đang đợi bạn đánh giá
+                                                    Sản phẩm <?php  echo $product->getName(); ?> đang đợi bạn đánh giá
                                                 </h4>
                                                 <p class="news-desc">
-                                                    Xin hãy cho chúng tôi biết trải nghiệm sau khi sử dụng sản phẩm <? echo $product->getName(); ?> của bạn như thế nào nhé :D!
+                                                    Xin hãy cho chúng tôi biết trải nghiệm sau khi sử dụng sản phẩm <?php  echo $product->getName(); ?> của bạn như thế nào nhé :D!
                                                 </p>
                                             </div>
                                         </div>
@@ -338,7 +338,7 @@
                                         <div class="news-box__head">
                                             <i class="fal fa-calendar"></i>
                                             <div class="date">
-                                                <? echo $order->getDate(); ?>
+                                                <?php  echo $order->getDate(); ?>
                                             </div>
                                         </div>
                                         <div class="news-box__body">
@@ -347,10 +347,10 @@
                                             </div>
                                             <div class="news-detail">
                                                 <h4 class="news-title">
-                                                    Đơn hàng <? echo $order->getID(); ?> đã được xác nhận!
+                                                    Đơn hàng <?php  echo $order->getID(); ?> đã được xác nhận!
                                                 </h4>
                                                 <p class="news-desc">
-                                                    Đơn hàng <? echo $order->getID(); ?> đã được xác nhận. Cửa hàng đã gửi thông tin chi tiết vào email của bạn. Vui lòng kiểm tra!
+                                                    Đơn hàng <?php  echo $order->getID(); ?> đã được xác nhận. Cửa hàng đã gửi thông tin chi tiết vào email của bạn. Vui lòng kiểm tra!
                                                 </p>
                                             </div>
                                         </div>
@@ -358,8 +358,8 @@
                                             <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                    <? } ?>
-                                <? } ?>
+                                    <?php  } ?>
+                                <?php  } ?>
                             </article>
                         </article>
                         <article class="user-box">
@@ -435,8 +435,8 @@
             }
             hideBox();
 
-            userBox[<? echo $uMethod; ?>].style.display = 'block';
-            userMethod[<? echo $uMethod; ?>].classList.add('active');
+            userBox[<?php  echo $uMethod; ?>].style.display = 'block';
+            userMethod[<?php  echo $uMethod; ?>].classList.add('active');
 
             userMethod.forEach((element, index) => {
                 element.addEventListener('click', (event) => {

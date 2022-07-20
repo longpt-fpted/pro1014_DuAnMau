@@ -2057,6 +2057,115 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   background: #C1C8E4;
 }
 
+.main-content .main-contact{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.main-content .main-contact h1{
+  text-align: center;
+  font-size: 4em;
+  font-weight: lighter;
+}
+.main-content .main-contact .contact-infor{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.contact-infor-detail{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 3em 0 3em 0;
+}
+.contact-infor-detail .icon{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #46b5d1;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fa-map-marker-alt:before, .fa-phone-alt:before, .fa-envelope:before, .fa-facebook-f:before{
+  font-size: 1.3em; 
+  color: white;
+  margin-top: 1em;
+}
+.main-contact .contact-content{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding-bottom: 3em;
+}
+.main-contact .contact-content .img{
+  width: 50%;
+  text-align: center;
+}
+.main-contact .contact-content .img img{
+  width: 80%;
+}
+#contact-form{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em 1.5em 1em 1.5em;
+  margin: 0 auto;
+}
+#contact-form span{
+  font-size: 0.9em;
+  font-weight: bold;
+  
+}
+#contact-form input, #contact-form textarea{
+  border: 0;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  background: transparent;
+  transition: 0.3s;
+}
+#contact-form input:focus, #contact-form textarea:focus{
+  outline: none;
+  border-bottom: 1px solid #46b5d1;
+}
+#contact-form input{
+  height: 2em;
+}
+#contact-form .input-1{
+  width: 50%;
+}
+#contact-form .input-1 input{
+  width: 90%;
+}
+#contact-form .input-2{
+  width: 100%;
+}
+#contact-form .input-2 input, #contact-form .input-2 textarea{
+  width: 95%;
+}
+#contact-form #submit{
+  border: 0;
+  width: 8em;
+  height: 2em;
+  font-weight: bold;
+  color: white;
+  border-radius: 15px;
+  background: #46b5d1;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#contact-form #submit:hover{
+  background: rgba(69, 179, 206, 0.555);
+}
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .main-content .content-box {
     flex-wrap: wrap !important;

@@ -33,7 +33,6 @@
         </div>                   
         <div class="show-information">
             <?php
-                $products = $productDAO->getAllProductsWithoutAvailable();
                 foreach ($products as $product) {
             ?>
             <div class="product-information">

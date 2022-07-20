@@ -36,7 +36,6 @@
         
         <div class="show-information">
             <?php
-                $users = $userDAO->getAllUsers();
                 foreach ($users as $user) {
             ?>
             <div class="information">
