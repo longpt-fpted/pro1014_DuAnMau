@@ -108,6 +108,4 @@
     </div>
 </div>
 
-<?php 
-    include('/xampp/htdocs/pro1014_DuAn/sources/View/admin/footer.php') 
-?>
+<?php include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; ?>

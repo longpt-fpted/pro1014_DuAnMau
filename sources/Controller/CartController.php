@@ -5,6 +5,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 
 $productDAO = new ProductDAO();
 $userDAO = new UserDAO();
@@ -160,6 +161,7 @@ function minusProductFromCart($productID) {
 }
 function checkout($userID) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
+    $notifyDAO = new NotifyDAO();
 
     $resp = [];
     $user = null;
@@ -181,10 +183,14 @@ function checkout($userID) {
                 $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
                 $user->withdrawCurrency($totalPrice);
                 $userDAO->widthdraw($totalPrice, $user->getID());
+                $notifyDAO->createNotifyToUser($user->getID(), 2, $order->getID());
                
                 foreach ($orderdetails as $orderdetail) {
                     $productDAO->updateProductSell($orderdetail->getProductID());
+                    $notifyDAO->createNotifyToUser($userID, 1, $orderdetail->getProductID());
                 }
+
+
                 // Send mail...
                
                 $resp['status'] = 'success';

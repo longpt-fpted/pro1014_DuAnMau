@@ -4,13 +4,14 @@ class Feedback {
     private $productID;
     private $text;
     private $rating;
-
-    public function __construct($userID, $productID, $text, $rating)
+    private $date;
+    public function __construct($userID, $productID, $text, $rating, $date)
     {
         $this->userID = $userID;
         $this->productID = $productID;
         $this->text = $text;
         $this->rating = $rating;
+        $this->date = $date;
     }
     public function getUserID() {
         return $this->userID;
@@ -23,6 +24,9 @@ class Feedback {
     }
     public function getRating() {
         return $this->rating;
+    }
+    public function getDate() {
+        return $this->date;
     }
 }
 ?>

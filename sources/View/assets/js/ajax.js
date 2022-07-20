@@ -93,7 +93,6 @@ function removeProductFromCart(id) {
         }
     })
 }
-
 function checkout(userID) {
     if(userID == false) {
         displayNotify('warning', `Vui lòng đăng nhập để thực hiện giao dịch này!`);
@@ -142,7 +141,6 @@ function checkout(userID) {
         })
     }
 }
-
 function addToFavorite(userID, productID) {
     if(userID == false) {
         displayNotify('warning', `Vui lòng đăng nhập để thực hiện chức năng này!`);
@@ -195,6 +193,49 @@ function removeProductFromFavorite(userID, productID) {
             default:
                 break;
         }
-        console.log(res);
+    })
+}
+
+function removeNotify(id) {
+    let data = `nid=${id}&method=remove`;
+    $.ajax({
+        url: '../Controller/NotifyController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Xoá thành công thông báo!`);
+                break;
+            default:
+                break;
+        }
+    })
+}
+
+function submitFeedback(event) {
+    event.preventDefault();
+    let data = $('#feedback-container').serialize()+"&method=submit";
+
+    $.ajax({
+        url: '../Controller/FeedbackController.php',
+        type: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi!`);
+                closeFeedbackPanel();
+                break;
+            case 'fail':
+                displayNotify('warning', `Xảy ra lỗi trong quá trình đánh giá! Vui lòng liên hệ với ban quản lí về trường hợp này!`);
+                closeFeedbackPanel();
+                break;
+            default:
+                break;
+        }
     })
 }

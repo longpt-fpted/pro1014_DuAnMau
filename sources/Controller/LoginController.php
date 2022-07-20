@@ -60,6 +60,7 @@
 
         return $resp;
     }
+
     switch ($method) {
         case 'login':
             echo json_encode(login($username, $password));

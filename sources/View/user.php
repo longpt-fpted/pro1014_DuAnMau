@@ -45,6 +45,7 @@
                 </div>
             </div>
         </article>
+        
         <?php
             include('./header.php');
             $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
@@ -52,9 +53,28 @@
             $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
 
             $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
-
             
         ?>
+        <article class="modal" id="feedback-modal">
+            <div class="modal-container">
+                <div class="modal-head" style="border: none; padding-bottom: 0;">
+                    <button class="modal-close" id="feedback-modal--close">
+                        <i class="fal fa-times-circle"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" class="form-edit" id="feedback-container">
+                        <input type="text" name="uid" value="<? echo $user->getID(); ?>" hidden>
+                        <div class="product-feedback__box" id="feedback-form">
+                            
+                        </div>
+                        <button class="submit" id="feedback-submit" onclick="submitFeedback(event)">
+                            Xác nhận
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </article>
         <section class="main-content">
             <section class="content-container">
                 <section class="content-box">
@@ -281,7 +301,7 @@
                                         </div>
                                         <div class="news-box__foot">
                                             <a href="./product.php?id=<? echo $product->getID(); ?>" class="method">Xem chi tiết</a>
-                                            <a href="#" class="method">Xoá</a>
+                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
                                     <? } else if($notify->getType() == 1) { 
@@ -308,13 +328,11 @@
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a href="#" class="method">Xem chi tiết</a>
-                                            <button class="method">Chỉnh sửa</button>
-                                            <a href="#" class="method">Xoá</a>
+                                            <a class="method" onclick="displayFeedbackBox('<? echo $product->getName(); ?>', '<? echo $product->getImg(); ?>', <? echo $product->getID(); ?>);">Xem chi tiết</a>
                                         </div>
                                     </article>
                                     <? } else if($notify->getType() == 2) { 
-                                        $order = $orderDAO->getOrderByID(12);
+                                        $order = $orderDAO->getOrderByID($notify->getTypeID());
                                     ?>
                                     <article class="news-box">
                                         <div class="news-box__head">
@@ -337,7 +355,7 @@
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a href="#" class="method">Xoá</a>
+                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
                                     <? } ?>
@@ -432,10 +450,8 @@
                     }
                 });
             })
-
-
             loadFavorite();
-            
+
         </script>
         <script src="./assets/js/userModal.js"></script>
         <?php include('./footer.php') ?>

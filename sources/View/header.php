@@ -251,7 +251,11 @@ $_SESSION['cart'] = array_map(function($od) {
                                         Thông tin
                                     </a>
                                 </li>
-
+                                <li class="category--item">
+                                    <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=3" class="category--title">
+                                        Thông báo <span class="tag notify-tag"><? echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>
+                                    </a>
+                                </li>
                                 <li class="category--item">
                                     <a href="./cart.php?id=<? echo $user->getID(); ?>" class="category--title">
                                         Giỏ hàng

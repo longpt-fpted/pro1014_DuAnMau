@@ -9,5 +9,8 @@ class Utils {
     public function objectToArrayConvert($object) {
         return (array) $object;
     }
+    public function contentDecode($content) {
+        return str_replace("+"," ",html_entity_decode($content));
+    }
 }
 ?>

@@ -19,7 +19,7 @@ function addProductToFavorite($userID, $productID) {
         $resp['status'] = $favoriteDAO->createNewFavorite($userID, $productID) ? 'success' : 'fail';
         $pd = $productDAO->getProductByID($productID);
 
-        $fav = $favoriteDAO->getFavoriteByUserAndProduct($userID, $productID);
+        $fav = $favoriteDAO->getFavoritesByUserAndProduct($userID, $productID);
         $resp['product'] = ['uid' => $userID,'pid' => $pd->getID(), 'name' => $pd->getName(), 'totalPrice' => $pd->getTotalPrice(), 'price' => $pd->getPrice(), 'date' => $fav->getDate(), 'img' => $pd->getImg()];
     } else {
         $resp['status'] = 'contained';

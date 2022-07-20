@@ -61,7 +61,7 @@
                 } else return false;
             }
         }
-        public function getFavoriteByUserAndProduct($userID, $productID) {
+        public function getFavoritesByUserAndProduct($userID, $productID) {
             if($this->database->connect_error) {
                 return false;
             } else {
@@ -76,5 +76,28 @@
                 } else return false;
             }
         }
+        public function getFavoritesByProductID($productID) {
+            if($this->database->connect_error) {
+                return false;
+            } else {
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`product_id` = ?");
+
+                $query->bind_param("s", $productID);
+
+                if($query->execute()) {
+                    $result = $query->get_result();
+                    if($result->num_rows > 0) {
+                        $favorites = [];
+                        while($row = $result->fetch_assoc()) {
+                            $favorite = new Favorite($row['user_id'], $row['product_id'], $row['fdate']);
+                            $favorites[] = $favorite;
+                        }
+
+                        return $favorites;
+                    } else return false;
+                } else return false;
+            }
+        }
     }
+    
 ?>

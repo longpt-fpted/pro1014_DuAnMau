@@ -1,10 +1,14 @@
 <?php
     include('./header.php');
 
+    
     $id = isset($_GET['id']) ? $_GET['id'] : 'error';
-
+    
     
     if($id !== 'error') {
+        $newestProduct = $productDAO->getNewestProduct($_GET['id']);
+
+
         $product = $productDAO->getProductByID($id);
         $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
         $productDAO->updateProductView($product->getID());

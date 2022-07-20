@@ -1,6 +1,6 @@
 <?php
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
+include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php';
+// include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()
@@ -115,7 +115,7 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function getAllProductWithoutAvailable() {
+    public function getAllProductsWithoutAvailable() {
         if($this->database->connect_error) {
             return false;
         } else {
@@ -214,6 +214,19 @@ class ProductDAO {
             return $query->execute();
         }
     }
+    public function isProductExist($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`id` = ?");
+            $query->bind_param('s', $id);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
     public function isGameExist($name) {
         if($this->database->connect_error) {
             return false;
@@ -238,6 +251,33 @@ class ProductDAO {
             }
             else return false;
         }
+    }
+    public function insertNewProduct($product) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("INSERT INTO `product`(`cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `view`, `sell_count`, `is_available`) VALUES (?, ?, ?, ?, 0, ?, 0, 0, 1)");
+            $cate = $product->getCateID();
+            $name = $product->getName();
+            $price = $product->getPrice();
+            $sale = $product->getSale();
+            $img = $product->getImg();
+
+            $query->bind_param('sssss', $cate, $name, $price, $sale, $img);
+            return $query->execute();
+        }
+    }
+    public function deleteProductByID($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('UPDATE `product` SET `is_available` = 0 WHERE `product`.`id` = ? AND `product`.`is_available` = 1');
+            $query->bind_param('s', $id);
+            return $query->execute();
+        }  
+    }
+    public function getNewestProduct() {
+
     }
 }
 ?>
