@@ -11,8 +11,8 @@
     $user->setEmail($email);
     
     $userDAO->UserChangeEmail($email,$id);
-    var_dump($user);
-    var_dump($id);
+    //var_dump($user);
+    //var_dump($id);
     header("location: ../View/user.php");
     
 

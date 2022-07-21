@@ -96,6 +96,9 @@ $_SESSION['cart'] = array_map(function($od) {
             left: 0,
             total: 0,
         }
+        function showCart() {
+            console.log(<?php  echo (json_encode($_SESSION['cart'])) ?>);
+        }
 
     </script>
     <script src="./assets/js/main.js"></script>
@@ -254,6 +257,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                         Thông tin
                                     </a>
                                 </li>
+
                                 <li class="category--item">
                                     <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=3" class="category--title">
                                         Thông báo <span class="tag notify-tag"><? echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>

@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-
+    <script src="/pro1014_DuAn/sources/View/assets/js/main.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    
 
     <title>SB Admin 2 - Login</title>
 
@@ -42,15 +41,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="" method="post" class="user" id="admin-login-form">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="Admin Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -59,16 +55,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        <input  type="submit" name="login" id="login-submit" value="Login">
                                     </form>
                                     <hr>
                                     <div class="text-center">
@@ -96,6 +83,34 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script>
+            document.querySelector('#login-submit').addEventListener('click', (e) => {
+                e.preventDefault();
+                let data = $('#admin-login-form').serialize()+"&method=login";
+                $.ajax({
+                    url: '/pro1014_DuAn/sources/Controller/LoginAdminController.php',
+                    type: 'POST',
+                    data: data,
+                }).done(res => {
+                    res = JSON.parse(res);
+                    console.log(res);
+                    switch (res.status) {
+                        case 'success':
+                            displayNotify('success', 'Đăng nhập thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                            setTimeout(function() {
+                                window.location = '/pro1014_DuAn/sources/View/admin';
+                            }, 2500)
+                            break;
+                        case 'wrong-password':
+                            displayNotify('warning', 'Đăng nhập thất bại! Sai tên tài khoản hoặc mật khẩu!');
+                            break;
+                        case 'user-not-exist':
+                            displayNotify('warning', 'Không tồn tại tên tài khoản! Bạn có muốn đăng kí không ?');
+                            break;
+                    }
+                })
+            })
+        </script>
 </body>
 
 </html>

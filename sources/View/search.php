@@ -18,28 +18,39 @@
             <div class="information-filter">
                 <h>Thể loại</h><br>
                 <select name="category" id="category">
-                    <option value="Tất cả">Tất cả</option>
-                    <? foreach($cates as $cate) {?>
+                    <option value="All">All</option>
+                    <?php/* foreach($cates as $cate) {?>
                         <option value="<? echo $cate->getName(); ?>"><? echo $cate->getName(); ?></option>
-                    <? } ?>
+                    <? } */?>
+                    <option value="Action">Action</option>
+                    <option value="FPS">FPS</option>
+                    <option value="Video Production">Video Production</option>
+                    <option value="Simulation">Simulation</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Anthem">Anthem</option>
+                    <option value="Origin">Origin</option>
+                    <option value="Acc Game">Acc Game</option>
+                    <option value="3D">3D</option>
+                    <option value="Ubisoft">Ubisoft</option>
+                    <option value="RPG">RPG</option>
                 </select>
             </div>
             <div class="information-filter">
                 <h>Mức giá</h><br>
-                <input id="min-price" default="0" name="min-price" type="number" step="10000" min="0" placeholder="Từ">
+                <input type="number" id="min-price" name="min-price"  step="10000" min="0" value="0" placeholder="Từ">
                 <h>-</h>
-                <input id="max-price" default="50000000" name="max-price" type="number" step="10000" min="0" placeholder="Đến">
+                <input type="number" id="max-price" name="max-price"  step="10000" min="0" value="50000000" placeholder="Đến">
             </div>
             <div class="information-filter">
                 <h>Sắp xếp</h><br>
                 <select name="sort" id="sort">
-                    <option value="Mặc định">Mặc định</option>
-                    <option value="Mới cập nhật">Mới cập nhật</option>
-                    <option value="Bán chạy nhất">Bán chạy nhất</option>
-                    <option value="Giá thấp đến cao">Giá thấp đến cao</option>
-                    <option value="Giá cao đến thấp">Giá cao đến thấp</option>
-                    <option value="Từ A - Z">Từ A - Z</option>
-                    <option value="Từ Z - A">Từ Z - A</option>
+                    <option value="Default">Mặc định</option>
+                    <option value="NewUpdate">Mới cập nhật</option>
+                    <option value="HighSale">Bán chạy nhất</option>
+                    <option value="PriceIncrease">Giá thấp đến cao</option>
+                    <option value="PriceDecrease">Giá cao đến thấp</option>
+                    <option value="FromA-Z">Từ A - Z</option>
+                    <option value="FromZ-A">Từ Z - A</option>
                 </select>
             </div>
             <button type="submit" id="btn-filter">Lọc</button><br>
