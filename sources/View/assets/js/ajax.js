@@ -1,5 +1,6 @@
 function addProductToCart(id) {
     let data = `pid=${id}&method=add`;
+    
     $.ajax({
         url: `../Controller/CartController.php`,
         method: "GET",
@@ -214,16 +215,21 @@ function removeNotify(id) {
         }
     })
 }
-
 function submitFeedback(event) {
     event.preventDefault();
     let data = $('#feedback-container').serialize()+"&method=submit";
-
     $.ajax({
         url: '../Controller/FeedbackController.php',
         type: 'POST',
         data: data,
     }).done(res => {
+        /*
+            {
+                url: '../Controller/FeedbackController.php',
+                type: 'POST',
+                data: data,
+            }
+        */
         res = JSON.parse(res);
         switch (res.status) {
             case 'success':
@@ -233,6 +239,54 @@ function submitFeedback(event) {
             case 'fail':
                 displayNotify('warning', `Xảy ra lỗi trong quá trình đánh giá! Vui lòng liên hệ với ban quản lí về trường hợp này!`);
                 closeFeedbackPanel();
+                break;
+            default:
+                break;
+        }
+    })
+}
+function comment(event) {
+    event.preventDefault();
+    let data = $('#comment-form').serialize()+"&method=comment";
+    $.ajax({
+        url: '../Controller/CommentController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'login':
+                displayNotify('warning', `Bạn cần đăng nhập để thực hiện chức năng này!`);
+                setTimeout(function() {
+                    window.location = 'login.php';
+                }, 2500)
+                break;
+            case 'success':
+                displayNotify('success', `Bình luận thành công!`);
+                break;
+            default:
+                break;
+        }
+    })
+}
+function reply(event) {
+    event.preventDefault();
+    let data = $('#reply-form').serialize()+"&method=reply";
+    $.ajax({
+        url: '../Controller/CommentController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'login':
+                displayNotify('warning', `Bạn cần đăng nhập để thực hiện chức năng này!`);
+                setTimeout(function() {
+                    window.location = 'login.php';
+                }, 2500)
+                break;
+            case 'success':
+                displayNotify('success', `Bình luận thành công!`);
                 break;
             default:
                 break;

@@ -1292,6 +1292,30 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-content .content-container .content-box .input-comment-box form button:hover {
   cursor: pointer;
 }
+.main-content .content-container .content-box .comment-box-replies form {
+  margin-top: 1.2em;
+  width: 100%;
+  display: flex;
+  gap: 1.5em;
+  justify-content: end;
+}
+.main-content .content-container .content-box .comment-box-replies form textarea {
+  display: block;
+  width: 100%;
+}
+.main-content .content-container .content-box .comment-box-replies form button {
+  padding: 0.75em 1.75em;
+  border: 2px transparent solid;
+  border-radius: 1em;
+  background-color: #5680e9;
+  color: white;
+  font-size: 0.9em;
+  transition: all 0.5s;
+}
+.main-content .content-container .content-box .comment-box-replies form button:hover {
+  cursor: pointer;
+}
+
 .main-content .content-container .content-box .comment-box {
   display: flex;
   width: 100%;
@@ -1303,6 +1327,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   gap: 1.25em;
   align-items: center;
   margin: 0.75em;
+  width: 100%;
 }
 .main-content .content-container .content-box .comment-box .comment-box-main .comment-user-avatar {
   border-radius: 50%;
@@ -1316,6 +1341,13 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
+}
+.main-content .content-container .content-box .comment-box .comment-box-main .comment-detail__ask {
+  text-transform: lowercase;
+  width: 100%;
+}
+.main-content .content-container .content-box .comment-box .comment-box-main .comment-detail__ask::first-letter {
+  text-transform: capitalize;
 }
 .main-content .content-container .content-box .comment-box .comment-box-main .comment-detail .comment-detail__date {
   color: rgba(0, 0, 0, 0.5);
@@ -1344,6 +1376,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 }
 .main-content .content-container .content-box .comment-box .comment-box-replies {
   margin-left: 10em;
+  width: 100%;
 }
 .main-content .content-container .content-box .user-controller {
   align-self: flex-start;

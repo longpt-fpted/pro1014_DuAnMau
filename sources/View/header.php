@@ -1,24 +1,23 @@
 <?php 
 session_start();
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "../Utils/Utils.php";
-include "../Model/DAO/UserDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/CategoryDAO.php";
-include "../Model/DAO/OrderDAO.php";
-include "../Model/DAO/OrderDetailDAO.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CommentDAO.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include "../Utils/Utils.php";
+// include "../Model/DAO/UserDAO.php";
+// include "../Model/DAO/ProductDAO.php";
+// include "../Model/DAO/CategoryDAO.php";
+// include "../Model/DAO/OrderDAO.php";
+// include "../Model/DAO/OrderDetailDAO.php";
 
 
 $utils = new Utils();
@@ -29,16 +28,19 @@ $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
 $favoriteDAO = new FavoriteDAO();
 $notifyDAO = new NotifyDAO();
-
+$feedbackDAO = new FeedbackDAO();
+$commentDAO = new CommentDAO();
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
+
+$favorites = isset($_SESSION['user']) ? $favoriteDAO->getAllFavoritesByUserID($_SESSION['user']) : [];
+
 
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
 
 
-    $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
 
     $favorites = array_map(function($fav) {
         global $productDAO, $user;
@@ -95,9 +97,6 @@ $_SESSION['cart'] = array_map(function($od) {
             userMoney: <?php  echo isset($_SESSION['user']) ? $user->getCurrency() : 0 ?>,
             left: 0,
             total: 0,
-        }
-        function showCart() {
-            console.log(<?php  echo (json_encode($_SESSION['cart'])) ?>);
         }
 
     </script>

@@ -78,6 +78,12 @@ class User {
     public function getRoleID() {
         return $this->role_id;
     }
+    public function setAvatar($newAvatar) {
+        $this->avatar = $newAvatar;
+    }
+    public function getAvatar() {
+        return $this->avatar;
+    }
     public function __toString()
     {
         return $this->id." - ".$this->role_id." - ".$this->username." - ".$this->password." - ".$this->email." - ".$this->fullname." - ".$this->phone." - ".$this->currency;

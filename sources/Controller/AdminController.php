@@ -10,7 +10,7 @@ function updateProduct($product) {
     $resp = [];
 
     if($productDAO->isProductExist($product->getID())) {
-        $resp['status'] = $productDAO->updateProduct($product) ? 'success' : 'fail';
+        // $resp['status'] = $productDAO->updateProduct($product) ? 'success' : 'fail';
         if($product->getSale() != 0)  
             $resp['send-notify'] = sendSaleOffNotifyToUsers($product->getID())['status'];
     }

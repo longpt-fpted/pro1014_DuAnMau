@@ -45,6 +45,10 @@ function addProductToCart($productID) {
         }
         
         $resp['status'] = 'success';
+
+        /*
+            ['status' => 'success', ]
+        */
         $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice() * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
 
 
