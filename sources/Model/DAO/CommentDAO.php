@@ -23,11 +23,21 @@ class CommentDAO {
             return $query->execute();
         }
     }
+    public function removeCommentByID($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("DELETE FROM `comment` WHERE `comment`.`id` = ?");
+            $query->bind_param('s', $id);
+
+            return $query->execute();
+        }
+    }
     public function getAllCommentsForProduct($productID) {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ? AND `comment`.`parent_id` = 0");
             $query->bind_param('s', $productID);
 
             if($query->execute()) {
@@ -61,6 +71,39 @@ class CommentDAO {
                         $comments[] = $comment;
                     }
                     return $comments;
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getReplyCommentByID($commentID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`id` = ?");
+            $query->bind_param('s', $commentID);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $comment = $result->fetch_assoc();
+                    return new Comment($comment['id'], $comment['user_id'], $comment['product_id'], $comment['text'], $comment['parent_id'], $comment['fdate']);
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getNewestReplyComment($userID, $productID, $parentID) {
+        // ; 
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`user_id` = ? AND `comment`.`product_id` = ? AND `comment`.`parent_id` = ? ORDER BY `comment`.`id` DESC");
+            $query->bind_param('sss', $userID, $productID, $parentID);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $comment = $result->fetch_assoc();
+                    return new Comment($comment['id'], $comment['user_id'], $comment['product_id'], $comment['text'], $comment['parent_id'], $comment['fdate']);
                 } else return false;
             } else return false;
         }

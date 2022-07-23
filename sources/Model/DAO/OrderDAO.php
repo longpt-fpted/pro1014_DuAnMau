@@ -28,6 +28,10 @@ class OrderDAO {
         if($this->database->connect_error) {
             return false;
         } else {
+            if(!$this->isExistUnpayOrder($userID)) {
+                $date = date("Y-m-d");
+                $this->createOrderForUserID($userID, $date);
+            }
             $query = $this->database->prepare("SELECT * FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 0");
             $query->bind_param('s', $userID);
 

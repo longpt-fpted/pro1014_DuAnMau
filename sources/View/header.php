@@ -40,6 +40,7 @@ if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
 
+    
 
 
     $favorites = array_map(function($fav) {
@@ -57,7 +58,7 @@ $_SESSION['cart'] = array_map(function($od) {
     if(isset($_SESSION['user'])) {
         $p = $productDAO->getProductByID($od->getProductID());
         return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
-    } else{
+    } else {
         return $od;  
     } 
 }, $_SESSION['cart']);

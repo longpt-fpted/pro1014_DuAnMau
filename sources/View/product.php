@@ -155,12 +155,14 @@
                         </form>
                     </section>
                 </section>
-                <section class="content-box">
+                <section class="content-box" style="flex-wrap: wrap;">
                     <? 
                         if($productComments != 'error') {
+                            $count = 0;
                         foreach ($productComments as $productComment) {
                             $parentComment = $userDAO->getUserByID($productComment->getUserID());
-                            $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0 ? $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) : 'error';
+                            if($commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0)
+                                $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getID());
                     ?>
                         <article class="comment-box">
                             <div class="comment-box-main">
@@ -180,16 +182,23 @@
                                     <button class="comment-detai__answer-btn" id="reply-btn">
                                         Trả lời
                                     </button>
-                                    
+                                    <? 
+                                        if(isset($_SESSION['user']) && $_SESSION['user'] == $parentComment->getID()) {
+                                    ?>
+                                    <button class="comment-detai__answer-btn" id="remove-comment-btn">
+                                        Xoá bình luận
+                                    </button>
+                                    <? } ?>
                                 </div>
                             </div>
                             <div class="comment-box-replies">
                                 <form id="reply-form" style="display: none">
-                                    <input type="text" name="comment-parent" value="<? echo $parentComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-userGet" value="<? echo $parentComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-parent" value="<? echo $productComment->getID(); ?>" hidden>
                                     <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
                                     <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
                                     <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
-                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'))">
+                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <? echo $count; ?>)">
                                         <i class="fal fa-paper-plane"></i>
                                         Gửi bình luận
                                     </button>
@@ -197,6 +206,7 @@
                                 <? 
                                     if($replyComments != 'error') {
                                         foreach ($replyComments as $reply) {
+                                            if($reply->getParentID() == $productComment->getID()) {
                                             $userReply = $userDAO->getUserByID($reply->getUserID());
                                 ?>
                                 <article class="comment-box">
@@ -214,13 +224,23 @@
                                             <div class="comment-detail__ask">
                                                 <? echo $reply->getText(); ?>
                                             </div>
+                                            <? 
+                                        if(isset($_SESSION['user']) && $_SESSION['user'] == $userReply->getID()) {
+                                        ?>
+                                            <button class="comment-detai__answer-btn" id="remove-comment-btn" onclick="removeComment(new Event('click'), <? echo $_SESSION['user'] ?>, <? echo $reply->getID(); ?>)">
+                                                Xoá bình luận
+                                            </button>
+                                        <? } ?>
                                         </div>
                                     </div>
                                 </article>
                                 <? }} ?>
                             </div>
                         </article>
-                    <?  }} else { ?>
+                    <?  }
+                            $count++;
+                    }
+                } else { ?>
                         <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có bình luận nào!</h3>
                     <?  } ?>
 
@@ -229,7 +249,14 @@
         <?php include('./footer.php') ?>
 
         <script>
-            $('#reply-btn').click((event) => {
-                $('#reply-form').toggle();
+            document.querySelectorAll('#reply-btn').forEach((element, index) => {
+                element.addEventListener('click', event => {
+                    let replyForm = document.querySelectorAll('.comment-box-replies > #reply-form')[index];
+
+                    if(replyForm.style.display == 'none') 
+                        replyForm.style.display = 'flex';
+                    else 
+                        replyForm.style.display = 'none';
+                });
             })
         </script>

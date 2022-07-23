@@ -22,9 +22,8 @@
                             $favorite = new Favorite($row['user_id'], $row['product_id'], $row['fdate']);
                             $favorites[] = $favorite;
                         }
-
                         return $favorites;
-                    } else return false;
+                    } else return [];
                 } else return false;
             }
         }

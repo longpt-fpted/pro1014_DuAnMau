@@ -215,6 +215,16 @@ function removeNotify(id) {
         }
     })
 }
+function sendNotify(userID, commentID) {
+    let data = `uid=${userID}&cid=${commentID}&method=cmt`;
+    $.ajax({
+        url: '../Controller/NotifyController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+    })
+}
 function submitFeedback(event) {
     event.preventDefault();
     let data = $('#feedback-container').serialize()+"&method=submit";
@@ -223,13 +233,6 @@ function submitFeedback(event) {
         type: 'POST',
         data: data,
     }).done(res => {
-        /*
-            {
-                url: '../Controller/FeedbackController.php',
-                type: 'POST',
-                data: data,
-            }
-        */
         res = JSON.parse(res);
         switch (res.status) {
             case 'success':
@@ -269,9 +272,9 @@ function comment(event) {
         }
     })
 }
-function reply(event) {
+function reply(event, index) {
     event.preventDefault();
-    let data = $('#reply-form').serialize()+"&method=reply";
+    let data = $($('form[id=reply-form]')[index]).serialize()+"&method=reply";
     $.ajax({
         url: '../Controller/CommentController.php',
         method: 'POST',
@@ -287,7 +290,29 @@ function reply(event) {
                 break;
             case 'success':
                 displayNotify('success', `Bình luận thành công!`);
+                console.log(res);
+                    // if(res.user)
+                    sendNotify(res.user, res.cid);
                 break;
+            default:
+                break;
+        }
+    })
+}
+function removeComment(event, userID, commentID) {
+    event.preventDefault();
+    let data = `uid=${userID}&cid=${commentID}&method=remove`;
+    $.ajax({
+        url: '../Controller/CommentController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Xoá bình luận thành công!`);
+                break;
+        
             default:
                 break;
         }
