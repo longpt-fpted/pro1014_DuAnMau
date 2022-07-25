@@ -45,7 +45,7 @@ function remove($commentID, $userID) {
         $commentDAO = new CommentDAO();
         $resp['status'] = $commentDAO->removeCommentByID($commentID) ? 'success' : 'fail'; 
     }
-
+    
     return $resp;
 }
 switch ($method) {

@@ -144,7 +144,7 @@
                         <h3 class="input-comment-box-title">
                             Gửi bình luận
                         </h3>
-                        <form id="comment-form">
+                        <form id="comment-form" >
                             <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
                             <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
                             <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>

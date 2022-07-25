@@ -67,7 +67,6 @@ class User {
     public function withdrawCurrency($amount) {
         if($this->currency > $amount && $amount > 0) {
             $this->currency -= $amount;
-            
         }
     }
     public function depositCurrency($amount) {
@@ -80,9 +79,6 @@ class User {
     }
     public function setAvatar($newAvatar) {
         $this->avatar = $newAvatar;
-    }
-    public function getAvatar() {
-        return $this->avatar;
     }
     public function __toString()
     {

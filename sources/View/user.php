@@ -98,6 +98,12 @@
                             </p>
                         </article> 
                         <article class="user-method">
+                            <i class="fal fa-history"></i>
+                            <p class="user-method--title">
+                                Lịch sử giao dịch
+                            </p>
+                        </article> 
+                        <article class="user-method">
                             <i class="fal fa-newspaper"></i>
                             <p class="user-method--title">
                                 Thông báo của tôi
@@ -222,6 +228,51 @@
                                     <?php  } ?>
                                 </div>
                             </article>
+                        </article>
+                        <article class="user-box">
+                            <div class="user-box__title">
+                                Thông tin thanh toán
+                            </div>
+                            <div class="user-box__dashboard">
+                                <section class="cards">
+                                    <article class="card">
+                                        <div class="card-thumbnail">
+                                            <img src="./assets/images/momo.png" alt="card-thumbnail">
+                                        </div>
+                                        <div class="card-detail">
+                                            <div class="card-owner">
+                                                Long P. Thien
+                                            </div>
+                                            <div class="card-methods">
+                                                <button class="method">
+                                                    Thay đổi
+                                                </button>
+                                                <button class="method">
+                                                    Xoá
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="card">
+                                        <div class="card-thumbnail">
+                                            <img src="./assets/images/paypal.png" alt="card-thumbnail">
+                                        </div>
+                                        <div class="card-detail">
+                                            <div class="card-owner">
+                                                Long P. Thien
+                                            </div>
+                                            <div class="card-methods">
+                                                <button class="method">
+                                                    Thay đổi
+                                                </button>
+                                                <button class="method">
+                                                    Xoá
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </section>
+                            </div>
                         </article>
                         <article class="user-box">
                             <div class="user-box__title">

@@ -14,23 +14,23 @@
     //$productCate = $productDAO->getProductByCateID($id);
     //header("location: ../View/search.php");
     if($category == "All" and $sort == "Default"){
-        $sort = $productDAO->sortAllProduct($min,$max);
+        // $sort = $productDAO->sortAllProduct($min,$max);
     } else if ($category == "All" and $sort == "PriceIncrease"){
-        $sort = $productDAO->sortAllProductPriceIncrease($min,$max);
+        // $sort = $productDAO->sortAllProductPriceIncrease($min,$max);
     } else if ($category == "All" and $sort == "PriceDecrease"){
-        $sort = $productDAO->sortAllProductPriceDecrease($min,$max);
+        // $sort = $productDAO->sortAllProductPriceDecrease($min,$max);
     } else if ($category == "All" and $sort == "FromA-Z"){
-        $sort = $productDAO->sortAllProductFromAToZ($min,$max);
+        // $sort = $productDAO->sortAllProductFromAToZ($min,$max);
     } else if ($category == "All" and $sort == "FromZ-A"){
-        $sort = $productDAO->sortAllProductFromZToA($min,$max);
+        // $sort = $productDAO->sortAllProductFromZToA($min,$max);
     } else if ($category == "All" and $sort == "HighSale"){
-        $sort = $productDAO->sortAllProductHighSale($min,$max);
+        // $sort = $productDAO->sortAllProductHighSale($min,$max);
     } else if ($category == "All" and $sort == "NewUpdate"){
-        $sort = $productDAO->sortAllProductNewUpdate($min,$max);
+        // $sort = $productDAO->sortAllProductNewUpdate($min,$max);
     } else if ($category != "All" and $sort == "PriceIncrease"){
         $cate = $cateDAO->getCategoryByName($category);
         $id = $cate->getID();
-        $sort = $productDAO->sortProductPriceIncrease($id,$min,$max);
+        // $sort = $productDAO->sortProductPriceIncrease($id,$min,$max);
     } else if ($category != "All" and $sort == "PriceDecrease"){
         $cate = $cateDAO->getCategoryByName($category);
         $id = $cate->getID();
@@ -54,7 +54,7 @@
     } else if ($category != "All" and $sort == "NewProduct"){
         $cate = $cateDAO->getCategoryByName($category);
         $id = $cate->getID();
-        $sort = $productDAO->sortProductNewProduct($id,$min,$max);
+        // $sort = $productDAO->sortProductNewProduct($id,$min,$max);
     } else return false;
         
     

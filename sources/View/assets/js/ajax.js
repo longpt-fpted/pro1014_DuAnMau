@@ -8,6 +8,7 @@ function addProductToCart(id) {
     }).done(res => {
         let isContain = false;
         res = JSON.parse(res);
+        console.log(res);
         displayNotify('success', `Thêm sản phẩm ${res.product.name} thành công`);
         if(carts.find(element => element.id == res.product.id)) {
             let index = carts.findIndex(element => element.id == res.product.id);    
@@ -32,7 +33,6 @@ function minusProductFromCart(id) {
         method: "GET",
         data: data,
     }).done((res) => {
-        
         res = JSON.parse(res);
         console.log(res);
         switch (res.status) {
@@ -136,7 +136,6 @@ function checkout(userID) {
                     break;
                 }
                 default: 
-                    console.log('nothing');
                     break;
             }
         })
@@ -156,10 +155,9 @@ function addToFavorite(userID, productID) {
             data: data,
         }).done(res => {
             res = JSON.parse(res);
-            console.log(res);
             switch (res.status) {
                 case 'success':
-                    displayNotify('success', `Thêm thành công sản phẩm ${res.product.nmame} vào danh sách yêu thích!`);
+                    displayNotify('success', `Thêm thành công sản phẩm ${res.product.name} vào danh sách yêu thích!`);
                     favorites.push(res.product);
                     break;
                 case 'contained':
@@ -221,6 +219,7 @@ function sendNotify(userID, commentID) {
         url: '../Controller/NotifyController.php',
         method: 'POST',
         data: data,
+        
     }).done(res => {
         res = JSON.parse(res);
     })
@@ -250,7 +249,7 @@ function submitFeedback(event) {
 }
 function comment(event) {
     event.preventDefault();
-    let data = $('#comment-form').serialize()+"&method=comment";
+    let data = $('#comment-form').serialize()+"&method=comment"; //userid=abc&asdfkjasdfzclkjasdf=adsfkjasldfj&
     $.ajax({
         url: '../Controller/CommentController.php',
         method: 'POST',
@@ -290,8 +289,6 @@ function reply(event, index) {
                 break;
             case 'success':
                 displayNotify('success', `Bình luận thành công!`);
-                console.log(res);
-                    // if(res.user)
                     sendNotify(res.user, res.cid);
                 break;
             default:

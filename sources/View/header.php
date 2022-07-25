@@ -39,10 +39,6 @@ $favorites = isset($_SESSION['user']) ? $favoriteDAO->getAllFavoritesByUserID($_
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
-
-    
-
-
     $favorites = array_map(function($fav) {
         global $productDAO, $user;
         $pd = $productDAO->getProductByID($fav->getProductID());
@@ -99,7 +95,6 @@ $_SESSION['cart'] = array_map(function($od) {
             left: 0,
             total: 0,
         }
-
     </script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax.js"></script>
@@ -259,7 +254,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                 </li>
 
                                 <li class="category--item">
-                                    <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=3" class="category--title">
+                                    <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=4" class="category--title">
                                         Thông báo <span class="tag notify-tag"><? echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>
                                     </a>
                                 </li>
@@ -289,7 +284,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=6" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>

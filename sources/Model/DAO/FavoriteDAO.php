@@ -1,6 +1,6 @@
 <?php
-    // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Favorite.php";
-    include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Favorite.php";
+    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Favorite.php";
+    // include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Favorite.php";
     class FavoriteDAO {
         private $database;
         public function __construct()

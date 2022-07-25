@@ -1,7 +1,6 @@
 <?php
     include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
     //include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-
     // include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
     include "../Model/DAO/UserDAO.php";
 
