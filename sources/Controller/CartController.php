@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
@@ -12,7 +14,6 @@ $userDAO = new UserDAO();
 $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
 $mail = new Mail();
-session_start();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; 
@@ -27,29 +28,37 @@ function addProductToCart($productID) {
     if(isset($_SESSION['user'])) {
         $isContain = false;
         $user = $userDAO->getUserByID($_SESSION['user']);
+        $quantity = 1;
+        $index = 0;
         $order = $orderDAO->getUnpayOrderByUserID($user->getID());
         $orderdetails = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
-        
+        $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
         foreach($orderdetails as $orderdetail) {
             if($productID == $orderdetail->getProductID()) {
                 $orderdetail->addProduct();
                 $isContain = true;
                 $orderDetailDAO->addOrderDetailToOrder($order->getID(), $productID, $orderdetail->getQuantity(), true);
+                $quantity = $orderdetail->getQuantity();
+
                 break;
             }
+            $index++;
         }
         
         if($isContain == false) {
             $orderdetails[] = new OrderDetail($order->getID(), $product->getID(), $product->getTotalPrice());
             $orderDetailDAO->addOrderDetailToOrder($order->getID(), $productID, 1, false);
+            $_SESSION['cart'][] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice()  * $quantity, "fullprice" => $product->getPrice() * $quantity];
+
+        } else {
+            $_SESSION['cart'][$index] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice()  * $quantity, "fullprice" => $product->getPrice() * $quantity];
+            $resp['index'] = $_SESSION['cart'][$index];
         }
         
         $resp['status'] = 'success';
-        $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice() * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
+        $resp['product'] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $quantity, "price" => $product->getTotalPrice() * $quantity, "fullprice" => $product->getPrice() * $quantity];
 
 
-
-        $_SESSION['cart'][] = ["id" => $product->getID(), "name" => $product->getName(), "img" => $product->getImg(), "quantity" => $orderdetail->getQuantity(), "price" => $product->getTotalPrice()  * $orderdetail->getQuantity(), "fullprice" => $product->getPrice() * $orderdetail->getQuantity()];
     } else {
         $_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
         $isContain = false;
@@ -129,7 +138,6 @@ function minusProductFromCart($productID) {
         $index = 0;
         foreach($_SESSION['cart'] as $od) {
             if($od['id'] == $product->getID()) {
-                var_dump($od['quantity']);
                 if($od['quantity'] > 1) {
                     $od['quantity']--;
                     $quantity = $od['quantity'];
@@ -206,15 +214,20 @@ function checkout($userID) {
 switch ($method) {
     case 'add':
         echo json_encode(addProductToCart($productID));
+        session_write_close();
+        
         break;
     case 'remove':
         echo json_encode(removeProductFromCart($productID));
+        session_write_close();
         break;
     case 'minus':
         echo json_encode(minusProductFromCart($productID));
+        session_write_close();
         break;
     case 'checkout':
         echo json_encode(checkout($userID));
+        session_write_close();
         break;
     default:
         # code...

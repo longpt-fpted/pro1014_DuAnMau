@@ -1,5 +1,6 @@
 function addProductToCart(id) {
     let data = `pid=${id}&method=add`;
+    
     $.ajax({
         url: `../Controller/CartController.php`,
         method: "GET",
@@ -7,6 +8,7 @@ function addProductToCart(id) {
     }).done(res => {
         let isContain = false;
         res = JSON.parse(res);
+        console.log(res);
         displayNotify('success', `Thêm sản phẩm ${res.product.name} thành công`);
         if(carts.find(element => element.id == res.product.id)) {
             let index = carts.findIndex(element => element.id == res.product.id);    
@@ -31,7 +33,6 @@ function minusProductFromCart(id) {
         method: "GET",
         data: data,
     }).done((res) => {
-        
         res = JSON.parse(res);
         console.log(res);
         switch (res.status) {
@@ -135,7 +136,6 @@ function checkout(userID) {
                     break;
                 }
                 default: 
-                    console.log('nothing');
                     break;
             }
         })
@@ -155,10 +155,9 @@ function addToFavorite(userID, productID) {
             data: data,
         }).done(res => {
             res = JSON.parse(res);
-            console.log(res);
             switch (res.status) {
                 case 'success':
-                    displayNotify('success', `Thêm thành công sản phẩm ${res.product.nmame} vào danh sách yêu thích!`);
+                    displayNotify('success', `Thêm thành công sản phẩm ${res.product.name} vào danh sách yêu thích!`);
                     favorites.push(res.product);
                     break;
                 case 'contained':
@@ -214,11 +213,20 @@ function removeNotify(id) {
         }
     })
 }
-
+function sendNotify(userID, commentID) {
+    let data = `uid=${userID}&cid=${commentID}&method=cmt`;
+    $.ajax({
+        url: '../Controller/NotifyController.php',
+        method: 'POST',
+        data: data,
+        
+    }).done(res => {
+        res = JSON.parse(res);
+    })
+}
 function submitFeedback(event) {
     event.preventDefault();
     let data = $('#feedback-container').serialize()+"&method=submit";
-
     $.ajax({
         url: '../Controller/FeedbackController.php',
         type: 'POST',
@@ -239,12 +247,60 @@ function submitFeedback(event) {
         }
     })
 }
-
-function sort(event) {
+function comment(event) {
     event.preventDefault();
-    let data = $('#main-search').serialize()+"&method=sort";
+    let data = $('#comment-form').serialize()+"&method=comment"; //userid=abc&asdfkjasdfzclkjasdf=adsfkjasldfj&
     $.ajax({
-        url: '../Controller/SearchCateController.php',
+        url: '../Controller/CommentController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'login':
+                displayNotify('warning', `Bạn cần đăng nhập để thực hiện chức năng này!`);
+                setTimeout(function() {
+                    window.location = 'login.php';
+                }, 2500)
+                break;
+            case 'success':
+                displayNotify('success', `Bình luận thành công!`);
+                break;
+            default:
+                break;
+        }
+    })
+}
+function reply(event, index) {
+    event.preventDefault();
+    let data = $($('form[id=reply-form]')[index]).serialize()+"&method=reply";
+    $.ajax({
+        url: '../Controller/CommentController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'login':
+                displayNotify('warning', `Bạn cần đăng nhập để thực hiện chức năng này!`);
+                setTimeout(function() {
+                    window.location = 'login.php';
+                }, 2500)
+                break;
+            case 'success':
+                displayNotify('success', `Bình luận thành công!`);
+                    sendNotify(res.user, res.cid);
+                break;
+            default:
+                break;
+        }
+    })
+}
+function removeComment(event, userID, commentID) {
+    event.preventDefault();
+    let data = `uid=${userID}&cid=${commentID}&method=remove`;
+    $.ajax({
+        url: '../Controller/CommentController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -253,7 +309,7 @@ function sort(event) {
         
         switch (res.status) {
             case 'success':
-                displayNotify('success', `Đã lọc kết quả tìm kiếm`);
+                displayNotify('success', `Xoá bình luận thành công!`);
                 break;
             default:
                 break;

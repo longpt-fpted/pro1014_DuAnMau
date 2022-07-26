@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 20, 2022 at 03:28 AM
+-- Generation Time: Jul 26, 2022 at 03:56 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -59,12 +59,28 @@ INSERT INTO `category` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
   `user_id` int(6) NOT NULL,
   `product_id` int(6) NOT NULL,
   `text` text NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `user_id`, `product_id`, `text`, `parent_id`, `date`) VALUES
+(1, 1, 2, 'test bình luận đăng nhập', 0, '2022-07-20'),
+(3, 1, 2, 'thêm bình luận vào\r\n', 0, '2022-07-21'),
+(7, 1, 2, 'reply comment', 3, '2022-07-23'),
+(9, 2, 2, 'lại tiếp tục trả lời comment', 1, '2022-07-23'),
+(10, 2, 2, 'Test trả lời bình luận thêm 1 lần nữa', 1, '2022-07-23'),
+(11, 1, 2, 'Lại test trả lời bình luận thêm 1 lần nữa ', 1, '2022-07-23'),
+(12, 2, 2, ' Lại là test trả lời bình luận thêm 1 lần nữa ', 1, '2022-07-23'),
+(13, 1, 2, ' Lại là test trả lời bình luận thêm 1 lần nữa ', 1, '2022-07-23'),
+(14, 2, 2, ' Lại là test trả lời bình luận thêm 1 lần nữa ', 1, '2022-07-23');
 
 -- --------------------------------------------------------
 
@@ -104,7 +120,9 @@ INSERT INTO `favorite` (`user_id`, `product_id`, `date`) VALUES
 (1, 13, '2022-07-16'),
 (1, 40, '2022-07-16'),
 (1, 3, '2022-07-15'),
-(1, 4, '2022-07-15');
+(1, 4, '2022-07-15'),
+(1, 31, '2022-07-25'),
+(1, 27, '2022-07-25');
 
 -- --------------------------------------------------------
 
@@ -126,7 +144,7 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`user_id`, `product_id`, `text`, `rating`, `date`) VALUES
 (1, 17, 'tùm lum tùm la trong đây nè ba', 0, '2022-07-19'),
-(1, 34, 'game này rất là hay, đáng tiền để mua và trải nghiệm', 0, '2022-07-19'),
+(1, 34, 'game này rất là hay, đáng tiền để mua và trải nghiệm', 100, '2022-07-19'),
 (1, 35, 'Game này rất đáng sợ khi chơi một mình huhu', 40, '2022-07-20');
 
 -- --------------------------------------------------------
@@ -138,7 +156,7 @@ INSERT INTO `feedback` (`user_id`, `product_id`, `text`, `rating`, `date`) VALUE
 CREATE TABLE `Notify` (
   `id` int(6) NOT NULL,
   `user_id` int(6) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT 0 COMMENT '0 = product sale\r\n1 = product feedback\r\n2 = order done',
+  `type` int(1) NOT NULL DEFAULT 0 COMMENT '0 = product sale\r\n1 = product feedback\r\n2 = order done\r\n3 = comment',
   `type_id` int(6) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -183,7 +201,8 @@ INSERT INTO `order` (`id`, `user_id`, `price`, `is_pay`, `date`) VALUES
 (41, 1, 285000, 1, '2022-07-18'),
 (42, 1, 2503500, 1, '2022-07-18'),
 (43, 1, 1552000, 1, '2022-07-18'),
-(44, 1, 0, 0, '2022-07-18');
+(44, 1, 0, 0, '2022-07-18'),
+(45, 2, 0, 0, '2022-07-21');
 
 -- --------------------------------------------------------
 
@@ -249,7 +268,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating`, `img_url`, `view`, `sell_count`, `is_available`) VALUES
 (1, 2, 'Battlefield 4 - Origin', 500000, 5, 70, './assets/game/bf4.png', 2, 0, 1),
-(2, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 50, './assets/game/mhr.jpg', 1, 14, 1),
+(2, 1, 'MONSTER HUNTER RISE + Special DLC (Item Pack) (CD Key Steam)', 1410000, 54, 50, './assets/game/mhr.jpg', 91, 14, 1),
 (3, 3, 'VEGAS Pro 17 Edit Steam Edition', 5110000, 20, 45, './assets/game/vp17.jpg', 2, 0, 1),
 (4, 3, 'VEGAS Pro 16 Edit Steam Edition', 4491000, 10, 90, './assets/game/vp16.jpg', 0, 0, 1),
 (5, 3, 'VEGAS Pro 14 Edit Steam Edition', 3880000, 10, 100, './assets/game/vp14.jpg', 0, 0, 1),
@@ -260,7 +279,7 @@ INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating
 (10, 1, 'Call of Duty®: Black Ops III - Zetsubou No Shima Zombies Map', 178000, 0, 90, './assets/game/cod_zetsubou.jpg', 0, 0, 1),
 (11, 4, 'War Thunder - Black Friday 2021 Pack\r\n', 1978000, 10, 3, './assets/game/War Thunder - Black Friday 2021 Pack.jpg\n', 0, 0, 1),
 (12, 12, 'FINAL FANTASY VII REMAKE INTERGRADE', 1702000, 0, 0, './assets/game/FINAL FANTASY VII REMAKE INTERGRADE.jpg', 0, 0, 1),
-(13, 12, 'The Sims™ 4', 980000, 74, 0, './assets/game/The Sims™ 4.png', 4, 2, 1),
+(13, 12, 'The Sims™ 4', 980000, 74, 0, './assets/game/The Sims™ 4.png', 11, 2, 1),
 (14, 12, 'Red Dead Redemption 2: Ultimate Edition', 1561000, 0, 0, './assets/game/Red Dead Redemption 2 Ultimate Edition.jpg', 0, 0, 1),
 (15, 12, 'Watch_Dogs2 Gold Edition', 1561000, 0, 0, './assets/game/Watch_Dogs2 Gold Edition.jpg', 0, 0, 1),
 (16, 14, 'The Crew 2 - Gold Edition', 1485000, 0, 0, './assets/game/The Crew 2 - Gold Edition.jpg', 0, 0, 1),
@@ -274,19 +293,19 @@ INSERT INTO `product` (`id`, `cate_id`, `name`, `price`, `sale_percent`, `rating
 (24, 13, 'Battlefield™ 1 Shortcut Kit: Ultimate Bundle - Origin', 990000, 0, 0, './assets/game/Battlefield™ 1 Shortcut Kit Ultimate Bundle - Origin.png', 0, 0, 1),
 (25, 1, 'DRAGON BALL FighterZ - Ultimate Edition', 1940000, 20, 0, './assets/game/DRAGON BALL FighterZ - Ultimate Edition.jpg', 0, 3, 1),
 (26, 1, 'SCP: Derelict - SciFi First Person Shooter', 1514000, 0, 0, './assets/game/SCP Derelict - SciFi First Person Shooter.jpg', 0, 0, 1),
-(27, 1, 'SOULCALIBUR VI Deluxe Edition', 1514000, 0, 0, './assets/game/SOULCALIBUR VI Deluxe Edition.jpg', 0, 0, 1),
+(27, 1, 'SOULCALIBUR VI Deluxe Edition', 1514000, 0, 0, './assets/game/SOULCALIBUR VI Deluxe Edition.jpg', 13, 0, 1),
 (28, 1, 'FOR HONOR™ - COMPLETE EDITION', 1561000, 0, 0, './assets/game/FOR HONOR™ - COMPLETE EDITION.jpg', 0, 0, 1),
 (29, 12, 'Tom Clancy\'s Ghost Recon Wildlands - Ultimate Year 2', 1561000, 0, 0, './assets/game/Tom Clancy\'s Ghost Recon Wildlands - Ultimate Year 2.jpg', 0, 0, 1),
 (30, 5, 'NBA 2K21 Mamba Forever', 1608000, 0, 0, './assets/game/NBA 2K21 Mamba Forever.jpg', 0, 0, 1),
-(31, 4, 'Jurassic World Evolution: Premium Edition', 1600000, 0, 0, './assets/game/Jurassic World Evolution Premium Edition.png', 0, 0, 1),
+(31, 4, 'Jurassic World Evolution: Premium Edition', 1600000, 0, 0, './assets/game/Jurassic World Evolution Premium Edition.png', 3, 0, 1),
 (32, 11, 'Ni no Kuni II: Revenant Kingdom - The Prince\'s Edition', 1637000, 0, 0, './assets/game/Ni no Kuni II Revenant Kingdom - The Prince\'s Edition.jpg', 0, 0, 1),
 (33, 1, 'DRAGON BALL FighterZ - FighterZ Edition', 1637000, 0, 0, './assets/game/DRAGON BALL FighterZ - FighterZ Edition.jpg', 0, 0, 1),
-(34, 1, 'Back 4 Blood Ultimate', 1700000, 10, 0, './assets/game/Back 4 Blood Ultimate.jpg', 0, 0, 1),
-(35, 1, 'Resident Evil Village Deluxe Edition', 1716000, 0, 0, './assets/game/Resident Evil Village Deluxe Edition.jpg', 0, 1, 1),
+(34, 1, 'Back 4 Blood Ultimate', 1700000, 10, 0, './assets/game/Back 4 Blood Ultimate.jpg', 16, 0, 1),
+(35, 1, 'Resident Evil Village Deluxe Edition', 1716000, 0, 0, './assets/game/Resident Evil Village Deluxe Edition.jpg', 2, 1, 1),
 (36, 2, 'Titanfall™ 2 Ultimate Edition', 700000, 0, 0, './assets/game/Titanfall™ 2 Ultimate Edition.jpg', 0, 0, 1),
 (37, 2, 'Titanfall™ 2', 1250000, 0, 0, './assets/game/Titanfall™ 2.jpg', 0, 0, 1),
 (38, 8, 'Tài Khoản PUBG Cực Vip', 1000000, 0, 0, './assets/game/pubg.jpg', 0, 0, 1),
-(39, 8, 'Tài Khoản Battlefield 5 (Origin)', 950000, 90, 0, './assets/game/Tài Khoản Battlefield 5 (Origin).jpg', 8, 2, 1),
+(39, 8, 'Tài Khoản Battlefield 5 (Origin)', 950000, 90, 0, './assets/game/Tài Khoản Battlefield 5 (Origin).jpg', 11, 2, 1),
 (40, 7, 'It Takes Two (Origin)', 750000, 20, 0, './assets/game/It Takes Two (Origin).jpeg', 3, 0, 1);
 
 -- --------------------------------------------------------
@@ -331,7 +350,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `email`, `fullname`, `phone_number`, `currency`, `avatar`) VALUES
-(1, 1, 'pthieenlong', 'pthieenlong', 'longptps19740@fpt.edu.vn', 'Pham Thien Long', '0373118242', 99984276250, ''),
+(1, 1, 'pthieenlong', 'pthieenlong', 'longptps19740@fpt.edu.vn', 'Pham Thien Long', '0373118242', 99984276250, './assets/images/man.png'),
 (2, 0, 'tester', 'tester', 'tester@gmail.com', 'Day la tai khoan Tester', '0999999999', 0, './assets/images/man.png'),
 (3, 0, 'tuilatester', 'pthieenlong', 'vgvvghvhv@gmail.com', 'Tui la User', '0', 0, './assets/images/man.png');
 
@@ -349,6 +368,7 @@ ALTER TABLE `category`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user_cmt` (`user_id`),
   ADD KEY `fk_prd_cmt` (`product_id`);
 
@@ -424,6 +444,12 @@ ALTER TABLE `category`
   MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
@@ -433,13 +459,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `Notify`
 --
 ALTER TABLE `Notify`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `product`

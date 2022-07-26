@@ -98,6 +98,12 @@
                             </p>
                         </article> 
                         <article class="user-method">
+                            <i class="fal fa-history"></i>
+                            <p class="user-method--title">
+                                Lịch sử giao dịch
+                            </p>
+                        </article> 
+                        <article class="user-method">
                             <i class="fal fa-newspaper"></i>
                             <p class="user-method--title">
                                 Thông báo của tôi
@@ -270,6 +276,51 @@
                         </article>
                         <article class="user-box">
                             <div class="user-box__title">
+                                Thông tin thanh toán
+                            </div>
+                            <div class="user-box__dashboard">
+                                <section class="cards">
+                                    <article class="card">
+                                        <div class="card-thumbnail">
+                                            <img src="./assets/images/momo.png" alt="card-thumbnail">
+                                        </div>
+                                        <div class="card-detail">
+                                            <div class="card-owner">
+                                                Long P. Thien
+                                            </div>
+                                            <div class="card-methods">
+                                                <button class="method">
+                                                    Thay đổi
+                                                </button>
+                                                <button class="method">
+                                                    Xoá
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="card">
+                                        <div class="card-thumbnail">
+                                            <img src="./assets/images/paypal.png" alt="card-thumbnail">
+                                        </div>
+                                        <div class="card-detail">
+                                            <div class="card-owner">
+                                                Long P. Thien
+                                            </div>
+                                            <div class="card-methods">
+                                                <button class="method">
+                                                    Thay đổi
+                                                </button>
+                                                <button class="method">
+                                                    Xoá
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </section>
+                            </div>
+                        </article>
+                        <article class="user-box">
+                            <div class="user-box__title">
                                 Thông báo của tôi
                             </div>
                             <article class="user-box__dashboard" style="flex-wrap: wrap;">
@@ -358,8 +409,39 @@
                                             <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                    <?php  } ?>
-                                <?php  } ?>
+                                    <? } else if($notify->getType() == 3) {
+                                        $comment = $commentDAO->getReplyCommentByID($notify->getTypeID());
+                                        $replyUser = $userDAO->getUserByID($comment->getUserID());
+                                        if($replyUser->getID() !== $user->getID()) {
+                                    ?>
+                                    <article class="news-box">
+                                        <div class="news-box__head">
+                                            <i class="fal fa-calendar"></i>
+                                            <div class="date">
+                                                <? echo $comment->getDate(); ?>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__body">
+                                            <div class="news-thumbnail">
+                                                <!-- <img src="./assets/images/elden-ring.jpg" alt="news"> -->
+                                            </div>
+                                            <div class="news-detail">
+                                                <h4 class="news-title">
+                                                    Bình luận của bạn được trả lời!
+                                                </h4>
+                                                <p class="news-desc">
+                                                    Tài khoản <? echo $replyUser->getFullname(); ?> đã trả lời bình luận của bạn!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="news-box__foot">
+                                            <a href="./product.php?id=<? echo $comment->getProductID(); ?>" class="method">Xem chi tiết</a>
+                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
+                                        </div>
+                                    </article>
+                                        <? } ?>
+                                <? } ?>
+                            <? } ?>
                             </article>
                         </article>
                         <article class="user-box">

@@ -60,7 +60,7 @@ class FeedbackDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`feedback`.`date`, '%d/%l/%Y') AS `fdate`  FROM `feedback` WHERE `feedback`.`product_id` = ? AND `feedback`.`user_id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`feedback`.`date`, '%d/%l/%Y') AS `fdate` FROM `feedback` WHERE `feedback`.`product_id` = ? AND `feedback`.`user_id` = ?");
             $query->bind_param("ss", $productID, $userID);
             if($query->execute()) {
                 $result = $query->get_result();

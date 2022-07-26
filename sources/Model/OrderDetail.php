@@ -25,7 +25,7 @@ class OrderDetail {
         $this->quantity = $newQuantity;
     }
     public function addProduct() {
-        $this->quantity+=1;
+        $this->quantity += 1;
     }
     public function getPrice() {
         return $this->price;

@@ -56,7 +56,16 @@ function removeNotify($id) {
 
     return $resp;
 }
-
+function sendCommentToUser($userID, $commentID) {
+    $resp = [];
+    $notifyDAO = new NotifyDAO();
+    $commentDAO = new CommentDAO();
+    $comment = $commentDAO->getReplyCommentByID($commentID);
+    if($comment->getUserID() != $userID)
+        $resp['status'] = $notifyDAO->createNotifyToUser($userID, 3, $commentID) ? 'success' : 'fail';
+    else $resp['status'] = 'success';
+    return $resp;
+}
 switch ($method) {
     case 'remove':
         $nid = isset($_REQUEST['nid']) ? $_REQUEST['nid'] : 'error';
@@ -65,6 +74,11 @@ switch ($method) {
         break;
     case 'send':
         
+        break;
+    case 'cmt':
+        $uid = isset($_REQUEST['uid']) ? $_REQUEST['uid'] : 'error';
+        $cid = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : 'error';
+        echo json_encode(sendCommentToUser($uid, $cid));
         break;
     default:
         break;

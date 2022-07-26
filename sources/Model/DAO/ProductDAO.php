@@ -1,7 +1,6 @@
 <?php
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()
@@ -170,6 +169,7 @@ class ProductDAO {
             } else return false;
         }
     }
+    public function sortProduct($cateid,$min,$max,$sort){
     public function sortAllProduct($min,$max){
         if($this->database->connect_error) {
             return false;

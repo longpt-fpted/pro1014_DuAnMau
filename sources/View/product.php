@@ -6,12 +6,17 @@
     
     
     if($id !== 'error') {
-        $newestProduct = $productDAO->getNewestProduct($_GET['id']);
-
-
+        // $newestProduct = $productDAO->getNewestProduct($_GET['id']);
         $product = $productDAO->getProductByID($id);
+        $productFeedbacks = $feedbackDAO->getAllFeedBacksForProduct($id) != 0 ? $feedbackDAO->getAllFeedBacksForProduct($id) : 'error';
+
+        $productComments = $commentDAO->getAllCommentsForProduct($id) != 0 ? $commentDAO->getAllCommentsForProduct($id) : 'error';
+
+        $product->setRating($productFeedbacks != null ? $feedbackDAO->getProductFeedbackRate($product->getID()) : $product->getRating());
+
         $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
         $productDAO->updateProductView($product->getID());
+
     } else {
         $id = 1;
         $product = $productDAO->getProductByID($id);
@@ -83,18 +88,23 @@
                         Đánh giá sản phẩm
                     </div>
                     <section class="content-box">
-                    <section class="content-box">
                         <article class="comment-box">
+                            <!--  -->
+                            <?
+                                if($productFeedbacks != 'error'):
+                                foreach($productFeedbacks as $productFeedback) {
+                                    $userFeedback = $userDAO->getUserByID($productFeedback->getUserID());
+                            ?>
                             <div class="comment-box-main">
                                 <div class="comment-user-avatar">
-                                    <img src="./assets/images/man.png" alt="">
+                                    <img src="<? echo $userFeedback->getAvatar(); ?>" alt="user-avatar">
                                 </div>
                                 <div class="comment-detail">
                                     <h2 class="comment-detail__name">
-                                        Long T. Pham
+                                        <? echo $userFeedback->getFullname(); ?>
                                     </h2>
                                     <div class="comment-detail__date">
-                                        Đánh giá vào ngày: 21/08/2021
+                                        Đánh giá vào ngày: <? echo $productFeedback->getDate(); ?>
                                     </div>
                                     <div class="comment-detail__rating">
                                         <div class="back-stars">
@@ -104,7 +114,7 @@
                                             <i class="fal fa-star" aria-hidden="true"></i>
                                             <i class="fal fa-star" aria-hidden="true"></i>
         
-                                            <div class="front-stars" style="width: 70%;">
+                                            <div class="front-stars" style="width: <? echo $productFeedback->getRating(); ?>%;">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -114,79 +124,15 @@
                                         </div>
                                     </div>
                                     <div class="comment-detail__ask">
-                                        &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
+                                        <? echo $productFeedback->getText(); ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="comment-box-main">
-                                <div class="comment-user-avatar">
-                                    <img src="./assets/images/man.png" alt="">
-                                </div>
-                                <div class="comment-detail">
-                                    <h2 class="comment-detail__name">
-                                        Long T. Pham
-                                    </h2>
-                                    <div class="comment-detail__date">
-                                        Đánh giá vào ngày: 21/08/2021
-                                    </div>
-                                    <div class="comment-detail__rating">
-                                        <div class="back-stars">
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-        
-                                            <div class="front-stars" style="width: 70%;">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-detail__ask">
-                                        &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-box-main">
-                                <div class="comment-user-avatar">
-                                    <img src="./assets/images/man.png" alt="">
-                                </div>
-                                <div class="comment-detail">
-                                    <h2 class="comment-detail__name">
-                                        Long T. Pham
-                                    </h2>
-                                    <div class="comment-detail__date">
-                                        Đánh giá vào ngày: 21/08/2021
-                                    </div>
-                                    <div class="comment-detail__rating">
-                                        <div class="back-stars">
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-                                            <i class="fal fa-star" aria-hidden="true"></i>
-        
-                                            <div class="front-stars" style="width: 70%;">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-detail__ask">
-                                        &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
-                                    </div>
-                                </div>
-                            </div>
+                            <? } else: ?>
+                            <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có đánh giá nào, bạn hãy mua sản phẩm và đánh giá nó nhé!</h3>
+                            <? endif; ?>
                         </article>
                     </section>
-                </section>
             </section>
 
             <section class="content-container">
@@ -198,87 +144,119 @@
                         <h3 class="input-comment-box-title">
                             Gửi bình luận
                         </h3>
-                        <form action="">
+                        <form id="comment-form" >
+                            <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
+                            <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
                             <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
-                            <button class="comment-submit" name="comment-submit" type="button">
+                            <button class="comment-submit" name="comment-submit" type="button" onclick="comment(new Event('click'))">
                                 <i class="fal fa-paper-plane"></i>
                                 Gửi bình luận
                             </button>
                         </form>
                     </section>
                 </section>
-                <section class="content-box">
-                    <article class="comment-box">
-                        <div class="comment-box-main">
-                            <div class="comment-user-avatar">
-                                <img src="./assets/images/man.png" alt="">
+                <section class="content-box" style="flex-wrap: wrap;">
+                    <? 
+                        if($productComments != 'error') {
+                            $count = 0;
+                        foreach ($productComments as $productComment) {
+                            $parentComment = $userDAO->getUserByID($productComment->getUserID());
+                            if($commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0)
+                                $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getID());
+                    ?>
+                        <article class="comment-box">
+                            <div class="comment-box-main">
+                                <div class="comment-user-avatar">
+                                    <img src="<? echo $parentComment->getAvatar(); ?>" alt="">
+                                </div>
+                                <div class="comment-detail">
+                                    <h2 class="comment-detail__name">
+                                        <? echo $parentComment->getFullname(); ?>
+                                    </h2>
+                                    <div class="comment-detail__date">
+                                        Bình luận vào ngày: <? echo $productComment->getDate(); ?>
+                                    </div>
+                                    <div class="comment-detail__ask">
+                                        <? echo $productComment->getText(); ?>
+                                    </div>
+                                    <button class="comment-detai__answer-btn" id="reply-btn">
+                                        Trả lời
+                                    </button>
+                                    <? 
+                                        if(isset($_SESSION['user']) && $_SESSION['user'] == $parentComment->getID()) {
+                                    ?>
+                                    <button class="comment-detai__answer-btn" id="remove-comment-btn">
+                                        Xoá bình luận
+                                    </button>
+                                    <? } ?>
+                                </div>
                             </div>
-                            <div class="comment-detail">
-                                <h2 class="comment-detail__name">
-                                    Long T. Pham
-                                </h2>
-                                <div class="comment-detail__date">
-                                    Bình luận vào ngày: 21/08/2021
-                                </div>
-                                <div class="comment-detail__ask">
-                                    &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
-                                </div>
-                                <button class="comment-detai__answer-btn">
-                                    Trả lời
-                                </button>
+                            <div class="comment-box-replies">
+                                <form id="reply-form" style="display: none">
+                                    <input type="text" name="comment-userGet" value="<? echo $parentComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-parent" value="<? echo $productComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
+                                    <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
+                                    <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
+                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <? echo $count; ?>)">
+                                        <i class="fal fa-paper-plane"></i>
+                                        Gửi bình luận
+                                    </button>
+                                </form>
+                                <? 
+                                    if($replyComments != 'error') {
+                                        foreach ($replyComments as $reply) {
+                                            if($reply->getParentID() == $productComment->getID()) {
+                                            $userReply = $userDAO->getUserByID($reply->getUserID());
+                                ?>
+                                <article class="comment-box">
+                                    <div class="comment-box-main">
+                                        <div class="comment-user-avatar">
+                                            <img src="<? echo $userReply->getAvatar(); ?>" alt="">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <h2 class="comment-detail__name">
+                                                <? echo $userReply->getFullname(); ?>
+                                            </h2>
+                                            <div class="comment-detail__date">
+                                                Bình luận vào ngày: <? echo $reply->getDate(); ?>
+                                            </div>
+                                            <div class="comment-detail__ask">
+                                                <? echo $reply->getText(); ?>
+                                            </div>
+                                            <? 
+                                        if(isset($_SESSION['user']) && $_SESSION['user'] == $userReply->getID()) {
+                                        ?>
+                                            <button class="comment-detai__answer-btn" id="remove-comment-btn" onclick="removeComment(new Event('click'), <? echo $_SESSION['user'] ?>, <? echo $reply->getID(); ?>)">
+                                                Xoá bình luận
+                                            </button>
+                                        <? } ?>
+                                        </div>
+                                    </div>
+                                </article>
+                                <? }} ?>
                             </div>
-                        </div>
-                        <div class="comment-box-replies">
+                        </article>
+                    <?  }
+                            $count++;
+                    }
+                } else { ?>
+                        <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có bình luận nào!</h3>
+                    <?  } ?>
 
-                            <article class="comment-box">
-                                <div class="comment-box-main">
-                                    <div class="comment-user-avatar">
-                                        <img src="./assets/images/man.png" alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <h2 class="comment-detail__name">
-                                            Long T. Pham
-                                        </h2>
-                                        <div class="comment-detail__date">
-                                            Bình luận vào ngày: 21/08/2021
-                                        </div>
-                                        <div class="comment-detail__ask">
-                                            &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
-                                        </div>
-                                        <button class="comment-detai__answer-btn">
-                                            Trả lời
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="comment-box-replies">
-                                </div>
-                            </article>
-
-                            <article class="comment-box">
-                                <div class="comment-box-main">
-                                    <div class="comment-user-avatar">
-                                        <img src="./assets/images/man.png" alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <h2 class="comment-detail__name">
-                                            Long T. Pham
-                                        </h2>
-                                        <div class="comment-detail__date">
-                                            Bình luận vào ngày: 21/08/2021
-                                        </div>
-                                        <div class="comment-detail__ask">
-                                            &emsp;&emsp;&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident vitae itaque, tempore sed ratione asperiores mollitia porro magni perspiciatis, atque architecto id ipsum hic eum cupiditate aut ullam rem dolores!
-                                        </div>
-                                        <button class="comment-detai__answer-btn">
-                                            Trả lời
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="comment-box-replies">
-                                </div>
-                            </article>
-                        </div>
-                    </article>
                 </section>
             </section>
         <?php include('./footer.php') ?>
+
+        <script>
+            document.querySelectorAll('#reply-btn').forEach((element, index) => {
+                element.addEventListener('click', event => {
+                    let replyForm = document.querySelectorAll('.comment-box-replies > #reply-form')[index];
+
+                    if(replyForm.style.display == 'none') 
+                        replyForm.style.display = 'flex';
+                    else 
+                        replyForm.style.display = 'none';
+                });
+            })
+        </script>

@@ -1,24 +1,23 @@
 <?php 
 session_start();
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "../Utils/Utils.php";
-include "../Model/DAO/UserDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/CategoryDAO.php";
-include "../Model/DAO/OrderDAO.php";
-include "../Model/DAO/OrderDetailDAO.php";
-include "../Model/DAO/FavoriteDAO.php";
-include "../Model/DAO/NotifyDAO.php";
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CommentDAO.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include "../Utils/Utils.php";
+// include "../Model/DAO/UserDAO.php";
+// include "../Model/DAO/ProductDAO.php";
+// include "../Model/DAO/CategoryDAO.php";
+// include "../Model/DAO/OrderDAO.php";
+// include "../Model/DAO/OrderDetailDAO.php";
 
 
 $utils = new Utils();
@@ -29,17 +28,17 @@ $orderDAO = new OrderDAO();
 $orderDetailDAO = new OrderDetailDAO();
 $favoriteDAO = new FavoriteDAO();
 $notifyDAO = new NotifyDAO();
-
+$feedbackDAO = new FeedbackDAO();
+$commentDAO = new CommentDAO();
 
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
+
+$favorites = isset($_SESSION['user']) ? $favoriteDAO->getAllFavoritesByUserID($_SESSION['user']) : [];
+
 
 if(isset($_SESSION['user'])) {
     $order = $orderDAO->getUnpayOrderByUserID($user->getID());
     $_SESSION['cart'] = isset($_SESSION['cart']) ? $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID()) : [];
-
-
-    $favorites = $favoriteDAO->getAllFavoritesByUserID($user->getID());
-
     $favorites = array_map(function($fav) {
         global $productDAO, $user;
         $pd = $productDAO->getProductByID($fav->getProductID());
@@ -55,7 +54,7 @@ $_SESSION['cart'] = array_map(function($od) {
     if(isset($_SESSION['user'])) {
         $p = $productDAO->getProductByID($od->getProductID());
         return ['id' => $p->getID(), 'name' => $p->getName(), 'img' => $p->getImg(), 'quantity' => $od->getQuantity(), 'price' => $od->getPrice(), 'fullprice' => ($p->getPrice() * $od->getQuantity())];
-    } else{
+    } else {
         return $od;  
     } 
 }, $_SESSION['cart']);
@@ -259,7 +258,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                 </li>
 
                                 <li class="category--item">
-                                    <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=3" class="category--title">
+                                    <a href="./user.php?id=<? echo $user->getID(); ?>&umethod=4" class="category--title">
                                         Thông báo <span class="tag notify-tag"><? echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>
                                     </a>
                                 </li>
@@ -289,7 +288,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=6" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>
