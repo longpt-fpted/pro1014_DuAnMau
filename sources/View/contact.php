@@ -40,16 +40,16 @@
             </div>
         </div>
         <div class="contact-content">
-            <form action="http://localhost/pro1014_duan/sources/controller/AddContactController.php" onsubmit="return check_contact()" id="contact-form" method="POST">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddContactController.php" id="contact-form" method="POST">
                 <div class="input-1">
                     <span>FULL NAME</span><br><br>
-                    <input type="text" id="fullname" name="fullname" onclick="removeErrorFullname()" placeholder="Full Name">
+                    <input type="text" id="customer-name" name="customer-name" onclick="removeErrorFullname()" placeholder="Full Name">
                     <div id="error-fullname" class="error-validate"></div>
                 </div>
                 <div class="input-1">
                     <span>EMAIL</span><br><br>
-                    <input type="text" id="email" name="email" onclick="removeErrorEmail()" placeholder="Email">
-                    <div id="error-email" class="error-validate"></div>
+                    <input type="text" id="mail" name="mail" onclick="removeErrorEmail()" placeholder="Email">
+                    <div id="error-mail" class="error-validate"></div>
                 </div>
                 <div class="input-2">
                     <span>SUBJECT</span><br><br>
@@ -63,7 +63,7 @@
                 </div>
                 <input type="text" name="type" id="type" value="1" hidden>
                 <div class="input-2">
-                    <input type="submit" id="submit">
+                    <input type="submit" id="submit" value="Gửi" onclick="return check()">
                 </div>
             </form>
             <div class="img">
@@ -72,6 +72,7 @@
         </div>
     </div>
 </section>
+<script src="./assets/js/validatecontact.js"></script>
 <?php
     include './footer.php';
 ?>

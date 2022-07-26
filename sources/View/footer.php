@@ -166,7 +166,6 @@
         })
         displayCart();
     </script>
-    <script src="./assets/js/validatecontact.js"></script>
-    <script src="./assets/js/validateregister.js"></script>
+    
 </body>
 </html>

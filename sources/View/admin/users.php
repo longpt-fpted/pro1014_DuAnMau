@@ -12,7 +12,7 @@
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" onsubmit="return check()" enctype="multipart/form-data" method="post">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" enctype="multipart/form-data" method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
                 <span>Họ và tên:</span><br>
                 <input type="text" id="fullname" name="fullname" onclick="removeErrorFullname()" placeholder="Họ và tên"><br>  
@@ -40,7 +40,7 @@
                     <option value="1">Quản trị viên</option>
                     <option value="0">Thành viên</option>
                 </select><br>
-                <input type="submit" id="submit" value="Cập Nhật">
+                <input type="submit" id="submit" onclick="return check()" value="Cập Nhật">
             </form>
             <!-- <button onclick="check()">check</button> -->
         </div> 
@@ -108,5 +108,8 @@
         </div>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
+<script src="js/validate-user.js"></script>
+<?php
+    // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+    include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+?>

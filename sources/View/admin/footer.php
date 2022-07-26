@@ -63,9 +63,6 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
-    <script src="js/validate-user.js"></script>
-    <script src="js/validate-product.js"></script>
-
 </body>
 
 </html>

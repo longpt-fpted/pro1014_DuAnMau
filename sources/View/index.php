@@ -122,11 +122,15 @@
                         <p class="contact-desc">
                             Chúng tôi sẽ gửi email cho bạn mỗi khi có thông tin mới nếu bạn đăng ký dịch vụ này!
                         </p>
-                        <input type="text" name="fullname" id="fullname" placeholder="Họ và tên">
-                        <input type="text" name="email" id="email" placeholder="Email">
+                        <input type="text" id="customer-name" name="customer-name" onclick="removeErrorFullname()" placeholder="Họ và tên">
+                        <div id="error-fullname" class="error-validate"></div>
+
+                        <input type="text" id="mail" name="mail" onclick="removeErrorEmail()" placeholder="Email">
+                        <div id="error-mail" class="error-validate"></div>
+
                         <input type="text" name="type" id="type" value="0" hidden>
 
-                        <button name="submit">
+                        <button name="submit" onclick="return check_forNotifications()">
                             Tham gia ngay!
                         </button>
                     </form>
@@ -230,4 +234,5 @@
                 </section>
             </article>
         </section>
+        <script src="./assets/js/validatecontact.js"></script>
         <?php include('./footer.php') ?>

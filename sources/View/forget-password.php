@@ -9,17 +9,20 @@
                     <form action="../Controller/ForgetPasswordController.php" method="post" class="account-box">
                         <div class="input-box">
                             <label for="username">Tên tài khoản:</label>
-                            <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
+                            <input type="text" name="username" id="username" onclick="removeErrorUsername()" placeholder="Tên tài khoản">
+                            <div id="error-username" class="error-validate"></div>
                         </div>
                         <div class="input-box">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" placeholder="Email" required>
+                            <input type="text" name="email" id="email" onclick="removeErrorEmail()" placeholder="Email">
+                            <div id="error-email" class="error-validate"></div>
                         </div>
                         <div class="input-box">
-                            <input type="submit" name="submit" id="submit" value="Xác nhận">
+                            <input type="submit" name="submit" id="submit" onclick="return check_forgetPassword()" value="Xác nhận">
                         </div>
                     </form>
                 </section>
             </article>
         </section>            
+        <script src="./assets/js/validateuser.js"></script>
         <?php include('./footer.php') ?>

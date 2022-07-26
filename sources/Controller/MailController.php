@@ -3,10 +3,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/Exception.php';
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/PHPMailer.php';
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
+// require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/Exception.php';
+// require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/PHPMailer.php';
+// require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
 
+require '/XAMPP/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/Exception.php';
+require '/XAMPP/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/PHPMailer.php';
+require '/XAMPP/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 function sendMail($usermail, $title, $message) {

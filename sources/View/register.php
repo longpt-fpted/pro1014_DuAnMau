@@ -6,7 +6,7 @@
                     đăng kí
                 </h2>
                 <section class="content-box">
-                    <form action="../Controller/RegisterController.php" onsubmit="return check()" method="post" enctype="multipart/form-data" class="account-box">
+                    <form action="../Controller/RegisterController.php" onsubmit="return check_register()" method="post" enctype="multipart/form-data" class="account-box">
                         <div class="input-box">
                             <label for="fullname">Họ và tên:</label>
                             <input type="text" name="fullname" id="fullname" onclick="removeErrorFullname()" placeholder="Họ và tên">
@@ -42,5 +42,6 @@
                     </form>
                 </section>
             </article>
-        </section>         
+        </section>      
+        <script src="./assets/js/validateuser.js"></script>   
         <?php include('./footer.php') ?>

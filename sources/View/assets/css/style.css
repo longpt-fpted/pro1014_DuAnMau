@@ -537,6 +537,16 @@ input[type=number] {
   border-radius: 0.25em;
   width: 100%;
 }
+.modal .modal-container .modal-body .form-edit .input-box-submit{
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  width: 100%;
+  justify-content: center;
+}
 .modal .modal-container .modal-body .form-edit .input-box i {
   color: #5AB9EA;
 }
@@ -968,7 +978,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 }
 .main-content .content-container .content-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   gap: 1em;
   margin: 0 auto;
@@ -1944,8 +1954,8 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 .main-content .content-container .contact-box form {
   display: flex;
   flex-direction: column;
-  gap: 1.2em;
-  align-items: center;
+  gap: 0.5em;
+  align-items: left;
 }
 .main-content .content-container .contact-box form input {
   border-radius: 0.5em;
@@ -1953,7 +1963,8 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   border: none;
   padding: 0.5em 1.75em;
   width: 100%;
-  color: #C1C8E4;
+  color: white;
+  height: 3em;
 }
 .main-content .content-container .contact-box form input::-moz-placeholder {
   color: #C1C8E4;

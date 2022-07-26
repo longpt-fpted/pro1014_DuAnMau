@@ -12725,13 +12725,19 @@ body.sidebar-toggled footer.sticky-footer {
     border-radius: 15px;
 }
 
+.modal-add .image-input::-webkit-file-upload-button{
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    height: 2.5em;
+}
 .modal-add input,
 .modal-add select {
     width: 90%;
     height: 2.5em;
     border: 0;
     border-radius: 10px;
-    color: var(--gray);
+    color: black;
     margin-left: 1em;
 }
 
@@ -12798,7 +12804,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 #th-ct-opt {
-    width: 12%;
+    width: 5%;
 }
 
 #btn-contact-reply {
@@ -12942,10 +12948,11 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 #th-fb-text {
-    width: 34%;
+    width: 40%;
 }
 .error-validate{
     font-size: 1em;
     padding-left: 1em;
     color: red;
 }
+

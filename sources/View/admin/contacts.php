@@ -37,7 +37,7 @@
                                             <td><?php echo $contact->getEmail() ?></td>
                                             <td><?php echo $contact->getSubject() ?></td>
                                             <td><?php echo $contact->getMessage() ?></td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
+                                            <td><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
                                         </tr>
                                         <?php
                                             }

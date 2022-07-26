@@ -154,7 +154,7 @@
                             <p id="cart-desc--total">${moneyFormat(currency.total)}</p>
                         </div>
                     </div>
-                    <button class="checkout" onclick="checkout(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);">
+                    <button class="checkout" onclick="checkout(<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);">
                         Thanh toán
                     </button>
                 </div>   

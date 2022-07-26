@@ -18,7 +18,7 @@
                 <div id="error-name" class="error-validate"></div>
 
                 <span>Hình ảnh:</span>
-                <input type="file" id="image" name="image" onclick="removeErrorImage()">                            
+                <input type="file" id="image" name="image" class="image-input" onclick="removeErrorImage()">                            
                 <div id="error-image" class="error-validate"></div>
 
                 <span>Danh mục</span><br>
@@ -72,11 +72,11 @@
                             </tr>
                             <tr>
                                 <td><span>Giá niêm yết:</span></td>
-                                <td><input type="text" id="price" name="price" value="<?php echo $product -> getPrice() ?>đ"><br></td>
+                                <td><input type="text" id="price" name="price" value="<?php echo $product -> getPrice() ?>"><br></td>
                             </tr>
                             <tr>
                                 <td><span>Sale:</span></td>
-                                <td><input type="text" id="sale_percent" name="sale_percent" value="<?php echo $product -> getSale() ?>%"><br></td>
+                                <td><input type="text" id="sale_percent" name="sale_percent" value="<?php echo $product -> getSale() ?>"><br></td>
                             </tr>
                             <tr>
                                 <td><span>Đánh giá:</span></td>
@@ -109,6 +109,7 @@
 
 </div>
 <!-- End of Main Content -->
+<script src="js/validate-product.js"></script>
 <?php
     // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
     include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 

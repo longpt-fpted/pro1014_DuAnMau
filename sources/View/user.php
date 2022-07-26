@@ -31,33 +31,49 @@
                         <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                         <div class="input-box">
                             <i class="fal fa-envelope"></i>
-                            <input type="text" id="mail" name="mail" placeholder="Email...">
+                            <input type="text" id="mail" name="mail" onclick="removeErrorMail()" placeholder="Email...">
                         </div>
-                        <button type="submit" class="submit">
-                            Thay đổi
-                        </button>
+                        <div id="error-mail" class="error-validate"></div>
+                        <div class="input-box-submit">
+                            <button type="submit" class="submit" onclick="return check_change_email()">
+                                Thay đổi
+                            </button>
+                        </div>
                     </form>
                     <form action="../Controller/UserChangePasswordController.php" method="post" class="form-edit">
                         <label for="phone">Nhập mật khẩu cũ:</label>
                         <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                         <div class="input-box">
                             <i class="fal fa-key"></i>
-                            <input type="password" id="old-pass" name="old-pass" placeholder="Mật khẩu cũ">
+                            <input type="text" id="old-pass" name="old-pass" onclick="removeErrorOldPassword()" placeholder="Mật khẩu cũ"><br>
                         </div>
+                        <div id="error-oldpassword" class="error-validate"></div>
                         <label for="phone">Nhập mật khẩu mới:</label>
                         <div class="input-box">
                             <i class="fal fa-key"></i>
 
-                            <input type="password" id="new-pass" name="new-pass" placeholder="Mật khẩu mới">
+                            <input type="text" id="new-pass" name="new-pass" onclick="removeErrorNewPassword()" placeholder="Mật khẩu mới"><br>
                         </div>
-                        <button type="submit" class="submit">
-                            Xác nhận
-                        </button>
+                        <div id="error-newpassword" class="error-validate"></div>
+                        <div class="input-box-submit">
+                            <button type="submit" class="submit" onclick="return check_change_password()">
+                                Xác nhận
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </article>
         
+        <?php
+            include('./header.php');
+            $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
+            $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
+            $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
+
+            $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
+            
+        ?>
         <article class="modal" id="feedback-modal">
             <div class="modal-container">
                 <div class="modal-head" style="border: none; padding-bottom: 0;">
@@ -110,6 +126,12 @@
                             <i class="fal fa-newspaper"></i>
                             <p class="user-method--title">
                                 Thông báo của tôi
+                            </p>
+                        </article>
+                        <article class="user-method">
+                            <i class="fal fa-star"></i>
+                            <p class="user-method--title">
+                                Đánh giá của tôi
                             </p>
                         </article>
                         <article class="user-method">
@@ -380,7 +402,8 @@
                                             <a class="method" onclick="displayFeedbackBox('<?php echo $product->getName(); ?>', '<?php echo $product->getImg(); ?>', <?php echo $product->getID(); ?>);">Xem chi tiết</a>
                                         </div>
                                     </article>
-                                    <?php } else if($notify->getType() == 2) { 
+                                    <?php } else if($notify->getType() == 2) { ê
+                                    
                                         $order = $orderDAO->getOrderByID($notify->getTypeID());
                                     ?>
                                     <article class="news-box">
@@ -433,13 +456,61 @@
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a href="./product.php?id=<?php echo $comment->getProductID(); ?>" class="method">Xem chi tiết</a>
-                                            <a onclick="removeNotify(<?php echo $notify->getID(); ?>)" class="method">Xoá</a>
+                                            <a href="./product.php?id=<?php  echo $comment->getProductID(); ?>" class="method">Xem chi tiết</a>
+                                            <a onclick="removeNotify(<?php  echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                        <?php } ?>
-                                <?php } ?>
-                            <?php } ?>
+                                        <?php  } ?>
+                                <?php  } ?>
+                            <?php  } ?>
+                            </article>
+                        </article>
+                        <article class="user-box">
+                            <div class="user-box__title">
+                                Đánh giá của tôi
+                            </div>
+                            <article class="user-box__dashboard">
+                                <article class="news-box">
+                                    <div class="news-box__head">
+                                        <i class="fal fa-calendar"></i>
+                                        <div class="date">
+                                            21/08/2021
+                                        </div>
+                                    </div>
+                                    <div class="news-box__body">
+                                        <div class="news-thumbnail">
+                                            <img src="./assets/images/elden-ring.jpg" alt="news">
+                                        </div>
+                                        <div class="news-detail">
+                                            <h4 class="news-title">
+                                                Elden Ring
+                                            </h4>
+                                            <div class="rating">
+                                                <div class="back-stars">
+                                                    <i class="fal fa-star" aria-hidden="true"></i>
+                                                    <i class="fal fa-star" aria-hidden="true"></i>
+                                                    <i class="fal fa-star" aria-hidden="true"></i>
+                                                    <i class="fal fa-star" aria-hidden="true"></i>
+                                                    <i class="fal fa-star" aria-hidden="true"></i>
+                
+                                                    <div class="front-stars" id="rating" style="width: 50%;">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="news-desc">
+                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque voluptatum eos at laborum a. Aspernatur, consectetur reiciendis fugiat consequatur repellendus suscipit unde sit, asperiores eligendi dolorem soluta, incidunt nemo doloremque!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="news-box__foot">
+                                        <a href="#" class="method">Xem chi tiết</a>
+                                    </div>
+                                </article>
                             </article>
                         </article>
                         <article class="user-box">
@@ -484,5 +555,6 @@
             loadFavorite();
 
         </script>
+        <script src="./assets/js/validateuser.js"></script>
         <script src="./assets/js/userModal.js"></script>
         <?php include('./footer.php') ?>

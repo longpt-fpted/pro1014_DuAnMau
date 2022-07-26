@@ -72,10 +72,10 @@
                                 <button class="btn buy">
                                     <i class="fal fa-credit-card-front"></i> Mua ngay
                                 </button>
-                                <button class="btn add" onclick="addProductToCart(<? echo $product->getID(); ?>)">
+                                <button class="btn add" onclick="addProductToCart(<?php  echo $product->getID(); ?>)">
                                     <i class="fal fa-cart-arrow-down"></i> Thêm vào giỏ hàng
                                 </button>
-                                <button class="btn add" onclick="addToFavorite(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false' ?>, <? echo $product->getID(); ?>)">
+                                <button class="btn add" onclick="addToFavorite(<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false' ?>, <?php  echo $product->getID(); ?>)">
                                     <i class="fal fa-heart"></i> Thêm vào yêu thích
                                 </button>
                             </article>
@@ -90,21 +90,21 @@
                     <section class="content-box">
                         <article class="comment-box">
                             <!--  -->
-                            <?
+                            <?php 
                                 if($productFeedbacks != 'error'):
                                 foreach($productFeedbacks as $productFeedback) {
                                     $userFeedback = $userDAO->getUserByID($productFeedback->getUserID());
                             ?>
                             <div class="comment-box-main">
                                 <div class="comment-user-avatar">
-                                    <img src="<? echo $userFeedback->getAvatar(); ?>" alt="user-avatar">
+                                    <img src="<?php  echo $userFeedback->getAvatar(); ?>" alt="user-avatar">
                                 </div>
                                 <div class="comment-detail">
                                     <h2 class="comment-detail__name">
-                                        <? echo $userFeedback->getFullname(); ?>
+                                        <?php  echo $userFeedback->getFullname(); ?>
                                     </h2>
                                     <div class="comment-detail__date">
-                                        Đánh giá vào ngày: <? echo $productFeedback->getDate(); ?>
+                                        Đánh giá vào ngày: <?php  echo $productFeedback->getDate(); ?>
                                     </div>
                                     <div class="comment-detail__rating">
                                         <div class="back-stars">
@@ -114,7 +114,7 @@
                                             <i class="fal fa-star" aria-hidden="true"></i>
                                             <i class="fal fa-star" aria-hidden="true"></i>
         
-                                            <div class="front-stars" style="width: <? echo $productFeedback->getRating(); ?>%;">
+                                            <div class="front-stars" style="width: <?php  echo $productFeedback->getRating(); ?>%;">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -124,13 +124,13 @@
                                         </div>
                                     </div>
                                     <div class="comment-detail__ask">
-                                        <? echo $productFeedback->getText(); ?>
+                                        <?php  echo $productFeedback->getText(); ?>
                                     </div>
                                 </div>
                             </div>
-                            <? } else: ?>
+                            <?php  } else: ?>
                             <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có đánh giá nào, bạn hãy mua sản phẩm và đánh giá nó nhé!</h3>
-                            <? endif; ?>
+                            <?php  endif; ?>
                         </article>
                     </section>
             </section>
@@ -145,8 +145,8 @@
                             Gửi bình luận
                         </h3>
                         <form id="comment-form" >
-                            <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
-                            <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
+                            <input type="text" name="comment-user" value="<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
+                            <input type="text" name="comment-product" value="<?php  echo $product->getID(); ?>" hidden>
                             <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
                             <button class="comment-submit" name="comment-submit" type="button" onclick="comment(new Event('click'))">
                                 <i class="fal fa-paper-plane"></i>
@@ -156,7 +156,7 @@
                     </section>
                 </section>
                 <section class="content-box" style="flex-wrap: wrap;">
-                    <? 
+                    <?php  
                         if($productComments != 'error') {
                             $count = 0;
                         foreach ($productComments as $productComment) {
@@ -167,43 +167,43 @@
                         <article class="comment-box">
                             <div class="comment-box-main">
                                 <div class="comment-user-avatar">
-                                    <img src="<? echo $parentComment->getAvatar(); ?>" alt="">
+                                    <img src="<?php  echo $parentComment->getAvatar(); ?>" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <h2 class="comment-detail__name">
-                                        <? echo $parentComment->getFullname(); ?>
+                                        <?php  echo $parentComment->getFullname(); ?>
                                     </h2>
                                     <div class="comment-detail__date">
-                                        Bình luận vào ngày: <? echo $productComment->getDate(); ?>
+                                        Bình luận vào ngày: <?php  echo $productComment->getDate(); ?>
                                     </div>
                                     <div class="comment-detail__ask">
-                                        <? echo $productComment->getText(); ?>
+                                        <?php  echo $productComment->getText(); ?>
                                     </div>
                                     <button class="comment-detai__answer-btn" id="reply-btn">
                                         Trả lời
                                     </button>
-                                    <? 
+                                    <?php  
                                         if(isset($_SESSION['user']) && $_SESSION['user'] == $parentComment->getID()) {
                                     ?>
                                     <button class="comment-detai__answer-btn" id="remove-comment-btn">
                                         Xoá bình luận
                                     </button>
-                                    <? } ?>
+                                    <?php  } ?>
                                 </div>
                             </div>
                             <div class="comment-box-replies">
                                 <form id="reply-form" style="display: none">
-                                    <input type="text" name="comment-userGet" value="<? echo $parentComment->getID(); ?>" hidden>
-                                    <input type="text" name="comment-parent" value="<? echo $productComment->getID(); ?>" hidden>
-                                    <input type="text" name="comment-user" value="<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
-                                    <input type="text" name="comment-product" value="<? echo $product->getID(); ?>" hidden>
+                                    <input type="text" name="comment-userGet" value="<?php  echo $parentComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-parent" value="<?php  echo $productComment->getID(); ?>" hidden>
+                                    <input type="text" name="comment-user" value="<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
+                                    <input type="text" name="comment-product" value="<?php  echo $product->getID(); ?>" hidden>
                                     <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
-                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <? echo $count; ?>)">
+                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <?php  echo $count; ?>)">
                                         <i class="fal fa-paper-plane"></i>
                                         Gửi bình luận
                                     </button>
                                 </form>
-                                <? 
+                                <?php  
                                     if($replyComments != 'error') {
                                         foreach ($replyComments as $reply) {
                                             if($reply->getParentID() == $productComment->getID()) {
@@ -212,37 +212,37 @@
                                 <article class="comment-box">
                                     <div class="comment-box-main">
                                         <div class="comment-user-avatar">
-                                            <img src="<? echo $userReply->getAvatar(); ?>" alt="">
+                                            <img src="<?php  echo $userReply->getAvatar(); ?>" alt="">
                                         </div>
                                         <div class="comment-detail">
                                             <h2 class="comment-detail__name">
-                                                <? echo $userReply->getFullname(); ?>
+                                                <?php  echo $userReply->getFullname(); ?>
                                             </h2>
                                             <div class="comment-detail__date">
-                                                Bình luận vào ngày: <? echo $reply->getDate(); ?>
+                                                Bình luận vào ngày: <?php  echo $reply->getDate(); ?>
                                             </div>
                                             <div class="comment-detail__ask">
-                                                <? echo $reply->getText(); ?>
+                                                <?php  echo $reply->getText(); ?>
                                             </div>
-                                            <? 
+                                            <?php  
                                         if(isset($_SESSION['user']) && $_SESSION['user'] == $userReply->getID()) {
                                         ?>
-                                            <button class="comment-detai__answer-btn" id="remove-comment-btn" onclick="removeComment(new Event('click'), <? echo $_SESSION['user'] ?>, <? echo $reply->getID(); ?>)">
+                                            <button class="comment-detai__answer-btn" id="remove-comment-btn" onclick="removeComment(new Event('click'), <?php  echo $_SESSION['user'] ?>, <?php  echo $reply->getID(); ?>)">
                                                 Xoá bình luận
                                             </button>
-                                        <? } ?>
+                                        <?php  } ?>
                                         </div>
                                     </div>
                                 </article>
-                                <? }} ?>
+                                <?php  }} ?>
                             </div>
                         </article>
-                    <?  }
+                    <?php   }
                             $count++;
                     }
                 } else { ?>
                         <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có bình luận nào!</h3>
-                    <?  } ?>
+                    <?php   } ?>
 
                 </section>
             </section>
