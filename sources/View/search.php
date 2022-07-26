@@ -1,6 +1,7 @@
 <?php 
     include('./header.php');
-            $keyword = $_POST['search-input'];
+
+            $keyword = isset($_POST['search-input'])?$_POST['search-input']:'';
             $productDAO = new ProductDAO();
             // var_dump($keyword);
             //$product = $productDAO->getAllProducts();
@@ -10,18 +11,16 @@
                 $product = $productDAO->getProductsBySearch($keyword);
             }
             //var_dump($product);
+            
 ?>
 <section class="main-content">
-    <form action="../Controller/SearchCateController.php" class="main-search" method="POST">
+    <form action="" class="main-search" method="POST">
         <h1>Tìm kiếm sản phẩm</h1><br>
         <div class="product-filter">
             <div class="information-filter">
                 <h>Thể loại</h><br>
                 <select name="category" id="category">
                     <option value="All">All</option>
-                    <?php/* foreach($cates as $cate) {?>
-                        <option value="<? echo $cate->getName(); ?>"><? echo $cate->getName(); ?></option>
-                    <? } */?>
                     <option value="Action">Action</option>
                     <option value="FPS">FPS</option>
                     <option value="Video Production">Video Production</option>
@@ -53,7 +52,7 @@
                     <option value="FromZ-A">Từ Z - A</option>
                 </select>
             </div>
-            <button type="submit" id="btn-filter">Lọc</button><br>
+            <button type="submit" onclick="sort()" id="btn-filter">Lọc</button><br>
     </form>
         <button id="btn-restore"><i>Khôi phục bộ lọc</i></button>
     </div>
@@ -62,7 +61,7 @@
             <?php 
                 $productSearch = $product;
                 foreach ($productSearch as $productSearch) {
-            ?>
+            ?>  
                 <article class="product-box">
                     <a class="product-box__thumbnail" href="./product.php?id=<?php echo $productSearch->getID(); ?>">
                         <img src="<?php echo $productSearch->getImg(); ?>" alt="product thumbnail">
@@ -90,39 +89,6 @@
             <?php
                 }
             ?>
-        </section>
-        <section class="content-box">
-            <?php 
-                /*$productCate = $productCate;
-                foreach ($productCate as $productCate) {
-            ?>
-                <article class="product-box">
-                    <a class="product-box__thumbnail" href="./product.php?id=<?php echo $productCate->getID(); ?>">
-                        <img src="<?php echo $productCate->getImg(); ?>" alt="product thumbnail">
-                    </a>
-                    <div class="product-box__detail">
-                        <div class="product-box__desc">
-                            <div class="product-box__title">
-                                <a href="./product.php?id=<?php echo $productCate->getID(); ?>"><?php echo $productCate->getName();?></a>
-                                <div class="tag sale-tag">
-                                    -<?php echo $productCate->getSale(); ?>%
-                                </div>
-                            </div>
-                            <div class="product-box__price">
-                                <p class="product-box__totalprice">
-                                    <?php echo $productCate->getTotalPrice(); ?></p>
-                                <p class="product-box__fullprice">
-                                <?php echo $productCate->getPrice(); ?></p>
-                            </div>
-                        </div>
-                        <a class="product-box__add" href="#">
-                            <i class="fal fa-cart-arrow-down"></i>
-                        </a>
-                    </div>
-                </article>
-            <?php
-                }
-            */?>
         </section>
         <?php /*<a class="content-detail" href="#">
             Xem thêm

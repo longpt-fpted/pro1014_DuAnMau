@@ -135,4 +135,4 @@
 
             </div>
             <!-- End of Main Content -->
-<?php include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; ?>
+<?php include 'footer.php'; ?>

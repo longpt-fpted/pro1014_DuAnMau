@@ -1,6 +1,7 @@
 <?php
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
+
 class ProductDAO {
     private $database;
     public function __construct()
@@ -169,7 +170,147 @@ class ProductDAO {
             } else return false;
         }
     }
-    /*public function sortProduct($cateid,$min,$max,$sort){
+    public function sortAllProduct($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductPriceIncrease($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` ASC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductPriceDecrease($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` DESC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductFromAToZ($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` ASC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductFromZToA($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` DESC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductHighSale($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`rating` DESC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortAllProductNewProduct($min,$max){
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`id` DESC');
+            $query->bind_param('ss',$min,$max);
+            if($query->execute()){
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            }else return false;
+        }
+    }
+    public function sortProductPriceIncrease($cateid,$min,$max){
         if($this->database->connect_error) {
             return false;
         } else {

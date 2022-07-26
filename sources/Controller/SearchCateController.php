@@ -55,10 +55,11 @@
         $id = $cate->getID();
         $sort = $productDAO->sortProductNewProduct($id,$min,$max);
     } else return false;
-        
     
-    var_dump($category);
-    var_dump($min);
-    var_dump($max);
+    
+    //var_dump($category);
+    //var_dump($min);
+    //var_dump($max);
     var_dump($sort);
+    //header("location: /pro1014_DuAn/sources/View/search.php")
 ?>

@@ -10,15 +10,18 @@
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Utils.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Mail.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/CategoryDAO.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
 
 $userDAO = new UserDAO();
 $users = $userDAO->getAllUsers();
 
 $productDAO = new ProductDAO();
-$products = $productDAO->getAllProductWithoutAvailable();
+$products = $productDAO->getAllProductsWithoutAvailable();
 
 $categoryDAO = new CategoryDAO();
 $cates = $categoryDAO->getAllCategories();
@@ -26,7 +29,7 @@ $cates = $categoryDAO->getAllCategories();
 $utils = new Utils();
 
 $feedbackDAO = new FeedbackDAO();
-$feedbacks = $feedbackDAO->getAllFeedback();
+$feedbacks = $feedbackDAO->getAllFeedbacks();
 
 ?>
 <!DOCTYPE html>

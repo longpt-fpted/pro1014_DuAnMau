@@ -1,7 +1,8 @@
 <?php
 // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Category.php';
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/Category.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Category.php";
+// include "/XAMPP/htdocs/pro1014_duan/sources/Model/Category.php";
+ include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Category.php";
+ 
 class CategoryDAO {
     private $database;
     public function __construct() {

@@ -16,8 +16,8 @@ include "../Model/DAO/ProductDAO.php";
 include "../Model/DAO/CategoryDAO.php";
 include "../Model/DAO/OrderDAO.php";
 include "../Model/DAO/OrderDetailDAO.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "../Model/DAO/FavoriteDAO.php";
+include "../Model/DAO/NotifyDAO.php";
 
 
 

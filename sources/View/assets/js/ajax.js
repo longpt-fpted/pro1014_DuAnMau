@@ -239,3 +239,24 @@ function submitFeedback(event) {
         }
     })
 }
+
+function sort(event) {
+    event.preventDefault();
+    let data = $('#main-search').serialize()+"&method=sort";
+    $.ajax({
+        url: '../Controller/SearchCateController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        console.log(res);
+        
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Đã lọc kết quả tìm kiếm`);
+                break;
+            default:
+                break;
+        }
+    })
+}
