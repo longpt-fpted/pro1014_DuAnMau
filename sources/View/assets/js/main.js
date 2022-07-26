@@ -254,3 +254,32 @@ function loadFavorite() {
             </article>`;
     });
 }
+function loadSearch() {
+    
+    // let searchPage = document.querySelector('#search-page');
+
+    /*
+        <article class="product-box">
+            <a class="product-box__thumbnail" href="./product.php?id=${}">
+                <img src="${}" alt="product thumbnail">
+            </a>
+            <div class="product-box__detail">
+                <div class="product-box__desc">
+                    <div class="product-box__title">
+                        <a title="" href="./product.php?id=${}">${}</a>
+                        <div class="tag sale-tag">
+                            -${}%
+                        </div>
+                    </div>
+                    <div class="product-box__price">
+                        <p class="product-box__totalprice">${}</p>
+                        <p class="product-box__fullprice">${}</p>
+                    </div>
+                </div>
+                <a class="product-box__add" href="#">
+                    <i class="fal fa-cart-arrow-down"></i>
+                </a>
+            </div>
+        </article>
+    */
+}
