@@ -315,3 +315,59 @@ function removeComment(event, userID, commentID) {
                 break;
         }
     })
+}
+function searching(event) {
+    event.preventDefault();
+    let data = $('#main-search').serialize();
+    $.ajax({
+        url: '../Controller/SearchController.php',
+        method: 'POST',
+        data: data
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                $('#paginition').pagination({
+                    dataSource: res.products,
+                    pageSize: 8,
+                    callback: function(data, pagination) {
+                        $('#search-page').empty();
+                        console.log(data.length);
+                        $.each(data, (index, element) => {
+                            $('#search-page').append(
+                                `<article class="product-box">
+                                <a class="product-box__thumbnail" href="./product.php?id=${element.id}">
+                                    <img src="${element.image}" alt="product thumbnail">
+                                </a>
+                                <div class="product-box__detail">
+                                    <div class="product-box__desc">
+                                        <div class="product-box__title">
+                                            <a title="" href="./product.php?id=${element.id}">${element.name}</a>
+                                            <div class="tag sale-tag">
+                                                -${element.sale}%
+                                            </div>
+                                        </div>
+                                        <div class="product-box__price">
+                                            <p class="product-box__totalprice">${element.price}</p>
+                                            <p class="product-box__fullprice">${element.fullprice}</p>
+                                        </div>
+                                    </div>
+                                    <a class="product-box__add" href="#">
+                                        <i class="fal fa-cart-arrow-down"></i>
+                                    </a>
+                                </div>
+                            </article>`
+                            )
+                        })
+                    }
+                })            
+            break;
+            case 'fail': 
+                $('#search-page').empty();
+                $('#search-page').append(
+                    "<h2 style='margin: auto;'>Không tìm thấy sản phẩm bạn yêu cầu</h2>"
+                )
+            break; 
+        }
+    })
+}

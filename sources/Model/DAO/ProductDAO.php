@@ -135,7 +135,7 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function getProductsBySearch($keyword){
+    public function getProductsByName($keyword){
         if($this->database->connect_error){
             return false;
         } else {
@@ -155,28 +155,43 @@ class ProductDAO {
             } else return false;
         }
     }
-    public function getProductByCateID($cateid) {
-        if($this->database->connect_error) {
+    public function getProductsByKeywords($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ? AND `product`.`is_available` = 1');
-            $query->bind_param('s', $cateid);
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
             if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = new Product($row['id'], $row['cate_id'], $row['name'], $row['price'], $row['sale_percent'], $row['rating'], $row['img_url'], $row['view'], $row['sell_count'], $row['is_available']);
+
+                        $products[] = $product;
+                    }
+                    return $products;
                 } else return false;
             } else return false;
         }
     }
-    public function sortAllProduct($min,$max){
-        if($this->database->connect_error) {
+    public function getNewestProductsForSearch($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -187,16 +202,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductPriceIncrease($min,$max){
-        if($this->database->connect_error) {
+    public function getHotProductsForSearch($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` ASC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -207,16 +227,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductPriceDecrease($min,$max){
-        if($this->database->connect_error) {
+    public function getSaleProductsForSearch($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` DESC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -227,16 +252,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductFromAToZ($min,$max){
-        if($this->database->connect_error) {
+    public function getProductsForSearchWithPriceIncrease($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` ASC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -247,16 +277,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductFromZToA($min,$max){
-        if($this->database->connect_error) {
+    public function getProductsForSearchWithPriceDecrease($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` DESC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -267,16 +302,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductHighSale($min,$max){
-        if($this->database->connect_error) {
+    public function getProductsForSearchWithNameIncrease($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`rating` DESC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -287,16 +327,21 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
+            } else return false;
         }
     }
-    public function sortAllProductNewProduct($min,$max){
-        if($this->database->connect_error) {
+    public function getProductsForSearchWithNameDecrease($cate, $min, $max, $keyword) {
+        if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE  `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`id` DESC');
-            $query->bind_param('ss',$min,$max);
-            if($query->execute()){
+            if($cate == '-1') {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
+                $query->bind_param('ss', $min, $max);
+            } else {
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
+                $query->bind_param('sss', $cate, $min, $max);
+            }
+            if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
                     $products = [];
@@ -307,101 +352,10 @@ class ProductDAO {
                     }
                     return $products;
                 } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductPriceIncrease($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` ASC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductPriceDecrease($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`price` DESC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductFromAToZ($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` ASC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductFromZToA($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`name` ASC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductHighSale($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`rating` DESC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
-        }
-    }
-    public function sortProductNewUpdate($cateid,$min,$max){
-        if($this->database->connect_error) {
-            return false;
-        } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`cate_id` = ?  AND `Product`.`price` BETWEEN ? AND ? AND `product`.`is_available` = 1 ORDER BY `product`.`id` DESC');
-            $query->bind_param('sss',$cateid,$min,$max);
-            if($query->execute()){
-                $result = $query->get_result();
-                if($result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    return new Product($product['id'], $product['cate_id'], $product['name'], $product['price'], $product['sale_percent'], $product['rating'], $product['img_url'], $product['view'], $product['sell_count'], $product['is_available']);
-                } else return false;
-            }else return false;
+            } else return false;
         }
     }
     public function getHotProducts($limit) {
-        // 
         if($this->database->connect_error) {
             return false;
         } else {
@@ -491,9 +445,6 @@ class ProductDAO {
             $query->bind_param('s', $id);
             return $query->execute();
         }  
-    }
-    public function getNewestProduct() {
-
     }
 }
 ?>

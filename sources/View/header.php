@@ -98,10 +98,6 @@ $_SESSION['cart'] = array_map(function($od) {
             left: 0,
             total: 0,
         }
-        function showCart() {
-            console.log(<?php  echo (json_encode($_SESSION['cart'])) ?>);
-        }
-
     </script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax.js"></script>
@@ -176,7 +172,6 @@ $_SESSION['cart'] = array_map(function($od) {
                                 <?php
                                     $cates = $cateDAO->getAllCategories();
                                     foreach ($cates as $cate) {
-
                                 ?>
                                 <p class="category--desc">
                                     <?php  echo $cate->getName(); ?>
