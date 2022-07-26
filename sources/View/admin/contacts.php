@@ -21,110 +21,29 @@
                                             <th id="th-ct-stt">STT</th>
                                             <th id="th-ct-name">Họ và tên</th>
                                             <th id="th-ct-email">Email</th>
+                                            <th id="th-ct-time">Tiêu đề</th>
                                             <th id="th-ct-qt">Câu hỏi/ Góp ý</th>
-                                            <th id="th-ct-time">Thời gian</th>
                                             <th id="th-ct-opt">Tùy chọn</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
+                                        <?php
+                                            foreach($contacts as $contact){
+                                        ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
+                                            <td><?php echo $contact->getID() ?></td>
+                                            <td><?php echo $contact->getFullname() ?></td>
+                                            <td><?php echo $contact->getEmail() ?></td>
+                                            <td><?php echo $contact->getSubject() ?></td>
+                                            <td><?php echo $contact->getMessage() ?></td>
+                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>Trần Văn A</td>
-                                            <td>vanadeptrai123@gmail.com</td>
-                                            <td>Nếu biết rằng chúng ta hôm nay xa rời. Chắc em sẽ chẳng vấn vương thêm anh để làm chi. Nói với lòng chúng ta vốn dĩ chẳng hợp ý. Nên thôi cứ thế ta biệt ly</td>
-                                            <td>05/7/2022</td>
-                                            <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>
-                                        </tr>
+                                        <?php
+                                            }
+                                        ?>
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>
@@ -135,4 +54,7 @@
 
             </div>
             <!-- End of Main Content -->
-<?php include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; ?>
+<?php
+    // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+    include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+?>

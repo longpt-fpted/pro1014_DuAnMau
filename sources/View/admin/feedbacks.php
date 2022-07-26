@@ -29,12 +29,11 @@
                                             <th id="th-fb-opt">Tùy chọn</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                                                                
+                                    
+                                    <tbody>                                                                             
                                     <?php                                    
                                         foreach ($feedbacks as $feedback) {
                                     ?>
-
                                         <tr>
                                             <td><?php echo $feedback->getUserID() ?></td>
                                             <td><?php foreach ($users as $user)  echo $feedback->getUserID() == $user->getID() ? $user->getFullname() : '' ?></td>
@@ -43,12 +42,11 @@
                                             <td><?php echo $feedback->getRating() ?></td>
                                             <td><?php echo $feedback->getText() ?></td>
                                             <td><a href=""><button id="btn-contact-reply">Trả lời</button></a><a href=""><button id="btn-contact-delete">Xóa</button></a></td>                                           
-                                        </tr>                                       
-                                    </tbody>
-                                    
+                                        </tr>      
                                     <?php 
                                         } 
-                                    ?>
+                                    ?>                                 
+                                    </tbody>
 
                                 </table>
                             </div>

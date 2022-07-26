@@ -1,24 +1,31 @@
 <?php 
-// include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-
-
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Mail.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ContactDAO.php";
 
 $userDAO = new UserDAO();
 $users = $userDAO->getAllUsers();
 
 $productDAO = new ProductDAO();
-$products = $productDAO->getAllProductWithoutAvailable();
+$products = $productDAO->getAllProductsWithoutAvailable();
 
 $categoryDAO = new CategoryDAO();
 $cates = $categoryDAO->getAllCategories();
@@ -26,7 +33,10 @@ $cates = $categoryDAO->getAllCategories();
 $utils = new Utils();
 
 $feedbackDAO = new FeedbackDAO();
-$feedbacks = $feedbackDAO->getAllFeedback();
+$feedbacks = $feedbackDAO->getAllFeedbacks();
+
+$contactDAO = new ContactDAO();
+$contacts = $contactDAO->getAllContacts();
 
 ?>
 <!DOCTYPE html>
@@ -103,7 +113,6 @@ $feedbacks = $feedbackDAO->getAllFeedback();
                         <a class="collapse-item" href="products.php">Products</a>
                         <a class="collapse-item" href="feedbacks.php">Feedbacks</a>
                         <a class="collapse-item" href="contacts.php">Contacts</a>
-                        <a class="collapse-item" href="notifications.php">Notifications</a>
                     </div>
                 </div>
             </li>

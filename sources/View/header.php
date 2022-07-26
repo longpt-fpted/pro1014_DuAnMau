@@ -227,12 +227,12 @@ $_SESSION['cart'] = array_map(function($od) {
                         Helps <i class="fal fa-angle-down"></i>
                         <ul class="main-navbar__submenu">
                             <li class="category--item">
-                                <a href="https://www.facebook.com/p.thieenlong" class="category--title">
+                                <a href="FAQs.php" class="category--title">
                                     FAQs
                                 </a>
                             </li>
                             <li class="category--item">
-                                <a href="https://www.facebook.com/p.thieenlong" class="category--title">
+                                <a href="contact.php" class="category--title">
                                     Liên lạc trực tuyến
                                 </a>
                             </li>

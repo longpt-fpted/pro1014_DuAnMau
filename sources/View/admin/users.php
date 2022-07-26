@@ -12,18 +12,28 @@
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" enctype="multipart/form-data" method="post">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" onsubmit="return check()" enctype="multipart/form-data" method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
                 <span>Họ và tên:</span><br>
-                <input type="text" id="fullname" name="fullname" placeholder="Họ và tên"><br>  
+                <input type="text" id="fullname" name="fullname" onclick="removeErrorFullname()" placeholder="Họ và tên"><br>  
+                <div id="error-fullname" class="error-validate"></div>
+
                 <span>Tên Đăng nhập:</span><br>
-                <input type="text" id="username" name="username" placeholder="Tên đăng nhập"><br>              
+                <input type="text" id="username" name="username" onclick="removeErrorUsername()" placeholder="Tên đăng nhập"><br>      
+                <div id="error-username" class="error-validate"></div>
+
                 <span>Mật khẩu:</span><br>
-                <input type="password" id="password" name="password" placeholder="Mật khẩu"><br>                   
+                <input type="password" id="password" name="password" onclick="removeErrorPassword()" placeholder="Mật khẩu"><br>        
+                <div id="error-password" class="error-validate"></div>
+
                 <span>Email:</span><br>
-                <input type="text" id="email" name="email" placeholder="Địa chỉ email"><br>
+                <input type="text" id="email" name="email" onclick="removeErrorEmail()" placeholder="Địa chỉ email"><br>
+                <div id="error-email" class="error-validate"></div>
+
                 <span>Số điện thoại:</span><br>
-                <input type="text" id="phone-number" name="phone-number" placeholder="Số điện thoại"><br>
+                <input type="text" id="phone-number" name="phone-number"  onclick="removeErrorPhonenumber()" placeholder="Số điện thoại"><br>
+                <div id="error-phonenumber" class="error-validate"></div>
+
                 <span>Vai trò:</span><br>
                 <select name="role" id="role">
                     <option value=""></option>
@@ -32,6 +42,7 @@
                 </select><br>
                 <input type="submit" id="submit" value="Cập Nhật">
             </form>
+            <!-- <button onclick="check()">check</button> -->
         </div> 
         
         <div class="show-information">
@@ -73,15 +84,6 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2022</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -107,4 +109,7 @@
     </div>
 </div>
 
-<?php include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; ?>
+<?php
+    // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+    include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+?>

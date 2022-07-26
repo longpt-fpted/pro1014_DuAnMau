@@ -42,7 +42,8 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
                 window.location= "../View/admin/users.php";}
                 else window.location= "../View/admin/users.php";
             </script>');
-    } else {
+    } 
+     else {
             $user = $userDAO->addUserAdmin($role,$username,$password,$email,$fullname,$phonenumber);
             if ( $user == true){
                 echo ('<script>

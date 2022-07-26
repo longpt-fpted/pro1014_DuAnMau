@@ -39,23 +39,28 @@
             </div>
         </div>
         <div class="contact-content">
-            <form action="" id="contact-form" method="POST">
+            <form action="http://localhost/pro1014_duan/sources/controller/AddContactController.php" onsubmit="return check_contact()" id="contact-form" method="POST">
                 <div class="input-1">
                     <span>FULL NAME</span><br><br>
-                    <input type="text" id="fullname" name="fullname" placeholder="Full Name">
+                    <input type="text" id="fullname" name="fullname" onclick="removeErrorFullname()" placeholder="Full Name">
+                    <div id="error-fullname" class="error-validate"></div>
                 </div>
                 <div class="input-1">
                     <span>EMAIL</span><br><br>
-                    <input type="text" id="email" name="email" placeholder="Email">
+                    <input type="text" id="email" name="email" onclick="removeErrorEmail()" placeholder="Email">
+                    <div id="error-email" class="error-validate"></div>
                 </div>
                 <div class="input-2">
                     <span>SUBJECT</span><br><br>
-                    <input type="text" id="subject" name="subject" placeholder="Subject">
+                    <input type="text" id="subject" name="subject" onclick="removeErrorSubject()" placeholder="Subject">
+                    <div id="error-subject" class="error-validate"></div>
                 </div>
                 <div class="input-2">
                     <span>MESSAGE</span><br><br>
-                    <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="5" onclick="removeErrorMessage()" placeholder="Message"></textarea>
+                    <div id="error-message" class="error-validate"></div>
                 </div>
+                <input type="text" name="type" id="type" value="1" hidden>
                 <div class="input-2">
                     <input type="submit" id="submit">
                 </div>

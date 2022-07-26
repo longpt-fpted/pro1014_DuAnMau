@@ -1,5 +1,10 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php';
+// include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php';
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include '/XAMPP/htdocs/pro1014_duan/sources/Model/Feedback.php';
+include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 
 class FeedbackDAO {
     private $database;

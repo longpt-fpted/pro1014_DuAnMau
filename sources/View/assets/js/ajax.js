@@ -314,4 +314,3 @@ function removeComment(event, userID, commentID) {
                 break;
         }
     })
-}
