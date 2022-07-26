@@ -1,10 +1,10 @@
 <?php
 
-// include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
-// include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+ include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
+ include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+//include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 
     $name = $_POST['name'];
     $img_url = $_FILES['image']['name'];

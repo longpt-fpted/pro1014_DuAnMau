@@ -64,9 +64,7 @@ class User {
     public function getCurrency() {
         return $this->currency;
     }
-    public function getAvatar() {
-        return $this->avatar;
-    }
+    
     public function withdrawCurrency($amount) {
         if($this->currency > $amount && $amount > 0) {
             $this->currency -= $amount;

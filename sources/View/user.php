@@ -1,3 +1,12 @@
+<?php
+            include('./header.php');
+            $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
+            $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
+            $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
+
+            //$notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
+            
+        ?>
         <article class="modal" id="form-modal">
             <div class="modal-container">
                 <div class="modal-head" style="border: none; padding-bottom: 0;">
@@ -8,6 +17,7 @@
                 <div class="modal-body">
                     <form action="../Controller/UserChangePhoneController.php" method="post" class="form-edit">
                         <label for="phone">Nhập số điện thoại mới:</label>
+                        <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                         <div class="input-box">
                             <i class="fal fa-phone"></i>
                             <input type="text" id="phone" name="phone" placeholder="Số điện thoại...">
@@ -18,6 +28,7 @@
                     </form>
                     <form action="../Controller/UserChangeEmailController.php" method="post" class="form-edit">
                         <label for="mail">Nhập địa chỉ mail mới:</label>
+                        <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                         <div class="input-box">
                             <i class="fal fa-envelope"></i>
                             <input type="text" id="mail" name="mail" placeholder="Email...">
@@ -28,15 +39,16 @@
                     </form>
                     <form action="../Controller/UserChangePasswordController.php" method="post" class="form-edit">
                         <label for="phone">Nhập mật khẩu cũ:</label>
+                        <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                         <div class="input-box">
                             <i class="fal fa-key"></i>
-                            <input type="text" id="old-pass" name="old-pass" placeholder="Mật khẩu cũ">
+                            <input type="password" id="old-pass" name="old-pass" placeholder="Mật khẩu cũ">
                         </div>
                         <label for="phone">Nhập mật khẩu mới:</label>
                         <div class="input-box">
                             <i class="fal fa-key"></i>
 
-                            <input type="text" id="new-pass" name="new-pass" placeholder="Mật khẩu mới">
+                            <input type="password" id="new-pass" name="new-pass" placeholder="Mật khẩu mới">
                         </div>
                         <button type="submit" class="submit">
                             Xác nhận
@@ -46,15 +58,6 @@
             </div>
         </article>
         
-        <?php
-            include('./header.php');
-            $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
-            $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
-            $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
-
-            $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
-            
-        ?>
         <article class="modal" id="feedback-modal">
             <div class="modal-container">
                 <div class="modal-head" style="border: none; padding-bottom: 0;">
@@ -64,7 +67,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="post" class="form-edit" id="feedback-container">
-                        <input type="text" name="uid" value="<? echo $user->getID(); ?>" hidden>
+                        <input type="text" name="uid" value="<?php echo $user->getID(); ?>" hidden>
                         <div class="product-feedback__box" id="feedback-form">
                             
                         </div>
@@ -130,6 +133,7 @@
                             <div class="user-box__dashboard">
                                 <form action="../Controller/UserChangeNameController.php" method="post" class="main-info">
                                     <div class="form-info">
+                                    <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                                         <div class="form-avatar">
                                             <img src="<?php echo $user->getAvatar(); ?>" alt="user avatar">
                                             <input type="file" name="user-avatar" id="user-avatar" hidden>
@@ -379,10 +383,10 @@
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a class="method" onclick="displayFeedbackBox('<? echo $product->getName(); ?>', '<? echo $product->getImg(); ?>', <? echo $product->getID(); ?>);">Xem chi tiết</a>
+                                            <a class="method" onclick="displayFeedbackBox('<?php echo $product->getName(); ?>', '<?php echo $product->getImg(); ?>', <?php echo $product->getID(); ?>);">Xem chi tiết</a>
                                         </div>
                                     </article>
-                                    <? } else if($notify->getType() == 2) { 
+                                    <?php } else if($notify->getType() == 2) { 
                                         $order = $orderDAO->getOrderByID($notify->getTypeID());
                                     ?>
                                     <article class="news-box">
@@ -406,10 +410,10 @@
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
+                                            <a onclick="removeNotify(<?php echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                    <? } else if($notify->getType() == 3) {
+                                    <?php } else if($notify->getType() == 3) {
                                         $comment = $commentDAO->getReplyCommentByID($notify->getTypeID());
                                         $replyUser = $userDAO->getUserByID($comment->getUserID());
                                         if($replyUser->getID() !== $user->getID()) {
@@ -418,7 +422,7 @@
                                         <div class="news-box__head">
                                             <i class="fal fa-calendar"></i>
                                             <div class="date">
-                                                <? echo $comment->getDate(); ?>
+                                                <?php echo $comment->getDate(); ?>
                                             </div>
                                         </div>
                                         <div class="news-box__body">
@@ -430,18 +434,18 @@
                                                     Bình luận của bạn được trả lời!
                                                 </h4>
                                                 <p class="news-desc">
-                                                    Tài khoản <? echo $replyUser->getFullname(); ?> đã trả lời bình luận của bạn!
+                                                    Tài khoản <?php echo $replyUser->getFullname(); ?> đã trả lời bình luận của bạn!
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a href="./product.php?id=<? echo $comment->getProductID(); ?>" class="method">Xem chi tiết</a>
-                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
+                                            <a href="./product.php?id=<?php echo $comment->getProductID(); ?>" class="method">Xem chi tiết</a>
+                                            <a onclick="removeNotify(<?php echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
-                                        <? } ?>
-                                <? } ?>
-                            <? } ?>
+                                        <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
                             </article>
                         </article>
                         <article class="user-box">

@@ -16,6 +16,7 @@ include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/CategoryDAO.php";
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ContactDAO.php";
 
 $userDAO = new UserDAO();
 $users = $userDAO->getAllUsers();

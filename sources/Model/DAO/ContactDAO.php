@@ -1,7 +1,7 @@
 <?php
 include '/xampp/htdocs/pro1014_DuAn/sources/Model/Contact.php';
 include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+//include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 
 class ContactDAO {
     private $database;

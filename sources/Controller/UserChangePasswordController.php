@@ -1,19 +1,23 @@
 <?php
-    include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-    include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
+    include "../Utils/Database.php";
+    include "../Model/DAO/UserDAO.php";
+
     $oldpassword = $_POST['old-pass'];
     $newpassword = $_POST['new-pass'];
+    $id = $_POST['id'];
 
     $userDAO = new UserDAO();
-    $userID = isset($_GET['id']) ? $_GET['id'] : 1;
-    $user = $userDAO->getUserByID($userID);
-    $id = $user->getID();
-    $user->setPassword($oldpassword,$newpassword);
-    
-    $userDAO->UserChangePassword($newpassword,$id);
+    $user = $userDAO->getUserByID($id);
+    $pass = $user->getPassword();
+    if($oldpass = $pass){
+        $userDAO->UserChangePassword($newpassword,$id);
+    }
+    else {
+        $userDAO->UserChangePassword($pass,$id);
+    }
     //var_dump($user);
-    //var_dump($id);
-    header("location: ../View/user.php");
+    //var_dump($pass);
+    header("location: ../View/user.php?id=$id");
     
 
 ?>

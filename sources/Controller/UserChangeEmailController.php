@@ -5,15 +5,14 @@
     $email = $_POST['mail'];
 
     $userDAO = new UserDAO();
-    $userID = isset($_GET['id']) ? $_GET['id'] : 1;
-    $user = $userDAO->getUserByID($userID);
-    $id = $user->getID();
+    $id = $_POST['id'];
+    $user = $userDAO->getUserByID($id);
     $user->setEmail($email);
     
     $userDAO->UserChangeEmail($email,$id);
     //var_dump($user);
     //var_dump($id);
-    header("location: ../View/user.php");
+    header("location: ../View/user.php?id=$id");
     
 
 ?>

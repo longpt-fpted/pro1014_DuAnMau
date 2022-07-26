@@ -24,20 +24,8 @@
 
         if($user !== 'error' and $role == 1) {
             if($user->checkPassword($password)) {
-                /*$_SESSION['user'] = $user->getID();
-                $order = $orderDAO->getUnpayOrderByUserID($user->getID());
-                if(isset($_SESSION['cart'])) {
-                    
-                    foreach ($_SESSION['cart'] as $orderdetail) {
-                        $isContain = $orderdetailDAO->isOrderdetailContained($user->getID(), $order->getID(), $orderdetail['id']);
-                        if($isContain) {
-                            $od = $orderdetailDAO->getOrderDetailByUserIDAndOrderID($user->getID(), $order->getID());
-                            $orderdetailDAO->addOrderDetailToOrder($order->getID(), $orderdetail['id'], $od->getQuantity() + $orderdetail['quantity'], $isContain);
-                        } else {
-                            $orderdetailDAO->addOrderDetailToOrder($order->getID(), $orderdetail['id'], $orderdetail['quantity'], $isContain);
-                        }
-                    }
-                }*/
+               
+                $_SESSION['login'] = "ok";
                 $resp['status'] = 'success';
             } else {
                 $resp['status'] = 'wrong-password';

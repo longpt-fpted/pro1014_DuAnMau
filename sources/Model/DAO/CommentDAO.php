@@ -1,6 +1,7 @@
 <?php
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+//include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+
 class CommentDAO {
     private $database;
     public function __construct()

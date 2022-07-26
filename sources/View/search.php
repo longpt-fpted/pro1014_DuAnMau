@@ -62,6 +62,7 @@
                 $productSearch = $product;
                 foreach ($productSearch as $productSearch) {
             ?>  
+            
                 <article class="product-box">
                     <a class="product-box__thumbnail" href="./product.php?id=<?php echo $productSearch->getID(); ?>">
                         <img src="<?php echo $productSearch->getImg(); ?>" alt="product thumbnail">
