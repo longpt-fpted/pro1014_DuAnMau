@@ -1,5 +1,6 @@
 <?php
-    include("/xampp/htdocs/pro1014_DuAn/sources/View/header.php");
+    include './header.php';
+    // include("/xampp/htdocs/pro1014_DuAn/sources/View/header.php");
 ?>
 <section class="main-content">
     <div class="main-contact">
@@ -72,5 +73,5 @@
     </div>
 </section>
 <?php
-    include("/xampp/htdocs/pro1014_DuAn/sources/View/footer.php");
+    include './footer.php';
 ?>

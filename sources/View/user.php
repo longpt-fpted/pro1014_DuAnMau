@@ -113,12 +113,6 @@
                             </p>
                         </article>
                         <article class="user-method">
-                            <i class="fal fa-star"></i>
-                            <p class="user-method--title">
-                                Đánh giá của tôi
-                            </p>
-                        </article>
-                        <article class="user-method">
                             <i class="fal fa-heart"></i>
                             <p class="user-method--title">
                                 Sản phẩm yêu thích
@@ -447,55 +441,6 @@
                                 <?php } ?>
                             <?php } ?>
                             </article>
-                        </article>
-                        <article class="user-box">
-                            <div class="user-box__title">
-                                Đánh giá của tôi
-                            </div>
-                            <article class="user-box__dashboard">
-                                <article class="news-box">
-                                    <div class="news-box__head">
-                                        <i class="fal fa-calendar"></i>
-                                        <div class="date">
-                                            21/08/2021
-                                        </div>
-                                    </div>
-                                    <div class="news-box__body">
-                                        <div class="news-thumbnail">
-                                            <img src="./assets/images/elden-ring.jpg" alt="news">
-                                        </div>
-                                        <div class="news-detail">
-                                            <h4 class="news-title">
-                                                Elden Ring
-                                            </h4>
-                                            <div class="rating">
-                                                <div class="back-stars">
-                                                    <i class="fal fa-star" aria-hidden="true"></i>
-                                                    <i class="fal fa-star" aria-hidden="true"></i>
-                                                    <i class="fal fa-star" aria-hidden="true"></i>
-                                                    <i class="fal fa-star" aria-hidden="true"></i>
-                                                    <i class="fal fa-star" aria-hidden="true"></i>
-                
-                                                    <div class="front-stars" id="rating" style="width: 50%;">
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="news-desc">
-                                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque voluptatum eos at laborum a. Aspernatur, consectetur reiciendis fugiat consequatur repellendus suscipit unde sit, asperiores eligendi dolorem soluta, incidunt nemo doloremque!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="news-box__foot">
-                                        <a href="#" class="method">Xem chi tiết</a>
-                                    </div>
-                                </article>
-                            </article>
-                            
                         </article>
                         <article class="user-box">
                             <div class="user-box__title">

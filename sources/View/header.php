@@ -286,7 +286,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=6" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>
