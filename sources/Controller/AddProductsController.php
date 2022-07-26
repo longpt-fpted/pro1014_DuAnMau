@@ -1,8 +1,6 @@
 <?php
-
- include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
- include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 //include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 
@@ -11,8 +9,9 @@
     $cate_id = $_POST['category'];
     $price = $_POST['price'];
     $sale_percent = $_POST['sale_percent'];
-
-    $dest = "/xampp/htdocs/pro1014_DuAn/sources/View/assets/game/".$_FILES['image']['name'];
+    
+    $dest = "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/assets/game/".$_FILES['image']['name'];
+    // $dest = "/xampp/htdocs/pro1014_DuAn/sources/View/assets/game/".$_FILES['image']['name'];
     move_uploaded_file($_FILES['image']['tmp_name'], $dest);
 
     $productDAO = new ProductDAO();

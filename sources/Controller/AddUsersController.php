@@ -1,9 +1,9 @@
 <?php
 
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
- include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
- include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+//  include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
+//  include "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
@@ -15,10 +15,9 @@
     $userDAO = new UserDAO();
 
 
-    $userDAO2 = new UserDAO();
-    $checkuser = $userDAO2->isUsernameExist($username);
-    $checkemail = $userDAO2->isEmailExist($email);
-    $checkphone = $userDAO2->isPhonenumberExist($phonenumber);
+    $checkuser = $userDAO->isUsernameExist($username);
+    $checkemail = $userDAO->isEmailExist($email);
+    $checkphone = $userDAO->isPhonenumberExist($phonenumber);
     
     echo($checkuser);
     if ($checkuser == 1) {

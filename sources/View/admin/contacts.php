@@ -30,6 +30,7 @@
                                     
                                     <tbody>
                                         <?php
+                                        
                                             foreach($contacts as $contact){
                                         ?>
                                         <tr>

@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Comment.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Comment.php";
 // include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 class CommentDAO {
     private $database;

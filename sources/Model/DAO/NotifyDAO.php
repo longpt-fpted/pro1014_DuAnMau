@@ -1,6 +1,6 @@
 <?php
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Notify.php";
-include "../Model/Notify.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Notify.php";
+// include "../Model/Notify.php";
 
 class NotifyDAO {
     private $database;
@@ -12,7 +12,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `notify` WHERE `notify`.`id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%l/%Y') AS `fdate` FROM `notify` WHERE `notify`.`id` = ?");
             $query->bind_param('s', $id);
 
             if($query->execute()) {
@@ -20,6 +20,22 @@ class NotifyDAO {
                 if($result->num_rows > 0) {
                     $notify = $result->fetch_assoc();
                     return new Notify($notify['id'], $notify['user_id'], $notify['type'], $notify['type_id'], $notify['title'], $notify['fdate']);
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getNotifyByUserIDAndTypeIDWithType($uid, $tid, $type) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%l/%Y') AS `fdate` FROM `notify` WHERE `notify`.`user_id` = ? AND `notify`.`type_id` = ? AND `notify`.`type` = ?");
+            $query->bind_param('sss', $uid, $tid, $type);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $notify = $result->fetch_assoc();
+                    return new Notify($notify['id'], $notify['user_id'], $notify['type'], $notify['type_id'], $notify['fdate']);
                 } else return false;
             } else return false;
         }

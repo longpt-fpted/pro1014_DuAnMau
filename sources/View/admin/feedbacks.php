@@ -41,7 +41,7 @@
                                             <td><?php foreach ($products as $product)  echo $feedback->getProductID() == $product->getID() ? $product->getName() : '' ?></td>
                                             <td><?php echo $feedback->getRating() ?></td>
                                             <td><?php echo $feedback->getText() ?></td>
-                                            <td><a href=""><button id="btn-contact-delete">Xóa</button></a></td>                                           
+                                            <td><button id="btn-contact-delete">Xóa</button></td>                                           
                                         </tr>      
                                     <?php 
                                         } 

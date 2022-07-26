@@ -1,4 +1,28 @@
 <?php
+    include('./header.php');
+    $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
+    $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
+    $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
+
+    $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
+    
+?>
+<article class="modal" id="form-modal">
+    <div class="modal-container">
+        <div class="modal-head" style="border: none; padding-bottom: 0;">
+            <button class="modal-close" id="modal-close">
+                <i class="fal fa-times-circle"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="../Controller/UserChangePhoneController.php" method="post" class="form-edit">
+                <input type="text" value="<?php echo $user->getID(); ?>" name="id" hidden>
+
+                <label for="phone">Nhập số điện thoại mới:</label>
+                <div class="input-box">
+                    <i class="fal fa-phone"></i>
+                    <input type="text" id="phone" name="phone" placeholder="Số điện thoại...">
+                </div>
             include('./header.php');
             $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
             $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
@@ -70,6 +94,27 @@
             $userID = isset($_GET['id']) ? $_GET['id'] : 'error';
             $user = $userID != 'error' ? $userDAO->getUserByID($userID) : 'false';
             $uMethod = isset($_GET['umethod']) ? $_GET['umethod'] : 0;
+                </div>
+                <button type="submit" class="submit">
+                    Xác nhận
+                </button>
+            </form>
+        </div>
+    </div>
+</article>
+<article class="modal" id="feedback-modal">
+    <div class="modal-container">
+        <div class="modal-head" style="border: none; padding-bottom: 0;">
+            <button class="modal-close" id="feedback-modal--close">
+                <i class="fal fa-times-circle"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" class="form-edit" id="feedback-container">
+                <input type="text" name="uid" value="<? echo $user->getID(); ?>" hidden>
+                <div class="product-feedback__box" id="feedback-form">
+                    
+                </div>
 
             $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
             
@@ -286,12 +331,15 @@
                                                     Thay đổi
                                                 </button>
                                                 <button class="method">
-                                                    Xoá
-                                                </button>
-                                            </div>
+                                    <article class="order-detail-box__foot">
+                                        <div class="price">
+                                            <span>Tổng tiền:</span> <?php  echo $utils->formatMoney($order->getPrice()); ?>VND
                                         </div>
                                     </article>
                                 </section>
+                            <?php  } ?>
+                        </div>
+                    </article>
                             </div>
                         </article>
                         <article class="user-box">
@@ -314,7 +362,7 @@
                                                 </button>
                                                 <button class="method">
                                                     Xoá
-                                                </button>
+>>>>>>> 10752ae (testing 1)
                                             </div>
                                         </div>
                                     </article>

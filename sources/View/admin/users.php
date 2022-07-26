@@ -36,9 +36,8 @@
 
                 <span>Vai trò:</span><br>
                 <select name="role" id="role">
-                    <option value=""></option>
+                    <option value="0" selected>Thành viên</option>
                     <option value="1">Quản trị viên</option>
-                    <option value="0">Thành viên</option>
                 </select><br>
                 <input type="submit" id="submit" onclick="return check()" value="Cập Nhật">
             </form>
@@ -51,7 +50,7 @@
             ?>
             <div class="information">
                 <div class="image">
-                    <img src="./images/avatar.png" alt="">
+                    <img src=".<?php echo $user->getAvatar(); ?>" alt="">
                 </div>
                 <div class="detail">
                     <form action="http://localhost/pro1014_duan/sources/Controller/UpdateUsersController.php" id="user-infor" method="post">

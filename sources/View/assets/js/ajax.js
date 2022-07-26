@@ -203,7 +203,6 @@ function removeNotify(id) {
         data: data,
     }).done(res => {
         res = JSON.parse(res);
-
         switch (res.status) {
             case 'success':
                 displayNotify('success', `Xoá thành công thông báo!`);
@@ -236,6 +235,7 @@ function submitFeedback(event) {
         switch (res.status) {
             case 'success':
                 displayNotify('success', `Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi!`);
+                removeNotify(res.id);
                 closeFeedbackPanel();
                 break;
             case 'fail':

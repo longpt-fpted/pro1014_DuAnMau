@@ -1448,6 +1448,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .main-info .form-info .form-avatar img {
   width: 100%;
+  border-radius: 50%;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .main-info .form-info .form-avatar label {
   position: absolute;

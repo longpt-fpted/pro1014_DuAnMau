@@ -18,8 +18,9 @@
     $rating = $_POST['rating'];
     $view = $_POST['view'];
   
-
-    $dest = "/xampp/htdocs/pro1014_DuAn/sources/View/assets/game/".$_FILES['image']['name'];
+    
+    $dest = "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/assets/game/".$_FILES['image']['name'];
+    // $dest = "/xampp/htdocs/pro1014_DuAn/sources/View/assets/game/".$_FILES['image']['name'];
     move_uploaded_file($_FILES['image']['tmp_name'], $dest);
 
     $productDAO = new ProductDAO();

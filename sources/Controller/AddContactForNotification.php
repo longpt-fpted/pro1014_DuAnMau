@@ -1,9 +1,8 @@
 <?php
-
-include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ContactDAO.php";
-
-    $fullname = $_POST['customer-name'];
-    $email = $_POST['mail'];
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ContactDAO.php";
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
     $type = $_POST['type'];
 
     $contactDAO = new ContactDAO();

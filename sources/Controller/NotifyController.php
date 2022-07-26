@@ -1,12 +1,12 @@
 <?php
-// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 // include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 // include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 // include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 // include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
 
 
-include_once "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include_once "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 include_once "../Model/DAO/UserDAO.php";
 include_once "../Model/DAO/ProductDAO.php";
 include_once "../Model/DAO/NotifyDAO.php";
@@ -69,7 +69,6 @@ function sendCommentToUser($userID, $commentID) {
 switch ($method) {
     case 'remove':
         $nid = isset($_REQUEST['nid']) ? $_REQUEST['nid'] : 'error';
-
         echo json_encode(removeNotify($nid));
         break;
     case 'send':

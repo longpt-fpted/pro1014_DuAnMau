@@ -111,6 +111,6 @@
 <!-- End of Main Content -->
 <script src="js/validate-product.js"></script>
 <?php
-    // include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
-    include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+    include './footer.php'; 
+    // include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
 ?>

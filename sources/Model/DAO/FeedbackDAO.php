@@ -1,7 +1,7 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php';
 include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php";
 
 // include "/xampp/htdocs/pro1014_DuAn/sources/Model/Feedback.php";
 // include_once "/xampp/htdocs/pro1014_DuAn/sources/Utils/Utils.php";
@@ -65,6 +65,21 @@ class FeedbackDAO {
             if($query->execute()) {
                 $result = $query->get_result();
                 return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function getFeedbackByUserIDAndProductID($userID, $productID) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`feedback`.`date`, '%d/%l/%Y') AS `fdate` FROM `feedback` WHERE `feedback`.`user_id` = ? AND `feedback`.`product_id` = ?");
+            $query->bind_param('ss', $userID, $productID);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                        $feedback = $result->fetch_assoc();
+                        return new Feedback($feedback['user_id'], $feedback['product_id'], $feedback['text'], $feedback['rating'], $feedback['fdate']);
+                } else return false;
             } else return false;
         }
     }
