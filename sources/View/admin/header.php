@@ -31,6 +31,9 @@ $utils = new Utils();
 $feedbackDAO = new FeedbackDAO();
 $feedbacks = $feedbackDAO->getAllFeedbacks();
 
+$contactDAO = new ContactDAO();
+$contacts = $contactDAO->getAllContacts();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +109,6 @@ $feedbacks = $feedbackDAO->getAllFeedbacks();
                         <a class="collapse-item" href="products.php">Products</a>
                         <a class="collapse-item" href="feedbacks.php">Feedbacks</a>
                         <a class="collapse-item" href="contacts.php">Contacts</a>
-                        <a class="collapse-item" href="notifications.php">Notifications</a>
                     </div>
                 </div>
             </li>

@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
+// include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php';
+include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
 class ProductDAO {
     private $database;
     public function __construct()

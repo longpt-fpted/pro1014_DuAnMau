@@ -6,9 +6,9 @@ use PHPMailer\PHPMailer\Exception;
 //require '../sources/Libraries/PHPMailer/src/Exception.php';
 //require '../sources/Libraries/PHPMailer/src/PHPMailer.php';
 //require '../sources/Libraries/PHPMailer/src/SMTP.php';
-require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\Exception.php';
-require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\SMTP.php';
+require '/xampp/htdocs/pro1014_DuAn/sources/Libraries/PHPMailer/src/Exception.php';
+require '/xampp/htdocs/pro1014_DuAn/sources/Libraries/PHPMailer/src/PHPMailer.php';
+require '/xampp/htdocs/pro1014_DuAn/sources/Libraries/PHPMailer/src/SMTP.php';
 
 
 include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";

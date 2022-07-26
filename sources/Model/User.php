@@ -24,6 +24,9 @@ class User {
     public function getID() {
         return $this->id;
     }
+    public function getAvatar(){
+        return $this->avatar;
+    }
     public function getUsername() {
         return $this->username;
     }

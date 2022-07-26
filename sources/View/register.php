@@ -6,24 +6,28 @@
                     đăng kí
                 </h2>
                 <section class="content-box">
-                    <form action="../Controller/RegisterController.php" method="post" enctype="multipart/form-data" class="account-box">
+                    <form action="../Controller/RegisterController.php" onsubmit="return check()" method="post" enctype="multipart/form-data" class="account-box">
                         <div class="input-box">
                             <label for="fullname">Họ và tên:</label>
-                            <input type="text" name="fullname" id="fullname" placeholder="Họ và tên" required>
+                            <input type="text" name="fullname" id="fullname" onclick="removeErrorFullname()" placeholder="Họ và tên">
+                            <div id="error-fullname" class="error-validate"></div>
                         </div>
                         <div class="input-box">
                             <label for="username">Tên tài khoản:</label>
-                            <input type="text" name="username" id="username" placeholder="Tên tài khoản" required>
+                            <input type="text" name="username" id="username" onclick="removeErrorUsername()" placeholder="Tên tài khoản">
+                            <div id="error-username" class="error-validate"></div>
                         </div>
 
                         <div class="input-box">
                             <label for="password">Mật khẩu:</label>
-                            <input type="text" name="password" id="password" placeholder="Mật khẩu" required>
+                            <input type="password" name="password" id="password" onclick="removeErrorPassword()" placeholder="Mật khẩu">
+                            <div id="error-password" class="error-validate"></div>
                         </div>
 
                         <div class="input-box">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" placeholder="Email" required>
+                            <input type="text" name="email" id="email" onclick="removeErrorEmail()" placeholder="Email">
+                            <div id="error-email" class="error-validate"></div>
                         </div>
                         <div class="input-box" style="flex-wrap: nowrap; gap: 1em;">
                             <input type="checkbox" name="confirm" id="confirm" style="width: 1em;" required>
@@ -38,5 +42,5 @@
                     </form>
                 </section>
             </article>
-        </section>            
+        </section>         
         <?php include('./footer.php') ?>

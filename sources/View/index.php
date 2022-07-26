@@ -58,7 +58,7 @@
                         }
                     ?>
                 </section>
-                <a class="content-detail" href="#">
+                <a class="content-detail" href="search.php">
                     Xem thêm
                 </a>
             </article>
@@ -106,7 +106,7 @@
                     }
                 ?>
                 </section>
-                <a class="content-detail" href="#">
+                <a class="content-detail" href="search.php">
                     Xem thêm
                 </a>
             </article>
@@ -118,12 +118,13 @@
                     <div class="contact-thumbnail">
                         <img src="./assets/images/chatbot.jpg" alt="contact logo">
                     </div>
-                    <form action="" method="post">
+                    <form action="http://localhost/pro1014_duan/sources/controller/AddContactForNotification.php" method="post">
                         <p class="contact-desc">
                             Chúng tôi sẽ gửi email cho bạn mỗi khi có thông tin mới nếu bạn đăng ký dịch vụ này!
                         </p>
                         <input type="text" name="fullname" id="fullname" placeholder="Họ và tên">
                         <input type="text" name="email" id="email" placeholder="Email">
+                        <input type="text" name="type" id="type" value="0" hidden>
 
                         <button name="submit">
                             Tham gia ngay!
@@ -175,54 +176,54 @@
                     }
                 ?>
                 </section>
-                <a class="content-detail" href="#">
+                <a class="content-detail" href="search.php">
                     Xem thêm
                 </a>
             </article>
             <article class="content-container">
                 <h2 class="content-title">
-                    Feedback
+                    Nhà tài trợ
                 </h2>
                 <section class="content-box" style="flex-wrap: nowrap;">
                     <article class="feedback-box">
                         <div class="feedback-box__thumbnail">
-                            <p>’’</p>
+                            <img src="./assets/images/steam.png" alt="">
                         </div>
                         <div class="feedback-box__detail">
                             <h4 class="feedback-box__desc">
-                               “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”
+                               “Chúng tôi đã hợp tác với Demon Stone Team được 2 năm và chúng tôi rất vinh dự khi đánh giá rằng đây là 1 trong những trang web chuyên về Game úy tín nhất mà chúng tôi từng hợp tác.”
                             </h4>
                             <hr>
                             <p class="feedback-box__author">
-                                Dr.Strange
+                                - Steam -
                             </p>
                         </div>
                     </article>
                     <article class="feedback-box">
                         <div class="feedback-box__thumbnail">
-                            <p>’’</p>
+                            <img src="./assets/images/riot.png" alt="">
                         </div>
                         <div class="feedback-box__detail">
                             <h4 class="feedback-box__desc">
-                               “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”
+                               “Thật sự mà nói, những bạn trẻ trong đội ngũ Demon Stone Team thật sự rất nhiệt huyết trong lĩnh vực mà họ đã chọn. Thật là 1 sự vinh hạnh cho chúng tôi khi có được cơ hội làm việc cùng các bạn.”
                             </h4>
                             <hr>
                             <p class="feedback-box__author">
-                                Dr.Strange
+                               - Riot Games -
                             </p>
                         </div>
                     </article>
                     <article class="feedback-box">
                         <div class="feedback-box__thumbnail">
-                            <p>’’</p>
+                            <img src="./assets/images/tencent.png" alt="">
                         </div>
                         <div class="feedback-box__detail">
                             <h4 class="feedback-box__desc">
-                               “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”
+                               “Tài năng, nhiệt huyết, chịu khó,... là những gì mà Demon Stone Team có được, thạm chí là hơn cả thế. Chúc các bạn ngày càng thành công trên con đường mình đã chọn.”
                             </h4>
                             <hr>
                             <p class="feedback-box__author">
-                                Dr.Strange
+                               - Tencent Games -
                             </p>
                         </div>
                     </article>

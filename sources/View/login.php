@@ -20,6 +20,9 @@
                         <div class="input-box">
                             <input type="submit" name="login" id="submit" value="Đăng nhập">
                         </div>
+                        <div>
+                            <a href="forget-password.php">Quên mật khẩu?</a>
+                        </div>
                     </form>
                 </section>
             </article>
