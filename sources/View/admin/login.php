@@ -41,7 +41,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form action="" method="post" class="user" id="admin-login-form">
+                                    <form action="http://localhost/pro1014_duan/sources/controller/LoginAdminController.php" method="post" class="user" id="admin-login-form">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="Admin Username">
                                         </div>

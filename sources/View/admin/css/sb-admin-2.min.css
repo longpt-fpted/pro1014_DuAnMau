@@ -3970,7 +3970,8 @@ input[type=submit].btn-block {
 .input-group>.input-group-prepend:not(:first-child)>.btn,
 .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0
+    border-bottom-left-radius: 0;
+    z-index: 0;
 }
 
 .custom-control {
@@ -12111,7 +12112,7 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url(https://avatarfiles.alphacoders.com/807/80719.jpg);
+    background: url('../images/login.png');
     background-position: center;
     background-size: cover
 }
@@ -12794,9 +12795,11 @@ body.sidebar-toggled footer.sticky-footer {
 #th-ct-email {
     width: 18%;
 }
-
+#th-ct-type{
+width: 11%;
+}
 #th-ct-qt {
-    width: 43%;
+    width: 35%;
 }
 
 #th-ct-time {

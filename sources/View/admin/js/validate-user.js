@@ -59,7 +59,8 @@ function check() {
         phone.style.border = ""
         success = false
     } else if(phone.value.match(phoneRegex) == null){
-        errorPhone.innerHTML = "Số điện thoại không đúng định dạng"
+        errorPhone.innerHTML = "Số điện thoại không đúng định dạng!"
+        phone.style.border = "1px solid red"
         success = false
     }
      else {

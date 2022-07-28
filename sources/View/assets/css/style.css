@@ -1493,6 +1493,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   border-radius: 0.5em;
   background-color: #5680e9;
   color: white;
+  margin-top: 1em;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .main-info .submit-form:hover {
   cursor: pointer;

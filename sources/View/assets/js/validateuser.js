@@ -7,6 +7,8 @@ var passwordRegex = ("^(?=.{8,})^")
 var email = document.getElementById("email")
 var mail = document.getElementById("mail")
 var emailRegex = /\S+@\S+\.\S+/
+var phone = document.getElementById("phone")
+var phoneRegex = /((09|05|07|03)+([0-9]{8})\b)/g
 
 
 errorFullname = document.getElementById("error-fullname")
@@ -16,6 +18,7 @@ errorOldPassword = document.getElementById("error-oldpassword")
 errorNewPassword = document.getElementById("error-newpassword")
 errorEmail = document.getElementById("error-email")
 errorMail = document.getElementById("error-mail")
+errorPhone = document.getElementById("error-phone")
 
 
 function check_register() {
@@ -137,6 +140,21 @@ function check_change_email() {
         success = false
     } else {
         errorMail.innerHTML = ""
+    }
+    
+    return success;
+}
+function check_change_phone() {
+    var success = true
+
+    if(phone.value == ""){
+        errorPhone.innerHTML = "Vui lòng nhập số điện thoại mới!"
+        phone.style.borderBottom = "1px solid red"
+        success = false
+    } else if(phone.value.match(phoneRegex) == null){
+        errorPhone.innerHTML = "Số điện thoại không đúng định dạng"
+        phone.style.borderBottom = "1px solid red"
+        success = false
     }
     
     return success;

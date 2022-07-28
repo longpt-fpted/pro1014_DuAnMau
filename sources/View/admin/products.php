@@ -31,7 +31,7 @@
                 <div id="error-category" class="error-validate"></div>
 
                 <span>Giá niêm yết:</span><br>
-                <input type="number" id="price" name="price" onclick="removeErrorPrice()" placeholder="Giá niêm yết" min="0" step="10000" max="999999999"><br>
+                <input type="number" id="price" name="price" onclick="removeErrorPrice()" placeholder="Giá niêm yết" min="0" step="1000" max="999999999"><br>
                 <div id="error-price" class="error-validate"></div>
 
                 <span>Sale:</span><br>

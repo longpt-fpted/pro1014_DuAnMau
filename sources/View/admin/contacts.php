@@ -21,6 +21,7 @@
                                             <th id="th-ct-stt">STT</th>
                                             <th id="th-ct-name">Họ và tên</th>
                                             <th id="th-ct-email">Email</th>
+                                            <th id="th-ct-type">Loại</th>
                                             <th id="th-ct-time">Tiêu đề</th>
                                             <th id="th-ct-qt">Câu hỏi/ Góp ý</th>
                                             <th id="th-ct-opt">Tùy chọn</th>
@@ -35,6 +36,7 @@
                                             <td><?php echo $contact->getID() ?></td>
                                             <td><?php echo $contact->getFullname() ?></td>
                                             <td><?php echo $contact->getEmail() ?></td>
+                                            <td><?php echo $contact->getType() == 0 ? 'Đăng ký thông báo' : 'Hỏi đáp/Góp ý' ?></td>
                                             <td><?php echo $contact->getSubject() ?></td>
                                             <td><?php echo $contact->getMessage() ?></td>
                                             <td><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>

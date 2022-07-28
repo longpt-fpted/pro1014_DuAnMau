@@ -1,6 +1,4 @@
 <?php 
- session_start();
- if(!isset($_SESSION['login'])){header("location: ./login.php");}
  include('header.php'); 
 ?>
         <!-- End of Sidebar -->

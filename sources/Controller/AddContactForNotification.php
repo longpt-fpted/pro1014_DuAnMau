@@ -2,8 +2,8 @@
 
 include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ContactDAO.php";
 
-    $fullname = $_POST['fullname'];
-    $email = $_POST['email'];
+    $fullname = $_POST['customer-name'];
+    $email = $_POST['mail'];
     $type = $_POST['type'];
 
     $contactDAO = new ContactDAO();
