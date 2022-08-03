@@ -84,6 +84,19 @@ class UserDAO {
             else return false;
         }
     }
+    public function isUserExist($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`id` = ?');
+            $query->bind_param("s", $id);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
     public function isUsernameExist($username) {
         if($this->database->connect_error) {
             return false;
@@ -123,6 +136,15 @@ class UserDAO {
             } else return false;
         }
     }
+    public function depositByUserID($id, $amount) {
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `user`.`currency` = `user`.`currency` + ? WHERE ? > 0 AND `user`.`id`=? ");
+            $query->bind_param("sss", $amount, $amount, $id);
+            return $query->execute();
+        }
+    }
     public function UpdateUser($fullname,$email,$phonenumber,$role,$id){
         if($this->database->connect_error){
             return false;
@@ -146,11 +168,11 @@ class UserDAO {
             else return false;
         }
     }
-    public function addUserAdmin($username,$password,$email,$fullname,$phonenumber,$role) {//var_dump("$username,$password,$email,$fullname");
+    public function addUserAdmin($username,$password,$email,$fullname,$phonenumber,$role) {
         if($this->database->connect_error){
             return false;
         } else {
-            $query = $this->database->prepare('INSERT INTO `user`(`role_id`,`username`, `password`, `email`, `fullname`,`phone_number`) VALUES (?,?,?,?,?,?)');
+            $query = $this->database->prepare('INSERT INTO `user`(`role_id`,`username`, `password`, `email`, `fullname`,`phone_number`, `avatar`) VALUES (?,?,?,?,?,?, "./assets/userImg/man.png")');
             $query->bind_param("ssssss",$username,$password,$email,$fullname,$phonenumber,$role);
             if($query->execute()){
                 return true;

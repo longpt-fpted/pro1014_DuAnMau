@@ -335,7 +335,7 @@ input[type=number] {
   border-color: blue !important;
 }
 .cart-modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price p:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .cart-modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice {
   color: darkred;
@@ -506,7 +506,7 @@ input[type=number] {
   border-color: blue !important;
 }
 .modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price p:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .modal .modal-container .modal-body .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice {
   color: darkred;
@@ -851,7 +851,7 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #
   text-decoration: none;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice:after {
-  content: "VND";
+  /* content: "VND";  */
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice {
   letter-spacing: 0.075em;
@@ -859,7 +859,7 @@ header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #
   text-decoration: line-through;
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 header .main-navbar .main-navbar__nav .main-navbar--item .main-navbar__submenu #hot-items .product-box .product-box__detail .product-box__add {
   align-self: center;
@@ -1044,7 +1044,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: none;
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__totalprice:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice {
   letter-spacing: 0.075em;
@@ -1052,7 +1052,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__desc .product-box__price .product-box__fullprice:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .product-box .product-box__detail .product-box__add {
   align-self: center;
@@ -1229,7 +1229,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   font-weight: 600;
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .price:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale {
   font-weight: 400;
@@ -1237,7 +1237,7 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .main-product-box .main-product__detail .main-product__detail-price .sale-tag {
   background-color: red;
@@ -1530,6 +1530,45 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   background-color: #5680e9;
   color: white;
 }
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers .voucher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 50%;
+  background-color: rgb(255, 255, 138);
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  position: relative;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers .voucher::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  position: absolute;
+  left: -0.5em;
+  border-radius: 50%;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers .voucher::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  position: absolute;
+  right: -0.5em;
+  border-radius: 50%;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers .voucher .voucher-thumnail {
+  width: 25%;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .vouchers .voucher .voucher-thumnail img {
+  width: 100%;
+}
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .cards {
   display: flex;
   justify-content: space-between;
@@ -1550,11 +1589,17 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  width: 50%;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .cards .card .card-detail .card-owner {
   width: 100%;
   font-size: 1.1em;
   font-weight: 600;
+}
+.main-content .content-container .content-box .user-container .user-box .user-box__dashboard .cards .card .card-detail .card-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .cards .card .card-detail .card-methods button {
   border: #5680e9 1px solid;
@@ -1627,14 +1672,14 @@ header .main-navbar #user-navbar .main-navbar--item .main-navbar__submenu {
   font-weight: 500;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .price:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .sale {
   font-weight: 300;
   text-decoration: line-through;
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__body .news-detail .news-desc .sale:after {
-  content: "VND";
+  /* content: "VND"; */
 }
 .main-content .content-container .content-box .user-container .user-box .user-box__dashboard .news-box .news-box__foot {
   display: flex;

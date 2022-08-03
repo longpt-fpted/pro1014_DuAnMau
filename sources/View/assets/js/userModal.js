@@ -6,6 +6,13 @@ const modalCloseBtn = document.querySelector('#modal-close');
 const feedbackModal = document.querySelector('#feedback-modal');
 const feedbackBox = document.querySelector('#feedback-modal .form-edit');
 const feedbackCloseBtn = document.querySelector('#feedback-modal--close');
+
+const currencyModal = document.querySelector('#currency-modal');
+const currencyBox = document.querySelector('#currency-modal .form-edit');
+const depositBtn = document.querySelector('#deposit');
+const currencyCloseBtn = document.querySelector('#currency-modal--close')
+
+
 function hideForm() {
     formDialog.forEach((element) => {
         element.style.display = 'none';
@@ -37,6 +44,10 @@ window.addEventListener('click', (event) => {
     if(event.target == feedbackModal) {
         feedbackModal.style.display = 'none';
         feedbackBox.style.display = 'none';
+    }
+    if(event.target == currencyModal) {
+        currencyModal.style.display = 'none';
+
     }
 })
 
@@ -79,7 +90,24 @@ function closeFeedbackPanel() {
     feedbackModal.style.display = 'none';
     feedbackBox.style.display = 'none';
 }
+function closeCurrencyPanel() {
+    currencyModal.style.display = 'none';
+        currencyBox.style.display = 'none';
+}
 feedbackCloseBtn.addEventListener('click', e => {
     feedbackModal.style.display = 'none';
     feedbackBox.style.display = 'none';
+})
+
+depositBtn.addEventListener('click', (event) => {
+    if(currencyModal.style.display == '' || currencyModal.style.display == 'none') {
+        currencyModal.style.display = 'flex';
+        currencyBox.style.display = 'flex';
+    }
+})
+currencyCloseBtn.addEventListener('click', e => {
+    if(currencyModal.style.display == 'flex') {
+        currencyModal.style.display = 'none';
+        currencyBox.style.display = 'none';
+    }
 })

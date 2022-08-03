@@ -4,7 +4,7 @@ class Utils {
         
     }
     function formatMoney($price) {
-        return number_format($price, 0, '', '.');
+        return number_format($price, 0, '', '.').'VND';
     }
     public function objectToArrayConvert($object) {
         return (array) $object;

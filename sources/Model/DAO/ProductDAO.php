@@ -235,7 +235,7 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`sale_percent` != 0 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
                 $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");

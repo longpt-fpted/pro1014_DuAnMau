@@ -7,6 +7,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Pr
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/DiscountDAO.php";
 
 $productDAO = new ProductDAO();
 $userDAO = new UserDAO();
@@ -16,7 +17,7 @@ $mail = new Mail();
 
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; 
-$userID = isset($_POST['userID']) ? $_POST['userID'] : 'error';
+$userID = isset($_REQUEST['userID']) ? $_REQUEST['userID'] : 'error';
 
 function addProductToCart($productID) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
@@ -169,7 +170,7 @@ function minusProductFromCart($productID) {
 function checkout($userID) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
     $notifyDAO = new NotifyDAO();
-
+    $discountDAO = new DiscountDAO();
     $resp = [];
     $user = null;
     if($userID != 'error') {
@@ -177,7 +178,7 @@ function checkout($userID) {
         $order = $orderDAO->getUnpayOrderByUserID($user->getID());
         $orderdetails = $orderDetailDAO->getAllOrderDetailByUserIdAndOrderID($user->getID(), $order->getID());
         $totalPrice = 0;
-
+        $mail = new Mail();
         foreach ($orderdetails as $orderdetail) {
             $totalPrice += $orderdetail->getPrice();
         }
@@ -186,6 +187,8 @@ function checkout($userID) {
             $resp['status'] = 'money';
         } else if(count($_SESSION['cart']) <= 0) {
             $resp['status'] = 'length';
+        } else if($totalPrice <= 0) {
+            $resp['status'] = 'cart-money';
         } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("Y-m-d"))) {
                 $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
                 $user->withdrawCurrency($totalPrice);
@@ -196,12 +199,23 @@ function checkout($userID) {
                     $productDAO->updateProductSell($orderdetail->getProductID());
                     $notifyDAO->createNotifyToUser($userID, 1, $orderdetail->getProductID());
                 }
-
-
-                // Send mail...
+                if($totalPrice >= 1000000 && $totalPrice < 5000000) {
+                    $resp['discount'] = $discountDAO->insertNewDiscountForUser($user->getID(), 0) ? '100k' : 'fail';
+                } else if($totalPrice >= 5000000 && $totalPrice < 10000000) {
+                    $resp['discount'] = $discountDAO->insertNewDiscountForUser($user->getID(), 1) ? '200k' : 'fail';
+                } else if($totalPrice >= 10000000) {
+                    $resp['discount'] = $discountDAO->insertNewDiscountForUser($user->getID(), 2) ? '500k' : 'fail';
+                } else $resp['discount'] = 'none';
+                $mailOrder = array_map(function($mailOrderDetail) {
+                    $productDAO = new ProductDAO();
+                    $product = $productDAO->getProductByID($mailOrderDetail->getProductID());
+                    return ['name' => $product->getName(), 'quantity' => $mailOrderDetail->getQuantity(), 'totalprice' => $mailOrderDetail->getPrice()];
+                }, $orderdetails);
+                $mailStr = $mail->getCheckoutMail($user, $mailOrder);
+                
+                $resp['status'] = $mail->sendMail($user->getEmail(), "Xác nhận đơn hàng", $mailStr) == 1 ? 'success' : 'mail';
                
-                $resp['status'] = 'success';
-        } else {
+        }  else {
             $resp['status'] = 'fail';
         }
     }

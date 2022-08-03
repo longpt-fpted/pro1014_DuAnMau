@@ -62,9 +62,12 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/responsive.css">
-
+    
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/ajax.js"></script>
 </head>
 
 <body id="page-top">
@@ -116,6 +119,7 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
                         <a class="collapse-item" href="products.php">Products</a>
                         <a class="collapse-item" href="feedbacks.php">Feedbacks</a>
                         <a class="collapse-item" href="contacts.php">Contacts</a>
+                        <a class="collapse-item" href="categories.php">Categories</a>
                     </div>
                 </div>
             </li>

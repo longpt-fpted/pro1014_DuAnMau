@@ -1,9 +1,4 @@
 <?php include('./header.php') ?>
-
-<script>
-    
-    
-</script>
 <section class="main-content">
     <section class="content-container">
         <section class="content-box">

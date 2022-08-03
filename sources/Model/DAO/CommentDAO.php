@@ -39,7 +39,7 @@ class CommentDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ? AND `comment`.`parent_id` = 0");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%m/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ? AND `comment`.`parent_id` = 0");
             $query->bind_param('s', $productID);
 
             if($query->execute()) {
@@ -60,7 +60,7 @@ class CommentDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ? AND `comment`.`parent_id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%m/%Y') AS `fdate` FROM `comment` WHERE `comment`.`product_id` = ? AND `comment`.`parent_id` = ?");
             $query->bind_param('ss', $productID, $parentID);
 
             if($query->execute()) {
@@ -81,7 +81,7 @@ class CommentDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%m/%Y') AS `fdate` FROM `comment` WHERE `comment`.`id` = ?");
             $query->bind_param('s', $commentID);
 
             if($query->execute()) {
@@ -98,7 +98,7 @@ class CommentDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%l/%Y') AS `fdate` FROM `comment` WHERE `comment`.`user_id` = ? AND `comment`.`product_id` = ? AND `comment`.`parent_id` = ? ORDER BY `comment`.`id` DESC");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`comment`.`date`, '%d/%m/%Y') AS `fdate` FROM `comment` WHERE `comment`.`user_id` = ? AND `comment`.`product_id` = ? AND `comment`.`parent_id` = ? ORDER BY `comment`.`id` DESC");
             $query->bind_param('sss', $userID, $productID, $parentID);
 
             if($query->execute()) {

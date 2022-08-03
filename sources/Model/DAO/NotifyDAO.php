@@ -12,7 +12,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%l/%Y') AS `fdate` FROM `notify` WHERE `notify`.`id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%m/%Y') AS `fdate` FROM `notify` WHERE `notify`.`id` = ?");
             $query->bind_param('s', $id);
 
             if($query->execute()) {
@@ -28,7 +28,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%l/%Y') AS `fdate` FROM `notify` WHERE `notify`.`user_id` = ? AND `notify`.`type_id` = ? AND `notify`.`type` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%m/%Y') AS `fdate` FROM `notify` WHERE `notify`.`user_id` = ? AND `notify`.`type_id` = ? AND `notify`.`type` = ?");
             $query->bind_param('sss', $uid, $tid, $type);
 
             if($query->execute()) {
@@ -44,7 +44,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%l/%Y') AS `fdate` FROM `Notify` WHERE `Notify`.`user_id` = ? ORDER BY `fdate` DESC");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%m/%Y') AS `fdate` FROM `Notify` WHERE `Notify`.`user_id` = ? ORDER BY `fdate`");
             $query->bind_param('s', $userID);
 
             if($query->execute()) {

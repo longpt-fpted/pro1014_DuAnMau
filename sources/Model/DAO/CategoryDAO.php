@@ -58,5 +58,55 @@ class CategoryDAO {
             } else return false;
         }
     }
+    public function isCategoryExist($name) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `category` WHERE `category`.`name` = ?");
+            $query->bind_param('s', $name);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function isCategoryExistWithID($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `category` WHERE `category`.`id` = ?");
+            $query->bind_param('s', $id);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function insertNewCategory($name) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            if(!$this->isCategoryExist($name)) {
+                $query = $this->database->prepare("INSERT INTO `category`(`name`) VALUES (?)");
+                $query->bind_param('s', $name);
+    
+                return $query->execute();
+            } else return false;
+        }
+    }
+    public function updateCategoryByID($id, $name) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            if($this->isCategoryExistWithID($id)) {
+                $query = $this->database->prepare("UPDATE `category` SET `category`.`name`= ? WHERE `category`.`id` = ?");
+                $query->bind_param('ss', $name, $id);
+    
+                return $query->execute();
+            } else return false;
+        }
+    }
 }
 ?>

@@ -16,6 +16,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
     $user->setPhone($phone);
     
     $dest = "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/assets/userImg/".$_FILES['user-avatar']['name'];
+    var_dump($dest);
     // $dest = "/xampp/htdocs/pro1014_DuAn/sources/View/assets/userImg/".$_FILES['user-avatar']['name'];
     echo move_uploaded_file($_FILES['user-avatar']['tmp_name'], $dest);
     if($_FILES['user-avatar']['name'] == ""){
@@ -29,7 +30,7 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
    
     //var_dump($user);
     //var_dump($id);
-    header("location: ../View/user.php?id=$id");
+    // header("location: ../View/user.php?id=$id");
     
 
 ?>

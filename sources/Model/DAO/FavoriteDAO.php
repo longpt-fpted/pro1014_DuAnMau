@@ -13,7 +13,7 @@
             if($this->database->connect_error) {
                 return false;
             } else {
-                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ?");
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%m/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ?");
                 $query->bind_param('s', $id);
                 if($query->execute()) {
                     $result = $query->get_result();
@@ -53,7 +53,7 @@
             if($this->database->connect_error) {
                 return false;
             } else {
-                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? AND `favorite`.`product_id` = ?");
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%m/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? AND `favorite`.`product_id` = ?");
                 $query->bind_param('ss', $userID, $productID);
 
                 if($query->execute()) {
@@ -66,7 +66,7 @@
             if($this->database->connect_error) {
                 return false;
             } else {
-                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? and `favorite`.`product_id` = ?");
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%m/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`user_id` = ? and `favorite`.`product_id` = ?");
                 $query->bind_param('ss', $userID, $productID);
                 if($query->execute()) {
                     $result = $query->get_result();
@@ -81,7 +81,7 @@
             if($this->database->connect_error) {
                 return false;
             } else {
-                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%l/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`product_id` = ?");
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`favorite`.`date`, '%d/%m/%Y') AS `fdate` FROM `favorite` WHERE `favorite`.`product_id` = ?");
 
                 $query->bind_param("s", $productID);
 

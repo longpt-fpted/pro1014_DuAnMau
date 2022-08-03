@@ -34,7 +34,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout-btn">Logout</a>
                 </div>
             </div>
         </div>
@@ -66,3 +66,25 @@
 </body>
 
 </html>
+<script>
+    $('#logout-btn').click(() => {
+        let data = 'method=logout';
+        $.ajax({
+            url: '/pro1014_DuAn/sources/Controller/LoginAdminController.php',
+            data: "method=logout",
+        }).done(res => {
+            res = JSON.parse(res);
+            switch (res['status']) {
+                case 'success':
+                    displayNotify('success', 'Đăng xuất thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                    setTimeout(function() {
+                        window.location = '/pro1014_DuAn/sources/View/admin';
+                    }, 2500)
+                    break;
+                case 'success':
+                    displayNotify('fail', 'Đăng xuất thất bại!');
+                    break;
+            }
+        })
+    });
+</script>

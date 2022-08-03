@@ -13,6 +13,7 @@ include "../Model/DAO/CommentDAO.php";
 include "../Model/DAO/FeedbackDAO.php";
 include "../Model/DAO/NotifyDAO.php";
 include "../Model/DAO/FavoriteDAO.php";
+include "../Model/DAO/DiscountDAO.php";
 
 $utils = new Utils();
 $userDAO = new UserDAO();
@@ -24,7 +25,7 @@ $favoriteDAO = new FavoriteDAO();
 $notifyDAO = new NotifyDAO();
 $feedbackDAO = new FeedbackDAO();
 $commentDAO = new CommentDAO();
-
+$discountDAO = new DiscountDAO();
 $user = isset($_SESSION['user']) ? $userDAO->getUserByID($_SESSION['user']) : 'error';
 
 $favorites = isset($_SESSION['user']) ? $favoriteDAO->getAllFavoritesByUserID($_SESSION['user']) : [];
@@ -202,9 +203,9 @@ $_SESSION['cart'] = array_map(function($od) {
                                                 </div>
                                                 <div class="product-box__price">
                                                     <p class="product-box__totalprice">
-                                                    <?php  echo $product->getTotalPrice(); ?></p>
+                                                    <?php  echo $utils->formatMoney($product->getTotalPrice()); ?></p>
                                                     <p class="product-box__fullprice">
-                                                    <?php  echo $product->getPrice(); ?></p>
+                                                    <?php  echo $utils->formatMoney($product->getPrice()); ?></p>
                                                 </div>
                                             </div>
                                             <a class="product-box__add" onclick="addProductToCart(<?php  echo $product->getID(); ?>)">
@@ -245,9 +246,8 @@ $_SESSION['cart'] = array_map(function($od) {
                                         Thông tin
                                     </a>
                                 </li>
-
                                 <li class="category--item">
-                                    <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=4" class="category--title">
+                                    <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="category--title">
                                         Thông báo <span class="tag notify-tag"><?php  echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>
                                     </a>
                                 </li>
@@ -277,7 +277,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=6" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>
@@ -313,7 +313,6 @@ $_SESSION['cart'] = array_map(function($od) {
                         case 'success':
                             displayNotify('fail', 'Đăng xuất thất bại!');
                             break;
-                        
                     }
                 })
             })

@@ -1,8 +1,5 @@
 <?php 
     include('./header.php');
-
-    
-
     $keyword = isset($_REQUEST['search-input']) ? $_REQUEST['search-input'] : '';
     $productDAO = new ProductDAO();
     if($keyword == ""){
@@ -134,11 +131,11 @@
                                 </div>
                             </div>
                             <div class="product-box__price">
-                                <p class="product-box__totalprice">${element.price}</p>
-                                <p class="product-box__fullprice">${element.fullprice}</p>
+                                <p class="product-box__totalprice">${moneyFormat(element.price)}</p>
+                                <p class="product-box__fullprice">${moneyFormat(element.fullprice)}</p>
                             </div>
                         </div>
-                        <a class="product-box__add" href="#">
+                        <a class="product-box__add" onclick="addProductToCart(${element.id})">
                             <i class="fal fa-cart-arrow-down"></i>
                         </a>
                     </div>

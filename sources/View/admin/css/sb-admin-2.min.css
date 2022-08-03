@@ -12657,7 +12657,7 @@ body.sidebar-toggled footer.sticky-footer {
 .show-information .information img {
     width: 18em;
     height: 100%;
-    border-radius: 100px;
+    border-radius: 50%;
 }
 
 .show-information .information form {
@@ -12750,7 +12750,7 @@ body.sidebar-toggled footer.sticky-footer {
     margin: 0 0 0 1em;
 }
 
-.modal-add #submit {
+.modal-add #submit, .modal-add #category_submit {
     margin-top: 1em;
     height: 3em;
     ;
@@ -12761,7 +12761,7 @@ body.sidebar-toggled footer.sticky-footer {
     transition: 0.3s;
 }
 
-.modal-add #submit:hover {
+.modal-add #submit:hover, .modal-add #category_submit:hover {
     background: #c1c8e4;
     color: black;
 }

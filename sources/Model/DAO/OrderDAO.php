@@ -13,7 +13,7 @@ class OrderDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%l/%Y') AS 'date' FROM `order` WHERE `order`.`id` = ?");
+            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%m/%Y') AS 'date' FROM `order` WHERE `order`.`id` = ?");
             $query->bind_param('s', $id);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -86,7 +86,7 @@ class OrderDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%l/%Y') AS 'date' FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 1 ORDER BY date DESC");
+            $query = $this->database->prepare("SELECT `order`.`id`, `order`.`user_id`, `order`.`price`, `order`.`is_pay`, DATE_FORMAT(`order`.`date`, '%d/%m/%Y') AS 'date' FROM `order` WHERE `order`.`user_id` = ? and `order`.`is_pay` = 1 ORDER BY date DESC");
             $query->bind_param('s', $userID);
 
             if($query->execute()) {

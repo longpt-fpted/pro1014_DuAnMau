@@ -8,7 +8,6 @@ function addProductToCart(id) {
     }).done(res => {
         let isContain = false;
         res = JSON.parse(res);
-        console.log(res);
         displayNotify('success', `Thêm sản phẩm ${res.product.name} thành công`);
         if(carts.find(element => element.id == res.product.id)) {
             let index = carts.findIndex(element => element.id == res.product.id);    
@@ -34,7 +33,6 @@ function minusProductFromCart(id) {
         data: data,
     }).done((res) => {
         res = JSON.parse(res);
-        console.log(res);
         switch (res.status) {
             case 'success': {
                 displayNotify('success', `Giảm số lượng sản phẩm ${res.product.name} đi 1!`);
@@ -115,6 +113,14 @@ function checkout(userID) {
                 } 
                 case 'money': {
                     displayNotify('warning', "Tài khoản không đủ số dư, xin vui lòng nạp thêm!");
+                    break;
+                }
+                case 'cart-money': {
+                    displayNotify("warning", "Giỏ hàng trống, xin vui lòng mua hàng");
+                    break;
+                }
+                case 'mail': {
+                    displayNotify("warning", "Có lỗi trong quá trình gửi mail");
                     break;
                 }
                 case 'login': {
@@ -221,6 +227,14 @@ function sendNotify(userID, commentID) {
         
     }).done(res => {
         res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                console.log('send notify');
+                break;
+        
+            default:
+                break;
+        }
     })
 }
 function submitFeedback(event) {
@@ -249,7 +263,7 @@ function submitFeedback(event) {
 }
 function comment(event) {
     event.preventDefault();
-    let data = $('#comment-form').serialize()+"&method=comment"; //userid=abc&asdfkjasdfzclkjasdf=adsfkjasldfj&
+    let data = $('#comment-form').serialize()+"&method=comment";
     $.ajax({
         url: '../Controller/CommentController.php',
         method: 'POST',
@@ -289,7 +303,7 @@ function reply(event, index) {
                 break;
             case 'success':
                 displayNotify('success', `Bình luận thành công!`);
-                    sendNotify(res.user, res.cid);
+                sendNotify(res.user, res.cid);
                 break;
             default:
                 break;
@@ -305,8 +319,6 @@ function removeComment(event, userID, commentID) {
         data: data,
     }).done(res => {
         res = JSON.parse(res);
-        console.log(res);
-        
         switch (res.status) {
             case 'success':
                 displayNotify('success', `Xoá bình luận thành công!`);
@@ -332,7 +344,6 @@ function searching(event) {
                     pageSize: 8,
                     callback: function(data, pagination) {
                         $('#search-page').empty();
-                        console.log(data.length);
                         $.each(data, (index, element) => {
                             $('#search-page').append(
                                 `<article class="product-box">
@@ -348,11 +359,11 @@ function searching(event) {
                                             </div>
                                         </div>
                                         <div class="product-box__price">
-                                            <p class="product-box__totalprice">${element.price}</p>
-                                            <p class="product-box__fullprice">${element.fullprice}</p>
+                                            <p class="product-box__totalprice">${moneyFormat(element.price)}</p>
+                                            <p class="product-box__fullprice">${moneyFormat(element.fullprice)}</p>
                                         </div>
                                     </div>
-                                    <a class="product-box__add" href="#">
+                                    <a class="product-box__add" onclick="addProductToCart(${element.id})">
                                         <i class="fal fa-cart-arrow-down"></i>
                                     </a>
                                 </div>
@@ -368,6 +379,37 @@ function searching(event) {
                     "<h2 style='margin: auto;'>Không tìm thấy sản phẩm bạn yêu cầu</h2>"
                 )
             break; 
+        }
+    })
+}
+
+function deposit(event) {
+    event.preventDefault();
+    let data = $('#currency-modal .form-edit').serialize()+"&method=deposit";
+    $.ajax({
+        url: '../Controller/CurrencyController.php',
+        method: 'POST',
+        data: data,
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                displayNotify('success', `Nạp tiền thành công!`);
+                document.querySelector('#currency').innerText  = moneyFormat(res.money);
+                closeCurrencyPanel();
+                break;
+            case 'fail':
+                displayNotify('warning', `Nạp tiền thất bại!`);
+                break;
+            case 'low-than-zero':
+                displayNotify('warning', `Số tiền cần nạp lớn hơn 0!`);
+                break;
+            case 'user':
+                displayNotify('warning', `Không tồn tại khách hàng!`);
+                
+                break;
+            default:
+                break;
         }
     })
 }

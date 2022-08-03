@@ -44,9 +44,9 @@
                                     </div>
                                     <div class="product-box__price">
                                         <p class="product-box__totalprice">
-                                            <?php  echo $productOnSales->getTotalPrice(); ?></p>
+                                            <?php  echo $utils->formatMoney($productOnSales->getTotalPrice()); ?></p>
                                         <p class="product-box__fullprice">
-                                        <?php  echo $productOnSales->getPrice(); ?></p>
+                                        <?php  echo $utils->formatMoney($productOnSales->getPrice()); ?></p>
                                     </div>
                                 </div>
                                 <a class="product-box__add" onclick="addProductToCart(<?php echo $productOnSales->getID()?>)">
@@ -81,7 +81,7 @@
                                     <a title="<?php echo $hotProduct->getName();?>" href="./product.php?id=<?php echo $hotProduct->getID(); ?>"><?php  echo $hotProduct->getName();?></a>
                                     <?php  if ($hotProduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
-                                        -<?php  echo $utils->formatMoney($hotProduct->getSale()); ?>%
+                                        -<?php  echo ($hotProduct->getSale()); ?>%
                                     </div>
                                     <?php  endif; ?>
                                 </div>
@@ -155,7 +155,7 @@
                                     <a title="<?php  echo $newProduct->getName();?>" href="./product.php?id=<?php echo $newProduct->getID(); ?>"><?php  echo $newProduct->getName();?></a>
                                     <?php  if ($newProduct->getSale() > 0) :  ?>
                                     <div class="tag sale-tag">
-                                        -<?php  echo $utils->formatMoney($newProduct->getSale()); ?>%
+                                        -<?php  echo ($newProduct->getSale()); ?>%
                                     </div>
                                     <?php  endif; ?>
                                 </div>
@@ -223,7 +223,7 @@
                         </div>
                         <div class="feedback-box__detail">
                             <h4 class="feedback-box__desc">
-                               “Tài năng, nhiệt huyết, chịu khó,... là những gì mà Demon Stone Team có được, thạm chí là hơn cả thế. Chúc các bạn ngày càng thành công trên con đường mình đã chọn.”
+                               “Tài năng, nhiệt huyết, chịu khó,... là những gì mà Demon Stone Team có được, thậm chí là hơn cả thế.”
                             </h4>
                             <hr>
                             <p class="feedback-box__author">

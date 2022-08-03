@@ -241,9 +241,9 @@ function loadFavorite() {
                         </h4>
                         <div class="news-desc">
                             <p class="price">
-                                ${element.totalPrice}</p>
+                                ${moneyFormat(element.totalPrice)}</p>
                             <p class="sale">
-                                ${element.price}</p>
+                                ${moneyFormat(element.price)}</p>
                         </div>
                     </div>
                 </div>

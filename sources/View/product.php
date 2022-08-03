@@ -6,7 +6,6 @@
     
     
     if($id !== 'error') {
-        // $newestProduct = $productDAO->getNewestProduct($_GET['id']);
         $product = $productDAO->getProductByID($id);
         $productFeedbacks = $feedbackDAO->getAllFeedBacksForProduct($id) != 0 ? $feedbackDAO->getAllFeedBacksForProduct($id) : 'error';
 
@@ -55,7 +54,7 @@
                                 <i class="fal fa-tag"></i> Thể loại: <?php echo $productCate; ?>
                             </p>
                             <p class="main-product__detail-price">
-                                <span class="price"><?php echo $product->getTotalPrice(); ?></span>
+                                <span class="price"><?php echo $utils->formatMoney($product->getTotalPrice()); ?></span>
                                 <span class="addons">
                                     <a id="favorite" onclick="addToFavorite(<? echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false' ?>, <? echo $product->getID(); ?>)">
                                         <i class="fal fa-heart"></i>
@@ -63,7 +62,7 @@
                                 </span>
                             </p>
                             <p class="main-product__detail-price">
-                                <span class="sale"><?php echo $product->getPrice(); ?></span>
+                                <span class="sale"><?php echo $utils->formatMoney($product->getPrice()); ?></span>
                                 <span class="addons sale-tag">
                                     -<?php echo $product->getSale(); ?>%
                                 </span>
@@ -161,8 +160,10 @@
                             $count = 0;
                         foreach ($productComments as $productComment) {
                             $parentComment = $userDAO->getUserByID($productComment->getUserID());
-                            if($commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0)
+                            // if($commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0) 
                                 $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getID());
+                            // else $replyComments = null;
+                            
                     ?>
                         <article class="comment-box">
                             <div class="comment-box-main">
@@ -184,8 +185,9 @@
                                     </button>
                                     <?php  
                                         if(isset($_SESSION['user']) && $_SESSION['user'] == $parentComment->getID()) {
+                                            
                                     ?>
-                                    <button class="comment-detai__answer-btn" id="remove-comment-btn">
+                                    <button class="comment-detai__answer-btn" id="remove-comment-btn" onclick="removeComment(new Event('click'), <? echo $_SESSION['user']; ?>, <? echo $productComment->getID(); ?>)">
                                         Xoá bình luận
                                     </button>
                                     <?php  } ?>
@@ -204,7 +206,7 @@
                                     </button>
                                 </form>
                                 <?php  
-                                    if($replyComments != 'error') {
+                                    if($replyComments != false) {
                                         foreach ($replyComments as $reply) {
                                             if($reply->getParentID() == $productComment->getID()) {
                                             $userReply = $userDAO->getUserByID($reply->getUserID());
