@@ -1,13 +1,13 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
 
-// include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
+include "../Utils/Database.php";
+include "../Model/DAO/UserDao.php";
+include "../Model/DAO/ProductDao.php";
+include "../Model/DAO/Favorite.php"
 
 $userID = isset($_REQUEST['user']) ? $_REQUEST['user'] : 'error';
 $productID = isset($_REQUEST['product']) ? $_REQUEST['product'] : 'error';

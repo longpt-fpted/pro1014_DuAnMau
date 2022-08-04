@@ -3,10 +3,28 @@
     include('./topbar.php')
 ?>
 
+<?php
+$keyword = isset($_REQUEST['keyword']) ? $_REQUEST['keyword'] : '';
+$productDAO = new ProductDAO();
+$productSearch = $productDAO->getProductsByName($keyword);
+?>
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Page Heading -->
         <h1 class="h3 mb-0 text-gray-800">Products</h1>  <br>  
+        <form
+            action="" method="Post"
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" id="keyword" name="keyword" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         <div class="modal-overlay" id="modal-overlay"></div>
         <button id="btn-add" onclick="modal_add()">Thêm sản phẩm</button>
         <div class="modal-add" id="modal-add-form">
@@ -41,7 +59,8 @@
         </div>                   
         <div class="show-information">
             <?php
-                foreach ($products as $product) {
+                
+                foreach ($productSearch as $product){
             ?>
             <div class="product-information">
                 <div class="image">
@@ -114,3 +133,4 @@
     include './footer.php'; 
     // include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
 ?>
+

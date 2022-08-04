@@ -446,5 +446,6 @@ class ProductDAO {
             return $query->execute();
         }  
     }
+    
 }
 ?>

@@ -242,12 +242,42 @@ class UserDAO {
         if($this->database->connect_error){
             return false;
         }else {
-            $query = $this->database->prepare("UPDATE `user` SET `avatar`=? WHERE `id`=?");
+            $query = $this->database->prepare("UPDATE `user` SET `avatar`=? WHERE `user`.`id`=?");
             $query->bind_param("ss",$img_url,$id);
             if($query->execute()){
                 return true;
             }
             else return false;
+        }
+    }
+    public function UserUpdateCurrency($currency,$id){
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `currency`=? WHERE `id`=?");
+            $query->bind_param("ss",$currency,$id);
+            if($query->execute()){
+                return true;
+            }
+            else return false;
+        }
+    }
+    public function getUserBySearch($keyword){
+        if($this->database->connect_error){
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `user` WHERE `fullname` LIKE '%".$keyword."%' or `phone_number` LIKE '%".$keyword."%' or `email` LIKE '%".$keyword."%' ");     
+            if($query->execute()) {
+                $users = [];
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $user = new User($row['id'], $row['username'], $row['password'], $row['email'], $row['fullname'], $row['phone_number'], $row['currency'], $row['role_id'], $row['avatar']);
+                        $users[] = $user;
+                    }
+                    return $users;
+                 } else return false;
+            } else return false;
         }
     }
 }

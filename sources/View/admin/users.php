@@ -2,12 +2,30 @@
     include('./header.php');
     include('./topbar.php');
 ?>
+<?php
+$keyword = isset($_REQUEST['keyword']) ? $_REQUEST['keyword'] : '';
+$userDAO = new UserDAO();
+$userSearch = $userDAO->getUserBySearch($keyword);
+
+?>
             <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Users</h1>
-
+        <form
+            action="" method="Post"
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" id="keyword" name="keyword" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         <button id="btn-add" onclick="modal_add()">Thêm thành viên</button>
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
@@ -46,7 +64,7 @@
         
         <div class="show-information">
             <?php
-                foreach ($users as $user) {
+                foreach ($userSearch as $user) {
             ?>
             <div class="information">
                 <div class="image">
