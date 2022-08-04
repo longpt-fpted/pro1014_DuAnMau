@@ -1,11 +1,11 @@
 <?php
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php";
 
-// include "/xampp/htdocs/pro1014_DuAn/sources/Model/Feedback.php";
-// include_once "/xampp/htdocs/pro1014_DuAn/sources/Utils/Utils.php";
-// include_once "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+include "/xampp/htdocs/pro1014_DuAn/sources/Model/Feedback.php";
+include_once "/xampp/htdocs/pro1014_DuAn/sources/Utils/Utils.php";
+include_once "/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
 
 class FeedbackDAO {
     private $database;

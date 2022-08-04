@@ -1,5 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Discount.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Discount.php";
+include "C:/Xampp/htdocs/pro1014_DuAn/sources/Model/Discount.php";
 class DiscountDAO {
     private $database;
     public function __construct() {

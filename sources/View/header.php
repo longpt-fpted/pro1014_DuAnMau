@@ -153,7 +153,7 @@ $_SESSION['cart'] = array_map(function($od) {
                         <p>Stone</p>
                     </div>
                 </a>
-                <article class="main-navbar__nav">
+                <article class="main-navbar__nav hide-on-mobile">
                     <li class="main-navbar--item">
                         Category <i class="fal fa-angle-down"></i>
                         <ul class="main-navbar__category main-navbar__submenu">
@@ -236,7 +236,7 @@ $_SESSION['cart'] = array_map(function($od) {
                         Blogs
                     </a>
                 </article>
-                <article class="main-navbar__nav" id="user-navbar">
+                <article class="main-navbar__nav hide-on-mobile" id="user-navbar">
                     <li class="main-navbar--item">
                         <i class="fal fa-user-circle"></i>
                         <ul class="main-navbar__submenu">
@@ -293,6 +293,102 @@ $_SESSION['cart'] = array_map(function($od) {
                         <i class="fal fa-shopping-bag"></i>
                     </li>
                 </article>
+                <!-- side bar menu mobile -->
+                <div class="sidebar-mobile">
+                    <i class="fas fa-bars sidebar-mobile-icon"></i>
+                    <div class="sidebar-mobile-modal">
+                        <div class="sidebar-mobile-overlay"></div>
+                        <ul class="sidebar-mobile-list">
+                            <div class="sidebar-mobile-close">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <h2 class="sidebar-mobile-title">Menu Navigation</h2>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fas fa-search"></i>
+                                    <span class="sidebar-mobile-link-title">Search</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-mobile-item has-children">
+                                <a class="sidebar-mobile-link">
+                                    <i class="fas fa-user"></i>
+                                    <span class="sidebar-mobile-link-title">Account</span>
+                                    <i class="fas fa-angle-down sidebar-mobile-link-has-child-icon"></i>
+                                </a>
+                                <div class="menu-has-children">
+                                    <ul class="sidebar-mobile-link-list">
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Login</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-registered"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Register</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Information</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-bell"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Notification</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">My Cart</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Logout</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span class="sidebar-mobile-link-title">Category</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fas fa-heart"></i>
+                                    <span class="sidebar-mobile-link-title">Favorite</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="sidebar-mobile-link-title">My Cart</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span class="sidebar-mobile-link-title">Help</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-mobile-item">
+                                <a href="#" class="sidebar-mobile-link">
+                                    <i class="fab fa-blogger"></i>
+                                    <span class="sidebar-mobile-link-title">Blog</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </header>
         <script>
@@ -316,6 +412,6 @@ $_SESSION['cart'] = array_map(function($od) {
                     }
                 })
             })
-            
-        </script>
+            </script>
+            <script src="./assets/js/mobileHeader.js"></script>
         

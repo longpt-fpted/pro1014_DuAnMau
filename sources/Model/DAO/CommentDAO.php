@@ -1,7 +1,8 @@
 <?php
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Comment.php";
-// include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Comment.php";
+include_once "C:/Xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+include "../Model/Comment.php";
 class CommentDAO {
     private $database;
     public function __construct()

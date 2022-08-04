@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Order.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Order.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Order.php";
+include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Order.php";
 
 class OrderDAO {
     private $database;
