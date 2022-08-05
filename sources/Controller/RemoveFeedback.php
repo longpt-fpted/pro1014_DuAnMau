@@ -2,8 +2,8 @@
 
 include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
 
-    $id = $_GET['user_id'];
-    $product_id = $_GET['product_id'];
+$id = $_GET['uid'];
+$product_id = $_GET['pid'];
 
     $feedbackDAO = new FeedbackDAO();
 

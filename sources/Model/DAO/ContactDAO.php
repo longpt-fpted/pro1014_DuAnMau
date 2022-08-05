@@ -1,11 +1,11 @@
 <?php
-// include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Feedback.php';
-// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include_once '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Contact.php';
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 
-include '/xampp/htdocs/pro1014_DuAn/sources/Model/Contact.php';
-include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include '/xampp/htdocs/pro1014_DuAn/sources/Model/Contact.php';
+// include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
+// include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 
 class ContactDAO {
     private $database;
@@ -60,6 +60,22 @@ class ContactDAO {
                         $contacts[] = $contact;
                     }
                     return $contacts;
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getContactByID($id) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $query = $this->database->prepare("SELECT * FROM `contact` WHERE `contact`.`id` = ?");
+            $query->bind_param('s', $id);
+
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $contact = $result->fetch_assoc();
+                    return new Contact($contact['id'], $contact['fullname'], $contact['email'], $contact['type'], $contact['subject'], $contact['message']);
                 } else return false;
             } else return false;
         }
