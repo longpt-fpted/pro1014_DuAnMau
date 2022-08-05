@@ -314,6 +314,28 @@
                                     </div>
                                 </div>
                             </article>
+                            <article class="card">
+                                <div class="charge-form">
+                                    <form action="../Controller/ChargeController.php" method="Post">
+                                        <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
+                                            <select name="card-type" id="card-type">
+                                                <option value="Default">Loại thẻ</option>
+                                                <option value="Vinaphone">Vinaphone</option>
+                                                <option value="Viettel">Viettel</option>
+                                                <option value="Mobiphone">Mobiphone</option>
+                                            </select>
+                                            <select name="card-value" id="card-value">
+                                                <option value="Default">Mệnh giá</option>
+                                                <option value="500000">500000</option>
+                                                <option value="200000">200000</option>
+                                                <option value="100000">100000</option>
+                                            </select>
+                                            <input type="text" id="card-code" name="card-code" placeholder="Mã thẻ nạp">
+                                            <input type="text" id="card-seri" name="card-seri" placeholder="Số seri">
+                                            <input type="submit" id="charge" name="charge"  value="Nạp tiền">
+                                    </form>
+                                </div>
+                            </article>
                         </section>
                     </div>
                 </article>

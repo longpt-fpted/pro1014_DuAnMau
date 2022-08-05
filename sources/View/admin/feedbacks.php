@@ -33,15 +33,16 @@
                                     <tbody>                                                                             
                                     <?php                                    
                                         foreach ($feedbacks as $feedback) {
-                                    ?>
-                                        <tr>
+                                            $fbUser = $userDAO->getUserByID($feedback->getUserID());
+                                            $fbProduct = $productDAO->getProductByID($feedback->getProductID());
+                                        ?>
                                             <td><?php echo $feedback->getUserID() ?></td>
-                                            <td><?php foreach ($users as $user)  echo $feedback->getUserID() == $user->getID() ? $user->getFullname() : '' ?></td>
-                                            <td><?php foreach ($users as $user)  echo $feedback->getUserID() == $user->getID() ? $user->getEmail() : '' ?></td>
-                                            <td><?php foreach ($products as $product)  echo $feedback->getProductID() == $product->getID() ? $product->getName() : '' ?></td>
+                                            <td><?php echo $fbUser->getFullname() ?></td>
+                                            <td><?php echo $fbUser->getEmail() ?></td>
+                                            <td><?php echo $fbProduct->getName() ?></td>
                                             <td><?php echo $feedback->getRating() ?></td>
                                             <td><?php echo $feedback->getText() ?></td>
-                                            <td><button id="btn-contact-delete">Xóa</button></td>                                           
+                                            <td><a href="http://localhost/pro1014_duan/sources/controller/RemoveFeedback.php?uid=<?php echo $feedback->getUserID() ?>&pid=<?php echo $fbProduct->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>                                           
                                         </tr>      
                                     <?php 
                                         } 

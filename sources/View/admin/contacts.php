@@ -5,6 +5,17 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div class="modal-add" id="modal-add-form">
+                        <button id="btn-hidden" onclick="modal_hidden()">x</button>
+                        <!-- <form  action="http://localhost/pro1014_duan/sources/controller/ReplyContactController.php?id=" onsubmit="return check()" enctype="multipart/form-data" id="modal-add-product" method="post"> -->
+                           <form>
+                            <p id="modal-add-title">Phản hồi</p>
+                            <input type="text" id="id" name="id">
+                            <textarea name="message" id="message" cols="30" rows="5" onclick="removeErrorMessage()" placeholder="Message"></textarea>
+                            <input type="button" id="submit" value="Chấp nhận">
+                        </form>
+                    </div>                   
+
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Contacts</h1>
@@ -30,7 +41,6 @@
                                     
                                     <tbody>
                                         <?php
-                                        
                                             foreach($contacts as $contact){
                                         ?>
                                         <tr>
@@ -40,7 +50,7 @@
                                             <td><?php echo $contact->getType() == 0 ? 'Đăng ký thông báo' : 'Hỏi đáp/Góp ý' ?></td>
                                             <td><?php echo $contact->getSubject() ?></td>
                                             <td><?php echo $contact->getMessage() ?></td>
-                                            <td><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
+                                            <td><a href="#"><button onclick="modal_add(<?php echo $contact->getID() ?>)" id="btn-contact-reply">Trả lời</button></a><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
                                         </tr>
                                         <?php
                                             }
@@ -51,7 +61,8 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="modal-overlay" id="modal-overlay"></div>
+                    
                 </div>
                 <!-- /.container-fluid -->
 
