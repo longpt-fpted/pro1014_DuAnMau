@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
     // include "../Utils/Database.php";
     // include "../Model/DAO/UserDAO.php";
 
@@ -13,11 +13,13 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Databa
     $pass = $user->getPassword();
     if($oldpassword == $pass){
         $userDAO->UserChangePassword($newpassword,$id);
+        header("location: ../View/user.php?id=$id");
     }
     else {
         $userDAO->UserChangePassword($pass,$id);
+        header("location: ../View/error404.php");
+
     }
-    header("location: ../View/user.php?id=$id");
     
 
 ?>

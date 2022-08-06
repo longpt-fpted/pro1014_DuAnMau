@@ -1,6 +1,6 @@
 <?php
-    include "../Utils/Database.php";
-    include "../Model/DAO/UserDAO.php";
+    // include "../Utils/Database.php";
+    // include "../Model/DAO/UserDAO.php";
 
     // include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
     // include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";

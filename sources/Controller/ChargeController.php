@@ -16,7 +16,7 @@
     $charge = new ChargeDAO();
     $card = $charge->getCardByCardcode($cardcode);
 
-    //var_dump($card);
+    // var_dump($card);
     $type = $card->getCardtype();
     $value = $card->getCardvalue();
     $code = $card->getCardcode();

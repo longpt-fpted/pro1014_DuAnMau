@@ -5,21 +5,23 @@
     $id = isset($_GET['id']) ? $_GET['id'] : 'error';
     
     
-    if($id !== 'error') {
+    if($id != 'error') {
         $product = $productDAO->getProductByID($id);
-        $productFeedbacks = $feedbackDAO->getAllFeedBacksForProduct($id) != 0 ? $feedbackDAO->getAllFeedBacksForProduct($id) : 'error';
+        if($product != false) {
+            $productFeedbacks = $feedbackDAO->getAllFeedBacksForProduct($id) != 0 ? $feedbackDAO->getAllFeedBacksForProduct($id) : 'error';
 
-        $productComments = $commentDAO->getAllCommentsForProduct($id) != 0 ? $commentDAO->getAllCommentsForProduct($id) : 'error';
-
-        $product->setRating($productFeedbacks != null ? $feedbackDAO->getProductFeedbackRate($product->getID()) : $product->getRating());
-
-        $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
-        $productDAO->updateProductView($product->getID());
+            $productComments = $commentDAO->getAllCommentsForProduct($id) != 0 ? $commentDAO->getAllCommentsForProduct($id) : 'error';
+    
+            $product->setRating($productFeedbacks != null ? $feedbackDAO->getProductFeedbackRate($product->getID()) : $product->getRating());
+    
+            $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
+            $productDAO->updateProductView($product->getID());
+        } else {
+            echo "<script>window.location= './index.php'; </script>";
+        }
 
     } else {
-        $id = 1;
-        $product = $productDAO->getProductByID($id);
-        $productCate = $cateDAO->getCategoryByID($product->getCateID())->getName();
+        echo "<script>window.location= './index.php'; </script>";
     }
 
 ?>

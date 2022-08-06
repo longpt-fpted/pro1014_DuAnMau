@@ -9,13 +9,13 @@ session_start();
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
 // include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 
-include "../Utils/Database.php";
-include "../Utils/Mail.php";
-include "../Model/DAO/UserDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/OderDAO.php";
-include "../Model/DAO/OrderDetailDAO.php";
-include_once "../Model/DAO/NotifyDAO.php";
+// include "../Utils/Database.php";
+// include "../Utils/Mail.php";
+// include "../Model/DAO/UserDAO.php";
+// include "../Model/DAO/ProductDAO.php";
+// include "../Model/DAO/OderDAO.php";
+// include "../Model/DAO/OrderDetailDAO.php";
+// include_once "../Model/DAO/NotifyDAO.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
@@ -34,6 +34,7 @@ $mail = new Mail();
 $productID = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : 'error';
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error'; 
 $userID = isset($_REQUEST['userID']) ? $_REQUEST['userID'] : 'error';
+$coupon = isset($_REQUEST['coupon']) ? $_REQUEST['coupon'] : 'error';
 
 function addProductToCart($productID) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
@@ -183,7 +184,7 @@ function minusProductFromCart($productID) {
 
     return $resp;
 }
-function checkout($userID) {
+function checkout($userID, $coupon) {
     global $productDAO, $userDAO, $orderDAO, $orderDetailDAO;
     $notifyDAO = new NotifyDAO();
     $discountDAO = new DiscountDAO();
@@ -199,13 +200,24 @@ function checkout($userID) {
             $totalPrice += $orderdetail->getPrice();
         }
 
+        $discountMoney = 0;
+        if($coupon != 'error') {
+            $discount = $discountDAO->getDiscountByUserID($user->getID(), $coupon) != false ? $discountDAO->getDiscountByUserID($user->getID(), $coupon) : false;
+            
+            if($discount != false) {
+                $discountMoney = $discount->getPrice();
+                $discountDAO->updateDiscountByUserID($user->getID(), $coupon);
+                $resp['coupon'] = $coupon;
+            } else $resp['coupon'] = 'fail coupon';
+        } else $resp['coupon'] = 'no-coupon';
+
         if($user->getCurrency() < $totalPrice) {
             $resp['status'] = 'money';
-        } else if(count($_SESSION['cart']) <= 0) {
+        } else if(isset($_SESSION['cart']) && count($_SESSION['cart']) <= 0) {
             $resp['status'] = 'length';
         } else if($totalPrice <= 0) {
             $resp['status'] = 'cart-money';
-        } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice, date("Y-m-d"))) {
+        } else if($orderDAO->updateOrderToPayByUserID($user->getID(), $totalPrice - $discountMoney, date("Y-m-d"))) {
                 $orderDAO->createOrderForUserID($user->getID(), date("Y-m-d"));
                 $user->withdrawCurrency($totalPrice);
                 $userDAO->widthdraw($totalPrice, $user->getID());
@@ -215,6 +227,8 @@ function checkout($userID) {
                     $productDAO->updateProductSell($orderdetail->getProductID());
                     $notifyDAO->createNotifyToUser($userID, 1, $orderdetail->getProductID());
                 }
+
+
                 if($totalPrice >= 1000000 && $totalPrice < 5000000) {
                     $resp['discount'] = $discountDAO->insertNewDiscountForUser($user->getID(), 0) ? '100k' : 'fail';
                 } else if($totalPrice >= 5000000 && $totalPrice < 10000000) {
@@ -255,7 +269,7 @@ switch ($method) {
         session_write_close();
         break;
     case 'checkout':
-        echo json_encode(checkout($userID));
+        echo json_encode(checkout($userID, $coupon));
         session_write_close();
         break;
     default:

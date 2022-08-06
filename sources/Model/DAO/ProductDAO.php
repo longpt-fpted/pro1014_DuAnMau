@@ -160,10 +160,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `name` ASC");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -185,10 +185,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`id` DESC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -210,10 +210,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`rating` DESC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -235,10 +235,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`sale_percent` != 0 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`sale_percent` != 0 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`sale_percent` DESC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -260,10 +260,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` ASC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -285,10 +285,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`price` DESC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -310,10 +310,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` ASC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {
@@ -335,10 +335,10 @@ class ProductDAO {
             return false;
         } else {
             if($cate == '-1') {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = `product`.`cate_id` and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
                 $query->bind_param('ss', $min, $max);
             } else {
-                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
+                $query = $this->database->prepare("SELECT * FROM `product` WHERE `product`.`is_available`= 1 and `product`.`cate_id` = ? and (`product`.`price` - `product`.`price` * `product`.`sale_percent`/100 BETWEEN ? and ?) AND `name` LIKE '%".$keyword."%' ORDER BY `product`.`name` DESC;");
                 $query->bind_param('sss', $cate, $min, $max);
             }
             if($query->execute()) {

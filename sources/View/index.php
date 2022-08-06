@@ -58,7 +58,7 @@
                         }
                     ?>
                 </section>
-                <a class="content-detail" href="search.php">
+                <a class="content-detail" href="./search.php?cate=-1&sort=sale">
                     Xem thêm
                 </a>
             </article>
@@ -106,7 +106,7 @@
                     }
                 ?>
                 </section>
-                <a class="content-detail" href="search.php">
+                <a class="content-detail" href="./search.php?cate=-1&sort=hot">
                     Xem thêm
                 </a>
             </article>
@@ -180,7 +180,7 @@
                     }
                 ?>
                 </section>
-                <a class="content-detail" href="search.php">
+                <a class="content-detail" href="./search.php?cate=-1&sort=newest">
                     Xem thêm
                 </a>
             </article>

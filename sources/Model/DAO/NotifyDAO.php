@@ -1,6 +1,6 @@
 <?php
-// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Notify.php";
-include "../Model/Notify.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Notify.php";
+// include "../Model/Notify.php";
 
 class NotifyDAO {
     private $database;

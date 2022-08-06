@@ -177,7 +177,7 @@ function loadCart() {
         <div class="row">
             <div class="col">
                 <div class="product-thumbnail">
-                    <img src="${element.img}" alt="Elden-ring">
+                    <img src="${element.img}" alt="product-thumbnail">
                     <a href="./product.php?id=${element.id}" class="product-title">
                         ${element.name}
                     </a>

@@ -31,7 +31,7 @@ class DiscountDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`discount`.`start_day`, '%d/%m/%Y') AS `fsdate`, DATE_FORMAT(`discount`.`expired_day`, '%d/%m/%Y') AS `fepdate` FROM `discount` WHERE `discount`.`user_id` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`discount`.`start_day`, '%d/%m/%Y') AS `fsdate`, DATE_FORMAT(`discount`.`expired_day`, '%d/%m/%Y') AS `fepdate` FROM `discount` WHERE `discount`.`user_id` = ? AND `discount`.`expired_day` > CURDATE() AND `discount`.`quantity` > 0");
             $query->bind_param('s', $userID);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -50,11 +50,41 @@ class DiscountDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`discount`.`start_day`, '%d/%m/%Y') AS `fsdate`, DATE_FORMAT(`discount`.`expired_day`, '%d/%m/%Y') AS `fepdate` FROM `discount` WHERE `discount`.`user_id` = ? AND `discount`.`type` = ?");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`discount`.`start_day`, '%d/%m/%Y') AS `fsdate`, DATE_FORMAT(`discount`.`expired_day`, '%d/%m/%Y') AS `fepdate` FROM `discount` WHERE `discount`.`user_id` = ? AND `discount`.`type` = ? AND `discount`.`expired_day` > CURDATE() AND `discount`.`quantity` > 0");
             $query->bind_param('ss', $userID, $type);
             if($query->execute()) {
                 $result = $query->get_result();
                 return $result->num_rows > 0;
+            } else return false;
+        }
+    }
+    public function getDiscountByUserID($userID, $type) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            if(!$this->isDiscountExist($userID, $type)) return false;
+            else {
+                $query = $this->database->prepare("SELECT *, DATE_FORMAT(`discount`.`start_day`, '%d/%m/%Y') AS `fsdate`, DATE_FORMAT(`discount`.`expired_day`, '%d/%m/%Y') AS `fepdate` FROM `discount` WHERE `discount`.`user_id` = ? AND `discount`.`type` = ? AND `discount`.`quantity` > 0 AND `discount`.`expired_day` > CURDATE()");
+                $query->bind_param('ss', $userID, $type);
+                if($query->execute()) {
+                    $result = $query->get_result();
+                    if($result->num_rows > 0) {
+                        $discount = $result->fetch_assoc();
+                        return new Discount( $discount['type'], $discount['user_id'], $discount['quantity'], $discount['fsdate'], $discount['fepdate']);
+                    } else return false;
+                } else return false;
+            }
+        }
+    }
+    public function updateDiscountByUserID($userID, $type) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            if($this->isDiscountExist($userID, $type)) {
+                $query = $this->database->prepare("UPDATE `discount` SET `quantity`=`quantity` - 1 WHERE `discount`.`user_id` = ? AND `discount`.`type` = ? AND `discount`.`quantity` > 0");
+                $query->bind_param('ss', $userID, $type);
+                
+                return $query->execute();
             } else return false;
         }
     }

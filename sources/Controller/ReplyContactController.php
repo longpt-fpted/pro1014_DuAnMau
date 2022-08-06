@@ -1,11 +1,14 @@
 <?php
 
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Mail.php";
-include "../Model/DAO/ContactDAO.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Mail.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ContactDAO.php";
+// include "../Model/DAO/ContactDAO.php";
 
+    $id = $_POST['id'];
     $message = $_POST['message'];
-    $id = $_GET['id'];
     $mail = new Mail();
 
     $contactDAO = new ContactDAO();
@@ -14,5 +17,7 @@ include "../Model/DAO/ContactDAO.php";
     $email = $contact->getEmail();
     $subject = $contact->getSubject();
 
-    $mail->sendMail('p.thieenlong.304@gmail.com','test','message');
+    if($mail->sendMail($email, $subject, $message)) {
+        header('location: ../View/admin/contacts.php');
+    } else  header('location: ../View/error404.php');
 ?>

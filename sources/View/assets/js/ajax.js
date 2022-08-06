@@ -99,7 +99,8 @@ function checkout(userID) {
             window.location.href = './login.php';
         }, 3000)
     } else {
-        let data = `userID=${userID}&method=checkout`;
+        let coupon = document.querySelector('input[name="coupon"]:checked');
+        let data = coupon != null ? `userID=${userID}&coupon=${coupon.value}&method=checkout` :`userID=${userID}&method=checkout`;
         $.ajax({
             url: `../Controller/CartController.php`,
             method: "POST",
@@ -167,7 +168,7 @@ function addToFavorite(userID, productID) {
                     favorites.push(res.product);
                     break;
                 case 'contained':
-                    displayNotify('info', `Sản phẩm ${res.pmame} đã tồn tại trong danh sách yêu thích!`);
+                    displayNotify('info', `Sản phẩm ${res.pname} đã tồn tại trong danh sách yêu thích!`);
                 default:
                     break;
             }
@@ -382,7 +383,60 @@ function searching(event) {
         }
     })
 }
-
+function headerSearch(cate, sort) {
+    console.log(cate, sort);
+    let data = `keyword=&category=${cate}&min=0&max=50000000&sort=${sort}`
+    $.ajax({
+        url: '../Controller/SearchController.php',
+        method: 'POST',
+        data: data
+    }).done(res => {
+        res = JSON.parse(res);
+        switch (res.status) {
+            case 'success':
+                $('#paginition').pagination({
+                    dataSource: res.products,
+                    pageSize: 8,
+                    callback: function(data, pagination) {
+                        $('#search-page').empty();
+                        $.each(data, (index, element) => {
+                            $('#search-page').append(
+                                `<article class="product-box">
+                                <a class="product-box__thumbnail" href="./product.php?id=${element.id}">
+                                    <img src="${element.image}" alt="product thumbnail">
+                                </a>
+                                <div class="product-box__detail">
+                                    <div class="product-box__desc">
+                                        <div class="product-box__title">
+                                            <a title="" href="./product.php?id=${element.id}">${element.name}</a>
+                                            <div class="tag sale-tag">
+                                                -${element.sale}%
+                                            </div>
+                                        </div>
+                                        <div class="product-box__price">
+                                            <p class="product-box__totalprice">${moneyFormat(element.price)}</p>
+                                            <p class="product-box__fullprice">${moneyFormat(element.fullprice)}</p>
+                                        </div>
+                                    </div>
+                                    <a class="product-box__add" onclick="addProductToCart(${element.id})">
+                                        <i class="fal fa-cart-arrow-down"></i>
+                                    </a>
+                                </div>
+                            </article>`
+                            )
+                        })
+                    }
+                })            
+            break;
+            case 'fail': 
+                $('#search-page').empty();
+                $('#search-page').append(
+                    "<h2 style='margin: auto;'>Không tìm thấy sản phẩm bạn yêu cầu</h2>"
+                )
+            break; 
+        }
+    })
+}
 function deposit(event) {
     event.preventDefault();
     let data = $('#currency-modal .form-edit').serialize()+"&method=deposit";

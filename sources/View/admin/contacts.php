@@ -5,16 +5,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="modal-add" id="modal-add-form">
-                        <button id="btn-hidden" onclick="modal_hidden()">x</button>
-                        <!-- <form  action="http://localhost/pro1014_duan/sources/controller/ReplyContactController.php?id=" onsubmit="return check()" enctype="multipart/form-data" id="modal-add-product" method="post"> -->
-                           <form>
-                            <p id="modal-add-title">Phản hồi</p>
-                            <input type="text" id="id" name="id">
-                            <textarea name="message" id="message" cols="30" rows="5" onclick="removeErrorMessage()" placeholder="Message"></textarea>
-                            <input type="button" id="submit" value="Chấp nhận">
-                        </form>
-                    </div>                   
+                                
 
 
                     <!-- Page Heading -->
@@ -41,18 +32,39 @@
                                     
                                     <tbody>
                                         <?php
+                                            $contactCount = 0;
                                             foreach($contacts as $contact){
                                         ?>
                                         <tr>
+                                        <div class="modal-add" id="modal-add-form">
+                                            <button id="btn-hidden" onclick="modal_hidden()">x</button>
+                                            <form action="http://localhost/pro1014_duan/sources/controller/ReplyContactController.php" id="modal-add-product" method="post">
+                                            <form>
+                                                <p id="modal-add-title">Phản hồi</p>
+                                                <input type="hidden" id="id" name="id" value="<?php echo $contact->getID() ?>">
+                                                <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
+                                                <input type="submit" id="submit" value="Chấp nhận">
+                                            </form>
+                                        </div>       
                                             <td><?php echo $contact->getID() ?></td>
                                             <td><?php echo $contact->getFullname() ?></td>
                                             <td><?php echo $contact->getEmail() ?></td>
                                             <td><?php echo $contact->getType() == 0 ? 'Đăng ký thông báo' : 'Hỏi đáp/Góp ý' ?></td>
                                             <td><?php echo $contact->getSubject() ?></td>
                                             <td><?php echo $contact->getMessage() ?></td>
-                                            <td><a href="#"><button onclick="modal_add(<?php echo $contact->getID() ?>)" id="btn-contact-reply">Trả lời</button></a><a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>
+                                            <td>
+                                                <?php if($contact->getType() == 1) { ?>
+                                                <a href="#">
+                                                    <button onclick="modal_contact_add(<?php echo $contactCount; ?>)" id="btn-contact-reply">Trả lời</button>
+                                                </a>
+                                                <?php } ?>
+                                                <a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>">
+                                                    <button id="btn-contact-delete">Xóa</button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         <?php
+                                            $contactCount++;
                                             }
                                         ?>
                                     </tbody>

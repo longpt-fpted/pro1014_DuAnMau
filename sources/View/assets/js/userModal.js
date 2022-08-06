@@ -52,6 +52,7 @@ window.addEventListener('click', (event) => {
 })
 
 function displayFeedbackBox(name, img, pid) {
+    console.log(name, img, pid);
     document.querySelector('#feedback-form').innerHTML = '';
     document.querySelector('#feedback-form').innerHTML += `
     <input type="text" name="pid" value="${pid}" hidden>

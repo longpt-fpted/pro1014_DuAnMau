@@ -1,6 +1,8 @@
 <?php 
     include('./header.php');
     $keyword = isset($_REQUEST['search-input']) ? $_REQUEST['search-input'] : '';
+    $cateInput = isset($_REQUEST['cate']) ? $_REQUEST['cate'] : '';
+    $sortMethod = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
     $productDAO = new ProductDAO();
     if($keyword == ""){
         $products = $productDAO->getAllProducts();
@@ -111,13 +113,17 @@
     include('./footer.php') 
 ?>
 <script>
-    $('#paginition').pagination({
+    <?php if($cateInput != '' && $sortMethod != '') { 
+        echo "
+            headerSearch('$cateInput', '$sortMethod');
+        ";
+    } else echo '$("#paginition").pagination({
         dataSource: totalPros,
         pageSize: 8,
         callback: function(data, pagination) {
-            $('#search-page').empty();
+            $("#search-page").empty();
             $.each(data, (index, element) => {
-                $('#search-page').append(
+                $("#search-page").append(
                     `<article class="product-box">
                     <a class="product-box__thumbnail" href="./product.php?id=${element.id}">
                         <img src="${element.image}" alt="product thumbnail">
@@ -143,5 +149,6 @@
                 )
             })
         }
-    })   
+    })' ?>
+    
 </script>

@@ -1,6 +1,6 @@
 <?php
-
-include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+// include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
 
 $id = $_GET['uid'];
 $product_id = $_GET['pid'];

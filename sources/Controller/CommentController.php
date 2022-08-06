@@ -9,7 +9,7 @@ include "../Utils/Database.php";
 include "../Utils/Utils.php";
 include "../Model/DAO/CommentDAO.php";
 include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/UserDAO.php"
+include "../Model/DAO/UserDAO.php";
 
 // include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 // include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
@@ -45,6 +45,7 @@ function reply($productID, $userID, $parentID, $text) {
         $resp['status'] = $commentDAO->insertNewComment($comment) ? 'success' : 'fail';
         $resp['parent'] = $parentID;
         $resp['cid'] = $commentDAO->getNewestReplyComment($userID, $productID, $parentID)->getID();
+        
     }
 
     return $resp;

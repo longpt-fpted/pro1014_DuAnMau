@@ -13,13 +13,13 @@ class Discount {
     }
     public function getPrice() {
         switch ($this->type) {
-            case 1:
+            case 0:
                 return 100000;
                 break;
-            case 2:
+            case 1:
                 return 200000;
                 break;
-            case 3:
+            case 2:
                 return 500000;
                 break;
         }

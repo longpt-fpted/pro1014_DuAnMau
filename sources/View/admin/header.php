@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
 include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
@@ -38,8 +40,7 @@ $feedbacks = $feedbackDAO->getAllFeedbacks();
 $contactDAO = new ContactDAO();
 $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts() : [];
 
-// session_start();
-//  if(!isset($_SESSION['login'])){header("location: ./login.php");}
+ if(!isset($_SESSION['login'])){header("location: ./login.php");}
 
 ?>
 <!DOCTYPE html>

@@ -165,22 +165,22 @@ $_SESSION['cart'] = array_map(function($od) {
                                     $cates = $cateDAO->getAllCategories();
                                     foreach ($cates as $cate) {
                                 ?>
-                                <p class="category--desc">
+                                <a href="./search.php?cate=<?php  echo $cate->getID(); ?>&sort=default" class="category--desc">
                                     <?php  echo $cate->getName(); ?>
-                                </p>
+                                </a>
                                 <?php } ?>
                             </li>
                             <li class="category--item">
                                 <h4 class="category--title">
                                     Đặc sắc
                                 </h4>
-                                <a class="category--desc" href="#">
+                                <a class="category--desc" href="./search.php?cate=-1&sort=sale">
                                     Sale
                                 </a>
-                                <a class="category--desc" href="#">
+                                <a class="category--desc" href="./search.php?cate=-1&sort=newest">
                                     Mới ra mắt
                                 </a>
-                                <a class="category--desc" href="#">
+                                <a class="category--desc" href="./search.php?cate=-1&sort=hot">
                                     Hot
                                 </a>
                             </li>
@@ -247,7 +247,7 @@ $_SESSION['cart'] = array_map(function($od) {
                                     </a>
                                 </li>
                                 <li class="category--item">
-                                    <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="category--title">
+                                    <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=4" class="category--title">
                                         Thông báo <span class="tag notify-tag"><?php  echo $notifyDAO->getNumbersOfNotify($user->getID());?></span>
                                     </a>
                                 </li>
@@ -277,7 +277,7 @@ $_SESSION['cart'] = array_map(function($od) {
                     </li>
                     <li class="main-navbar--item">
                         <?php if(isset($_SESSION['user'])): ?>
-                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=6" class="main-navbar--subitem">
+                        <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="main-navbar--subitem">
                             <i class="fal fa-heart"></i>
                         </a>
                         <?php else :?>
@@ -304,86 +304,79 @@ $_SESSION['cart'] = array_map(function($od) {
                             </div>
                             <h2 class="sidebar-mobile-title">Menu Navigation</h2>
                             <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
+                                <a href="./search.php" class="sidebar-mobile-link">
                                     <i class="fas fa-search"></i>
-                                    <span class="sidebar-mobile-link-title">Search</span>
+                                    <span class="sidebar-mobile-link-title">Tìm kiếm</span>
                                 </a>
                             </li>
                             <li class="sidebar-mobile-item has-children">
                                 <a class="sidebar-mobile-link">
                                     <i class="fas fa-user"></i>
-                                    <span class="sidebar-mobile-link-title">Account</span>
+                                    <span class="sidebar-mobile-link-title">Tài khoản</span>
                                     <i class="fas fa-angle-down sidebar-mobile-link-has-child-icon"></i>
                                 </a>
                                 <div class="menu-has-children">
                                     <ul class="sidebar-mobile-link-list">
+                                        <?php if(isset($_SESSION['user'])) { ?>
                                         <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
-                                                <i class="fas fa-sign-in-alt"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">Login</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
-                                                <i class="fas fa-registered"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">Register</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                            <a href="./user.php?id=<?php echo $user->getID(); ?>" class="sidebar-mobile-link-list-link">
                                                 <i class="fas fa-info-circle"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">Information</span>
+                                                <span class="sidebar-mobile-link-list-link-title">Thông tin</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                            <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=4" class="sidebar-mobile-link-list-link">
                                                 <i class="fas fa-bell"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">Notification</span>
+                                                <span class="sidebar-mobile-link-list-link-title">Thông báo</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                            <a href="./cart.php?id=<?php  echo $user->getID(); ?>" class="sidebar-mobile-link-list-link">
                                                 <i class="fas fa-shopping-cart"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">My Cart</span>
+                                                <span class="sidebar-mobile-link-list-link-title">Giỏ hàng</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-mobile-link-list-item">
-                                            <a href="#" class="sidebar-mobile-link-list-link">
+                                            <a id="logout2" class="sidebar-mobile-link-list-link">
                                                 <i class="fas fa-sign-out-alt"></i>
-                                                <span class="sidebar-mobile-link-list-link-title">Logout</span>
+                                                <span class="sidebar-mobile-link-list-link-title">Đăng xuất</span>
                                             </a>
                                         </li>
+                                        <?php } else { ?>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="./login.php" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Đăng nhập</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-mobile-link-list-item">
+                                            <a href="./register.php" class="sidebar-mobile-link-list-link">
+                                                <i class="fas fa-registered"></i>
+                                                <span class="sidebar-mobile-link-list-link-title">Đăng kí</span>
+                                            </a>
+                                        </li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </li>
                             <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
+                                <a href="search.php" class="sidebar-mobile-link">
                                     <i class="fas fa-clipboard-list"></i>
-                                    <span class="sidebar-mobile-link-title">Category</span>
+                                    <span class="sidebar-mobile-link-title">Danh mục</span>
                                 </a>
                             </li>
+                            <?php if(isset($_SESSION['user'])) { ?>
                             <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
+                                <a href="./user.php?id=<?php  echo $user->getID(); ?>&umethod=5" class="sidebar-mobile-link">
                                     <i class="fas fa-heart"></i>
-                                    <span class="sidebar-mobile-link-title">Favorite</span>
+                                    <span class="sidebar-mobile-link-title">Yêu thích</span>
                                 </a>
                             </li>
+                            <?php } ?>
                             <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
+                                <a href="./cart.php" class="sidebar-mobile-link">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span class="sidebar-mobile-link-title">My Cart</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
-                                    <i class="fas fa-question-circle"></i>
-                                    <span class="sidebar-mobile-link-title">Help</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-mobile-item">
-                                <a href="#" class="sidebar-mobile-link">
-                                    <i class="fab fa-blogger"></i>
-                                    <span class="sidebar-mobile-link-title">Blog</span>
+                                    <span class="sidebar-mobile-link-title">Giỏ hàng</span>
                                 </a>
                             </li>
                         </ul>
@@ -393,6 +386,26 @@ $_SESSION['cart'] = array_map(function($od) {
         </header>
         <script>
             $('#logout').click((e) => {
+                $.ajax({
+                    url: '../Controller/LoginController.php',
+                    type: 'POST',
+                    data: "method=logout",
+                }).done(res => {
+                    res = JSON.parse(res);
+                    switch (res['status']) {
+                        case 'success':
+                            displayNotify('success', 'Đăng xuất thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
+                            setTimeout(function() {
+                                window.location = 'index.php';
+                            }, 2500)
+                            break;
+                        case 'success':
+                            displayNotify('fail', 'Đăng xuất thất bại!');
+                            break;
+                    }
+                })
+            })
+            $('#logout-2').click((e) => {
                 $.ajax({
                     url: '../Controller/LoginController.php',
                     type: 'POST',

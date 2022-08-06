@@ -12,6 +12,6 @@ include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/Us
     $password = $user->getPassword();
     $mail = new Mail();
 
-     if($mail->sendMail($user->getEmail(), 'forgot your password ?', 'your password is'.$password))
-        header("locaiton: /sources/View/index.php");
+     if($mail->sendMail($user->getEmail(), 'forgot your password ?', 'your password is '.$password))
+        header("location: /sources/View/index.php");
 ?>

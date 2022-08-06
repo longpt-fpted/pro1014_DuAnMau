@@ -8,6 +8,7 @@ $s_min = isset($_REQUEST['min']) ? $_REQUEST['min'] : 'none';
 $s_max = isset($_REQUEST['max']) ? $_REQUEST['max'] : 'none';
 $s_sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'none';
 $s_keyword = isset($_REQUEST['keyword']) ? $_REQUEST['keyword'] : 'none';
+
 function getSearchingProducts($cate, $min, $max, $keyword) {
     $resp = [];
     $productDAO = new ProductDAO();

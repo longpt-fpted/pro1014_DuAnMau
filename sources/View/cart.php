@@ -26,67 +26,7 @@
                                 </div>
                             </div>
                             <div class="cart-detail" id="cart-detail"> 
-                            <div class="cart-desc__head">
-                                Thông tin thanh toán
-                            </div>
-                            <div class="cart-desc__body">
-                                <div class="cart-desc--money">
-                                    <p>Tổng cộng</p>
-                                    <p>0</p>
-                                </div>
-                                <div class="cart-desc__body__coupons">
-                                    <div class="coupon">
-                                        <div class="coupon-thumnail">
-                                            <img src="./assets/images/logo.png" alt="coupon">
-                                        </div>
-                                        <div class="coupon-detail">
-                                            <p class="coupon-title">
-                                                Giảm {{ 50% }}
-                                            </p>
-                                        </div>
-                                        <button class="coupon-method">
-                                            USE
-                                        </button>
-                                    </div>
-                                    <div class="coupon">
-                                        <div class="coupon-thumnail">
-                                            <img src="./assets/images/logo.png" alt="coupon">
-                                        </div>
-                                        <div class="coupon-detail">
-                                            <p class="coupon-title">
-                                                Giảm {{ 50% }}
-                                            </p>
-                                        </div>
-                                        <button class="coupon-method">
-                                            USE
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cart-desc__foot">
-                                <div class="money">
-                                    <div class="cart-desc--money">
-                                        <p>Số tiền trong tài khoản</p>
-                                        <p>0</p>
-                                    </div>
-                                    <div class="cart-desc--money">
-                                        <p>Số tiền còn thiếu</p>
-                                        <p>0</p>
-                                    </div>
-                                    <div class="cart-desc--money">
-                                        <p>Tổng giảm</p>
-                                        <p>0</p>
-                                    </div>
-                                    </div>
-                                    <div class="cart-desc--money">
-                                        <p>Tổng cộng</p>
-                                        <p>0</p>
-                                    </div>
-                                </div>
-                                <button class="checkout" id="checkout">
-                                    Thanh toán
-                                </button>
-                            </div>
+                            
                             </div>
                         </div>
                     </article>
@@ -96,40 +36,37 @@
                     Thông tin thanh toán
                 </div>
                 <div class="cart-desc__body">
-                    <div class="cart-desc--money">
+                    <div class="cart-desc--money" style="border-bottom: 1px solid #5680e9; padding-bottom: .25em;">
                         <p>Tổng cộng</p>
                         <p id='cart-desc--fullprice'></p>
                     </div>
-                    <div class="cart-desc__body__coupons">
-                        <div class="coupon">
-                            <div class="coupon-thumnail">
-                                <img src="./assets/images/logo.png" alt="coupon">
-                            </div>
-                            <div class="coupon-detail">
-                                <p class="coupon-title">
-                                    Giảm {{ 50% }}
-                                </p>
-                            </div>
-                            <button class="coupon-method">
-                                USE
-                            </button>
-                        </div>
-                        <div class="coupon">
-                            <div class="coupon-thumnail">
-                                <img src="./assets/images/logo.png" alt="coupon">
-                            </div>
-                            <div class="coupon-detail">
-                                <p class="coupon-title">
-                                    Giảm {{ 50% }}
-                                </p>
-                            </div>
-                            <button class="coupon-method">
-                                USE
-                            </button>
-                        </div>
-                    </div>
+                    <?php 
+                        if(isset($_SESSION['user'])) {
+                            $discounts = $discountDAO->getAllUserDiscounts($user->getID());
+                            if(count($discounts) > 0) {
+                                $discountCounter = 0;
+                                foreach ($discounts as $discount) {
+                                    ?> 
+                                    <div class="cart-desc__body__coupons">
+                                        <div class="coupon">
+                                            <div class="coupon-thumnail">
+                                                <img src="./assets/images/logo.png" alt="coupon">
+                                            </div>
+                                            <div class="coupon-detail">
+                                                <p class="coupon-title">
+                                                    Giảm <?php echo $utils->formatMoney($discount->getPrice()); ?>
+                                                </p>
+                                            </div>
+                                            <input name="coupon" class="coupon-method" type="radio" value="<?php echo $discount->getType(); ?>">
+                                        </div>
+                                    </div>
+                                <?php $discountCounter++; } ?>
+                    <?php }
+                } else { ?> 
+                        <h3 style="padding: .5em 0; border: 1px solid #5680e9; border-left: none; border-right: none;">Bạn không có mã giảm giá</h3>
+                    <?php } ?>
                 </div>
-                <div class="cart-desc__foot">
+                <div class="cart-desc__foot" style="border-top: 1px solid #5680e9; padding-top: .25em;">
                     <div class="money">
                         <div class="cart-desc--money">
                             <p>Số tiền trong tài khoản</p>
@@ -149,7 +86,7 @@
                             <p id="cart-desc--total">${moneyFormat(currency.total)}</p>
                         </div>
                     </div>
-                    <button class="checkout" onclick="checkout(<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);">
+                    <button class="checkout" onclick="checkout(<?php echo isset($_SESSION['user']) ? $_SESSION['user'] : 'false'; ?>);">
                         Thanh toán
                     </button>
                 </div>   

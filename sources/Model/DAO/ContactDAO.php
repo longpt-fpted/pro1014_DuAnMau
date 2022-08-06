@@ -39,7 +39,6 @@ class ContactDAO {
             return false;
         } else {
             $query = $this->database->prepare("DELETE FROM `contact` WHERE `contact`.`id` = ? ");
-            $query = $this->database->prepare("ALTER TABLE `contact` AUTO_INCREMENT=1");
 
             $query->bind_param("s", $id);
             return $query->execute();
