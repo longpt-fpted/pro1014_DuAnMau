@@ -1,6 +1,6 @@
 <?php
-    include "../Utils/Database.php";
-    include "../Model/DAO/UserDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
 
     $email = $_POST['mail'];
 

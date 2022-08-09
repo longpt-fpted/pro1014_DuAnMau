@@ -56,11 +56,19 @@
         if(check()) {
             let data = $('#modal-add-cate').serialize()+"&method=add";
             $.ajax({
-                url: '/pro1014_DuAn/sources/Controller/AdminCategoryController.php',
+                url: 'https://dsgobruh.000webhostapp.com/Controller/AdminCategoryController.php',
                 type: 'POST',
                 data: data,
             }).done(res => {
-                res = JSON.parse(res);
+                res = JSON.parse(res)
+                switch(res.status) {
+                    case 'success': 
+                        displayNotify('success', "Thêm danh mục thành công!");
+                        break;
+                    case 'fail':
+                        displayNotify('warning', "Thêm danh mục không thành công!");
+                        break;
+                }
             })
         }
     });
@@ -68,12 +76,19 @@
         element.addEventListener('click', (event) => {
             let data = $($('form[id=cate-infor]')[index]).serialize()+"&method=update";
             $.ajax({
-                url: '/pro1014_DuAn/sources/Controller/AdminCategoryController.php',
+                url: 'https://dsgobruh.000webhostapp.com/Controller/AdminCategoryController.php',
                 type: 'POST',
                 data: data,
             }).done(res => {
                 res = JSON.parse(res);
-                console.log(res);
+                switch(res.status) {
+                    case 'success': 
+                        displayNotify('success', "Thay đổi tên danh mục thành công!");
+                        break;
+                    case 'fail':
+                        displayNotify('warning', "Thay đổi tên danh mục không thành công!");
+                        break;
+                }
             })
         })
     });

@@ -1,13 +1,13 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
 
-// include "../Utils/Database.php";
-include "../Model/DAO/UserDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/FavoriteDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/FavoriteDAO.php";
 
 $userID = isset($_REQUEST['user']) ? $_REQUEST['user'] : 'error';
 $productID = isset($_REQUEST['product']) ? $_REQUEST['product'] : 'error';

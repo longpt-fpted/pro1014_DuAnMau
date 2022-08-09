@@ -1,9 +1,9 @@
 <?php
-include_once '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Contact.php';
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+include_once '/storage/ssd2/188/19378188/public_html/Model/Contact.php';
+include_once "/storage/ssd2/188/19378188/public_html/Utils/Utils.php";
+include_once "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
 
-// include '/xampp/htdocs/pro1014_DuAn/sources/Model/Contact.php';
+//  include '/xampp/htdocs/pro1014_DuAn/sources/Model/Contact.php';
 // include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";
 // include_once "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 

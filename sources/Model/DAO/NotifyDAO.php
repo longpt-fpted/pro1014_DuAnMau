@@ -1,5 +1,5 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Notify.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/Notify.php";
 // include "../Model/Notify.php";
 
 class NotifyDAO {
@@ -44,7 +44,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%m/%Y') AS `fdate` FROM `Notify` WHERE `Notify`.`user_id` = ? ORDER BY `fdate`");
+            $query = $this->database->prepare("SELECT *, DATE_FORMAT(`notify`.`date`, '%d/%m/%Y') AS `fdate` FROM `notify` WHERE `notify`.`user_id` = ? ORDER BY `fdate`");
             $query->bind_param('s', $userID);
 
             if($query->execute()) {
@@ -64,7 +64,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("INSERT INTO `Notify`(`user_id`, `type`, `type_id`, `date`) VALUES (?, ?, ?, ?)");
+            $query = $this->database->prepare("INSERT INTO `notify`(`user_id`, `type`, `type_id`, `date`) VALUES (?, ?, ?, ?)");
             $date = date("Y-m-d");
             $query->bind_param('ssss', $userID, $type, $tID, $date);
 
@@ -75,7 +75,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT count(`notify`.`id`) as `numbersOfNotify` FROM `Notify` WHERE `Notify`.`user_id` = ?");
+            $query = $this->database->prepare("SELECT count(`notify`.`id`) as `numbersOfNotify` FROM `notify` WHERE `notify`.`user_id` = ?");
             $query->bind_param('s', $userID);
 
             if($query->execute()) {
@@ -103,7 +103,7 @@ class NotifyDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("DELETE FROM `Notify` WHERE `notify`.`id` = ?");
+            $query = $this->database->prepare("DELETE FROM `notify` WHERE `notify`.`id` = ?");
             $query->bind_param('s', $id);
             return $query->execute();
         }

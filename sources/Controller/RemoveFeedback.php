@@ -1,5 +1,5 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/FeedbackDAO.php";
 // include "/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
 
 $id = $_GET['uid'];
@@ -12,8 +12,8 @@ $product_id = $_GET['pid'];
         echo ('<script>
                     var result = confirm("Removed Success!!");
                     if (result == true){
-                        window.location= "http://localhost/pro1014_duan/sources/View/admin/feedbacks.php";}
-                    else window.location= "http://localhost/pro1014_duan/sources/View/admin/feedbacks.php";
+                        window.location= "../View/admin/feedbacks.php";}
+                    else window.location= "../View/admin/feedbacks.php";
                 </script>');
     } else return false;   
 ?>

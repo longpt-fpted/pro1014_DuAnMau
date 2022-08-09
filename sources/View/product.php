@@ -135,7 +135,6 @@
                         </article>
                     </section>
             </section>
-
             <section class="content-container">
                 <div class="content-title">
                     Hỏi đáp về sản phẩm
@@ -160,12 +159,9 @@
                     <?php  
                         if($productComments != 'error') {
                             $count = 0;
-                        foreach ($productComments as $productComment) {
-                            $parentComment = $userDAO->getUserByID($productComment->getUserID());
-                            // if($commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getUserID()) != 0) 
-                                $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($productComment->getProductID(), $productComment->getID());
-                            // else $replyComments = null;
-                            
+                            foreach ($productComments as $productComment) {
+                                $parentComment = $userDAO->getUserByID($productComment->getUserID());
+                                $replyComments = $commentDAO->getReplyCommentsByParentAndProduct($product->getID(), $productComment->getID());
                     ?>
                         <article class="comment-box">
                             <div class="comment-box-main">
@@ -197,22 +193,21 @@
                             </div>
                             <div class="comment-box-replies">
                                 <form id="reply-form" style="display: none">
-                                    <input type="text" name="comment-userGet" value="<?php  echo $parentComment->getID(); ?>" hidden>
-                                    <input type="text" name="comment-parent" value="<?php  echo $productComment->getID(); ?>" hidden>
-                                    <input type="text" name="comment-user" value="<?php  echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
-                                    <input type="text" name="comment-product" value="<?php  echo $product->getID(); ?>" hidden>
-                                    <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
-                                    <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <?php  echo $count; ?>)">
-                                        <i class="fal fa-paper-plane"></i>
-                                        Gửi bình luận
-                                    </button>
+                                        <input type="text" name="comment-userGet" value="<?php echo $parentComment->getID(); ?>" hidden>
+                                        <input type="text" name="comment-parent" value="<?php  echo $productComment->getID(); ?>" hidden>
+                                        <input type="text" name="comment-user" value="<?php echo isset($_SESSION['user']) ? $_SESSION['user'] : 'error'?>" hidden>
+                                        <input type="text" name="comment-product" value="<?php  echo $product->getID(); ?>" hidden>
+                                        <textarea name="comment-input" id="comment-input" class="comment-input" required placeholder="Nhập nội dung bình luận"></textarea>
+                                        <button class="comment-submit" name="comment-submit" type="button" onclick="reply(new Event('click'), <?php echo $count; ?>)">
+                                            <i class="fal fa-paper-plane"></i>
+                                            Gửi bình luận
+                                        </button>
                                 </form>
-                                <?php  
-                                    if($replyComments != false) {
-                                        foreach ($replyComments as $reply) {
-                                            if($reply->getParentID() == $productComment->getID()) {
-                                            $userReply = $userDAO->getUserByID($reply->getUserID());
-                                ?>
+                            <?php 
+                                if($replyComments != false && count($replyComments) > 0) {
+                                foreach($replyComments as $reply) {
+                                $userReply = $userDAO->getUserByID($reply->getUserID());
+                            ?>
                                 <article class="comment-box">
                                     <div class="comment-box-main">
                                         <div class="comment-user-avatar">
@@ -238,16 +233,15 @@
                                         </div>
                                     </div>
                                 </article>
-                                <?php  }} ?>
+                            <?php }} ?>
                             </div>
                         </article>
-                    <?php   }
+                    <?php
                             $count++;
                     }
                 } else { ?>
                         <h3 style="margin: auto; font-size: 1.2em; font-weight: 400;">Hiện chưa có bình luận nào!</h3>
-                    <?php   } ?>
-
+                <?php } ?>
                 </section>
             </section>
         <?php include('./footer.php') ?>

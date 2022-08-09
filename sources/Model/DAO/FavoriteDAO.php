@@ -1,6 +1,6 @@
 <?php
     // include "../Model/Favorite.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Favorite.php";
+    include_once "/storage/ssd2/188/19378188/public_html/Model/Favorite.php";
 
     class FavoriteDAO {
         private $database;

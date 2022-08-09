@@ -1,13 +1,14 @@
 <?php
-// include "../Utils/Database.php";
-// include "../Model/DAO/UserDAO.php";
-// include "../Model/DAO/ProductDAO.php";
-// include "../Model/DAO/FeedbackDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/FeedbackDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/NotifyDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
 
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
 

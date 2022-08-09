@@ -9,7 +9,7 @@ if ($userID != false) {
     $notifies = $notifyDAO->getAllNotifiesByUserID($user->getID());
 } else {
     echo "<script>
-            window.location = './login.php';
+            window.location = './index.php';
         </script>";
 }
 ?>
@@ -26,11 +26,14 @@ if ($userID != false) {
                 <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                 <div class="input-box">
                     <i class="fal fa-phone"></i>
-                    <input type="text" id="phone" name="phone" placeholder="Số điện thoại...">
+                    <input type="text" id="phone" name="phone" onclick="removeErrorPhone()" placeholder="Số điện thoại...">
                 </div>
-                <button type="submit" class="submit">
-                    Thay đổi
-                </button>
+                <div id="error-phone" class="error-validate"></div>
+                <div class="input-box-submit">
+                    <button type="submit" class="submit" onclick="return check_change_phone()">
+                        Thay đổi
+                    </button>
+                </div>
             </form>
             <form action="../Controller/UserChangeEmailController.php" method="post" class="form-edit">
                 <label for="mail">Nhập địa chỉ mail mới:</label>
@@ -159,32 +162,34 @@ if ($userID != false) {
                         Thông tin cá nhân
                     </div>
                     <div class="user-box__dashboard">
-                        <form action="../Controller/UserChangeNameController.php" method="post" class="main-info">
+                        <form action="../Controller/UserChangeNameController.php" method="post" enctype="multipart/form-data" class="main-info">
                             <div class="form-info">
                                 <input type="number" hidden id="id" name="id" value="<?php echo $user->getID(); ?>">
                                 <div class="form-avatar">
                                     <img src="<?php echo $user->getAvatar(); ?>" alt="user avatar">
-                                    <input type="file" name="user-avatar" id="user-avatar" hidden>
-                                    <label for="user-avatar">
+                                    <input type="file" name="image" id="image" hidden>
+                                    <label for="image">
                                         <i class="fal fa-pencil"></i>
                                     </label>
                                 </div>
                                 <div class="form-name">
                                     <div class="input-box">
                                         <label for="username">Họ & Tên</label>
-                                        <input type="text" name="fullname" id="fullname" value="<?php
+                                        <input type="text" name="fullname" id="fullname" onclick="removeErrorFullname()" value="<?php
                                                                                                 echo $user->getFullname();
                                                                                                 ?>">
                                     </div>
+                                    <div id="error-fullname" class="error-validate"></div>
                                     <div class="input-box">
                                         <label for="phone">Số điện thoại</label>
-                                        <input type="text" name="phone" id="phone" value="<?php
+                                        <input type="text" name="phone" id="phone-number" onclick="removeErrorPhonenumber()" value="<?php
                                                                                             echo $user->getPhone();
                                                                                             ?>">
                                     </div>
+                                    <div id="error-phone-number" class="error-validate"></div>
                                 </div>
                             </div>
-                            <button type="submit" class="submit-form">
+                            <button type="submit" onclick="return check_change_profile()" class="submit-form">
                                 Lưu thay đổi
                             </button>
                         </form>
@@ -368,7 +373,7 @@ if ($userID != false) {
                                 }
                                 ?>
                             <?php } else { ?>
-                                <h3>Bạn không có thông báo!</h3>
+                                <h3>Bạn không có voucher!</h3>
                             <?php } ?>
                         </section>
                     </article>
@@ -398,7 +403,7 @@ if ($userID != false) {
                                             </div>
                                             <div class="news-detail">
                                                 <h4 class="news-title">
-                                                    Sản phẩm <?php echo $product->getName(); ?> đang dược giảm giá!
+                                                    Sản phẩm <?php echo $product->getName(); ?> đang được giảm giá!
                                                 </h4>
                                                 <p class="news-desc">
                                                     Sản phẩm <?php echo $product->getName(); ?> được bạn yêu thích đang được giảm giá, hãy mua ngay!
@@ -406,8 +411,8 @@ if ($userID != false) {
                                             </div>
                                         </div>
                                         <div class="news-box__foot">
-                                            <a href="./product.php?id=<? echo $product->getID(); ?>" class="method">Xem chi tiết</a>
-                                            <a onclick="removeNotify(<? echo $notify->getID(); ?>)" class="method">Xoá</a>
+                                            <a href="./product.php?id=<?php echo $product->getID(); ?>" class="method">Xem chi tiết</a>
+                                            <a onclick="removeNotify(<?php echo $notify->getID(); ?>)" class="method">Xoá</a>
                                         </div>
                                     </article>
                                 <?php  } else if ($notify->getType() == 1) {
@@ -562,7 +567,7 @@ if ($userID != false) {
             checkcode.className="error";
             error += "Mã thẻ nạp không được bỏ trống !<br>";
         }
-        else if (checkcode.value.length<12){
+        else if (checkcode.value.length<11){
             checkcode.className="error";
             error += "Mã thẻ quá ngắn vui lòng nhập đúng định dạng mã thẻ !<br>";
         }

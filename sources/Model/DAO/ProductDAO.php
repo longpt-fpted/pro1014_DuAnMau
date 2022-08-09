@@ -1,5 +1,5 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Product.php';
+include '/storage/ssd2/188/19378188/public_html/Model/Product.php';
 // include "/XAMPP/htdocs/pro1014_duan/sources/Model/Product.php";
 // include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Product.php";
 class ProductDAO {
@@ -13,7 +13,7 @@ class ProductDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` WHERE `Product`.`id` = ? AND `product`.`is_available` = 1');
+            $query = $this->database->prepare('SELECT * FROM `product` WHERE `product`.`id` = ? AND `product`.`is_available` = 1');
             $query->bind_param('s', $id);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -101,7 +101,7 @@ class ProductDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product` Where `Product`.`is_available` = 1');
+            $query = $this->database->prepare('SELECT * FROM `product` Where `product`.`is_available` = 1');
             if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
@@ -120,7 +120,7 @@ class ProductDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `Product`');
+            $query = $this->database->prepare('SELECT * FROM `product`');
             if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
@@ -446,6 +446,44 @@ class ProductDAO {
             return $query->execute();
         }  
     }
-    
+    public function getSaledProductsThisYear($limit) {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $utils = new Utils();
+            $query = $this->database->prepare("SELECT `product`.`id`, `product`.`name`, count(`product`.`id`) as `total` FROM `order` INNER JOIN `orderdetail` ON `orderdetail`.`order_id` = `order`.`id` INNER JOIN `product` ON `orderdetail`.`product_id` = `product`.`id` WHERE year(`order`.`date`) = year(CURRENT_DATE()) AND `order`.`is_pay` = 1 AND `product`.`is_available` = 1 GROUP BY `product`.`id` ASC ORDER BY `total` DESC limit ?");
+            $query->bind_param('s', $limit);
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = ['id' => $row['id'], 'name' => ($row['name']), 'total' => $row['total']];
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            } else return false;
+        }
+    }
+    public function getTotalSalesThisYear() {
+        if($this->database->connect_error) {
+            return false;
+        } else {
+            $utils = new Utils();
+            $query = $this->database->prepare("SELECT MONTH(`order`.`date`) as `month`, sum(`order`.`price`) as `totalprice` FROM `order` INNER JOIN `orderdetail` ON `orderdetail`.`order_id` = `order`.`id` INNER JOIN `product` ON `orderdetail`.`product_id` = `product`.`id` WHERE year(`order`.`date`) = year(CURRENT_DATE()) AND `order`.`is_pay` = 1 GROUP BY `month` ASC ORDER BY `month` ASC");
+            if($query->execute()) {
+                $result = $query->get_result();
+                if($result->num_rows > 0) {
+                    $products = [];
+                    while($row = $result->fetch_assoc()) {
+                        $product = ['total' => $row['totalprice'], 'month' => $row['month']];
+                        $products[] = $product;
+                    }
+                    return $products;
+                } else return false;
+            } else return false;
+        }
+    }
 }
 ?>

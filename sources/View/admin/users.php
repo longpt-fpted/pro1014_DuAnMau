@@ -30,7 +30,7 @@ $userSearch = $userDAO->getUserBySearch($keyword);
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="http://localhost/pro1014_duan/sources/controller/AddUsersController.php" enctype="multipart/form-data" method="post">
+            <form action="https://dsgobruh.000webhostapp.com/Controller/AddUsersController.php" enctype="multipart/form-data" method="post">
                 <p id="modal-add-title">Thêm thành viên</p>
                 <span>Họ và tên:</span><br>
                 <input type="text" id="fullname" name="fullname" onclick="removeErrorFullname()" placeholder="Họ và tên"><br>  
@@ -71,7 +71,7 @@ $userSearch = $userDAO->getUserBySearch($keyword);
                     <img src=".<?php echo $user->getAvatar(); ?>" alt="">
                 </div>
                 <div class="detail">
-                    <form action="http://localhost/pro1014_duan/sources/Controller/UpdateUsersController.php" id="user-infor" method="post">
+                    <form action="https://dsgobruh.000webhostapp.com/Controller/UpdateUsersController.php" id="user-infor" method="post">
                         <input type="text" id="id" name="id" value="<?php
                         echo $user->getID()?>" hidden><br>
                         <span>Họ và tên:</span><br>
@@ -102,6 +102,6 @@ $userSearch = $userDAO->getUserBySearch($keyword);
 <!-- End of Main Content -->
 <script src="js/validate-user.js"></script>
 <?php
-    include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
+    include 'footer.php'; 
     // include '/XAMPP/htdocs/pro1014_duan/sources/View/admin/footer.php'; 
 ?>

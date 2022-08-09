@@ -9,6 +9,7 @@ var mail = document.getElementById("mail")
 var emailRegex = /\S+@\S+\.\S+/
 var phone = document.getElementById("phone")
 var phoneRegex = /((09|05|07|03)+([0-9]{8})\b)/g
+var phonenumber = document.getElementById("phone-number")
 
 
 errorFullname = document.getElementById("error-fullname")
@@ -19,6 +20,7 @@ errorNewPassword = document.getElementById("error-newpassword")
 errorEmail = document.getElementById("error-email")
 errorMail = document.getElementById("error-mail")
 errorPhone = document.getElementById("error-phone")
+errorPhonenumber = document.getElementById("error-phone-number")
 
 
 function check_register() {
@@ -159,6 +161,30 @@ function check_change_phone() {
     
     return success;
 }
+function check_change_profile() {
+    var success = true
+
+    if (fullname.value == "") {
+        errorFullname.innerHTML = "Họ và tên không để trống!"
+        fullname.style.border = "1px solid red"
+        success = false
+    } else {
+        errorFullname.innerHTML = ""
+    }
+    if(phonenumber.value == ""){
+        errorPhonenumber.innerHTML = "Vui lòng nhập số điện thoại mới!"
+        phonenumber.style.border = "1px solid red"
+        success = false
+    } else if(phonenumber.value.match(phoneRegex) == null){
+        errorPhonenumber.innerHTML = "Số điện thoại không đúng định dạng"
+        phonenumber.style.border = "1px solid red"
+        success = false
+    } else {
+        errorPhonenumber.innerHTML = ""
+    }
+    
+    return success;
+}
 
 function removeErrorFullname() {
     fullname.style.border = ""
@@ -195,4 +221,12 @@ function removeErrorNewPassword() {
 function removeErrorMail() {
     mail.style.border = ""
     errorMail.innerHTML =""
+}
+function removeErrorPhone() {
+    phone.style.border = ""
+    errorPhone.innerHTML =""
+}
+function removeErrorPhonenumber() {
+    phonenumber.style.border = ""
+    errorPhonenumber.innerHTML =""
 }

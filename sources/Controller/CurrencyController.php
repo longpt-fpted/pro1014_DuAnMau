@@ -1,7 +1,8 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+include '/storage/ssd2/188/19378188/public_html/Utils/Database.php';
+include '/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php';
 $uid = isset($_REQUEST['id']) ? $_REQUEST['id'] : 'err';
 $amount = isset($_REQUEST['amount']) ? $_REQUEST['amount'] : 'err';
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'err';

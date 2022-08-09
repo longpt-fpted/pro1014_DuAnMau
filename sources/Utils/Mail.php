@@ -3,15 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/Exception.php';
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/PHPMailer.php';
-require '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
-
-// include_once '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Libraries/PHPMailer/src/SMTP.php';
-// require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\Exception.php';
-// require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\PHPMailer.php';
-// require 'C:\xampp\htdocs\pro1014_DuAn\sources\Libraries\PHPMailer\src\SMTP.php';
-
+require '/storage/ssd2/188/19378188/public_html/Libraries/PHPMailer/src/Exception.php';
+require '/storage/ssd2/188/19378188/public_html/Libraries/PHPMailer/src/PHPMailer.php';
+require '/storage/ssd2/188/19378188/public_html//Libraries/PHPMailer/src/SMTP.php';
 class Mail {
     private $mail;
     public function __construct()
@@ -31,7 +25,7 @@ class Mail {
 
     public function sendMail($usermail, $title, $message) {
         try {
-            $this->mail->setFrom('longpt.demo@gmail.com', $title);
+            $this->mail->setFrom('longpt.demo@gmail.com', "Demon Stone");
             $this->mail->addAddress($usermail, 'Pham Thien Long');
             $this->mail->isHTML(true);
             $this->mail->Subject = $title;

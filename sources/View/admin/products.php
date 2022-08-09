@@ -29,7 +29,7 @@ $productSearch = $productDAO->getProductsByName($keyword);
         <button id="btn-add" onclick="modal_add()">Thêm sản phẩm</button>
         <div class="modal-add" id="modal-add-form">
             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-            <form action="http://localhost/pro1014_duan/sources/controller/AddProductsController.php" onsubmit="return check()" enctype="multipart/form-data" id="modal-add-product" method="post">
+            <form action="https://dsgobruh.000webhostapp.com/Controller/AddProductsController.php" onsubmit="return check()" enctype="multipart/form-data" id="modal-add-product" method="post">
                 <p id="modal-add-title">Thêm sản phẩm</p>
                 <span>Tên sản phẩm</span><br>
                 <input type="text" id="name" name="name" onclick="removeErrorName()" placeholder="Tên sản phẩm"><br>   
@@ -59,7 +59,7 @@ $productSearch = $productDAO->getProductsByName($keyword);
         </div>                   
         <div class="show-information">
             <?php
-                
+                if($productSearch != false && count($productSearch) > 0)
                 foreach ($productSearch as $product){
             ?>
             <div class="product-information">
@@ -67,7 +67,7 @@ $productSearch = $productDAO->getProductsByName($keyword);
                     <img src=".<?php echo $product->getImg() ?>" alt="">
                 </div>
                 <div class="detail">
-                    <form action="http://localhost/pro1014_duan/sources/controller/UpdateProductsController.php" method="post" enctype="multipart/form-data" id="user-infor">
+                    <form action="https://dsgobruh.000webhostapp.com/Controller/UpdateProductsController.php" method="post" enctype="multipart/form-data" id="user-infor">
                         <table>
                             <tr>
                                 <input type="text" id="id" name="id" value="<?php echo $product ->getID() ?>" hidden><br>

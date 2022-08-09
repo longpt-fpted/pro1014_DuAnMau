@@ -42,7 +42,7 @@
                                             <td><?php echo $fbProduct->getName() ?></td>
                                             <td><?php echo $feedback->getRating() ?></td>
                                             <td><?php echo $feedback->getText() ?></td>
-                                            <td><a href="http://localhost/pro1014_duan/sources/controller/RemoveFeedback.php?uid=<?php echo $feedback->getUserID() ?>&pid=<?php echo $fbProduct->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>                                           
+                                            <td><a href="https://dsgobruh.000webhostapp.com/Controller/RemoveFeedback.php?uid=<?php echo $feedback->getUserID() ?>&pid=<?php echo $fbProduct->getID() ?>"><button id="btn-contact-delete">Xóa</button></a></td>                                           
                                         </tr>      
                                     <?php 
                                         } 
@@ -96,7 +96,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary">Logout</a>
                 </div>
             </div>
         </div>

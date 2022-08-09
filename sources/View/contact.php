@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="contact-content">
-            <form action="http://localhost/pro1014_duan/sources/controller/AddContactController.php" id="contact-form" method="POST">
+            <form action="../Controller/AddContactController.php" id="contact-form" method="POST">
                 <div class="input-1">
                     <span>FULL NAME</span><br><br>
                     <input type="text" id="customer-name" name="customer-name" onclick="removeErrorFullname()" placeholder="Full Name">

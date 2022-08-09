@@ -2,7 +2,7 @@ function addProductToCart(id) {
     let data = `pid=${id}&method=add`;
     
     $.ajax({
-        url: `../Controller/CartController.php`,
+        url: `https://dsgobruh.000webhostapp.com/Controller/CartController.php`,
         method: "GET",
         data: data,
     }).done(res => {
@@ -28,7 +28,7 @@ function addProductToCart(id) {
 function minusProductFromCart(id) {
     let data = `pid=${id}&method=minus`;
     $.ajax({
-        url: `../Controller/CartController.php`,
+        url: `https://dsgobruh.000webhostapp.com/Controller/CartController.php`,
         method: "GET",
         data: data,
     }).done((res) => {
@@ -68,7 +68,7 @@ function minusProductFromCart(id) {
 function removeProductFromCart(id) {
     let data = `pid=${id}&method=remove`;
     $.ajax({
-        url: `../Controller/CartController.php`,
+        url: `https://dsgobruh.000webhostapp.com/Controller/CartController.php`,
         method: "GET",
         data: data,
     }).done(res => {
@@ -102,7 +102,7 @@ function checkout(userID) {
         let coupon = document.querySelector('input[name="coupon"]:checked');
         let data = coupon != null ? `userID=${userID}&coupon=${coupon.value}&method=checkout` :`userID=${userID}&method=checkout`;
         $.ajax({
-            url: `../Controller/CartController.php`,
+            url: `https://dsgobruh.000webhostapp.com/Controller/CartController.php`,
             method: "POST",
             data: data,
         }).done(res => {
@@ -157,7 +157,7 @@ function addToFavorite(userID, productID) {
     } else {
         let data = `user=${userID}&product=${productID}&method=add`;
         $.ajax({
-            url: '../Controller/FavoriteController.php',
+            url: 'https://dsgobruh.000webhostapp.com/Controller/FavoriteController.php',
             method: 'POST',
             data: data,
         }).done(res => {
@@ -179,7 +179,7 @@ function addToFavorite(userID, productID) {
 function removeProductFromFavorite(userID, productID) {
     let data = `user=${userID}&product=${productID}&method=remove`;
     $.ajax({
-        url: '../Controller/FavoriteController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/FavoriteController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -205,7 +205,7 @@ function removeProductFromFavorite(userID, productID) {
 function removeNotify(id) {
     let data = `nid=${id}&method=remove`;
     $.ajax({
-        url: '../Controller/NotifyController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/NotifyController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -222,7 +222,7 @@ function removeNotify(id) {
 function sendNotify(userID, commentID) {
     let data = `uid=${userID}&cid=${commentID}&method=cmt`;
     $.ajax({
-        url: '../Controller/NotifyController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/NotifyController.php',
         method: 'POST',
         data: data,
         
@@ -242,7 +242,7 @@ function submitFeedback(event) {
     event.preventDefault();
     let data = $('#feedback-container').serialize()+"&method=submit";
     $.ajax({
-        url: '../Controller/FeedbackController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/FeedbackController.php',
         type: 'POST',
         data: data,
     }).done(res => {
@@ -266,7 +266,7 @@ function comment(event) {
     event.preventDefault();
     let data = $('#comment-form').serialize()+"&method=comment";
     $.ajax({
-        url: '../Controller/CommentController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/CommentController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -280,6 +280,7 @@ function comment(event) {
                 break;
             case 'success':
                 displayNotify('success', `Bình luận thành công!`);
+                location.reload();
                 break;
             default:
                 break;
@@ -290,7 +291,7 @@ function reply(event, index) {
     event.preventDefault();
     let data = $($('form[id=reply-form]')[index]).serialize()+"&method=reply";
     $.ajax({
-        url: '../Controller/CommentController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/CommentController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -304,6 +305,7 @@ function reply(event, index) {
                 break;
             case 'success':
                 displayNotify('success', `Bình luận thành công!`);
+                location.reload();
                 sendNotify(res.user, res.cid);
                 break;
             default:
@@ -315,7 +317,7 @@ function removeComment(event, userID, commentID) {
     event.preventDefault();
     let data = `uid=${userID}&cid=${commentID}&method=remove`;
     $.ajax({
-        url: '../Controller/CommentController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/CommentController.php',
         method: 'POST',
         data: data,
     }).done(res => {
@@ -323,6 +325,7 @@ function removeComment(event, userID, commentID) {
         switch (res.status) {
             case 'success':
                 displayNotify('success', `Xoá bình luận thành công!`);
+                location.reload();
                 break;
             default:
                 break;
@@ -333,7 +336,7 @@ function searching(event) {
     event.preventDefault();
     let data = $('#main-search').serialize();
     $.ajax({
-        url: '../Controller/SearchController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/SearchController.php',
         method: 'POST',
         data: data
     }).done(res => {
@@ -387,7 +390,7 @@ function headerSearch(cate, sort) {
     console.log(cate, sort);
     let data = `keyword=&category=${cate}&min=0&max=50000000&sort=${sort}`
     $.ajax({
-        url: '../Controller/SearchController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/SearchController.php',
         method: 'POST',
         data: data
     }).done(res => {
@@ -441,7 +444,7 @@ function deposit(event) {
     event.preventDefault();
     let data = $('#currency-modal .form-edit').serialize()+"&method=deposit";
     $.ajax({
-        url: '../Controller/CurrencyController.php',
+        url: 'https://dsgobruh.000webhostapp.com/Controller/CurrencyController.php',
         method: 'POST',
         data: data,
     }).done(res => {

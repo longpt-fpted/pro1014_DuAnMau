@@ -1,8 +1,8 @@
 <?php
 // include "C:\wamp64\www\hihihaha\pro1014_DuAn\sources\Model\DAO\UserDAO.php";
 
-    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
     
     // include "../Utils/Database.php";
     // include "../Model/DAO/UserDAO.php";

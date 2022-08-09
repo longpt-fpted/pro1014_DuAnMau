@@ -5,11 +5,11 @@
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
 // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
 
-include "../Utils/Database.php";
-include "../Utils/Utils.php";
-include "../Model/DAO/CommentDAO.php";
-include "../Model/DAO/ProductDAO.php";
-include "../Model/DAO/UserDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Utils.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/CommentDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
 
 // include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Database.php";
 // include "/XAMPP/htdocs/pro1014_duan/sources/Utils/Utils.php";

@@ -1,7 +1,7 @@
 <?php
-include '/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/Category.php';
+include '/storage/ssd2/188/19378188/public_html/Model/Category.php';
 // include "/XAMPP/htdocs/pro1014_duan/sources/Model/Category.php";
-//  include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Category.php";
+// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/Category.php";
  
 class CategoryDAO {
     private $database;
@@ -13,7 +13,7 @@ class CategoryDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT * FROM `Category` WHERE `Category`.`id` = ?");
+            $query = $this->database->prepare("SELECT * FROM `category` WHERE `category`.`id` = ?");
             $query->bind_param("s", $id);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -28,7 +28,7 @@ class CategoryDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT * FROM `Category`");
+            $query = $this->database->prepare("SELECT * FROM `category`");
             if($query->execute()) {
                 $result = $query->get_result();
                 if($result->num_rows > 0) {
@@ -47,7 +47,7 @@ class CategoryDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT * FROM `Category` WHERE `Category`.`name` = ?");
+            $query = $this->database->prepare("SELECT * FROM `category` WHERE `category`.`name` = ?");
             $query->bind_param("s", $name);
             if($query->execute()) {
                 $result = $query->get_result();

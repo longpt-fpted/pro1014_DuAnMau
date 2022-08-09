@@ -1,11 +1,11 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-    // include "../Utils/Database.php";
-    // include "../Model/DAO/UserDAO.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
 
-    $oldpassword = $_POST['old-pass'];
-    $newpassword = $_POST['new-pass'];
+    $oldpassword = md5($_POST['old-pass']);
+    $newpassword = md5($_POST['new-pass']);
     $id = $_POST['id'];
 
     $userDAO = new UserDAO();

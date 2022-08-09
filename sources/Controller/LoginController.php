@@ -1,17 +1,17 @@
 <?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-    // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-    // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-    // include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
+    include "../Utils/Database.php";
+    // include "/Model/DAO/UserDAO.php";
+    // include "/Model/DAO/OrderDAO.php";
+    // include "/Model/DAO/OrderDetailDAO.php";
 
     // include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-    include "../Model/DAO/UserDAO.php";
-    include "../Model/DAO/OrderDAO.php";
-    include "../Model/DAO/OrderDetailDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/OrderDAO.php";
+    include "/storage/ssd2/188/19378188/public_html/Model/DAO/OrderDetailDAO.php";
     session_start();
 
     $username = isset($_REQUEST['username']) ? $_REQUEST['username'] : 'error';
-    $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : 'error';
+    $password = md5(isset($_REQUEST['password']) ? $_REQUEST['password'] : 'error');
     $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
     
     function login($username, $password) {

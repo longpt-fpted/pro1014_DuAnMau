@@ -1,12 +1,13 @@
 <?php
-include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
+// include_once "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
 
 // include_once "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-include_once "../Model/DAO/UserDAO.php";
-include_once "../Model/DAO/ProductDAO.php";
-include_once "../Model/DAO/NotifyDAO.php";
-include_once "../Model/DAO/FavoriteDAO.php";
-include_once "../Model/DAO/CommentDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/DAO/NotifyDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/DAO/FavoriteDAO.php";
+include_once "/storage/ssd2/188/19378188/public_html/Model/DAO/CommentDAO.php";
 
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
 

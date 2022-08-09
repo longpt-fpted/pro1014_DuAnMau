@@ -10,7 +10,7 @@ class Database {
     }
     public function getDatabase($database = null) {
         if($database == null) {
-            return new mysqli("localhost:3306", "root", "", "pro1014_duan");
+            return new mysqli("localhost", "id19378188_adminsql", '~L$JFQ(2T+Or$zzH', "id19378188_pro1014_duan");
         } else return $database;
     }
 }

@@ -68,17 +68,18 @@
 </html>
 <script>
     $('#logout-btn').click(() => {
+        console.log('log out');
         let data = 'method=logout';
         $.ajax({
-            url: '/pro1014_DuAn/sources/Controller/LoginAdminController.php',
-            data: "method=logout",
+            url: 'https://dsgobruh.000webhostapp.com/Controller/LoginAdminController.php',
+            data: data,
         }).done(res => {
             res = JSON.parse(res);
             switch (res['status']) {
                 case 'success':
                     displayNotify('success', 'Đăng xuất thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
                     setTimeout(function() {
-                        window.location = '/pro1014_DuAn/sources/View/admin';
+                        window.location = 'index.php';
                     }, 2500)
                     break;
                 case 'success':

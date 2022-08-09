@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/CategoryDAO.php";
 $method = isset($_REQUEST['method']) ? $_REQUEST['method'] : 'error';
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : 'error';
 $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 'error';

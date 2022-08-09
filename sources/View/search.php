@@ -11,6 +11,8 @@
         }, $products);
     } else {
         $products = $productDAO->getProductsByName($keyword);
+        if($products == false) 
+            $products = [];
         $products = array_map(function($product) {
             return ['id' => $product->getID(), 'name' => $product->getName(), 'fullprice' => $product->getPrice(), 'price' => $product->getTotalPrice(), 'image' => $product->getImg(), 'sale' => $product->getSale()];
         }, $products);

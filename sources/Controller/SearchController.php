@@ -1,7 +1,7 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "../Model/DAO/CategoryDAO.php";
-include "../Model/DAO/ProductDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/CategoryDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
 
 $s_cate = isset($_REQUEST['category']) ? $_REQUEST['category'] : 'none';
 $s_min = isset($_REQUEST['min']) ? $_REQUEST['min'] : 'none';

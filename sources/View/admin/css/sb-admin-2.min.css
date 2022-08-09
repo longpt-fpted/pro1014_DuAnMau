@@ -12821,12 +12821,12 @@ width: 11%;
     color: white;
     border-radius: 10px;
     transition: 0.3s;
+    margin-bottom: 0.2em;
 }
 
 #btn-contact-delete {
     border: 0;
-    width: 3.5em;
-    margin-left: 0.5em;
+    width: 5em;
     background: red;
     color: white;
     border-radius: 10px;
@@ -12972,3 +12972,8 @@ width: 11%;
 #message:focus{
     outline: none;
   }
+#welcome-admin{
+    text-align:center;
+    font-size: 4em;
+    padding-top: 3em;
+}

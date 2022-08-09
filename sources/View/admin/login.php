@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script src="/pro1014_DuAn/sources/View/assets/js/main.js"></script>
+    <script src="https://dsgobruh.000webhostapp.com/View/assets/js/main.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://dsgobruh.000webhostapp.com/View/assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -42,7 +42,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form action="http://localhost/pro1014_duan/sources/controller/LoginAdminController.php" method="post" class="user" id="admin-login-form">
+                                    <form method="post" class="user" id="admin-login-form">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="Admin Username">
                                         </div>
@@ -89,17 +89,16 @@
                 e.preventDefault();
                 let data = $('#admin-login-form').serialize()+"&method=login";
                 $.ajax({
-                    url: '/pro1014_DuAn/sources/Controller/LoginAdminController.php',
+                    url: 'https://dsgobruh.000webhostapp.com/Controller/LoginAdminController.php',
                     type: 'POST',
                     data: data,
                 }).done(res => {
                     res = JSON.parse(res);
-                    console.log(res);
                     switch (res.status) {
                         case 'success':
                             displayNotify('success', 'Đăng nhập thành công! Bạn sẽ được trả về trang chủ trong vài giây nữa!');
                             setTimeout(function() {
-                                window.location = '/pro1014_DuAn/sources/View/admin';
+                                window.location = './';
                             }, 2500)
                             break;
                         case 'wrong-password':

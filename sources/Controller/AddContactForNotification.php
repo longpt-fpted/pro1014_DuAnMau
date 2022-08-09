@@ -1,6 +1,6 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ContactDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ContactDAO.php";
     $fullname = $_POST['customer-name'];
     $email = $_POST['mail'];
     $type = $_POST['type'];

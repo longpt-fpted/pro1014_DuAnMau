@@ -1,28 +1,13 @@
 <?php 
 session_start();
-
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Utils.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ProductDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CategoryDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/OrderDetailDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FavoriteDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/NotifyDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/FeedbackDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/CommentDAO.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/ContactDAO.php";
-
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Utils.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Mail.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/UserDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ProductDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/CategoryDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/FeedbackDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/DAO/ContactDAO.php";
-
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Utils.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Mail.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ProductDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/CategoryDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/FeedbackDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/ContactDAO.php";
 $userDAO = new UserDAO();
 $users = $userDAO->getAllUsers();
 
@@ -40,7 +25,9 @@ $feedbacks = $feedbackDAO->getAllFeedbacks();
 $contactDAO = new ContactDAO();
 $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts() : [];
 
- if(!isset($_SESSION['login'])){header("location: ./login.php");}
+if(!isset($_SESSION['admin'])){ 
+    header("location: ./login.php"); 
+}
 
 ?>
 <!DOCTYPE html>
@@ -63,12 +50,12 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://dsgobruh.000webhostapp.com/View/assets/css/style.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/responsive.css">
     
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/ajax.js"></script>
+    <script src="https://dsgobruh.000webhostapp.com/View/assets/js/main.js"></script>
+    <script src="https://dsgobruh.000webhostapp.com/View/assets/js/ajax.js"></script>
 </head>
 
 <body id="page-top">
@@ -90,14 +77,7 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
-                </a>
-            </li>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -111,16 +91,16 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Managements</span>
+                    <span>Quản lí</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Managements:</h6>
-                        <a class="collapse-item" href="users.php">Users</a>
-                        <a class="collapse-item" href="products.php">Products</a>
-                        <a class="collapse-item" href="feedbacks.php">Feedbacks</a>
-                        <a class="collapse-item" href="contacts.php">Contacts</a>
-                        <a class="collapse-item" href="categories.php">Categories</a>
+                        <h6 class="collapse-header">Danh sách quản lí:</h6>
+                        <a class="collapse-item" href="users.php">Thành viên</a>
+                        <a class="collapse-item" href="products.php">Sản phẩm</a>
+                        <a class="collapse-item" href="categories.php">Danh mục</a>
+                        <a class="collapse-item" href="feedbacks.php">Phản hồi</a>
+                        <a class="collapse-item" href="contacts.php">Liên lạc</a>
                     </div>
                 </div>
             </li>
@@ -130,12 +110,12 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Options</span>
+                    <span>Tuỳ chọn</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Options:</h6>
+                        <h6 class="collapse-header">Tuỳ chọn:</h6>
                         <a class="collapse-item" href="#">Colors</a>
                         <a class="collapse-item" href="#">Borders</a>
                         <a class="collapse-item" href="#">Animations</a>
@@ -150,12 +130,17 @@ $contacts = $contactDAO->getAllContacts() != false ? $contactDAO->getAllContacts
             <!-- Heading -->
 
             <!-- Main Page  -->
+            
             <li class="nav-item">
-                <a class="nav-link" href="../View/index.php">
+                <a class="nav-link" href="../index.php">
                 <i class="fas fa-laptop-house"></i>
-                    <span>Home Page</span></a>
+                    <span>Trang chủ</span></a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="./charts.php">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Biểu đồ</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

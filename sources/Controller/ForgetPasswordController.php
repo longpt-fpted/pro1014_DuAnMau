@@ -1,17 +1,20 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Database.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Utils/Mail.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/DAO/UserDAO.php";
-// include "C:/xampp/htdocs/pro1014_DuAn/sources/Utils/Database.php";
-
+include "/storage/ssd2/188/19378188/public_html/Utils/Database.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Mail.php";
+include "/storage/ssd2/188/19378188/public_html/Utils/Utils.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/FeedbackDAO.php";
+include "/storage/ssd2/188/19378188/public_html/Model/DAO/UserDAO.php";
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $utils = new Utils();
+
 
     $userDAO = new UserDAO();
-    $user = $userDAO->getUserByEmail($email); // báo lỗi
-    $password = $user->getPassword();
+    $user = $userDAO->getUserByEmail($email);
+    $password = $utils->generateRandomString();
+    $userDAO->UserChangePassword(md5($password), $user->getID());
     $mail = new Mail();
 
-     if($mail->sendMail($user->getEmail(), 'forgot your password ?', 'your password is '.$password))
-        header("location: /sources/View/index.php");
+     if($mail->sendMail($user->getEmail(), 'Forgot your password ?', 'Your password is '.$password))
+        header("location: ../View");
 ?>

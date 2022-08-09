@@ -27,7 +27,7 @@
         //var_dump($currency);
         $userDAO->UserUpdateCurrency($currency,$id);
         header("location: ../View/user.php?id=$id");
-    } else return false;
+    } else header("location: ../View/error404.php");
 
 
 

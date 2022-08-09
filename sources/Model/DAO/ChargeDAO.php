@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/Charge.php";
+include "/storage/ssd2/188/19378188/public_html/Model/Charge.php";
 
 class ChargeDAO {
     private $database;

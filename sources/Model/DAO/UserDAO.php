@@ -1,5 +1,5 @@
 <?php
-include "/Applications/XAMPP/xamppfiles/htdocs/pro1014_duan/sources/Model/User.php";
+include "/storage/ssd2/188/19378188/public_html/Model/User.php";
 // include "C:/xampp/htdocs/pro1014_DuAn/sources/Model/User.php";
 class UserDAO {
     private $database; 
@@ -12,7 +12,7 @@ class UserDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare("SELECT * FROM `User` WHERE `User`.`id` = ?");
+            $query = $this->database->prepare("SELECT * FROM `user` WHERE `user`.`id` = ?");
             $query->bind_param('s', $id);
 
             if($query->execute()) {
@@ -28,7 +28,7 @@ class UserDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `User` WHERE `User`.`email` = ?');
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`email` = ?');
             $query->bind_param('s', $email);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -43,7 +43,7 @@ class UserDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `User` WHERE `User`.`username` = ?');
+            $query = $this->database->prepare('SELECT * FROM `user` WHERE `user`.`username` = ?');
             $query->bind_param('s', $username);
             if($query->execute()) {
                 $result = $query->get_result();
@@ -58,7 +58,7 @@ class UserDAO {
         if($this->database->connect_error) {
             return false;
         } else {
-            $query = $this->database->prepare('SELECT * FROM `User`');
+            $query = $this->database->prepare('SELECT * FROM `user`');
             if($query->execute()) {
                 $users = [];
                 $result = $query->get_result();
@@ -278,6 +278,15 @@ class UserDAO {
                     return $users;
                  } else return false;
             } else return false;
+        }
+    }
+    public function updateUserPassword($id, $password) {
+        if($this->database->connect_error){
+            return false;
+        }else {
+            $query = $this->database->prepare("UPDATE `user` SET `user`.`password`=? WHERE `user`.`id`=?");
+            $query->bind_param("ss",$password,$id);
+            return $query->execute();
         }
     }
 }

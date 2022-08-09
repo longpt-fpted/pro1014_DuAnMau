@@ -38,7 +38,7 @@
                                         <tr>
                                         <div class="modal-add" id="modal-add-form">
                                             <button id="btn-hidden" onclick="modal_hidden()">x</button>
-                                            <form action="http://localhost/pro1014_duan/sources/controller/ReplyContactController.php" id="modal-add-product" method="post">
+                                            <form action="http://dsgobruh.000webhostapp.com/Controller/ReplyContactController.php" id="modal-add-product" method="post">
                                             <form>
                                                 <p id="modal-add-title">Phản hồi</p>
                                                 <input type="hidden" id="id" name="id" value="<?php echo $contact->getID() ?>">
@@ -58,7 +58,7 @@
                                                     <button onclick="modal_contact_add(<?php echo $contactCount; ?>)" id="btn-contact-reply">Trả lời</button>
                                                 </a>
                                                 <?php } ?>
-                                                <a href="http://localhost/pro1014_duan/sources/controller/RemoveContact.php?id=<?php echo $contact->getID() ?>">
+                                                <a href="http://dsgobruh.000webhostapp.com/Controller/RemoveContact.php?id=<?php echo $contact->getID() ?>">
                                                     <button id="btn-contact-delete">Xóa</button>
                                                 </a>
                                             </td>
